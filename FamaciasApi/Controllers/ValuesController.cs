@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FamaciasApi.DAL;
+using FamaciasApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FamaciasApi.Controllers
@@ -14,7 +16,17 @@ namespace FamaciasApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            using (DALBaseOrcl baseorc = new DALBaseOrcl()) {
+
+                baseorc.Create(new Usuarios {
+                    IdUsuario = 0, Usuario="DanieListo",Password="1234"
+                });
+            }
+
+                ////    var datos = dal.GetTableAttributes<Usuarios>();
+                ////string valores = dal.SqlInsertQueryBuilder<Usuarios>(new Usuarios());
+
+                return new string[] { "va", "ve" };
         }
 
         // GET api/values/5
