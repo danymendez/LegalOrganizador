@@ -19,9 +19,15 @@ namespace FamaciasApi.SQLBuilders
             PropertyInfo[] prop = entity.GetType().GetProperties();
             foreach (var p in prop)
             {
-                if(!dictKeys.ContainsKey(dictFields[p.Name]))
-                sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
-
+                if (dictKeys.ContainsKey(dictFields[p.Name]))
+                {
+                    if (!dictKeys[dictFields[p.Name]])
+                        sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                }
+                else {
+                   
+                        sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                }
             }
 
             return sqlParameter;

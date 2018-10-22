@@ -17,27 +17,31 @@ namespace FamaciasApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            //using (DALBaseOrcl baseorc = new DALBaseOrcl("")) {
+            using (DALBaseOrcl baseorc = new DALBaseOrcl())
+            {
 
-            //    string a = baseorc.SqlInsertQueryBuilder(new Usuarios());
 
-            //    //baseorc.Create(new Usuarios {
-            //    //    IdUsuario = 0, Usuario="DanieListo",Password="1234"
-            //    //});
-            //}
+
+                baseorc.Create(new Usuarios
+                {
+                    IdUsuario = 0,
+                    Usuario = "DanieListo",
+                    Password = "1234"
+                });
+            }
             SqlQueryBuilder sqlQueryBuilder = new SqlQueryBuilder();
 
-            string insert = sqlQueryBuilder.InsertQuery<Usuarios>();
-            string update = sqlQueryBuilder.UpdateQuery<Usuarios>();
-            string selectAll = sqlQueryBuilder.SelectAllQuery<Usuarios>();
-            string select = sqlQueryBuilder.SelectQuery<Usuarios>();
-            string delete = sqlQueryBuilder.DeleteQuery<Usuarios>();
+            //string insert = sqlQueryBuilder.InsertQuery<Usuarios>();
+            //string update = sqlQueryBuilder.UpdateQuery<Usuarios>();
+            //string selectAll = sqlQueryBuilder.SelectAllQuery<Usuarios>();
+            //string select = sqlQueryBuilder.SelectQuery<Usuarios>();
+            //string delete = sqlQueryBuilder.DeleteQuery<Usuarios>();
 
-            SqlParameterBuilder sqlParameter = new SqlParameterBuilder();
+            //SqlParameterBuilder sqlParameter = new SqlParameterBuilder();
 
-            var sqlParamInser = sqlParameter.InsertParametersBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
-            var sqlParamUpdate = sqlParameter.SelectOrUpdateParametersBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
-            var sqlParamDelete = sqlParameter.DeleteParameterBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
+            //var sqlParamInser = sqlParameter.InsertParametersBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
+            //var sqlParamUpdate = sqlParameter.SelectOrUpdateParametersBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
+            //var sqlParamDelete = sqlParameter.DeleteParameterBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
 
             ////    var datos = dal.GetTableAttributes<Usuarios>();
             ////string valores = dal.SqlInsertQueryBuilder<Usuarios>(new Usuarios());
