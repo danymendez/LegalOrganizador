@@ -8,6 +8,6 @@ namespace FamaciasApi.Attributes
 
     public class PrimaryKey : Attribute
     {
-        public string FieldName { get; set; }
+        public bool AutoIncrement { get; set; }
     }
 }

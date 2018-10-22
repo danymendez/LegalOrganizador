@@ -112,20 +112,27 @@ namespace FamaciasApi.DAL
             TableSerialize tableSerialize = new TableSerialize();
             PropertyInfo[] prop = entity.GetProperties();
 
-            foreach (var attribute in entity.GetCustomAttributes()) {
-
-                if (attribute.GetType().Name.Equals("Table"))
+            if (entity.GetCustomAttributes().Count() != 0)
+            {
+                foreach (var attribute in entity.GetCustomAttributes())
                 {
-                    Table tb = attribute as Table;
-                    if (tb != null && tb.Name != null)
+
+                    if (attribute.GetType().Name.Equals("Table"))
                     {
-                        tableSerialize.TableName = tb.Name;
-                        continue;
+                        Table tb = attribute as Table;
+                        if (tb != null && tb.Name != null)
+                        {
+                            tableSerialize.TableName = tb.Name;
+                            continue;
+                        }
+
+                        tableSerialize.TableName = entity.Name;
                     }
 
-                    tableSerialize.TableName = entity.Name;
                 }
-
+            }
+            else {
+                tableSerialize.TableName = entity.Name;
             }
 
             foreach (var p in prop)
@@ -142,10 +149,14 @@ namespace FamaciasApi.DAL
                         if (attribute.GetType().Name.Equals("PrimaryKey"))
                         {
                             PrimaryKey primaryKey = attribute as PrimaryKey;
-                            if (primaryKey != null && primaryKey.FieldName != null)
+                            if (primaryKey != null)
                             {
-                                tableSerialize.PrimaryKeyName.Add(p.Name,primaryKey.FieldName);
+                               
+                                tableSerialize.PrimaryKeyName.Add(p.Name, new Tuple<string,bool>("",primaryKey.AutoIncrement));
                                 continue;
+                            }
+                            else if (primaryKey != null) {
+                                tableSerialize.PrimaryKeyName.Add(p.Name, new Tuple<string, bool>(p.Name,false));
                             }
                         }
 
@@ -181,14 +192,13 @@ namespace FamaciasApi.DAL
 
             foreach (var valor in tableSerialize.PrimaryKeyName)
             {
-                query += ":" + valor.Value;
-                if (!valor.Equals(tableSerialize.PrimaryKeyName.Last()))
-                {
+                query += ":" + valor.Value.Item1;
+                
+                
                     query += ",";
-                }
+                
             }
 
-            query += ",";
 
             foreach (var valor in tableSerialize.FieldName) {
                 query += ":" + valor.Value;
@@ -210,7 +220,7 @@ namespace FamaciasApi.DAL
             foreach (var p in prop)
             {
                 sqlParameter.Add(":" + (!tableSerialize.PrimaryKeyName.ContainsKey(p.Name) ? tableSerialize.FieldName[p.Name] 
-                                    : tableSerialize.PrimaryKeyName[p.Name]), p.GetValue(entity));
+                                    : tableSerialize.PrimaryKeyName[p.Name].Item1), p.GetValue(entity));
                
                 string a = p.GetValue(entity).ToString();
             }

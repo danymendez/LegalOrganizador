@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FamaciasApi.DAL;
 using FamaciasApi.Models;
+using FamaciasApi.SQLBuilders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FamaciasApi.Controllers
@@ -16,17 +17,32 @@ namespace FamaciasApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            using (DALBaseOrcl baseorc = new DALBaseOrcl()) {
+            //using (DALBaseOrcl baseorc = new DALBaseOrcl("")) {
 
-                baseorc.Create(new Usuarios {
-                    IdUsuario = 0, Usuario="DanieListo",Password="1234"
-                });
-            }
+            //    string a = baseorc.SqlInsertQueryBuilder(new Usuarios());
 
-                ////    var datos = dal.GetTableAttributes<Usuarios>();
-                ////string valores = dal.SqlInsertQueryBuilder<Usuarios>(new Usuarios());
+            //    //baseorc.Create(new Usuarios {
+            //    //    IdUsuario = 0, Usuario="DanieListo",Password="1234"
+            //    //});
+            //}
+            SqlQueryBuilder sqlQueryBuilder = new SqlQueryBuilder();
 
-                return new string[] { "va", "ve" };
+            string insert = sqlQueryBuilder.InsertQuery<Usuarios>();
+            string update = sqlQueryBuilder.UpdateQuery<Usuarios>();
+            string selectAll = sqlQueryBuilder.SelectAllQuery<Usuarios>();
+            string select = sqlQueryBuilder.SelectQuery<Usuarios>();
+            string delete = sqlQueryBuilder.DeleteQuery<Usuarios>();
+
+            SqlParameterBuilder sqlParameter = new SqlParameterBuilder();
+
+            var sqlParamInser = sqlParameter.InsertParametersBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
+            var sqlParamUpdate = sqlParameter.SelectOrUpdateParametersBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
+            var sqlParamDelete = sqlParameter.DeleteParameterBuilder(new Usuarios { IdUsuario = 0, Usuario = "", Password = "" });
+
+            ////    var datos = dal.GetTableAttributes<Usuarios>();
+            ////string valores = dal.SqlInsertQueryBuilder<Usuarios>(new Usuarios());
+
+            return new string[] { "va", "ve" };
         }
 
         // GET api/values/5

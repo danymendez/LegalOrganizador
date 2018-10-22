@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace FamaciasApi.Models
 { 
-    [Table(Name ="Usuarios")]
+    [Table(Name ="Usuarios1")]
     public class Usuarios
     {
-        [PrimaryKey(FieldName = "IdUsuario")]
+        [PrimaryKey(AutoIncrement = true)]
+        [Field(Name = "id")]
         public int IdUsuario { get; set; }
         public string Usuario { get; set; }
         public string Password { get; set; }

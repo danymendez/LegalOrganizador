@@ -10,13 +10,14 @@ namespace FamaciasApi.Utils
     {
         public TableSerialize() {
             FieldName = new Dictionary<string, string>();
-            PrimaryKeyName = new Dictionary<string, string>();
+            PrimaryKeyName = new Dictionary<string, Tuple<string, bool>>();
         }
 
         public string TableName { get; set; }
         public Dictionary<string, string> FieldName { get; set; }
 
-        public Dictionary<string, string> PrimaryKeyName { get; set; }
+        public Dictionary<string, Tuple<string,bool>> PrimaryKeyName { get; set; }
+        
 
         
     }
