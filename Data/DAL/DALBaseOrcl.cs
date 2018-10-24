@@ -1,6 +1,4 @@
-﻿using FamaciasApi.Attributes;
-using FamaciasApi.SQLBuilders;
-using FamaciasApi.Utils;
+﻿using Data.SQLBuilders;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -8,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace FamaciasApi.DAL
+namespace Data.DAL
 {
     public class DALBaseOrcl : IDisposable
     {

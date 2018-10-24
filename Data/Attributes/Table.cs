@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FamaciasApi.Attributes
+namespace Data.Attributes
 {
-    public class Field : Attribute
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class Table : Attribute
     {
         public string Name { get; set; }
+
     }
 }

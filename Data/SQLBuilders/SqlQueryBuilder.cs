@@ -1,4 +1,4 @@
-﻿using FamaciasApi.Attributes;
+﻿using Data.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace FamaciasApi.SQLBuilders
+namespace Data.SQLBuilders
 {
     public class SqlQueryBuilder
     {

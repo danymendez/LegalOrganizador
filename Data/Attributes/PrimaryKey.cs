@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FamaciasApi.Attributes
+namespace Data.Attributes
 {
 
     public class PrimaryKey : Attribute

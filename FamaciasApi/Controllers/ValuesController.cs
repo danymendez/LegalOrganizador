@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FamaciasApi.DAL;
+using Data.DAL;
 using FamaciasApi.Models;
-using FamaciasApi.SQLBuilders;
+using Data.SQLBuilders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FamaciasApi.Controllers

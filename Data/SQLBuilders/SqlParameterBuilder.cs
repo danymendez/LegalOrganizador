@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace FamaciasApi.SQLBuilders
+namespace Data.SQLBuilders
 {
     public class SqlParameterBuilder
     {
