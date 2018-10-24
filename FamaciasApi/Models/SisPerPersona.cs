@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FamaciasApi.Models
+namespace PreOrclApi.Models
 { 
     [Table(Name ="SIS_PER_PERSONA")]
     public class SisPerPersona

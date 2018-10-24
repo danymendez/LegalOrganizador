@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.DAL;
-using FamaciasApi.Models;
+using PreOrclApi.Models;
 using Data.SQLBuilders;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FamaciasApi.Controllers
+namespace PreOrclApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
