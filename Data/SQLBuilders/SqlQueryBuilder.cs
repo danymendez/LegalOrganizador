@@ -13,6 +13,7 @@ namespace Data.SQLBuilders
         public string InsertQuery<T>() {
 
             Dictionary<string, string> dictionaryField = GetFields<T>();
+            Dictionary<string, string> dictionaryFieldComilla = new Dictionary<string, string>();
             Dictionary<string, bool> dictionaryPrimaryKeys = GetPrimaryKeysAutoIncrem<T>();
             Dictionary<string, string> dictFieldWithSignParameter = new Dictionary<string, string>();
 
@@ -36,12 +37,13 @@ namespace Data.SQLBuilders
             
             foreach (var dic in dictionaryField) {
                 dictFieldWithSignParameter.Add(dic.Key, ":" + dic.Value);
+                dictionaryFieldComilla.Add(dic.Key, "\"" + dic.Value + "\"");
             }
 
             string query = String.Format("insert into {0} ({1}) values ({2})"
-                                            ,GetTableName<T>()
-                                            ,string.Join(",", dictionaryField.Values)
-                                            ,string.Join(",",dictFieldWithSignParameter.Values));
+                                            , "\""+GetTableName<T>()+"\""
+                                            , string.Join(", ", dictionaryFieldComilla.Values)
+                                            ,string.Join(", ",dictFieldWithSignParameter.Values));
 
             return query;
         }
@@ -80,7 +82,7 @@ namespace Data.SQLBuilders
 
             string query = String.Format("UPDATE {0} SET {1} where {2}"
                                             , GetTableName<TEntity>()
-                                            , string.Join(",", dictFieldWithSignParameter.Values)
+                                            , string.Join(", ", dictFieldWithSignParameter.Values)
                                             , string.Join(" and ", dictionaryKeysWithParameters.Values));
 
             return query;

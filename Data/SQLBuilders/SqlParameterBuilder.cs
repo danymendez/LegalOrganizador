@@ -22,11 +22,11 @@ namespace Data.SQLBuilders
                 if (dictKeys.ContainsKey(dictFields[p.Name]))
                 {
                     if (!dictKeys[dictFields[p.Name]])
-                        sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                        sqlParameter.Add(dictFields[p.Name], p.GetValue(entity));
                 }
                 else {
                    
-                        sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                        sqlParameter.Add(dictFields[p.Name], p.GetValue(entity));
                 }
             }
 

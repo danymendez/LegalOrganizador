@@ -22,11 +22,24 @@ namespace FamaciasApi.Controllers
 
 
 
-                baseorc.Create(new Usuarios
-                {
-                    IdUsuario = 0,
-                    Usuario = "DanieListo",
-                    Password = "1234"
+                baseorc.Create(new SisPerPersona
+                {   per_IDPER = 10,
+                    per_nombre_razon ="Daniel",
+                    per_apellido_comercial ="Méndez",
+                    per_nit ="a",
+                    per_dui_nrc = "a",
+                    per_direccion_departamento = "a",
+                    per_direccion_municipio = "a",
+                    per_direccion = "a",
+                    per_telefono = "a",
+                    per_movil = "a",
+                    per_email = "",
+                    per_codigo = "",
+                    per_nacionalidad = "",
+                    per_tipo_contribullente = "",
+                    per_dir_cli = "",
+                    per_cobros = ""
+
                 });
             }
             SqlQueryBuilder sqlQueryBuilder = new SqlQueryBuilder();
