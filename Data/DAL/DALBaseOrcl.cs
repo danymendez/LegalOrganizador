@@ -1,7 +1,10 @@
-﻿using Data.SQLBuilders;
+﻿using Data.Attributes;
+using Data.SQLBuilders;
 using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -66,10 +69,14 @@ namespace Data.DAL
             {
                 command.Parameters.Add(param.ParameterName, param.Value);
             }
-
+            OracleParameter outputParameter = new OracleParameter("my_id_param", OracleDbType.Int32);
+            outputParameter.Direction = ParameterDirection.Output;
+            command.Parameters.Add(outputParameter);
+            int a = 0;
             try
             {
                 command.ExecuteNonQuery();
+                a = Convert.ToInt32((decimal)(OracleDecimal)outputParameter.Value);
             }
             catch (Exception ex)
             {
@@ -89,6 +96,18 @@ namespace Data.DAL
                     Console.WriteLine(exRollback.Message);
                 }
             }
+
+            PropertyInfo[] prop = entity.GetType().GetProperties();
+            foreach (var p in prop)
+            {
+                var attrPrimaryKey = p.GetCustomAttributes().Where(c => c.GetType().Name.Equals("PrimaryKey")).FirstOrDefault();
+                PrimaryKey pk = attrPrimaryKey as PrimaryKey;
+                if (pk != null)
+                {
+                    p.SetValue(entity, a);
+                } 
+            }
+
             return entity;
         }
 

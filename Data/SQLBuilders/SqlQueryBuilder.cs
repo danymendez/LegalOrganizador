@@ -40,10 +40,11 @@ namespace Data.SQLBuilders
                 dictionaryFieldComilla.Add(dic.Key, "\"" + dic.Value + "\"");
             }
 
-            string query = String.Format("insert into {0} ({1}) values ({2})"
-                                            , "\""+GetTableName<T>()+"\""
+            string query = String.Format("insert into \"{0}\" ({1}) values ({2}) RETURNING \"{3}\" into :my_id_param"
+                                            , GetTableName<T>()
                                             , string.Join(", ", dictionaryFieldComilla.Values)
-                                            ,string.Join(", ",dictFieldWithSignParameter.Values));
+                                            ,string.Join(", ",dictFieldWithSignParameter.Values)
+                                            ,string.Join("", dictionaryPrimaryKeys.Keys));
 
             return query;
         }
