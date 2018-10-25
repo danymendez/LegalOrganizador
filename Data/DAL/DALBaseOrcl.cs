@@ -114,31 +114,40 @@ namespace Data.DAL
         public virtual List<T> GetAll<T>() where T : new()
         {
             List<T> listEntity = new List<T>();
-            var type = typeof(T);
             sqlQueryBuilder = new SqlQueryBuilder();
             var valor = sqlQueryBuilder.GetFields<T>();
-            var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             command.CommandText = sqlQueryBuilder.SelectAllQuery<T>();
-            var reader = command.ExecuteReader();
-            PropertyInfo[] prop = type.GetProperties();
-            while (reader.Read())
+
+            try
             {
-                var obj = new T();
-                foreach (var p in obj.GetType().GetProperties())
+                var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-
-
-                    if (p.GetType()== typeof(int))
+                    var obj = new T();
+                    PropertyInfo[] prop = obj.GetType().GetProperties();
+                    foreach (var p in prop)
                     {
-                        p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? 0 : (int)reader["\"" + valor[p.Name] + "\""]);
-                    }
-                    if(p.GetType()==typeof(string)) {
-                        p.SetValue(obj, reader["\"" + valor[p.Name] + "\""]==DBNull.Value?null:reader["\"" + valor[p.Name] + "\""]);
-                    }
-                }
-                listEntity.Add(obj);
-            }
 
+
+                        if (p.PropertyType == typeof(Int32))
+                        {
+                            int id;
+                            bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out id);
+
+                            if(EsEntero)
+                            p.SetValue(obj, id);
+                        }
+                        if (p.PropertyType == typeof(System.String))
+                        {
+                            p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? null : reader["\"" + valor[p.Name] + "\""]);
+                        }
+                    }
+                    listEntity.Add(obj);
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+            }
 
             return listEntity;
         }

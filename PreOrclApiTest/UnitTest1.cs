@@ -46,14 +46,14 @@ namespace PreOrclApiTest
         [TestMethod]
         public void SelectAll() {
 
-            List<SisPerPersona> lista = new List<SisPerPersona>();
+            List<SisPerPersona> lista = null;
 
             using (DALBaseOrcl dalBase = new DALBaseOrcl())
             {
                 lista = dalBase.GetAll<SisPerPersona>();
             }
 
-            Assert.IsNull(lista);
+            Assert.IsNotNull(lista);
         }
     }
 }

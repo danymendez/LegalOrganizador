@@ -1,6 +1,7 @@
 ﻿using Data.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace PreOrclApi.Models
     public class SisPerPersona
     {
         [PrimaryKey(AutoIncrement = false)]
+        [Key]
         public int per_IDPER { get; set; }
         public string per_nombre_razon { get; set; }
         public string per_apellido_comercial { get; set; }
