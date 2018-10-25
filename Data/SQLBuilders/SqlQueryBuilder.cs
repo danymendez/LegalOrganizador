@@ -90,8 +90,12 @@ namespace Data.SQLBuilders
         }
 
         public string SelectAllQuery<T>() {
+            Dictionary<string, string> dictionaryField = new Dictionary<string, string>();
+            foreach (var item in GetFields<T>()) {
 
-            string query = String.Format("Select {0} from {1}", string.Join(",", GetFields<T>().Values), GetTableName<T>());
+                dictionaryField.Add(item.Key, "\"" + item.Value + "\"");
+            }
+            string query = String.Format("Select {0} from \"{1}\" ", string.Join(",", dictionaryField.Values), GetTableName<T>());
 
             return query;
         }

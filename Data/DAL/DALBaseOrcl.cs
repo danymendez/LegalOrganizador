@@ -121,12 +121,20 @@ namespace Data.DAL
             command.CommandText = sqlQueryBuilder.SelectAllQuery<T>();
             var reader = command.ExecuteReader();
             PropertyInfo[] prop = type.GetProperties();
-            while (reader.NextResult())
+            while (reader.Read())
             {
                 var obj = new T();
-                foreach (var p in prop)
+                foreach (var p in obj.GetType().GetProperties())
                 {
-                    p.SetValue(obj, reader[valor[p.Name]], null);
+
+
+                    if (p.GetType()== typeof(int))
+                    {
+                        p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? 0 : (int)reader["\"" + valor[p.Name] + "\""]);
+                    }
+                    if(p.GetType()==typeof(string)) {
+                        p.SetValue(obj, reader["\"" + valor[p.Name] + "\""]==DBNull.Value?null:reader["\"" + valor[p.Name] + "\""]);
+                    }
                 }
                 listEntity.Add(obj);
             }

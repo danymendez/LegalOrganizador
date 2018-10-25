@@ -1,6 +1,7 @@
 using Data.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PreOrclApi.Models;
+using System.Collections.Generic;
 
 namespace PreOrclApiTest
 {
@@ -40,6 +41,19 @@ namespace PreOrclApiTest
             }
 
             Assert.AreNotEqual(0,sis.per_IDPER);
+        }
+
+        [TestMethod]
+        public void SelectAll() {
+
+            List<SisPerPersona> lista = new List<SisPerPersona>();
+
+            using (DALBaseOrcl dalBase = new DALBaseOrcl())
+            {
+                lista = dalBase.GetAll<SisPerPersona>();
+            }
+
+            Assert.IsNull(lista);
         }
     }
 }
