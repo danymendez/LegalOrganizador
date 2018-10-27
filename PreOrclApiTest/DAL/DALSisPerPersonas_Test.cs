@@ -1,6 +1,6 @@
 using Data.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Common.Models;
+using Common.Entity.Models;
 using System.Collections.Generic;
 using System.Linq;
 

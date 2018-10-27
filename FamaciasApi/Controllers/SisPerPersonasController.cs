@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.BOL.BOL;
 using System.Threading.Tasks;
 using Data.DAL;
 using Microsoft.AspNetCore.Http;
@@ -23,17 +24,10 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas
         [HttpGet]
-        public IEnumerable<SisPerPersona> GetSisPerPersona()
+        public IEnumerable<Common.Entity.Models.SisPerPersona> GetSisPerPersona()
         {
-            List<SisPerPersona> lista = new List<SisPerPersona>();
-
-            using (DALDBContext context = new DALDBContext()) {
-
-                DALSisPerPersona dal = new DALSisPerPersona(context);
-                lista = dal.GetAll<SisPerPersona>();
-            }
-
-                return lista;
+            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+                return bol.GetAllSisPerPersona();
         }
 
         // GET: api/SisPerPersonas/5
@@ -44,8 +38,8 @@ namespace PreOrclApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var sisPerPersona = await _context.SisPerPersona.FindAsync(id);
+            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+            var sisPerPersona = await bol.GetSisPerPersona(id);
 
             if (sisPerPersona == null)
             {
@@ -57,7 +51,7 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSisPerPersona([FromRoute] int id, [FromBody] SisPerPersona sisPerPersona)
+        public async Task<IActionResult> PutSisPerPersona([FromRoute] int id, [FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
         {
             if (!ModelState.IsValid)
             {
@@ -69,15 +63,21 @@ namespace PreOrclApi.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(sisPerPersona).State = EntityState.Modified;
+            BOLSisPerPersonas bol = new BOLSisPerPersonas();
 
             try
             {
-                await _context.SaveChangesAsync();
+                if (bol.GetSisPerPersona(id) == null)
+                {
+                    return NotFound();
+                }
+                await bol.UpdateSisPerPersona(id,sisPerPersona);
+
+
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SisPerPersonaExists(id))
+                if (bol.GetSisPerPersona(id) == null)
                 {
                     return NotFound();
                 }
@@ -92,20 +92,15 @@ namespace PreOrclApi.Controllers
 
         // POST: api/SisPerPersonas
         [HttpPost]
-        public async Task<IActionResult> PostSisPerPersona([FromBody] SisPerPersona sisPerPersona)
+        public async Task<IActionResult> PostSisPerPersona([FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            SisPerPersona sisPer = new SisPerPersona();
-
-            using (DALDBContext context = new DALDBContext()) {
-                DALBaseOrcl dal = new DALBaseOrcl(context);
-                sisPer = dal.Create(sisPerPersona);
-            }
-
+            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+            sisPerPersona = await bol.CreatePersona(sisPerPersona);
 
             return CreatedAtAction("GetSisPerPersona", new { id = sisPerPersona.per_IDPER }, sisPerPersona);
         }

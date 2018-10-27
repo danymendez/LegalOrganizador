@@ -33,14 +33,18 @@ namespace Data.SQLBuilders
             return sqlParameter;
         }
 
-        public OracleParameterCollection SelectOrUpdateParametersBuilder<T>(T entity) {
+        public OracleParameterCollection UpdateParametersBuilder<T>(long id,T entity) {
            
                 OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
                 Dictionary<string, string> dictFields = sqlQueryBuilder.GetFields<T>();
+                Dictionary<string, bool> dictKeys = sqlQueryBuilder.GetPrimaryKeysAutoIncrem<T>();
                 PropertyInfo[] prop = entity.GetType().GetProperties();
                 foreach (var p in prop)
                 {
-                        sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                    if (dictKeys.ContainsKey(dictFields[p.Name]))
+                      sqlParameter.Add(":" + dictFields[p.Name], id);
+                    else
+                      sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
                 }
 
                 return sqlParameter;            

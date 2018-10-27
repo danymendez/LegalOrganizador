@@ -1,4 +1,4 @@
-﻿using Common.Attributes;
+﻿using Common.Entity.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

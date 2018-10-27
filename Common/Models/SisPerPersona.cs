@@ -1,11 +1,11 @@
-﻿using Common.Attributes;
+﻿using Common.Entity.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Common.Models
+namespace Common.Entity.Models
 { 
     [Table(Name ="SIS_PER_PERSONA")]
     public class SisPerPersona

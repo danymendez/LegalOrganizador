@@ -1,5 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
-using Common.Models;
+using Common.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +33,11 @@ namespace Data.DAL
 
 
             return Delete<SisPerPersona>(id);
+        }
+
+        public SisPerPersona UpdateSisPerPersona(long id, SisPerPersona sisPerPersona) {
+
+            return Update(id, sisPerPersona);
         }
 
         public SisPerPersona GetPersona(long id) {

@@ -1,4 +1,4 @@
-﻿using Common.Attributes;
+﻿using Common.Entity.Attributes;
 using Data.SQLBuilders;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
@@ -204,6 +204,46 @@ namespace Data.DAL
             return entity;
         }
 
+        public virtual T Update<T>(long id, T entity) {
+            T t = default(T);
+            sqlQueryBuilder = new SqlQueryBuilder();
+            sqlParameterBuilder = new SqlParameterBuilder();
+            command = new OracleCommand();
+            command.Connection = _sqlConnection;
+            command.Transaction = sqlTran;
+            command.CommandText = sqlQueryBuilder.UpdateQuery<T>();
+            foreach (OracleParameter param in sqlParameterBuilder.UpdateParametersBuilder(id,entity))
+            {
+                command.Parameters.Add(param.ParameterName, param.Value);
+            }
+
+
+            try
+            {
+                command.ExecuteNonQuery();
+                t = entity;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception if the transaction fails to commit.
+                Console.WriteLine(ex.Message);
+
+                try
+                {
+                    // Attempt to roll back the transaction.
+                    sqlTran.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    // Throws an InvalidOperationException if the connection 
+                    // is closed or the transaction has already been rolled 
+                    // back on the server.
+                    Console.WriteLine(exRollback.Message);
+                }
+            }
+
+            return entity;
+        }
         public virtual T Delete<T>(long id) where T : new() {
             T t = default(T);
             t = Get<T>(id);

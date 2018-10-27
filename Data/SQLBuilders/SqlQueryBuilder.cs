@@ -1,4 +1,4 @@
-﻿using Common.Attributes;
+﻿using Common.Entity.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,7 +67,7 @@ namespace Data.SQLBuilders
                         fieldToRemove.Add(dic.Key);
                       
                     }
-                    dictionaryKeysWithParameters.Add(dic.Key, dic.Key + "=:" + dic.Key);
+                    dictionaryKeysWithParameters.Add(dic.Key,"\""+ dic.Key+"\"" + "=:" + dic.Key);
                 }
             }
 
@@ -78,10 +78,10 @@ namespace Data.SQLBuilders
 
             foreach (var dic in dictionaryField)
             {
-                dictFieldWithSignParameter.Add(dic.Key, dic.Value+"="+":" + dic.Value);
+                dictFieldWithSignParameter.Add(dic.Key, "\"" + dic.Value+ "\"" + "=" +":" + dic.Value);
             }
 
-            string query = String.Format("UPDATE {0} SET {1} where {2}"
+            string query = String.Format("UPDATE \"{0}\" SET {1} where {2}"
                                             , GetTableName<TEntity>()
                                             , string.Join(", ", dictFieldWithSignParameter.Values)
                                             , string.Join(" and ", dictionaryKeysWithParameters.Values));

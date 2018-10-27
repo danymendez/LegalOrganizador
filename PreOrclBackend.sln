@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreOrclApi", "FamaciasApi\PreOrclApi.csproj", "{C8E7668E-1746-4F72-BE5C-3D8DE7D03446}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{D4BC22D8-2243-455A-A736-43B4A561F836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Entity", "Common\Common.Entity.csproj", "{D4BC22D8-2243-455A-A736-43B4A561F836}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{DAF6D079-6429-472F-90D2-CE57ADD41AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreOrclApiTest", "PreOrclApiTest\PreOrclApiTest.csproj", "{FCD929F1-4F87-4999-9379-615D256BDCD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreOrclApiTest", "PreOrclApiTest\PreOrclApiTest.csproj", "{FCD929F1-4F87-4999-9379-615D256BDCD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.BOL", "Common.BOL\Common.BOL.csproj", "{FD5D95F5-7AD1-4716-8CCF-943F3542EC45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FCD929F1-4F87-4999-9379-615D256BDCD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD929F1-4F87-4999-9379-615D256BDCD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD929F1-4F87-4999-9379-615D256BDCD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD5D95F5-7AD1-4716-8CCF-943F3542EC45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5D95F5-7AD1-4716-8CCF-943F3542EC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5D95F5-7AD1-4716-8CCF-943F3542EC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5D95F5-7AD1-4716-8CCF-943F3542EC45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
