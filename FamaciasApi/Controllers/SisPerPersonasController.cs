@@ -75,11 +75,11 @@ namespace PreOrclApi.Controllers
 
 
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
                 if (bol.GetSisPerPersona(id) == null)
                 {
-                    return NotFound();
+                    return NotFound(e.Message);
                 }
                 else
                 {

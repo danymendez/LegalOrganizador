@@ -1,0 +1,104 @@
+﻿@model Common.Entity.Models.SisPerPersona
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>SisPerPersona</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="per_IDPER" />
+            <div class="form-group">
+                <label asp-for="per_nombre_razon" class="control-label"></label>
+                <input asp-for="per_nombre_razon" class="form-control" />
+                <span asp-validation-for="per_nombre_razon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_apellido_comercial" class="control-label"></label>
+                <input asp-for="per_apellido_comercial" class="form-control" />
+                <span asp-validation-for="per_apellido_comercial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_nit" class="control-label"></label>
+                <input asp-for="per_nit" class="form-control" />
+                <span asp-validation-for="per_nit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_dui_nrc" class="control-label"></label>
+                <input asp-for="per_dui_nrc" class="form-control" />
+                <span asp-validation-for="per_dui_nrc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_direccion_departamento" class="control-label"></label>
+                <input asp-for="per_direccion_departamento" class="form-control" />
+                <span asp-validation-for="per_direccion_departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_direccion_municipio" class="control-label"></label>
+                <input asp-for="per_direccion_municipio" class="form-control" />
+                <span asp-validation-for="per_direccion_municipio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_direccion" class="control-label"></label>
+                <input asp-for="per_direccion" class="form-control" />
+                <span asp-validation-for="per_direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_telefono" class="control-label"></label>
+                <input asp-for="per_telefono" class="form-control" />
+                <span asp-validation-for="per_telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_movil" class="control-label"></label>
+                <input asp-for="per_movil" class="form-control" />
+                <span asp-validation-for="per_movil" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_email" class="control-label"></label>
+                <input asp-for="per_email" class="form-control" />
+                <span asp-validation-for="per_email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_codigo" class="control-label"></label>
+                <input asp-for="per_codigo" class="form-control" />
+                <span asp-validation-for="per_codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_nacionalidad" class="control-label"></label>
+                <input asp-for="per_nacionalidad" class="form-control" />
+                <span asp-validation-for="per_nacionalidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_tipo_contribullente" class="control-label"></label>
+                <input asp-for="per_tipo_contribullente" class="form-control" />
+                <span asp-validation-for="per_tipo_contribullente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_dir_cli" class="control-label"></label>
+                <input asp-for="per_dir_cli" class="form-control" />
+                <span asp-validation-for="per_dir_cli" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="per_cobros" class="control-label"></label>
+                <input asp-for="per_cobros" class="form-control" />
+                <span asp-validation-for="per_cobros" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
