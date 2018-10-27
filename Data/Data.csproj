@@ -10,4 +10,12 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DAL\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
 </Project>

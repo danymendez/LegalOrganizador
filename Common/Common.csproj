@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BOL\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Oracle.ManagedDataAccess">
       <HintPath>..\..\..\..\Documents\Oracle.ManagedDataAccess.Core.2.12.0-beta3\lib\netstandard2.0\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>

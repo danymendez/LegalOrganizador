@@ -27,8 +27,9 @@ namespace PreOrclApi.Controllers
         {
             List<SisPerPersona> lista = new List<SisPerPersona>();
 
-            using (DALBaseOrcl dal = new DALBaseOrcl()) {
+            using (DALDBContext context = new DALDBContext()) {
 
+                DALSisPerPersona dal = new DALSisPerPersona(context);
                 lista = dal.GetAll<SisPerPersona>();
             }
 
@@ -100,8 +101,8 @@ namespace PreOrclApi.Controllers
 
             SisPerPersona sisPer = new SisPerPersona();
 
-            using (DALBaseOrcl dal = new DALBaseOrcl()) {
-
+            using (DALDBContext context = new DALDBContext()) {
+                DALBaseOrcl dal = new DALBaseOrcl(context);
                 sisPer = dal.Create(sisPerPersona);
             }
 

@@ -1,6 +1,6 @@
 using Data.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PreOrclApi.Models;
+using Common.Models;
 using System.Collections.Generic;
 
 namespace PreOrclApiTest
@@ -13,12 +13,12 @@ namespace PreOrclApiTest
 
         {
             SisPerPersona sis = new SisPerPersona();
-            using (DALBaseOrcl baseorc = new DALBaseOrcl())
+            using (DALDBContext context = new DALDBContext())
             {
+                DALSisPerPersona dal = new DALSisPerPersona(context);
 
 
-
-              sis =  baseorc.Create(new SisPerPersona
+              sis =  dal.CreateSisPerPersona(new SisPerPersona
                 {
                     per_IDPER = 14,
                     per_nombre_razon = "Daniel",
@@ -48,9 +48,53 @@ namespace PreOrclApiTest
 
             List<SisPerPersona> lista = null;
 
-            using (DALBaseOrcl dalBase = new DALBaseOrcl())
+            using (DALDBContext context = new DALDBContext())
             {
-                lista = dalBase.GetAll<SisPerPersona>();
+                DALSisPerPersona dal = new DALSisPerPersona(context);
+
+
+               var sis = dal.CreateSisPerPersona(new SisPerPersona
+                {
+                    per_IDPER = 16,
+                    per_nombre_razon = "Daniel",
+                    per_apellido_comercial = "Méndez",
+                    per_nit = "a",
+                    per_dui_nrc = "a",
+                    per_direccion_departamento = "a",
+                    per_direccion_municipio = "a",
+                    per_direccion = "a",
+                    per_telefono = "a",
+                    per_movil = "a",
+                    per_email = "",
+                    per_codigo = "",
+                    per_nacionalidad = "",
+                    per_tipo_contribullente = "",
+                    per_dir_cli = "",
+                    per_cobros = ""
+
+                });
+                 sis = dal.CreateSisPerPersona(new SisPerPersona
+                {
+                    per_IDPER = 17,
+                    per_nombre_razon = "Daniel",
+                    per_apellido_comercial = "Méndez",
+                    per_nit = "a",
+                    per_dui_nrc = "a",
+                    per_direccion_departamento = "a",
+                    per_direccion_municipio = "a",
+                    per_direccion = "a",
+                    per_telefono = "a",
+                    per_movil = "a",
+                    per_email = "",
+                    per_codigo = "",
+                    per_nacionalidad = "",
+                    per_tipo_contribullente = "",
+                    per_dir_cli = "",
+                    per_cobros = ""
+
+                });
+
+                lista = dal.GetAllSisPerPersona();
             }
 
             Assert.IsNotNull(lista);

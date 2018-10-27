@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PreOrclApi.Models
+namespace Common.Models
 { 
     [Table(Name ="SIS_PER_PERSONA")]
     public class SisPerPersona
