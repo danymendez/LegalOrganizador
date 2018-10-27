@@ -29,5 +29,15 @@ namespace Data.DAL
             return GetAll<SisPerPersona>();
         }
 
+        public SisPerPersona DeletePersona(long id) {
+
+
+            return Delete<SisPerPersona>(id);
+        }
+
+        public SisPerPersona GetPersona(long id) {
+            return Get<SisPerPersona>(id);
+        }
+
     }
 }

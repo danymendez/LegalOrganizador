@@ -102,13 +102,18 @@ namespace Data.SQLBuilders
 
         public string SelectQuery<TEntity>() {
             Dictionary<string, string> dictionaryKeysWithParameters = new Dictionary<string, string>();
+            Dictionary<string, string> dictionaryField = new Dictionary<string, string>();
+            foreach (var item in GetFields<TEntity>())
+            {
 
+                dictionaryField.Add(item.Key, "\"" + item.Value + "\"");
+            }
             foreach (var item in GetPrimaryKeysAutoIncrem<TEntity>()) {
-                dictionaryKeysWithParameters.Add(item.Key, item.Key + "=:" + item.Key);
+                dictionaryKeysWithParameters.Add(item.Key, "\""+item.Key+"\"" + "=:" + item.Key);
             }
             string query = String.Format("Select {0} from {1} where {2}"
-                                        , string.Join(",", GetFields<TEntity>().Values)
-                                        , GetTableName<TEntity>()
+                                        , string.Join(",", dictionaryField.Values)
+                                        , "\""+GetTableName<TEntity>()+"\""
                                         ,string.Join(" and ",dictionaryKeysWithParameters.Values));
 
             return query;
@@ -120,10 +125,10 @@ namespace Data.SQLBuilders
 
             foreach (var item in GetPrimaryKeysAutoIncrem<TEntity>())
             {
-                dictionaryKeysWithParameters.Add(item.Key, item.Key + "=:" + item.Key);
+                dictionaryKeysWithParameters.Add(item.Key, "\""+item.Key+"\"" + "=:" + item.Key);
             }
-            string query = String.Format("Update from {0} where {1}"
-                                        , string.Join(",", GetFields<TEntity>().Values)
+            string query = String.Format("Delete from \"{0}\" where {1}"
+                                        ,GetTableName<TEntity>()
                                         , string.Join(" and ", dictionaryKeysWithParameters.Values));
 
             return query;

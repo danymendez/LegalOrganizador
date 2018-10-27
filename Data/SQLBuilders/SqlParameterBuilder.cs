@@ -46,16 +46,34 @@ namespace Data.SQLBuilders
                 return sqlParameter;            
         }
 
-        public OracleParameterCollection DeleteParameterBuilder<T>(T entity) {
-
+        public OracleParameterCollection SelectOneParametersBuilder<T>(long id)
+        {
+            Type entity = typeof(T);
             OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
             Dictionary<string, bool> dictKeys = sqlQueryBuilder.GetPrimaryKeysAutoIncrem<T>();
             Dictionary<string, string> dictFields = sqlQueryBuilder.GetFields<T>();
-            PropertyInfo[] prop = entity.GetType().GetProperties();
+            PropertyInfo[] prop = entity.GetProperties();
             foreach (var p in prop)
             {
                 if (dictKeys.ContainsKey(dictFields[p.Name]))
-                    sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                    sqlParameter.Add(":" + dictFields[p.Name], id);
+
+            }
+
+
+            return sqlParameter;
+        }
+
+        public OracleParameterCollection DeleteParameterBuilder<T>(long id) {
+            Type entity = typeof(T);
+            OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
+            Dictionary<string, bool> dictKeys = sqlQueryBuilder.GetPrimaryKeysAutoIncrem<T>();
+            Dictionary<string, string> dictFields = sqlQueryBuilder.GetFields<T>();
+            PropertyInfo[] prop = entity.GetProperties();
+            foreach (var p in prop)
+            {
+                if (dictKeys.ContainsKey(dictFields[p.Name]))
+                    sqlParameter.Add(":" + dictFields[p.Name], id);
 
             }
 
