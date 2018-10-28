@@ -119,15 +119,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = await _context.SisPerPersona
-                .FirstOrDefaultAsync(m => m.per_IDPER == id);
+            var sisPerPersona = generic.Delete<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();

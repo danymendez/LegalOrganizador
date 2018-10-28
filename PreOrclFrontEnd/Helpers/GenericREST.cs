@@ -94,14 +94,14 @@ namespace PreOrclFrontEnd.Helpers
             return isSuccess;
         }
 
-        public virtual T Delete<T>(string urlMethod, T clase, string id)
+        public virtual T Delete<T>(string urlMethod,int? id)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = client.DeleteAsync(uri + urlMethod).Result;
+                HttpResponseMessage response = client.DeleteAsync(uri + urlMethod+id).Result;
 
                 if (response.IsSuccessStatusCode)
                     return response.Content.ReadAsAsync<T>().Result;
