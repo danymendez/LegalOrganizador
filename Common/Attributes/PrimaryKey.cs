@@ -8,6 +8,6 @@ namespace Common.Entity.Attributes
 
     public class PrimaryKey : Attribute
     {
-        public bool AutoIncrement { get; set; }
+        public bool AutoIncrement { get; set; } = true;
     }
 }

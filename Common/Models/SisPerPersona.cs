@@ -51,6 +51,7 @@ namespace Common.Entity.Models
 
         [MaxLength(50)]
         public string per_codigo { get; set; }
+        [MaxLength(50)]
         public string per_nacionalidad { get; set; }
 
         [MaxLength(50)]

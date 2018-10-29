@@ -23,11 +23,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-          
-            List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
-            return View(listaSisPersona);
+            Task<List<SisPerPersona>> t = Task.Run(()=> {
+                List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
+                return listaSisPersona;
+            });
+           
+            return View(await t);
         }
 
         // GET: SisPerPersonas/Details/5
@@ -58,11 +61,15 @@ namespace PreOrclFrontEnd.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult Create([Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
+        public async Task<IActionResult> Create([Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
         {
             if (ModelState.IsValid)
             {
-                sisPerPersona = generic.Post("SisPerPersonas",sisPerPersona);
+                Task<SisPerPersona> t = Task.Run(()=> {
+                   return generic.Post("SisPerPersonas", sisPerPersona);
+                });
+
+                sisPerPersona = await t;
                 return RedirectToAction(nameof(Index));
             }
             return View(sisPerPersona);

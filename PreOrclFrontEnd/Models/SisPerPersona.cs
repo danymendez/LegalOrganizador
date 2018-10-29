@@ -58,6 +58,9 @@ namespace Common.Entity.Models
         [Display(Name = "Código")]
         [MaxLength(50)]
         public string per_codigo { get; set; }
+
+        [Display(Name = "Nacionalidad")]
+        [MaxLength(50)]
         public string per_nacionalidad { get; set; }
         [Display(Name = "Tipo Contribuyente")]
         [MaxLength(50)]
