@@ -66,6 +66,20 @@ namespace Common.BOL.BOL
             return t;
         }
 
+        public Task<SisPerPersona> DeleteSisPerPersona(int id) {
+            SisPerPersona sis = null;
+            Task<SisPerPersona> t = Task.Run(() => {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALSisPerPersona dal = new DALSisPerPersona(context);
+                    sis = dal.Delete<SisPerPersona>(id);
+                }
+                return sis;
+            });
+
+            return t;
+        }
+
     }
 
     

@@ -135,7 +135,7 @@ namespace PreOrclFrontEnd.Controllers
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Delete<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -149,9 +149,8 @@ namespace PreOrclFrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sisPerPersona = await _context.SisPerPersona.FindAsync(id);
-            _context.SisPerPersona.Remove(sisPerPersona);
-            await _context.SaveChangesAsync();
+            var sisPerPersona =  generic.Delete<SisPerPersona>("SisPerPersonas/", id);
+          
             return RedirectToAction(nameof(Index));
         }
 

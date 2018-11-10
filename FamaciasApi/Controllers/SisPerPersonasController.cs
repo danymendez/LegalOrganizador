@@ -114,14 +114,20 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var sisPerPersona = await _context.SisPerPersona.FindAsync(id);
+            //var sisPerPersona = await _context.SisPerPersona.FindAsync(id);
+            //if (sisPerPersona == null)
+            //{
+            //    return NotFound();
+            //}
+
+            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+
+           var sisPerPersona = await bol.DeleteSisPerPersona(id);
+
             if (sisPerPersona == null)
             {
                 return NotFound();
             }
-
-            _context.SisPerPersona.Remove(sisPerPersona);
-            await _context.SaveChangesAsync();
 
             return Ok(sisPerPersona);
         }
