@@ -11,17 +11,19 @@ namespace Data.DAL
         public OracleConnection _sqlConnection { get; private set; }
         public OracleTransaction sqlTran { get; private set; }
         public OracleCommand command { get; private set; }
-        private OracleDataReader sqlDataReader;
+       // private OracleDataReader sqlDataReader;
+        
 
         public DALDBContext()
         {
             Console.WriteLine("Abriendo Conexión");
             OpenConnection();
-            command = new OracleCommand();
-            command.Connection = _sqlConnection;
-            command = _sqlConnection.CreateCommand();
-            command.Transaction = sqlTran;
+          //  command = new OracleCommand();
+          //  command.Connection = _sqlConnection;
             sqlTran = _sqlConnection.BeginTransaction();
+           // command = _sqlConnection.CreateCommand();
+           // command.Transaction = sqlTran;
+           
 
         }
 
@@ -44,9 +46,9 @@ namespace Data.DAL
         {
 
             string oradb = "Data Source=(DESCRIPTION="
-    + "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=wkapp.southcentralus.cloudapp.azure.com)(PORT=1521)))"
-    + "(CONNECT_DATA=(SERVER=DEDICATED)(SID=farmacia)));"
-    + "User Id=dmendez;Password=1234;";
+   + "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.40)(PORT=1521)))"
+   + "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=PREORCLPDB)));"
+   + "User Id=dmendez;Password=1234;";
             return oradb;
         }
         public void Dispose()
@@ -57,6 +59,8 @@ namespace Data.DAL
             {
 
                 sqlTran.Commit();
+                
+
             }
             catch (Exception ex)
             {
@@ -76,8 +80,13 @@ namespace Data.DAL
                     Console.WriteLine(exRollback.Message);
                 }
             }
-            command.Dispose();
-            CloseConnection();
+            finally
+            {
+              //  command.Dispose();
+                sqlTran.Dispose();
+                CloseConnection();
+                _sqlConnection.Dispose();
+            }
         }
     }
 }

@@ -42,9 +42,9 @@ namespace Data.SQLBuilders
                 foreach (var p in prop)
                 {
                     if (dictKeys.ContainsKey(dictFields[p.Name]))
-                      sqlParameter.Add(":" + dictFields[p.Name], id);
+                      sqlParameter.Add(dictFields[p.Name],id);
                     else
-                      sqlParameter.Add(":" + dictFields[p.Name], p.GetValue(entity));
+                      sqlParameter.Add(dictFields[p.Name], p.GetValue(entity));
                 }
 
                 return sqlParameter;            

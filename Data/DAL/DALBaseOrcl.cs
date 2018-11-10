@@ -23,7 +23,9 @@ namespace Data.DAL
         {
             Console.WriteLine("Abriendo Conexión");
             this._sqlConnection = context._sqlConnection;
+            this.command = context.command;
             this.sqlTran = context.sqlTran;
+          
            
         }
 
@@ -35,9 +37,10 @@ namespace Data.DAL
             sqlQueryBuilder = new SqlQueryBuilder();
             sqlParameterBuilder = new SqlParameterBuilder();
 
-            command = new OracleCommand();
-            command.Connection = _sqlConnection;
-            command.Transaction = sqlTran;
+            using (OracleCommand command = new OracleCommand())
+            {
+                command.Connection = _sqlConnection;
+                command.Transaction = sqlTran;
                 command.CommandText = sqlQueryBuilder.InsertQuery<T>();
 
                 foreach (OracleParameter param in sqlParameterBuilder.InsertParametersBuilder(entity))
@@ -82,7 +85,7 @@ namespace Data.DAL
                         p.SetValue(entity, a);
                     }
                 }
-            
+            }
             return entity;
         }
 
@@ -91,10 +94,11 @@ namespace Data.DAL
             List<T> listEntity = new List<T>();
             sqlQueryBuilder = new SqlQueryBuilder();
             var valor = sqlQueryBuilder.GetFields<T>();
-            command = new OracleCommand();
-            command.Connection = _sqlConnection;
-            command.Transaction = sqlTran;
-            command.CommandText = sqlQueryBuilder.SelectAllQuery<T>();
+            using (OracleCommand command = new OracleCommand())
+            {
+                command.Connection = _sqlConnection;
+                command.Transaction = sqlTran;
+                command.CommandText = sqlQueryBuilder.SelectAllQuery<T>();
 
                 try
                 {
@@ -107,164 +111,18 @@ namespace Data.DAL
                         {
 
 
-                       
-                                int id;
-                                bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out id);
 
-                                if (EsEntero && p.PropertyType==typeof(int))
-                                    p.SetValue(obj, id);
-                                else
+                            int id;
+                            bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out id);
+
+                            if (EsEntero && p.PropertyType == typeof(int))
+                                p.SetValue(obj, id);
+                            else
                                 p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? null : reader["\"" + valor[p.Name] + "\""]);
-                            
+
                         }
                         listEntity.Add(obj);
                     }
-                }
-            catch (Exception ex)
-            {
-                // Handle the exception if the transaction fails to commit.
-                Console.WriteLine(ex.Message);
-
-                try
-                {
-                    // Attempt to roll back the transaction.
-                    sqlTran.Rollback();
-                }
-                catch (Exception exRollback)
-                {
-                    // Throws an InvalidOperationException if the connection 
-                    // is closed or the transaction has already been rolled 
-                    // back on the server.
-                    Console.WriteLine(exRollback.Message);
-                }
-            }
-
-            return listEntity;
-        }
-
-        public virtual T Get<T>(long id) where T: new() {
-           
-           T entity = default(T);
-            sqlQueryBuilder = new SqlQueryBuilder();
-            sqlParameterBuilder = new SqlParameterBuilder();
-            var valor = sqlQueryBuilder.GetFields<T>();
-            command = new OracleCommand();
-            command.Connection = _sqlConnection;
-            command.Transaction = sqlTran;
-            command.CommandText = sqlQueryBuilder.SelectQuery<T>();
-
-            foreach (OracleParameter param in sqlParameterBuilder.SelectOneParametersBuilder<T>(id))
-            {
-                command.Parameters.Add(param.ParameterName, param.Value);
-            }
-
-            try
-            {
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    var obj = new T();
-                    PropertyInfo[] prop = obj.GetType().GetProperties();
-                    foreach (var p in prop)
-                    {
-
-
-
-                        int ids;
-                        bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out ids);
-
-                        if (EsEntero && p.PropertyType == typeof(int))
-                            p.SetValue(obj, ids);
-                        else
-                            p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? null : reader["\"" + valor[p.Name] + "\""]);
-
-                    }
-                    entity = obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception if the transaction fails to commit.
-                Console.WriteLine(ex.Message);
-
-                try
-                {
-                    // Attempt to roll back the transaction.
-                    sqlTran.Rollback();
-                }
-                catch (Exception exRollback)
-                {
-                    // Throws an InvalidOperationException if the connection 
-                    // is closed or the transaction has already been rolled 
-                    // back on the server.
-                    Console.WriteLine(exRollback.Message);
-                }
-            }
-
-            return entity;
-        }
-
-        public virtual T Update<T>(long id, T entity) {
-            T t = default(T);
-            sqlQueryBuilder = new SqlQueryBuilder();
-            sqlParameterBuilder = new SqlParameterBuilder();
-            command = new OracleCommand();
-            command.Connection = _sqlConnection;
-            command.Transaction = sqlTran;
-            command.CommandText = sqlQueryBuilder.UpdateQuery<T>();
-            foreach (OracleParameter param in sqlParameterBuilder.UpdateParametersBuilder(id,entity))
-            {
-                command.Parameters.Add(param.ParameterName, param.Value);
-            }
-
-
-            try
-            {
-                command.ExecuteNonQuery();
-                t = entity;
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception if the transaction fails to commit.
-                Console.WriteLine(ex.Message);
-
-                try
-                {
-                    // Attempt to roll back the transaction.
-                    sqlTran.Rollback();
-                }
-                catch (Exception exRollback)
-                {
-                    // Throws an InvalidOperationException if the connection 
-                    // is closed or the transaction has already been rolled 
-                    // back on the server.
-                    Console.WriteLine(exRollback.Message);
-                }
-            }
-
-            return entity;
-        }
-        public virtual T Delete<T>(long id) where T : new() {
-            T t = default(T);
-            t = Get<T>(id);
-            if (t != null)
-            {
-            sqlQueryBuilder = new SqlQueryBuilder();
-            sqlParameterBuilder = new SqlParameterBuilder();
-            command = new OracleCommand();
-            command.Connection = _sqlConnection;
-            command.Transaction = sqlTran;
-            command.CommandText = sqlQueryBuilder.DeleteQuery<T>();
-            foreach (OracleParameter param in sqlParameterBuilder.DeleteParameterBuilder<T>(id))
-            {
-                command.Parameters.Add(param.ParameterName, param.Value);
-            }
-
-           
-                try
-                {
-                    command.ExecuteNonQuery();
-
                 }
                 catch (Exception ex)
                 {
@@ -282,6 +140,161 @@ namespace Data.DAL
                         // is closed or the transaction has already been rolled 
                         // back on the server.
                         Console.WriteLine(exRollback.Message);
+                    }
+                }
+            }
+            return listEntity;
+        }
+
+        public virtual T Get<T>(long id) where T: new() {
+           
+           T entity = default(T);
+            sqlQueryBuilder = new SqlQueryBuilder();
+            sqlParameterBuilder = new SqlParameterBuilder();
+            var valor = sqlQueryBuilder.GetFields<T>();
+            using (OracleCommand command = new OracleCommand())
+            {
+                command.Connection = _sqlConnection;
+
+                command.Transaction = sqlTran;
+                command.CommandText = sqlQueryBuilder.SelectQuery<T>();
+
+                foreach (OracleParameter param in sqlParameterBuilder.SelectOneParametersBuilder<T>(id))
+                {
+                    command.Parameters.Add(param.ParameterName, param.Value);
+                }
+
+                try
+                {
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var obj = new T();
+                        PropertyInfo[] prop = obj.GetType().GetProperties();
+                        foreach (var p in prop)
+                        {
+
+
+
+                            int ids;
+                            bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out ids);
+
+                            if (EsEntero && p.PropertyType == typeof(int))
+                                p.SetValue(obj, ids);
+                            else
+                                p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? null : reader["\"" + valor[p.Name] + "\""]);
+
+                        }
+                        entity = obj;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception if the transaction fails to commit.
+                    Console.WriteLine(ex.Message);
+
+                    try
+                    {
+                        // Attempt to roll back the transaction.
+                        sqlTran.Rollback();
+                    }
+                    catch (Exception exRollback)
+                    {
+                        // Throws an InvalidOperationException if the connection 
+                        // is closed or the transaction has already been rolled 
+                        // back on the server.
+                        Console.WriteLine(exRollback.Message);
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public virtual T Update<T>(long id, T entity) {
+            T t = default(T);
+            sqlQueryBuilder = new SqlQueryBuilder();
+            sqlParameterBuilder = new SqlParameterBuilder();
+            using (OracleCommand command = new OracleCommand())
+            {
+                command.Connection = _sqlConnection;
+                command.Transaction = sqlTran;
+                command.CommandText = sqlQueryBuilder.UpdateQuery<T>();
+                command.BindByName = true;
+
+                foreach (OracleParameter param in sqlParameterBuilder.UpdateParametersBuilder(id, entity))
+                {
+                    command.Parameters.Add(param.ParameterName, param.Value);
+                }
+
+                try
+                {
+                    int rowsUpdate = command.ExecuteNonQuery();
+                    var i = command.CommandText;
+                    //  sqlTran.Commit();
+                    t = entity;
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception if the transaction fails to commit.
+                    Console.WriteLine(ex.Message);
+
+                    try
+                    {
+                        // Attempt to roll back the transaction.
+                        sqlTran.Rollback();
+                    }
+                    catch (Exception exRollback)
+                    {
+                        // Throws an InvalidOperationException if the connection 
+                        // is closed or the transaction has already been rolled 
+                        // back on the server.
+                        Console.WriteLine(exRollback.Message);
+                    }
+                }
+            }
+            return entity;
+        }
+        public virtual T Delete<T>(long id) where T : new() {
+            T t = default(T);
+            t = Get<T>(id);
+            if (t != null)
+            {
+                sqlQueryBuilder = new SqlQueryBuilder();
+                sqlParameterBuilder = new SqlParameterBuilder();
+
+                using (OracleCommand command = new OracleCommand())
+                {
+                    command.Connection = _sqlConnection;
+                    command.Transaction = sqlTran;
+                    command.CommandText = sqlQueryBuilder.DeleteQuery<T>();
+                    foreach (OracleParameter param in sqlParameterBuilder.DeleteParameterBuilder<T>(id))
+                    {
+                        command.Parameters.Add(param.ParameterName, param.Value);
+                    }
+
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle the exception if the transaction fails to commit.
+                        Console.WriteLine(ex.Message);
+
+                        try
+                        {
+                            // Attempt to roll back the transaction.
+                            sqlTran.Rollback();
+                        }
+                        catch (Exception exRollback)
+                        {
+                            // Throws an InvalidOperationException if the connection 
+                            // is closed or the transaction has already been rolled 
+                            // back on the server.
+                            Console.WriteLine(exRollback.Message);
+                        }
                     }
                 }
             }

@@ -29,6 +29,8 @@ namespace PreOrclFrontEnd.Controllers
                 List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
                 return listaSisPersona;
             });
+
+            ViewBag.PersonasClassCssNav = "active";
            
             return View(await t);
         }

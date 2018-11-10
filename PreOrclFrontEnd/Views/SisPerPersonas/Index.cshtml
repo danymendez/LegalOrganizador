@@ -4,116 +4,241 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Agregar Persona</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.per_nombre_razon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.per_apellido_comercial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.per_nit)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_dui_nrc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.per_direccion_departamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.per_direccion_municipio)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_direccion)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_telefono)
-            </th>
-            <th >
-                @Html.DisplayNameFor(model => model.per_movil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.per_email)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_codigo)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_nacionalidad)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_tipo_contribullente)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_dir_cli)
-            </th>
-            <th class="hidden">
-                @Html.DisplayNameFor(model => model.per_cobros)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_nombre_razon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_apellido_comercial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_nit)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_dui_nrc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_direccion_departamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_direccion_municipio)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_direccion)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_movil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.per_email)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_codigo)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_nacionalidad)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_tipo_contribullente)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_dir_cli)
-            </td>
-            <td class="hidden">
-                @Html.DisplayFor(modelItem => item.per_cobros)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.per_IDPER">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.per_IDPER">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.per_IDPER">Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row mb-2">
+    <div class="col mb-4">
+        <a class="bg-primary rounded text-white text-center p-3" style="box-shadow: inset 0 0 5px rgba(0,0,0,.2);" asp-action="Create">Agregar Persona</a>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card card-small mb-4">
+            <div class="card-header border-bottom">
+                <h6 class="m-0">Active Users</h6>
+            </div>
+            <div class="card-body p-0 pb-3 text-center">
+                <table class="table mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_nombre_razon)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_apellido_comercial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_nit)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_dui_nrc)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_direccion_departamento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_direccion_municipio)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_direccion)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_telefono)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_movil)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.per_email)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_codigo)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_nacionalidad)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_tipo_contribullente)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_dir_cli)
+                            </th>
+                            <th style="display:none">
+                                @Html.DisplayNameFor(model => model.per_cobros)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_nombre_razon)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_apellido_comercial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_nit)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_dui_nrc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_direccion_departamento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_direccion_municipio)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_direccion)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_movil)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.per_email)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_codigo)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_nacionalidad)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_tipo_contribullente)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_dir_cli)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.per_cobros)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.per_IDPER">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.per_IDPER">Detalles</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.per_IDPER">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.per_nombre_razon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.per_apellido_comercial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.per_nit)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_dui_nrc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.per_direccion_departamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.per_direccion_municipio)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_direccion)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_telefono)
+                </th>
+                <th >
+                    @Html.DisplayNameFor(model => model.per_movil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.per_email)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_codigo)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_nacionalidad)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_tipo_contribullente)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_dir_cli)
+                </th>
+                <th class="hidden">
+                    @Html.DisplayNameFor(model => model.per_cobros)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_nombre_razon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_apellido_comercial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_nit)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_dui_nrc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_direccion_departamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_direccion_municipio)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_direccion)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_movil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.per_email)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_codigo)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_nacionalidad)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_tipo_contribullente)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_dir_cli)
+                </td>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.per_cobros)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.per_IDPER">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.per_IDPER">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.per_IDPER">Eliminar</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@

@@ -11,7 +11,7 @@ namespace PreOrclFrontEnd.Helpers
     {
 
         public const string BASEURL = "https://localhost:44341/api/";
-       // public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
+      // public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
         public virtual T Get<T>(string urlMethod, int? id)
         {
             T entity = default(T);
@@ -39,7 +39,7 @@ namespace PreOrclFrontEnd.Helpers
             {
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+              
                 HttpResponseMessage response = client.GetAsync(uri + urlMethod).Result;
 
                 if (response.IsSuccessStatusCode)
@@ -60,7 +60,6 @@ namespace PreOrclFrontEnd.Helpers
             {
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = client.PostAsJsonAsync(uri + urlMethod, clase).Result;
 

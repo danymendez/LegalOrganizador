@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Common.Entity.Models;
 using System.Collections.Generic;
 using System.Linq;
-
+using Common.BOL.BOL;
 
 namespace PreOrclApiTest.DAL
 {
@@ -26,7 +26,7 @@ namespace PreOrclApiTest.DAL
                 sisPerPersonaOne = dal.GetPersona(idMax);
                 sisPerPersonaCreate = dal.CreateSisPerPersona(new SisPerPersona
               {
-                  per_IDPER = idMax+1,
+                  per_IDPER = 0,
                   per_nombre_razon = "Daniel",
                   per_apellido_comercial = "Méndez",
                   per_nit = "a",
@@ -54,6 +54,33 @@ namespace PreOrclApiTest.DAL
             Assert.IsNotNull(sisPerPersonaOne);
         }
 
+        [TestMethod]
+        public void Update_Test() {
+            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+
+           var sisPerPersonaCreate =  bol.UpdateSisPerPersona(21,new SisPerPersona
+            {
+                per_IDPER = 21,
+                per_nombre_razon = "Daniel",
+                per_apellido_comercial = "Méndez",
+                per_nit = "a",
+                per_dui_nrc = "a",
+                per_direccion_departamento = "a",
+                per_direccion_municipio = "a",
+                per_direccion = "El salvador",
+                per_telefono = "a",
+                per_movil = "a",
+                per_email = "",
+                per_codigo = "",
+                per_nacionalidad = "",
+                per_tipo_contribullente = "",
+                per_dir_cli = "",
+                per_cobros = ""
+
+            }).Result;
+
+            Assert.AreNotEqual(0,sisPerPersonaCreate.per_IDPER);
+        }
         //[TestMethod]
         //public void SelectAll() {
 
