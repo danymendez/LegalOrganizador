@@ -52,6 +52,24 @@ namespace PreOrclFrontEnd.Controllers
             return View(sisPerPersona);
         }
 
+        // GET: SisPerPersonas/DetailsPartial/5
+        public IActionResult DetailsPartial(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            if (sisPerPersona == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView("../SisPerPersonas/_DetailsPartial",sisPerPersona);
+        }
+
+
         // GET: SisPerPersonas/Create
         public IActionResult Create()
         {

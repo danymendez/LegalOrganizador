@@ -1,0 +1,75 @@
+﻿@model Common.Entity.Models.SisPerPersona
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="largeModalLabel">Detalle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+        </button>
+    </div>
+
+
+
+    <div class="modal-body">
+
+        <div class="card-body card-block">
+        <div class="row">
+            <div class="col-sm-6">
+                <label asp-for="per_nombre_razon" class="form-control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                    <input asp-for="per_nombre_razon" class="form-control" disabled="disabled" />
+                </div>
+                @*<small class="form-text text-muted">ex. 99/99/9999</small>*@
+            </div>
+            <div class="col-sm-6">
+                <label asp-for="per_apellido_comercial" class="form-control-label"></label>
+                <label class=" form-control-label">Phone input</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                    <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
+                </div>
+                @*<small class="form-text text-muted">ex. (999) 999-9999</small>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label asp-for="per_nit" class="form-control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
+                    <input asp-for="per_nit" class="form-control" disabled="disabled" />
+                </div>
+                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+            </div>
+            <div class="col-sm-6">
+                <label asp-for="per_dui_nrc" class="form-control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
+                    <input asp-for="per_dui_nrc" class="form-control" disabled="disabled" />
+                </div>
+                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+            </div>
+        </div>
+            <div class="form-group">
+                <label asp-for="per_direccion_departamento" class="form-control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
+                    <input asp-for="per_direccion_departamento" class="form-control" disabled="disabled" />
+                </div>
+                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="per_direccion_municipio" class="form-control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
+                    <input asp-for="per_direccion_municipio" class="form-control" disabled="disabled" />
+                </div>
+                <small class="form-text text-muted">ex. 99-9999999</small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="HideLarModalDetailOnclick('#largeModal')">Cancelar</button>
+        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.per_IDPER">Editar</a>
+    </div>
+
