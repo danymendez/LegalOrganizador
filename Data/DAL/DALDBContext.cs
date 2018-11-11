@@ -45,10 +45,15 @@ namespace Data.DAL
         private string GetConnectionString()
         {
 
+            //         string oradb = "Data Source=(DESCRIPTION="
+            //+ "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.40)(PORT=1521)))"
+            //+ "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=PREORCLPDB)));"
+            //+ "User Id=dmendez;Password=1234;";
             string oradb = "Data Source=(DESCRIPTION="
-   + "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.40)(PORT=1521)))"
-   + "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=PREORCLPDB)));"
-   + "User Id=dmendez;Password=1234;";
+           + "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=wkapp.southcentralus.cloudapp.azure.com)(PORT=1521)))"
+           + "(CONNECT_DATA=(SERVER=DEDICATED)(SID=farmacia)));"
+           + "User Id=dmendez;Password=1234;";
+
             return oradb;
         }
         public void Dispose()

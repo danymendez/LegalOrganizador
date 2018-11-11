@@ -156,7 +156,7 @@ namespace PreOrclFrontEnd.Controllers
 
         private bool SisPerPersonaExists(int id)
         {
-            return _context.SisPerPersona.Any(e => e.per_IDPER == id);
+            return generic.Get<SisPerPersona>("SisPerPersonas/", id)!=null;
         }
     }
 }

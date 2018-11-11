@@ -1,434 +1,670 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<!-- Small Stats Blocks -->
-<div class="row">
-    <div class="col-lg col-md-6 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
-            <div class="card-body p-0 d-flex">
-                <div class="d-flex flex-column m-auto">
-                    <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Posts</span>
-                        <h6 class="stats-small__value count my-3">2,390</h6>
-                    </div>
-                    <div class="stats-small__data">
-                        <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
-                    </div>
-                </div>
-                <canvas height="120" class="blog-overview-stats-small-1"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg col-md-6 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
-            <div class="card-body p-0 d-flex">
-                <div class="d-flex flex-column m-auto">
-                    <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Pages</span>
-                        <h6 class="stats-small__value count my-3">182</h6>
-                    </div>
-                    <div class="stats-small__data">
-                        <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
-                    </div>
-                </div>
-                <canvas height="120" class="blog-overview-stats-small-2"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg col-md-4 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
-            <div class="card-body p-0 d-flex">
-                <div class="d-flex flex-column m-auto">
-                    <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Comments</span>
-                        <h6 class="stats-small__value count my-3">8,147</h6>
-                    </div>
-                    <div class="stats-small__data">
-                        <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
-                    </div>
-                </div>
-                <canvas height="120" class="blog-overview-stats-small-3"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg col-md-4 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
-            <div class="card-body p-0 d-flex">
-                <div class="d-flex flex-column m-auto">
-                    <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Users</span>
-                        <h6 class="stats-small__value count my-3">2,413</h6>
-                    </div>
-                    <div class="stats-small__data">
-                        <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
-                    </div>
-                </div>
-                <canvas height="120" class="blog-overview-stats-small-4"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg col-md-4 col-sm-12 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
-            <div class="card-body p-0 d-flex">
-                <div class="d-flex flex-column m-auto">
-                    <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Subscribers</span>
-                        <h6 class="stats-small__value count my-3">17,281</h6>
-                    </div>
-                    <div class="stats-small__data">
-                        <span class="stats-small__percentage stats-small__percentage--decrease">2.4%</span>
-                    </div>
-                </div>
-                <canvas height="120" class="blog-overview-stats-small-5"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Small Stats Blocks -->
-<div class="row">
-    <!-- Users Stats -->
-    <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
-        <div class="card card-small">
-            <div class="card-header border-bottom">
-                <h6 class="m-0">Users</h6>
-            </div>
-            <div class="card-body pt-0">
-                <div class="row border-bottom py-2 bg-light">
-                    <div class="col-12 col-sm-6">
-                        <div id="blog-overview-date-range" class="input-daterange input-group input-group-sm my-auto ml-auto mr-auto ml-sm-auto mr-sm-0" style="max-width: 350px;">
-                            <input type="text" class="input-sm form-control" name="start" placeholder="Start Date" id="blog-overview-date-range-1">
-                            <input type="text" class="input-sm form-control" name="end" placeholder="End Date" id="blog-overview-date-range-2">
-                            <span class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="material-icons"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 d-flex mb-2 mb-sm-0">
-                        <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button>
-                    </div>
-                </div>
-                <canvas height="130" style="max-width: 100% !important;" class="blog-overview-users"></canvas>
-            </div>
-        </div>
-    </div>
-    <!-- End Users Stats -->
-    <!-- Users By Device Stats -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-small h-100">
-            <div class="card-header border-bottom">
-                <h6 class="m-0">Users by device</h6>
-            </div>
-            <div class="card-body d-flex py-0">
-                <canvas height="220" class="blog-users-by-device m-auto"></canvas>
-            </div>
-            <div class="card-footer border-top">
-                <div class="row">
-                    <div class="col">
-                        <select class="custom-select custom-select-sm" style="max-width: 130px;">
-                            <option selected>Last Week</option>
-                            <option value="1">Today</option>
-                            <option value="2">Last Month</option>
-                            <option value="3">Last Year</option>
-                        </select>
-                    </div>
-                    <div class="col text-right view-report">
-                        <a href="#">Full report &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Users By Device Stats -->
-    <!-- New Draft Component -->
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <!-- Quick Post -->
-        <div class="card card-small h-100">
-            <div class="card-header border-bottom">
-                <h6 class="m-0">New Draft</h6>
-            </div>
-            <div class="card-body d-flex flex-column">
-                <form class="quick-post-form">
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Brave New World">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Words can be like X-rays if you use them properly..."></textarea>
-                    </div>
-                    <div class="form-group mb-0">
-                        <button type="submit" class="btn btn-accent">Create Draft</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- End Quick Post -->
-    </div>
-    <!-- End New Draft Component -->
-    <!-- Discussions Component -->
-    <div class="col-lg-5 col-md-12 col-sm-12 mb-4">
-        <div class="card card-small blog-comments">
-            <div class="card-header border-bottom">
-                <h6 class="m-0">Discussions</h6>
-            </div>
-            <div class="card-body p-0">
-                <div class="blog-comments__item d-flex p-3">
-                    <div class="blog-comments__avatar mr-3">
-                        <img src="images/avatars/1.jpg" alt="User avatar" />
-                    </div>
-                    <div class="blog-comments__content">
-                        <div class="blog-comments__meta text-muted">
-                            <a class="text-secondary" href="#">James Johnson</a> on
-                            <a class="text-secondary" href="#">Hello World!</a>
-                            <span class="text-muted">– 3 days ago</span>
-                        </div>
-                        <p class="m-0 my-1 mb-2 text-muted">Well, the way they make shows is, they make one show ...</p>
-                        <div class="blog-comments__actions">
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-success">
-                                        <i class="material-icons">check</i>
-                                    </span> Approve
-                                </button>
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-danger">
-                                        <i class="material-icons">clear</i>
-                                    </span> Reject
-                                </button>
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-light">
-                                        <i class="material-icons">more_vert</i>
-                                    </span> Edit
-                                </button>
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!-- Widgets  -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-1">
+                                <i class="pe-7s-cash"></i>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-comments__item d-flex p-3">
-                    <div class="blog-comments__avatar mr-3">
-                        <img src="images/avatars/2.jpg" alt="User avatar" />
-                    </div>
-                    <div class="blog-comments__content">
-                        <div class="blog-comments__meta text-muted">
-                            <a class="text-secondary" href="#">James Johnson</a> on
-                            <a class="text-secondary" href="#">Hello World!</a>
-                            <span class="text-muted">– 4 days ago</span>
-                        </div>
-                        <p class="m-0 my-1 mb-2 text-muted">After the avalanche, it took us a week to climb out. Now...</p>
-                        <div class="blog-comments__actions">
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-success">
-                                        <i class="material-icons">check</i>
-                                    </span> Approve
-                                </button>
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-danger">
-                                        <i class="material-icons">clear</i>
-                                    </span> Reject
-                                </button>
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-light">
-                                        <i class="material-icons">more_vert</i>
-                                    </span> Edit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-comments__item d-flex p-3">
-                    <div class="blog-comments__avatar mr-3">
-                        <img src="images/avatars/3.jpg" alt="User avatar" />
-                    </div>
-                    <div class="blog-comments__content">
-                        <div class="blog-comments__meta text-muted">
-                            <a class="text-secondary" href="#">James Johnson</a> on
-                            <a class="text-secondary" href="#">Hello World!</a>
-                            <span class="text-muted">– 5 days ago</span>
-                        </div>
-                        <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
-                        <div class="blog-comments__actions">
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-success">
-                                        <i class="material-icons">check</i>
-                                    </span> Approve
-                                </button>
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-danger">
-                                        <i class="material-icons">clear</i>
-                                    </span> Reject
-                                </button>
-                                <button type="button" class="btn btn-white">
-                                    <span class="text-light">
-                                        <i class="material-icons">more_vert</i>
-                                    </span> Edit
-                                </button>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text">$<span class="count">23569</span></div>
+                                    <div class="stat-heading">Revenue</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-footer border-top">
-                <div class="row">
-                    <div class="col text-center view-report">
-                        <button type="submit" class="btn btn-white">View All Comments</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Discussions Component -->
-    <!-- Top Referrals Component -->
-    <div class="col-lg-3 col-md-12 col-sm-12 mb-4">
-        <div class="card card-small">
-            <div class="card-header border-bottom">
-                <h6 class="m-0">Top Referrals</h6>
-            </div>
-            <div class="card-body p-0">
-                <ul class="list-group list-group-small list-group-flush">
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">GitHub</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">19,291</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">Stack Overflow</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">11,201</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">Hacker News</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">9,291</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">Reddit</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">8,281</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">The Next Web</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">7,128</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">Tech Crunch</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">6,218</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">YouTube</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">1,218</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                        <span class="text-semibold text-fiord-blue">Adobe</span>
-                        <span class="ml-auto text-right text-semibold text-reagent-gray">827</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer border-top">
-                <div class="row">
-                    <div class="col">
-                        <select class="custom-select custom-select-sm">
-                            <option selected>Last Week</option>
-                            <option value="1">Today</option>
-                            <option value="2">Last Month</option>
-                            <option value="3">Last Year</option>
-                        </select>
-                    </div>
-                    <div class="col text-right view-report">
-                        <a href="#">Full report &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Top Referrals Component -->
-</div>
 
-@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-                <div class="carousel-caption" role="option">
-                    <p>
-                        Learn how to build ASP.NET apps that can run anywhere.
-                        <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="pe-7s-cart"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">3435</span></div>
+                                    <div class="stat-heading">Sales</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="item">
-                <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-                <div class="carousel-caption" role="option">
-                    <p>
-                        There are powerful new features in Visual Studio for building modern web apps.
-                        <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-                <div class="carousel-caption" role="option">
-                    <p>
-                        Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                        <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <h2>Application uses</h2>
-            <ul>
-                <li>Sample pages using ASP.NET Core MVC</li>
-                <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-            </ul>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="pe-7s-browser"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">349</span></div>
+                                    <div class="stat-heading">Templates</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-4">
+                                <i class="pe-7s-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">2986</span></div>
+                                    <div class="stat-heading">Clients</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3">
-            <h2>How to</h2>
-            <ul>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-            </ul>
+        <!-- /Widgets -->
+        <!--  Traffic  -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Traffic </h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card-body">
+                                <!-- <canvas id="TrafficChart"></canvas>   -->
+                                <div id="traffic-chart" class="traffic-chart"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-body">
+                                <div class="progress-box progress-1">
+                                    <h4 class="por-title">Visits</h4>
+                                    <div class="por-txt">96,930 Users (40%)</div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Bounce Rate</h4>
+                                    <div class="por-txt">3,220 Users (24%)</div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Unique Visitors</h4>
+                                    <div class="por-txt">29,658 Users (60%)</div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Targeted  Visitors</h4>
+                                    <div class="por-txt">99,658 Users (90%)</div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div> <!-- /.card-body -->
+                        </div>
+                    </div> <!-- /.row -->
+                    <div class="card-body"></div>
+                </div>
+            </div><!-- /# column -->
         </div>
-        <div class="col-md-3">
-            <h2>Overview</h2>
-            <ul>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-            </ul>
+        <!--  /Traffic -->
+        <div class="clearfix"></div>
+        <!-- Orders -->
+        <div class="orders">
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="box-title">Orders </h4>
+                        </div>
+                        <div class="card-body--">
+                            <div class="table-stats order-table ov-h">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th class="serial">#</th>
+                                            <th class="avatar">Avatar</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="serial">1.</td>
+                                            <td class="avatar">
+                                                <div class="round-img">
+                                                    <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
+                                                </div>
+                                            </td>
+                                            <td> #5469 </td>
+                                            <td>  <span class="name">Louis Stanley</span> </td>
+                                            <td> <span class="product">iMax</span> </td>
+                                            <td><span class="count">231</span></td>
+                                            <td>
+                                                <span class="badge badge-complete">Complete</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="serial">2.</td>
+                                            <td class="avatar">
+                                                <div class="round-img">
+                                                    <a href="#"><img class="rounded-circle" src="images/avatar/2.jpg" alt=""></a>
+                                                </div>
+                                            </td>
+                                            <td> #5468 </td>
+                                            <td>  <span class="name">Gregory Dixon</span> </td>
+                                            <td> <span class="product">iPad</span> </td>
+                                            <td><span class="count">250</span></td>
+                                            <td>
+                                                <span class="badge badge-complete">Complete</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="serial">3.</td>
+                                            <td class="avatar">
+                                                <div class="round-img">
+                                                    <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
+                                                </div>
+                                            </td>
+                                            <td> #5467 </td>
+                                            <td>  <span class="name">Catherine Dixon</span> </td>
+                                            <td> <span class="product">SSD</span> </td>
+                                            <td><span class="count">250</span></td>
+                                            <td>
+                                                <span class="badge badge-complete">Complete</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="serial">4.</td>
+                                            <td class="avatar">
+                                                <div class="round-img">
+                                                    <a href="#"><img class="rounded-circle" src="images/avatar/4.jpg" alt=""></a>
+                                                </div>
+                                            </td>
+                                            <td> #5466 </td>
+                                            <td>  <span class="name">Mary Silva</span> </td>
+                                            <td> <span class="product">Magic Mouse</span> </td>
+                                            <td><span class="count">250</span></td>
+                                            <td>
+                                                <span class="badge badge-pending">Pending</span>
+                                            </td>
+                                        </tr>
+                                        <tr class=" pb-0">
+                                            <td class="serial">5.</td>
+                                            <td class="avatar pb-0">
+                                                <div class="round-img">
+                                                    <a href="#"><img class="rounded-circle" src="images/avatar/6.jpg" alt=""></a>
+                                                </div>
+                                            </td>
+                                            <td> #5465 </td>
+                                            <td>  <span class="name">Johnny Stephens</span> </td>
+                                            <td> <span class="product">Monitor</span> </td>
+                                            <td><span class="count">250</span></td>
+                                            <td>
+                                                <span class="badge badge-complete">Complete</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!-- /.table-stats -->
+                        </div>
+                    </div> <!-- /.card -->
+                </div>  <!-- /.col-lg-8 -->
+
+                <div class="col-xl-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-12">
+                            <div class="card br-0">
+                                <div class="card-body">
+                                    <div class="chart-container ov-h">
+                                        <div id="flotPie1" class="float-chart"></div>
+                                    </div>
+                                </div>
+                            </div><!-- /.card -->
+                        </div>
+
+                        <div class="col-lg-6 col-xl-12">
+                            <div class="card bg-flat-color-3  ">
+                                <div class="card-body">
+                                    <h4 class="card-title m-0  white-color ">August 2018</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div id="flotLine5" class="flot-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-4 -->
+            </div>
         </div>
-        <div class="col-md-3">
-            <h2>Run &amp; Deploy</h2>
-            <ul>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-                <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-            </ul>
+        <!-- /.orders -->
+        <!-- To Do and Live Chat -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title box-title">To Do List</h4>
+                        <div class="card-content">
+                            <div class="todo-list">
+                                <div class="tdl-holder">
+                                    <div class="tdl-content">
+                                        <ul>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox"><i class="check-box"></i><span>Conveniently fabricate interactive technology for ....</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox"><i class="check-box"></i><span>Creating component page</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked><i class="check-box"></i><span>Follow back those who follow you</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked><i class="check-box"></i><span>Design One page theme</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked><i class="check-box"></i><span>Creating component page</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> <!-- /.todo-list -->
+                        </div>
+                    </div> <!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title box-title">Live Chat</h4>
+                        <div class="card-content">
+                            <div class="messenger-box">
+                                <ul>
+                                    <li>
+                                        <div class="msg-received msg-container">
+                                            <div class="avatar">
+                                                <img src="images/avatar/64-1.jpg" alt="">
+                                                <div class="send-time">11.11 am</div>
+                                            </div>
+                                            <div class="msg-box">
+                                                <div class="inner-box">
+                                                    <div class="name">
+                                                        John Doe
+                                                    </div>
+                                                    <div class="meg">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sunt placeat velit ad reiciendis ipsam
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.msg-received -->
+                                    </li>
+                                    <li>
+                                        <div class="msg-sent msg-container">
+                                            <div class="avatar">
+                                                <img src="images/avatar/64-2.jpg" alt="">
+                                                <div class="send-time">11.11 am</div>
+                                            </div>
+                                            <div class="msg-box">
+                                                <div class="inner-box">
+                                                    <div class="name">
+                                                        John Doe
+                                                    </div>
+                                                    <div class="meg">
+                                                        Hay how are you doing?
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.msg-sent -->
+                                    </li>
+                                </ul>
+                                <div class="send-mgs">
+                                    <div class="yourmsg">
+                                        <input class="form-control" type="text">
+                                    </div>
+                                    <button class="btn msg-send-btn">
+                                        <i class="pe-7s-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div><!-- /.messenger-box -->
+                        </div>
+                    </div> <!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
         </div>
-    </div>*@
+        <!-- /To Do and Live Chat -->
+        <!-- Calender Chart Weather  -->
+        <div class="row">
+            <div class="col-md-12 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <h4 class="box-title">Chandler</h4> -->
+                        <div class="calender-cont widget-calender">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div><!-- /.card -->
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card ov-h">
+                    <div class="card-body bg-flat-color-2">
+                        <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
+                    </div>
+                    <div id="cellPaiChart" class="float-chart"></div>
+                </div><!-- /.card -->
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card weather-box">
+                    <h4 class="weather-title box-title">Weather</h4>
+                    <div class="card-body">
+                        <div class="weather-widget">
+                            <div id="weather-one" class="weather-one"></div>
+                        </div>
+                    </div>
+                </div><!-- /.card -->
+            </div>
+        </div>
+        <!-- /Calender Chart Weather -->
+        <!-- Modal - Calendar - Add New Event -->
+        <div class="modal fade none-border" id="event-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><strong>Add New Event</strong></h4>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                        <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#event-modal -->
+        <!-- Modal - Calendar - Add Category -->
+        <div class="modal fade none-border" id="add-category">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><strong>Add a category </strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label">Category Name</label>
+                                    <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label">Choose Category Color</label>
+                                    <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                        <option value="success">Success</option>
+                                        <option value="danger">Danger</option>
+                                        <option value="info">Info</option>
+                                        <option value="pink">Pink</option>
+                                        <option value="primary">Primary</option>
+                                        <option value="warning">Warning</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#add-category -->
+        </div>
+    </div>
+        @section Scripts{
+            <script>
+                jQuery(document).ready(function ($) {
+                    "use strict";
+
+                    // Pie chart flotPie1
+                    var piedata = [
+                        { label: "Desktop visits", data: [[1, 32]], color: '#5c6bc0' },
+                        { label: "Tab visits", data: [[1, 33]], color: '#ef5350' },
+                        { label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
+                    ];
+
+                    $.plot('#flotPie1', piedata, {
+                        series: {
+                            pie: {
+                                show: true,
+                                radius: 1,
+                                innerRadius: 0.65,
+                                label: {
+                                    show: true,
+                                    radius: 2 / 3,
+                                    threshold: 1
+                                },
+                                stroke: {
+                                    width: 0
+                                }
+                            }
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true
+                        }
+                    });
+                    // Pie chart flotPie1  End
+                    // cellPaiChart
+                    var cellPaiChart = [
+                        { label: "Direct Sell", data: [[1, 65]], color: '#5b83de' },
+                        { label: "Channel Sell", data: [[1, 35]], color: '#00bfa5' }
+                    ];
+                    $.plot('#cellPaiChart', cellPaiChart, {
+                        series: {
+                            pie: {
+                                show: true,
+                                stroke: {
+                                    width: 0
+                                }
+                            }
+                        },
+                        legend: {
+                            show: false
+                        }, grid: {
+                            hoverable: true,
+                            clickable: true
+                        }
+
+                    });
+                    // cellPaiChart End
+                    // Line Chart  #flotLine5
+                    var newCust = [[0, 3], [1, 5], [2, 4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
+
+                    var plot = $.plot($('#flotLine5'), [{
+                        data: newCust,
+                        label: 'New Data Flow',
+                        color: '#fff'
+                    }],
+                        {
+                            series: {
+                                lines: {
+                                    show: true,
+                                    lineColor: '#fff',
+                                    lineWidth: 2
+                                },
+                                points: {
+                                    show: true,
+                                    fill: true,
+                                    fillColor: "#ffffff",
+                                    symbol: "circle",
+                                    radius: 3
+                                },
+                                shadowSize: 0
+                            },
+                            points: {
+                                show: true,
+                            },
+                            legend: {
+                                show: false
+                            },
+                            grid: {
+                                show: false
+                            }
+                        });
+                    // Line Chart  #flotLine5 End
+                    // Traffic Chart using chartist
+                    if ($('#traffic-chart').length) {
+                        var chart = new Chartist.Line('#traffic-chart', {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                            series: [
+                                [0, 18000, 35000, 25000, 22000, 0],
+                                [0, 33000, 15000, 20000, 15000, 300],
+                                [0, 15000, 28000, 15000, 30000, 5000]
+                            ]
+                        }, {
+                                low: 0,
+                                showArea: true,
+                                showLine: false,
+                                showPoint: false,
+                                fullWidth: true,
+                                axisX: {
+                                    showGrid: true
+                                }
+                            });
+
+                        chart.on('draw', function (data) {
+                            if (data.type === 'line' || data.type === 'area') {
+                                data.element.animate({
+                                    d: {
+                                        begin: 2000 * data.index,
+                                        dur: 2000,
+                                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                                        to: data.path.clone().stringify(),
+                                        easing: Chartist.Svg.Easing.easeOutQuint
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    // Traffic Chart using chartist End
+                    //Traffic chart chart-js
+                    if ($('#TrafficChart').length) {
+                        var ctx = document.getElementById("TrafficChart");
+                        ctx.height = 150;
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                                datasets: [
+                                    {
+                                        label: "Visit",
+                                        borderColor: "rgba(4, 73, 203,.09)",
+                                        borderWidth: "1",
+                                        backgroundColor: "rgba(4, 73, 203,.5)",
+                                        data: [0, 2900, 5000, 3300, 6000, 3250, 0]
+                                    },
+                                    {
+                                        label: "Bounce",
+                                        borderColor: "rgba(245, 23, 66, 0.9)",
+                                        borderWidth: "1",
+                                        backgroundColor: "rgba(245, 23, 66,.5)",
+                                        pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                                        data: [0, 4200, 4500, 1600, 4200, 1500, 4000]
+                                    },
+                                    {
+                                        label: "Targeted",
+                                        borderColor: "rgba(40, 169, 46, 0.9)",
+                                        borderWidth: "1",
+                                        backgroundColor: "rgba(40, 169, 46, .5)",
+                                        pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                                        data: [1000, 5200, 3600, 2600, 4200, 5300, 0]
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                tooltips: {
+                                    mode: 'index',
+                                    intersect: false
+                                },
+                                hover: {
+                                    mode: 'nearest',
+                                    intersect: true
+                                }
+
+                            }
+                        });
+                    }
+                    //Traffic chart chart-js  End
+                    // Bar Chart #flotBarChart
+                    $.plot("#flotBarChart", [{
+                        data: [[0, 18], [2, 8], [4, 5], [6, 13], [8, 5], [10, 7], [12, 4], [14, 6], [16, 15], [18, 9], [20, 17], [22, 7], [24, 4], [26, 9], [28, 11]],
+                        bars: {
+                            show: true,
+                            lineWidth: 0,
+                            fillColor: '#ffffff8a'
+                        }
+                    }], {
+                            grid: {
+                                show: false
+                            }
+                        });
+                    // Bar Chart #flotBarChart End
+                });
+            </script>
+
+        }
