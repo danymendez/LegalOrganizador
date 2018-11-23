@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 { 
-    [Table(Name ="Usuarios")]
+    [Table(Name ="USUARIOS")]
     public class Usuarios
     {
         [PrimaryKey(AutoIncrement = false)]
-        
+        [Field(Name ="IDUSUARIO")]
         public int IdUsuario { get; set; }
+        [Field(Name = "USUARIO")]
         public string Usuario { get; set; }
+        [Field(Name = "PASSWORD")]
         public string Password { get; set; }
+        [Field(Name = "NOMBRE")]
+        public string Nombre { get; set; }
+        [Field(Name = "APELLIDO")]
+        public string Apellido { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Common.Entity.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Common.BOL.BOL;
+using Common.Models;
 
 namespace PreOrclApiTest.DAL
 {
@@ -53,6 +54,14 @@ namespace PreOrclApiTest.DAL
             Assert.IsNotNull(sisPerPersonaDelete);
             Assert.IsNotNull(sisPerPersonaOne);
         }
+
+        [TestMethod]
+        public async System.Threading.Tasks.Task Autenticar_TestAsync() {
+            BOLUsuarios bol = new BOLUsuarios();
+            Usuarios a = await bol.Autenticar("danielmendez", "1234");
+            Assert.IsNull(a);
+        }
+
 
         [TestMethod]
         public void Update_Test() {
