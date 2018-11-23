@@ -13,29 +13,29 @@ namespace Common.Entity.Models
         public int per_IDPER { get; set; }
 
         [Display(Name ="Nombre / Razón")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(250)]
         public string per_nombre_razon { get; set; }
         [Display(Name = "Apellido / Comercial")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(250)]
         public string per_apellido_comercial { get; set; }
 
         [Display(Name = "NIT")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(50)]
         public string per_nit { get; set; }
         [Display(Name = "DUI / NCR")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(50)]
         public string per_dui_nrc { get; set; }
         [Display(Name = "Departamento")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(50)]
 
         public string per_direccion_departamento { get; set; }
         [Display(Name = "Municipio")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         [MaxLength(50)]
         public string per_direccion_municipio { get; set; }
 

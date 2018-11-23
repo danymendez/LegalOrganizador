@@ -12,57 +12,139 @@
     <div class="modal-body">
 
         <div class="card-body card-block">
-        <div class="row">
-            <div class="col-sm-6">
-                <label asp-for="per_nombre_razon" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                    <input asp-for="per_nombre_razon" class="form-control" disabled="disabled" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="per_nombre_razon" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input asp-for="per_nombre_razon" class="form-control" disabled="disabled" />
+                    </div>
+
                 </div>
-                @*<small class="form-text text-muted">ex. 99/99/9999</small>*@
+                <div class="col-sm-6">
+                    <label asp-for="per_apellido_comercial" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-users"></i></div>
+                        <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
             </div>
-            <div class="col-sm-6">
-                <label asp-for="per_apellido_comercial" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                    <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="per_nit" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-check-square-o"></i></div>
+                        <input asp-for="per_nit" class="form-control" disabled="disabled" />
+                    </div>
+
                 </div>
-                @*<small class="form-text text-muted">ex. (999) 999-9999</small>*@
+                <div class="col-sm-6">
+                    <label asp-for="per_dui_nrc" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-info"></i></div>
+                        <input asp-for="per_dui_nrc" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label asp-for="per_nit" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                    <input asp-for="per_nit" class="form-control" disabled="disabled" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="per_direccion_departamento" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-sitemap"></i></div>
+                        <input asp-for="per_direccion_departamento" class="form-control" disabled="disabled" />
+                    </div>
+
                 </div>
-                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+                <div class="col-sm-6">
+                    <label asp-for="per_direccion_municipio" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-puzzle-piece"></i></div>
+                        <input asp-for="per_direccion_municipio" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
             </div>
-            <div class="col-sm-6">
-                <label asp-for="per_dui_nrc" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                    <input asp-for="per_dui_nrc" class="form-control" disabled="disabled" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="per_direccion" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                        <input asp-for="per_direccion" class="form-control" disabled="disabled" />
+                    </div>
+
                 </div>
-                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+                <div class="col-sm-6">
+                    <label asp-for="per_telefono" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-phone-square"></i></div>
+                        <input asp-for="per_telefono" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
             </div>
-        </div>
-            <div class="form-group">
-                <label asp-for="per_direccion_departamento" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                    <input asp-for="per_direccion_departamento" class="form-control" disabled="disabled" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="per_movil" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-mobile"></i></div>
+                        <input asp-for="per_movil" class="form-control" disabled="disabled" />
+                    </div>
+
                 </div>
-                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+                <div class="col-sm-6">
+                    <label asp-for="per_email" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                        <input asp-for="per_email" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="per_direccion_municipio" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                    <input asp-for="per_direccion_municipio" class="form-control" disabled="disabled" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label asp-for="per_codigo" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-tag"></i></div>
+                        <input asp-for="per_codigo" class="form-control" disabled="disabled" />
+                    </div>
+
                 </div>
-                @*<small class="form-text text-muted">ex. 99-9999999</small>*@
+                <div class="col-sm-6">
+                    <label asp-for="per_nacionalidad" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-flag"></i></div>
+                        <input asp-for="per_nacionalidad" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label asp-for="per_tipo_contribullente" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa  fa-folder-o"></i></div>
+                        <input asp-for="per_tipo_contribullente" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <label asp-for="per_dir_cli" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-location-arrow"></i></div>
+                        <input asp-for="per_dir_cli" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <label asp-for="per_cobros" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-level-up"></i></div>
+                        <input asp-for="per_cobros" class="form-control" disabled="disabled" />
+                    </div>
+
+                </div>
             </div>
         </div>
 
