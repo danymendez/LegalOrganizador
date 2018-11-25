@@ -1,6 +1,7 @@
 ﻿using Common.Entity.Models;
 using Common.Models;
 using Data.DAL;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +20,10 @@ namespace Common.BOL.BOL
                 using (DALDBContext context = new DALDBContext())
                 {
                     DALUsuarios dal = new DALUsuarios(context);
-                    user = dal.Autenticar(usuario, clave);
+                    var listuser = dal.GetAllUsuarios();
+                    var usu = from us in listuser where us.Usuario.Equals(usuario.Trim()) && us.Password.Equals(clave.Trim()) select us;
+                    user = usu.FirstOrDefault();
+                    user.Password = "";
                     return user;
                 }
             });

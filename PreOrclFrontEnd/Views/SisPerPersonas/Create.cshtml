@@ -1,4 +1,4 @@
-﻿@model Common.Entity.Models.SisPerPersona
+﻿@model PreOrclFrontEnd.Models.SisPerPersona
 
 @{
     ViewData["Title"] = "Create";
@@ -39,7 +39,9 @@
                     <div class="card-header">
                         <strong>Crear Persona</strong> <small></small>
                     </div>
-                    <form asp-action="Create">
+                    
+                    <form asp-action="Create" id="createForm"  data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                         data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="card-body card-block">
@@ -48,8 +50,8 @@
                                         <label asp-for="per_nombre_razon" class="form-control-label"></label>
                                         <div class="input-group">
                                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                            <input asp-for="per_nombre_razon" class="form-control"   />
-                                            
+                                            <input asp-for="per_nombre_razon" class="form-control" />
+
                                         </div>
                                         <span asp-validation-for="per_nombre_razon" class="text-danger"></span>
                                     </div>
@@ -194,7 +196,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-sm-12 text-right">
-                                        <input type="submit" value="Guardar" class="btn btn-default" />
+                                        <input type="submit" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
                                     </div>
                                 </div>
                             </div>
@@ -210,5 +212,11 @@
 </div>
 
 @section Scripts {
+
+
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/custoSweetAlertAjax.js"></script>
+
 }

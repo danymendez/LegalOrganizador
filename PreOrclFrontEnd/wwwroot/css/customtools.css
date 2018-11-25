@@ -1,0 +1,39 @@
+﻿body {
+}
+/*Add by Daniel Méndez 25-11-2018 Spinner*/
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid gray;
+    border-bottom: 5px solid gray;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.backgroundAlert {
+    opacity: 1;
+    pointer-events: auto;
+    background-color: rgba(0,0,0,.4);
+}

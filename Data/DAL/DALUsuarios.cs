@@ -16,15 +16,12 @@ namespace Data.DAL
 
         }
 
-        public Usuarios Autenticar(string usuario, string clave) {
+        public List<Usuarios> GetAllUsuarios() {
 
             List<Usuarios> listaUsuario = GetAll<Usuarios>();
 
-            var user = from usu in listaUsuario
-                       where usu.Usuario.Equals(usuario.Trim()) && usu.Password.Equals(clave.Trim())
-                       select usu;
 
-            return user.FirstOrDefault();
+            return listaUsuario;
 
         }
     }

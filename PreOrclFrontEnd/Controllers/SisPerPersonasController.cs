@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Common.Entity.Models;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Helpers;
 
