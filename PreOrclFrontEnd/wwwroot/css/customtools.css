@@ -36,3 +36,20 @@
     pointer-events: auto;
     background-color: rgba(0,0,0,.4);
 }
+
+.modal.fade .modal-dialog {
+    transform: scale(0);
+    opacity: 0;
+    -webkit-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+.modal.fade.in .modal-dialog {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body {
+    padding-right: 0 !important
+}
