@@ -8,8 +8,26 @@
     <link rel="stylesheet" href="~/templateAdmin/assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="~/templateAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <style>
 
-        
+
+        .modal.fade .modal-dialog {
+            transform: scale(0);
+            opacity: 0;
+            -webkit-transition: all .25s linear;
+            -o-transition: all .25s linear;
+            transition: all .25s linear;
+        }
+
+        .modal.fade.in .modal-dialog {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        body {
+            padding-right: 0 !important
+        }
+    </style>
 }
 
 <div class="breadcrumbs">
@@ -49,7 +67,7 @@
                     <div class="card-body">
                         <div class="row form-group">
                             <div class="col-sm-12">
-                            <a asp-action="Create" title="Agregar Persona" class="btn btn-primary">Agregar Persona</a>
+                                <a asp-action="Create" title="Agregar Persona" class="btn btn-primary">Agregar Persona</a>
                             </div>
                         </div>
                         <div class="row">
@@ -178,7 +196,7 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -220,11 +238,11 @@
                 });
 
         function LargeModalDetailOnclick(id) {
-          
+            $('#largeModalPartial').html("");
                     $.get('@Url.Action("DetailsPartial","SisPerPersonas")', { id: id })
                         .done(function (html) {
                            // alert(html);
-                         
+
                             $('#largeModalPartial').html(html);
 
                         });
