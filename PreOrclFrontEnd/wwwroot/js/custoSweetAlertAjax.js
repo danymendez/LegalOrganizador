@@ -4,7 +4,7 @@ var urlDestino = "";
 function GuardarNotificacion(selector, urlRefres, urlDest) {
 urlRefrescar = urlRefres;
 urlDestino = urlDest;
-    event.preventDefault();
+    //event.preventDefault();
     var isValid = jQuery(selector).valid();
     if (isValid) {
         swal({
