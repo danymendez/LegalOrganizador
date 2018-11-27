@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreOrclApi", "FamaciasApi\PreOrclApi.csproj", "{C8E7668E-1746-4F72-BE5C-3D8DE7D03446}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreOrclApi", "PreOrclApi\PreOrclApi.csproj", "{C8E7668E-1746-4F72-BE5C-3D8DE7D03446}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Entity", "Common\Common.Entity.csproj", "{D4BC22D8-2243-455A-A736-43B4A561F836}"
 EndProject
