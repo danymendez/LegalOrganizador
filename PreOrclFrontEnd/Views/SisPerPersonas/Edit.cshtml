@@ -40,7 +40,9 @@
                         <strong>Editar Persona</strong> <small></small>
                     </div>
 
-                    <form asp-action="Edit">
+                    <form asp-action="Edit" id="editForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="per_IDPER" />
                         <div class="card-body card-block">
@@ -196,7 +198,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-sm-12 text-right">
-                                        <input type="submit" value="Guardar" class="btn btn-default" />
+                                        <input type="button" value="Guardar Cambios" onclick="GuardarNotificacion('#editForm','','@Url.Action("Index")')" class="btn btn-default" />
                                     </div>
                                 </div>
                             </div>
@@ -213,10 +215,8 @@
 
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/custoSweetAlertAjax.js"></script>
 }

@@ -59,6 +59,9 @@ var onComplete = function () {
 };
 
 var onSuccess = function (context) {
+
+    var isAddNew = urlRefrescar !== "";
+
     swal({
         title: "La información se ha guardado correctamente",
         text: "¿Que desea hacer?",
@@ -68,7 +71,7 @@ var onSuccess = function (context) {
             cancel: {
                 text: "Agregar otra persona",
                 value: null,
-                visible: true,
+                visible: isAddNew,
                 className: "btn-default",
                 closeModal: true,
             },
