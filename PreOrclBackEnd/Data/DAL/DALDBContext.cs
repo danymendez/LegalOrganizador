@@ -79,8 +79,7 @@ namespace Data.DAL
                 }
                 catch (Exception exRollback)
                 {
-                    // Throws an InvalidOperationException if the connection 
-                    // is closed or the transaction has already been rolled 
+
                     // back on the server.
                     Console.WriteLine(exRollback.Message);
                 }
