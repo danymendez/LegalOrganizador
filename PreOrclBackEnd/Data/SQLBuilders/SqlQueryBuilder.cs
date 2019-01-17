@@ -10,126 +10,76 @@ namespace Data.SQLBuilders
 {
     public class SqlQueryBuilder
     {
+        public TablesAttributes tablesAttributesWithEncloseSign { get; set; }
+        public TablesAttributes tablesAttributesWithParamSign { get; set; }
         public string InsertQuery<T>() {
 
-            Dictionary<string, string> dictionaryField = GetFields<T>();
-            Dictionary<string, string> dictionaryFieldComilla = new Dictionary<string, string>();
-            Dictionary<string, bool> dictionaryPrimaryKeys = GetPrimaryKeysAutoIncrem<T>();
-            Dictionary<string, string> dictFieldWithSignParameter = new Dictionary<string, string>();
-
-            ArrayList fieldToRemove = new ArrayList();
-
-            foreach (var dic in dictionaryField)
-            {
-                if (dictionaryPrimaryKeys.ContainsKey(dic.Value))
-                {
-                    if (dictionaryPrimaryKeys[dic.Value])
-                    {
-                        fieldToRemove.Add(dic.Key);
-                    }
-
-                }
-            }
-
-            foreach (var item in fieldToRemove) {
-                dictionaryField.Remove(item.ToString());
-            }
-            
-            foreach (var dic in dictionaryField) {
-                dictFieldWithSignParameter.Add(dic.Key, ":" + dic.Value);
-                dictionaryFieldComilla.Add(dic.Key, "\"" + dic.Value + "\"");
-            }
-
-            string query = String.Format("insert into \"{0}\" ({1}) values ({2}) RETURNING \"{3}\" into :my_id_param"
+            TableAttributeBindName<T>("\"", ":");
+            string primaryKeyName = tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict
+                                    .Where(c=>c.Value==true)
+                                    .Select(c => c.Key).FirstOrDefault();
+            string query = String.Format("insert into {0} ({1}) values ({2}) RETURNING {3} into :my_id_param"
                                             , GetTableName<T>()
-                                            , string.Join(", ", dictionaryFieldComilla.Values)
-                                            ,string.Join(", ",dictFieldWithSignParameter.Values)
-                                            ,string.Join("", dictionaryPrimaryKeys.Keys));
+                                            , string.Join(", ", 
+                                                tablesAttributesWithEncloseSign.FieldsDict
+                                                    .Where(c => !c.Key.Equals(primaryKeyName))
+                                                    .Select(c=>c.Value))
+                                            , string.Join(", ", 
+                                                tablesAttributesWithParamSign.FieldsDict
+                                                    .Where(c => !c.Key.Equals(primaryKeyName))
+                                                    .Select(c => c.Value))
+                                            , string.Join("", 
+                                                tablesAttributesWithEncloseSign.FieldsDict
+                                                    .Where(c => c.Key.Equals(tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Keys.FirstOrDefault()))
+                                                    .Select(c=>c.Value)));
 
             return query;
         }
 
         public string UpdateQuery<TEntity>() {
-
-            Dictionary<string, string> dictionaryField = GetFields<TEntity>();
-            Dictionary<string, bool> dictionaryPrimaryKeys = GetPrimaryKeysAutoIncrem<TEntity>();
-            Dictionary<string, string> dictFieldWithSignParameter = new Dictionary<string, string>();
-            Dictionary<string, string> dictionaryKeysWithParameters = new Dictionary<string, string>();
-
-            ArrayList fieldToRemove = new ArrayList();
-
-            foreach (var dic in dictionaryField)
-            {
-                if (dictionaryPrimaryKeys.ContainsKey(dic.Value))
-                {
-                    if (dictionaryPrimaryKeys[dic.Value])
-                    {
-                        fieldToRemove.Add(dic.Key);
-                      
-                    }
-                    dictionaryKeysWithParameters.Add(dic.Key,"\""+dic.Key+"\"" + " =:" + dic.Key);
-                }
-            }
-
-            foreach (var item in fieldToRemove)
-            {
-                dictionaryField.Remove(item.ToString());
-            }
-
-            foreach (var dic in dictionaryField)
-            {
-                dictFieldWithSignParameter.Add(dic.Key, "\"" + dic.Value+ "\"" + " =:" + dic.Value);
-            }
-
-            string query = String.Format("UPDATE \"{0}\" SET {1} WHERE {2}"
-                                            , GetTableName<TEntity>()
-                                            , string.Join(", ", dictFieldWithSignParameter.Values)
-                                            , string.Join(" and ", dictionaryKeysWithParameters.Values));
+            TableAttributeBindName<TEntity>("", ":");
+            string primaryKeyName = tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict
+                                    .Where(c => c.Value == true)
+                                    .Select(c => c.Key).FirstOrDefault();
+            string query = String.Format("UPDATE {0} SET {1} WHERE {2}"
+                                            , "\""+tablesAttributesWithEncloseSign.TableName+"\""
+                                            , string.Join(", ", tablesAttributesWithEncloseSign.FieldsDict
+                                                    .Where(c => !c.Key.Equals(primaryKeyName)).Select(c => "\""+c.Value+"\"=:"+c.Value))
+                                            , string.Join(" and ", tablesAttributesWithEncloseSign.FieldsDict
+                                                    .Where(c => c.Key.Equals(tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Keys.FirstOrDefault()))
+                                                    .Select(c => "\""+c.Value+"\""+"=:"+c.Value)));
 
             return query;
         }
 
         public string SelectAllQuery<T>() {
-            Dictionary<string, string> dictionaryField = new Dictionary<string, string>();
-            foreach (var item in GetFields<T>()) {
-
-                dictionaryField.Add(item.Key, "\"" + item.Value + "\"");
-            }
-            string query = String.Format("Select {0} from \"{1}\" ", string.Join(",", dictionaryField.Values), GetTableName<T>());
-
+            TableAttributeBindName<T>("\"", ":");
+            string query = String.Format("Select {0} from {1}"
+                                            , string.Join(",", tablesAttributesWithEncloseSign.FieldsDict.Values)
+                                            , tablesAttributesWithEncloseSign.TableName);
             return query;
         }
 
         public string SelectQuery<TEntity>() {
-            Dictionary<string, string> dictionaryKeysWithParameters = new Dictionary<string, string>();
-            Dictionary<string, string> dictionaryField = new Dictionary<string, string>();
-            foreach (var item in GetFields<TEntity>())
-            {
-
-                dictionaryField.Add(item.Key, "\"" + item.Value + "\"");
-            }
-            foreach (var item in GetPrimaryKeysAutoIncrem<TEntity>()) {
-                dictionaryKeysWithParameters.Add(item.Key, "\""+item.Key+"\"" + "=:" + item.Key);
-            }
+            TableAttributeBindName<TEntity>("", ":");
             string query = String.Format("Select {0} from {1} where {2}"
-                                        , string.Join(",", dictionaryField.Values)
-                                        , "\""+GetTableName<TEntity>()+"\""
-                                        ,string.Join(" and ",dictionaryKeysWithParameters.Values));
+                                        , string.Join(",",tablesAttributesWithEncloseSign.FieldsDict.Select(c => "\"" + c.Value + "\""))
+                                        , tablesAttributesWithEncloseSign.TableName
+                                        , string.Join(" and ", tablesAttributesWithEncloseSign.FieldsDict
+                                                    .Where(c => c.Key.Equals(tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Keys.FirstOrDefault()))
+                                                    .Select(c => "\"" + c.Value + "\""+"=:"+c.Value)));
 
             return query;
         }
 
         public string DeleteQuery<TEntity>() {
 
-            Dictionary<string, string> dictionaryKeysWithParameters = new Dictionary<string, string>();
-
-            foreach (var item in GetPrimaryKeysAutoIncrem<TEntity>())
-            {
-                dictionaryKeysWithParameters.Add(item.Key, "\""+item.Key+"\"" + "=:" + item.Key);
-            }
+            TableAttributeBindName<TEntity>("\"", ":");
             string query = String.Format("Delete from \"{0}\" where {1}"
-                                        ,GetTableName<TEntity>()
-                                        , string.Join(" and ", dictionaryKeysWithParameters.Values));
+                                        , tablesAttributesWithEncloseSign.TableName
+                                        , string.Join(" and ", tablesAttributesWithEncloseSign.FieldsDict
+                                                    .Where(c => c.Key.Equals(tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Keys.FirstOrDefault()))
+                                                    .Select(c => "\"" + c.Value + "\"" + "=:" + c.Value)));
 
             return query;
         }
@@ -137,23 +87,23 @@ namespace Data.SQLBuilders
         public string GetTableName<T>() {
 
             string nameTable = "";
-            Type entity = typeof(T); 
+            Type entity = typeof(T);
             PropertyInfo[] prop = entity.GetProperties();
 
             var attribute = entity.GetCustomAttributes().Where(c => c.GetType().Name.Equals("Table")).FirstOrDefault();
 
-            Table tb = attribute as Table;
-            if (tb != null && tb.Name != null)
+            if (attribute is Table tb && tb.Name != null)
             {
                 nameTable = tb.Name;
             }
-            else {
+            else
+            {
                 nameTable = entity.Name;
             }
-                return nameTable;
+            return nameTable;
         }
 
-        public Dictionary<string,bool> GetPrimaryKeysAutoIncrem<T>() {
+        public Dictionary<string, bool> GetPrimaryKeysAutoIncrem<T>() {
             Dictionary<string, bool> dictionaryPrimaryKeys = new Dictionary<string, bool>();
             Type entity = typeof(T);
             PropertyInfo[] prop = entity.GetProperties();
@@ -174,10 +124,10 @@ namespace Data.SQLBuilders
 
                     }
                 }
-               
+
 
             }
-                return dictionaryPrimaryKeys;
+            return dictionaryPrimaryKeys;
         }
 
         public Dictionary<string, string> GetFields<T>() {
@@ -199,5 +149,95 @@ namespace Data.SQLBuilders
             }
             return dictionaryFields;
         }
+
+
+        public void TableAttributeBindName<T>(string enclose, string signParam)
+        {
+            tablesAttributesWithEncloseSign = new TablesAttributes();
+            tablesAttributesWithEncloseSign.FieldsDict = new Dictionary<string, string>();
+            tablesAttributesWithEncloseSign.PrimaryKeyNameDict = new Dictionary<string, string>();
+            tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict = new Dictionary<string, bool>();
+
+            tablesAttributesWithParamSign = new TablesAttributes();
+
+            tablesAttributesWithParamSign.FieldsDict = new Dictionary<string, string>();
+            tablesAttributesWithParamSign.PrimaryKeyNameDict = new Dictionary<string, string>();
+            tablesAttributesWithParamSign.PrimaryKeyAutoIncrementDict = new Dictionary<string, bool>();
+
+            Type entity = typeof(T);
+
+            var attribute = entity.GetCustomAttributes().Where(c => c.GetType().Name.Equals("Table")).FirstOrDefault();
+
+            if (attribute is Table tb && tb.Name != null)
+            {
+                tablesAttributesWithEncloseSign.TableName = enclose + tb.Name + enclose;
+            }
+            else
+            {
+                tablesAttributesWithEncloseSign.TableName = enclose + entity.Name + enclose;
+            }
+
+           
+            
+            PropertyInfo[] prop = entity.GetProperties();
+            bool existPrimary = false;
+            foreach (var p in prop)
+            {
+                var attrField = p.GetCustomAttributes();
+               
+                if (attrField.Count() == 0) {
+                    tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + p.Name + enclose);
+                    tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + p.Name);
+                }
+
+                foreach (var item in attrField) {
+                    string name = item.GetType().Name;
+                    switch (name) {
+                        case "Field":
+                            Field field = item as Field;
+                            if (existPrimary) {
+                                tablesAttributesWithEncloseSign.FieldsDict[p.Name]= enclose + field.Name + enclose;
+                                tablesAttributesWithParamSign.FieldsDict[p.Name]= signParam + field.Name;
+                                existPrimary = false;
+                            }
+                            else
+                            {
+                                tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + field.Name + enclose);
+                                tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + field.Name);
+                            }
+                            break;
+                        case "PrimaryKey":
+                            PrimaryKey pk = item as PrimaryKey;
+                            tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Add(p.Name, enclose + p.Name + enclose);
+                            tablesAttributesWithParamSign.PrimaryKeyNameDict.Add(p.Name, signParam + p.Name);
+                            tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict.Add(p.Name, pk.AutoIncrement);
+                            if (!tablesAttributesWithEncloseSign.FieldsDict.ContainsKey(p.Name))
+                            {
+                                tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + p.Name + enclose);
+                                tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + p.Name);
+                            }
+                            existPrimary = true;
+                            break;
+                        default:
+                          
+                          
+                            break;
+                    }
+                }
+            }
+        }
+   }
+
+
+    public class TablesAttributes{
+
+        public string TableName { get; set; }
+
+        public Dictionary<string, string> FieldsDict { get; set; }
+
+        public Dictionary<string, string> PrimaryKeyNameDict { get; set; }
+
+        public Dictionary<string, bool> PrimaryKeyAutoIncrementDict { get; set; }
+
     }
 }

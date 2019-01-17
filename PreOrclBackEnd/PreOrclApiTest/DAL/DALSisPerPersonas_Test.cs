@@ -4,7 +4,8 @@ using Common.Entity.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Common.BOL.BOL;
-using Common.Models;
+using Data.SQLBuilders;
+using System.Text;
 
 namespace PreOrclApiTest.DAL
 {
@@ -59,7 +60,7 @@ namespace PreOrclApiTest.DAL
         public async System.Threading.Tasks.Task Autenticar_TestAsync() {
             BOLUsuarios bol = new BOLUsuarios();
             Usuarios a = await bol.Autenticar("danielmendez", "1234");
-            Assert.IsNull(a);
+            Assert.IsNotNull(a);
         }
 
 
@@ -131,6 +132,33 @@ namespace PreOrclApiTest.DAL
 
         //    Assert.IsNotNull(sis);
         //}
+
+        [TestMethod]
+        public void SqlQuery_Test() {
+
+            //Usuarios us = new Usuarios { IdUsuario=0,Usuario="da",Nombre="Daniel", Apellido="Méndez",Password="123"};
+
+            //using (DALDBContext db = new DALDBContext()) {
+
+
+
+            //}
+            SqlQueryBuilder sqlQuery = new SqlQueryBuilder();
+            sqlQuery.TableAttributeBindName<Usuarios>("\"", ":");
+            var valor = sqlQuery.InsertQuery<Usuarios>();
+        }
+
+        [TestMethod]
+        public void Encripter_Test() {
+            StringBuilder st = new StringBuilder();
+
+            for (int i = 0; i < 1000; i++) {
+                st.Append(i + " " + "Encriptado: " + PreOrclApi.Utilidades.Criptografia.Encrypt(i.ToString())+" /n");
+            }
+
+            string a = st.ToString();
+        }
+
 
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Common.Entity.Models;
-using Common.Models;
 using Data.DAL;
 using System.Linq;
 using System;
@@ -23,12 +22,62 @@ namespace Common.BOL.BOL
                     var listuser = dal.GetAllUsuarios();
                     var usu = from us in listuser where us.Usuario.Equals(usuario.Trim()) && us.Password.Equals(clave.Trim()) select us;
                     user = usu.FirstOrDefault();
-                    user.Password = "";
+                    
                     return user;
                 }
             });
 
             return t;
         }
+
+        public Task<List<Usuarios>> GetUsuarios() {
+            Task<List<Usuarios>> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALUsuarios dal = new DALUsuarios(context);
+                    var listuser = dal.GetAllUsuarios();
+                                   
+                    
+                    return listuser;
+                }
+            });
+
+            return t;
+        }
+
+        public Task<Usuarios> GetUsuario(int id) {
+            Task<Usuarios> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALUsuarios dal = new DALUsuarios(context);
+                    var usuario = dal.GetUsuario(id);
+
+
+                    return usuario;
+                }
+            });
+
+            return t;
+        }
+
+        public Task<Usuarios> CreateUsuario(Usuarios pUsuario)
+        {
+            Task<Usuarios> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALUsuarios dal = new DALUsuarios(context);
+                    var usuario = dal.CreateUsuario(pUsuario);
+
+
+                    return usuario;
+                }
+            });
+
+            return t;
+        }
+
     }
 }

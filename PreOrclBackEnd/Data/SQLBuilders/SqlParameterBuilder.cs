@@ -14,14 +14,15 @@ namespace Data.SQLBuilders
         {
 
             OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
-            Dictionary<string, bool> dictKeys = sqlQueryBuilder.GetPrimaryKeysAutoIncrem<T>();
-            Dictionary<string, string> dictFields = sqlQueryBuilder.GetFields<T>();
+            sqlQueryBuilder.TableAttributeBindName<T>("\"", ":");
+            Dictionary<string, bool> dictKeys = sqlQueryBuilder.tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict;
+            Dictionary<string, string> dictFields = sqlQueryBuilder.tablesAttributesWithParamSign.FieldsDict;
             PropertyInfo[] prop = entity.GetType().GetProperties();
             foreach (var p in prop)
             {
-                if (dictKeys.ContainsKey(dictFields[p.Name]))
+                if (dictKeys.ContainsKey(p.Name))
                 {
-                    if (!dictKeys[dictFields[p.Name]])
+                    if (!dictKeys[p.Name])
                         sqlParameter.Add(dictFields[p.Name], p.GetValue(entity));
                 }
                 else {
@@ -36,12 +37,13 @@ namespace Data.SQLBuilders
         public OracleParameterCollection UpdateParametersBuilder<T>(long id,T entity) {
            
                 OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
-                Dictionary<string, string> dictFields = sqlQueryBuilder.GetFields<T>();
-                Dictionary<string, bool> dictKeys = sqlQueryBuilder.GetPrimaryKeysAutoIncrem<T>();
-                PropertyInfo[] prop = entity.GetType().GetProperties();
+            sqlQueryBuilder.TableAttributeBindName<T>("\"", ":");
+            Dictionary<string, bool> dictKeys = sqlQueryBuilder.tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict;
+            Dictionary<string, string> dictFields = sqlQueryBuilder.tablesAttributesWithParamSign.FieldsDict;
+            PropertyInfo[] prop = entity.GetType().GetProperties();
                 foreach (var p in prop)
                 {
-                    if (dictKeys.ContainsKey(dictFields[p.Name]))
+                    if (dictKeys.ContainsKey(p.Name))
                       sqlParameter.Add(dictFields[p.Name],id);
                     else
                       sqlParameter.Add(dictFields[p.Name], p.GetValue(entity));
@@ -54,13 +56,14 @@ namespace Data.SQLBuilders
         {
             Type entity = typeof(T);
             OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
-            Dictionary<string, bool> dictKeys = sqlQueryBuilder.GetPrimaryKeysAutoIncrem<T>();
-            Dictionary<string, string> dictFields = sqlQueryBuilder.GetFields<T>();
+            sqlQueryBuilder.TableAttributeBindName<T>("\"", ":");
+            Dictionary<string, bool> dictKeys = sqlQueryBuilder.tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict;
+            Dictionary<string, string> dictFields = sqlQueryBuilder.tablesAttributesWithParamSign.FieldsDict;
             PropertyInfo[] prop = entity.GetProperties();
             foreach (var p in prop)
             {
-                if (dictKeys.ContainsKey(dictFields[p.Name]))
-                    sqlParameter.Add(":" + dictFields[p.Name], id);
+                if (dictKeys.ContainsKey(p.Name))
+                    sqlParameter.Add(dictFields[p.Name], id);
 
             }
 
@@ -76,8 +79,8 @@ namespace Data.SQLBuilders
             PropertyInfo[] prop = entity.GetProperties();
             foreach (var p in prop)
             {
-                if (dictKeys.ContainsKey(dictFields[p.Name]))
-                    sqlParameter.Add(":" + dictFields[p.Name], id);
+                if (dictKeys.ContainsKey(p.Name))
+                    sqlParameter.Add(dictFields[p.Name], id);
 
             }
 

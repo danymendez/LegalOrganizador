@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Common.Models
+namespace Common.Entity.Models
 { 
     [Table(Name ="USUARIOS")]
     public class Usuarios
     {
-        [PrimaryKey(AutoIncrement = false)]
+        [PrimaryKey(AutoIncrement = true)]
         [Field(Name ="IDUSUARIO")]
         public int IdUsuario { get; set; }
         [Field(Name = "USUARIO")]

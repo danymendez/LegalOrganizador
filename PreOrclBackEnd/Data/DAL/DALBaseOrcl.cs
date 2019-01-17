@@ -93,7 +93,7 @@ namespace Data.DAL
         {
             List<T> listEntity = new List<T>();
             sqlQueryBuilder = new SqlQueryBuilder();
-            var valor = sqlQueryBuilder.GetFields<T>();
+        //    var valor = sqlQueryBuilder.GetFields<T>();
             using (OracleCommand command = new OracleCommand())
             {
                 command.Connection = _sqlConnection;
@@ -113,12 +113,12 @@ namespace Data.DAL
 
 
                             int id;
-                            bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out id);
+                            bool EsEntero = int.TryParse(reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]].ToString(), out id);
 
                             if (EsEntero && p.PropertyType == typeof(int))
                                 p.SetValue(obj, id);
                             else
-                                p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? null : reader["\"" + valor[p.Name] + "\""]);
+                                p.SetValue(obj, reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]] == DBNull.Value ? null : reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]]);
 
                         }
                         listEntity.Add(obj);
@@ -151,7 +151,7 @@ namespace Data.DAL
            T entity = default(T);
             sqlQueryBuilder = new SqlQueryBuilder();
             sqlParameterBuilder = new SqlParameterBuilder();
-            var valor = sqlQueryBuilder.GetFields<T>();
+          //  var valor = sqlQueryBuilder.GetFields<T>();
             using (OracleCommand command = new OracleCommand())
             {
                 command.Connection = _sqlConnection;
@@ -177,12 +177,12 @@ namespace Data.DAL
 
 
                             int ids;
-                            bool EsEntero = int.TryParse(reader["\"" + valor[p.Name] + "\""].ToString(), out ids);
+                            bool EsEntero = int.TryParse(reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]].ToString(), out ids);
 
                             if (EsEntero && p.PropertyType == typeof(int))
                                 p.SetValue(obj, ids);
                             else
-                                p.SetValue(obj, reader["\"" + valor[p.Name] + "\""] == DBNull.Value ? null : reader["\"" + valor[p.Name] + "\""]);
+                                p.SetValue(obj, reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]] == DBNull.Value ? null : reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]]);
 
                         }
                         entity = obj;

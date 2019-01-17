@@ -1,4 +1,4 @@
-﻿using Common.Models;
+﻿using Common.Entity.Models;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -23,6 +23,21 @@ namespace Data.DAL
 
             return listaUsuario;
 
+        }
+
+        public Usuarios GetUsuario(int id)
+        {
+
+            Usuarios listaUsuario = Get<Usuarios>(id);
+
+            return listaUsuario;
+
+        }
+
+        public Usuarios CreateUsuario(Usuarios pUsuario) {
+
+            Usuarios usuario = Create(pUsuario);
+            return usuario;
         }
     }
 }
