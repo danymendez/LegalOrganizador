@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PreOrclFrontEnd.Controllers
 {
+    [Authorize]
+    
     public class SisPerPersonasController : Controller
     {
         private readonly PreOrclFrontEndContext _context;

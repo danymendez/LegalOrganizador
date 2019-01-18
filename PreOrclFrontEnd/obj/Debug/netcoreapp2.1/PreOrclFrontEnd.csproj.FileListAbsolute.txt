@@ -14,6 +14,7 @@ C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1
 C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\PreOrclFrontEnd.TagHelpers.input.cache
 C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\PreOrclFrontEnd.TagHelpers.output.cache
 C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\PreOrclFrontEnd.RazorCoreGenerate.cache
+C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\Razor\Views\Auth\Index.g.cshtml.cs
 C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 C:\Users\Palacios\Source\Repos\PreOracle\PreOrclFrontEnd\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs

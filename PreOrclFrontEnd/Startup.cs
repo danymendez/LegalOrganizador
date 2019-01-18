@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using PreOrclFrontEnd.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 
 namespace PreOrclFrontEnd
 {
@@ -30,16 +32,42 @@ namespace PreOrclFrontEnd
                 options.Conventions.AddPageRoute("/SisPerPersonas/Index", "");
             });
 
-            services.Configure<CookiePolicyOptions>(options =>
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => false;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(
+                options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
 
+                options.LoginPath = "/Auth";
+            }
+            ).AddMicrosoftAccount(microsoftOptions =>
+            {
+                microsoftOptions.ClientId = "c29c2d9c-8219-4b67-8012-7f8f1fb17947";
+                microsoftOptions.ClientSecret = "cqlrcFPUMS72807)*)hqIN}";
+              
+            }); 
 
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.AccessDeniedPath = "/Auth/AccessDenied";
+            //    options.Cookie.Name = "usuario";
+            //    options.Cookie.HttpOnly = true;
+            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(720);
+            //    options.LoginPath = "/Auth";
+            //    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+            //    options.SlidingExpiration = true;
+            //});
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+           // services.AddIdentity<IdentityUser, IdentityRole>(options => {
+                
+           // })
+           //.AddEntityFrameworkStores<PreOrclFrontEndContext>();
             services.AddDbContext<PreOrclFrontEndContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PreOrclFrontEndContext")));
         }
@@ -58,6 +86,7 @@ namespace PreOrclFrontEnd
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
