@@ -176,53 +176,41 @@ namespace Data.SQLBuilders
             {
                 tablesAttributesWithEncloseSign.TableName = enclose + entity.Name + enclose;
             }
-
-           
             
             PropertyInfo[] prop = entity.GetProperties();
-            bool existPrimary = false;
+
             foreach (var p in prop)
             {
                 var attrField = p.GetCustomAttributes();
-               
-                if (attrField.Count() == 0) {
-                    tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + p.Name + enclose);
-                    tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + p.Name);
-                }
 
+                int contadorAttrValidos = 0;
                 foreach (var item in attrField) {
                     string name = item.GetType().Name;
                     switch (name) {
                         case "Field":
                             Field field = item as Field;
-                            if (existPrimary) {
                                 tablesAttributesWithEncloseSign.FieldsDict[p.Name]= enclose + field.Name + enclose;
                                 tablesAttributesWithParamSign.FieldsDict[p.Name]= signParam + field.Name;
-                                existPrimary = false;
-                            }
-                            else
-                            {
-                                tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + field.Name + enclose);
-                                tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + field.Name);
-                            }
+                                contadorAttrValidos++;
+                            
                             break;
                         case "PrimaryKey":
                             PrimaryKey pk = item as PrimaryKey;
                             tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Add(p.Name, enclose + p.Name + enclose);
                             tablesAttributesWithParamSign.PrimaryKeyNameDict.Add(p.Name, signParam + p.Name);
                             tablesAttributesWithEncloseSign.PrimaryKeyAutoIncrementDict.Add(p.Name, pk.AutoIncrement);
-                            if (!tablesAttributesWithEncloseSign.FieldsDict.ContainsKey(p.Name))
-                            {
-                                tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + p.Name + enclose);
-                                tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + p.Name);
-                            }
-                            existPrimary = true;
                             break;
                         default:
                           
                           
                             break;
                     }
+
+                }
+                if (contadorAttrValidos == 0)
+                {
+                    tablesAttributesWithEncloseSign.FieldsDict.Add(p.Name, enclose + p.Name + enclose);
+                    tablesAttributesWithParamSign.FieldsDict.Add(p.Name, signParam + p.Name);
                 }
             }
         }
