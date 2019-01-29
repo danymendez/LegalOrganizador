@@ -50,7 +50,12 @@ namespace PreOrclFrontEnd
             {
                 microsoftOptions.ClientId = "c29c2d9c-8219-4b67-8012-7f8f1fb17947";
                 microsoftOptions.ClientSecret = "cqlrcFPUMS72807)*)hqIN}";
-              
+                microsoftOptions.Events.OnRemoteFailure = (context) =>
+                {
+                    context.Response.Redirect("/Auth");
+                    context.HandleResponse();
+                    return System.Threading.Tasks.Task.FromResult(0);
+                };
             }); 
 
             //services.ConfigureApplicationCookie(options =>

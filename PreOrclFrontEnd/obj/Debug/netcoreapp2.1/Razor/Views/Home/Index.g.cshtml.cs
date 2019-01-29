@@ -533,7 +533,7 @@ using PreOrclFrontEnd.Models;
             WriteLiteral(">\r\n                    <div class=\"modal-body\">\r\n                        ");
             EndContext();
             BeginContext(25718, 1297, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "449b88c438d544bb9bd1c4d1230a2448", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e9b75f7d36e1498d9bda2b900c451ec5", async() => {
                 BeginContext(25724, 699, true);
                 WriteLiteral(@"
                             <div class=""row"">
@@ -547,7 +547,7 @@ using PreOrclFrontEnd.Models;
                                         ");
                 EndContext();
                 BeginContext(26423, 40, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "103a72534e6141c4badcbffb20f9351e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "10b14e17113d4fcbaa17fddb6b7c929a", async() => {
                     BeginContext(26447, 7, true);
                     WriteLiteral("Success");
                     EndContext();
@@ -569,7 +569,7 @@ using PreOrclFrontEnd.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(26505, 38, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e68fa0d999247b4ba7c196b0c9a3790", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "72fb2dc1288044a39adada89fce66532", async() => {
                     BeginContext(26528, 6, true);
                     WriteLiteral("Danger");
                     EndContext();
@@ -591,7 +591,7 @@ using PreOrclFrontEnd.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(26585, 34, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ff680ae7b5b41ddad4018fddc57c642", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a75a9080c87646f7abee72607b0eb584", async() => {
                     BeginContext(26606, 4, true);
                     WriteLiteral("Info");
                     EndContext();
@@ -613,7 +613,7 @@ using PreOrclFrontEnd.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(26661, 34, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "44f5b5c3f7b649d290019bdf7632d500", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f0212f1e2524a99a9b95a7f116111d9", async() => {
                     BeginContext(26682, 4, true);
                     WriteLiteral("Pink");
                     EndContext();
@@ -635,7 +635,7 @@ using PreOrclFrontEnd.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(26737, 40, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3177c6b62b244936a4d3a94815354192", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6fdac80211d412c9853c6d70710aff5", async() => {
                     BeginContext(26761, 7, true);
                     WriteLiteral("Primary");
                     EndContext();
@@ -657,7 +657,7 @@ using PreOrclFrontEnd.Models;
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(26819, 40, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "de3265673cde4f98ab8a4f04e23dc421", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "679e938a01d64ee7ae395a89153d915d", async() => {
                     BeginContext(26843, 7, true);
                     WriteLiteral("Warning");
                     EndContext();
