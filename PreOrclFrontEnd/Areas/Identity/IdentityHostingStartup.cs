@@ -14,14 +14,14 @@ namespace PreOrclFrontEnd.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<PreOrclFrontEndDBContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("PreOrclFrontEndDBContextConnection")));
+            //builder.ConfigureServices((context, services) => {
+            //    services.AddDbContext<PreOrclFrontEndDBContext>(options =>
+            //        options.UseSqlServer(
+            //            context.Configuration.GetConnectionString("PreOrclFrontEndDBContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>()
-                    .AddEntityFrameworkStores<PreOrclFrontEndDBContext>();
-            });
+            //    services.AddDefaultIdentity<IdentityUser>()
+            //        .AddEntityFrameworkStores<PreOrclFrontEndDBContext>();
+            //});
         }
     }
 }
