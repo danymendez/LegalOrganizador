@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PreOrclFrontEnd.Helpers;
 using System;
@@ -15,6 +16,7 @@ namespace PreOrclFrontEnd.Controllers
     {
         GenericREST generic;
 
+
         public AuthController()
         {
             generic = new GenericREST();
@@ -24,6 +26,18 @@ namespace PreOrclFrontEnd.Controllers
 
             return View();
         }
+
+        [Route("Microsoft")]
+        public IActionResult Google()
+        {
+            var authenticationProperties = new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("LoginMicrosoft", "Auth")
+            };
+
+            return Challenge(authenticationProperties, "Microsoft");
+        }
+
 
         [HttpPost("{Usuario,Password}")]
         [ValidateAntiForgeryToken]
@@ -47,11 +61,16 @@ namespace PreOrclFrontEnd.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+      //  private readonly SignInManager<IdentityUser> _signInManager;
+
         [Route("LoginMicrosoft")]
         public async Task<IActionResult> LoginMicrosoft(string returnUrl = null, string remoteError = null)
         {
 
-          
+            // var claimsPrincipal = await  HttpContext.Authentication.AuthenticateAsync("ExternalCookie");
+            var a = this.User.Claims;
+
+
             return RedirectToAction("Index", "Home");
         }
 

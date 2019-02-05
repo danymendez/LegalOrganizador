@@ -41,21 +41,22 @@ namespace PreOrclFrontEnd
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(
-            //    options =>
-            //{
+                options =>
+            {
+                options.Cookie.Name = "usuario";
 
-            //    options.LoginPath = "/Auth";
-            //}
+                options.LoginPath = "/Auth";
+            }
             ).AddMicrosoftAccount(microsoftOptions =>
             {
                 microsoftOptions.ClientId = "c29c2d9c-8219-4b67-8012-7f8f1fb17947";
                 microsoftOptions.ClientSecret = "cqlrcFPUMS72807)*)hqIN}";
-                //microsoftOptions.Events.OnRemoteFailure = (context) =>
-                //{
-                //    context.Response.Redirect("/Auth");
-                //    context.HandleResponse();
-                //    return System.Threading.Tasks.Task.FromResult(0);
-                //};
+                microsoftOptions.Events.OnRemoteFailure = (context) =>
+                {
+                    context.Response.Redirect("/Auth");
+                    context.HandleResponse();
+                    return System.Threading.Tasks.Task.FromResult(0);
+                };
             }); 
 
             //services.ConfigureApplicationCookie(options =>
@@ -80,6 +81,14 @@ namespace PreOrclFrontEnd
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationScheme = "MyCookie",
+            //    AutomaticAuthenticate = true,
+            //    AutomaticChallenge = true,
+            //    LoginPath = new PathString("/account/login")
+            //});
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
