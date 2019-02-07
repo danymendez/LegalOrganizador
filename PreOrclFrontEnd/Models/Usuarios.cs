@@ -13,12 +13,13 @@ namespace PreOrclFrontEnd.Models
         [Key]
         public int IdUsuario { get; set; }
 
+        [Required(ErrorMessage = "Campo Requerido")]
         public string Usuario { get; set; }
-
+        [Required(ErrorMessage = "Campo Requerido")]
         public string Password { get; set; }
-
+        [Required]
         public string Nombre { get; set; }
-
+        [Required]
         public string Apellido { get; set; }
     }
 }

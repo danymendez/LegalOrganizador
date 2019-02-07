@@ -42,7 +42,8 @@ namespace PreOrclFrontEnd.Controllers
         [HttpPost("{Usuario,Password}")]
         [ValidateAntiForgeryToken]
         [Route("Login")]
-        public async Task<IActionResult> Login(string Usuario, string Password) {
+        public async Task<IActionResult> Login(string Usuario, string Password)
+        {
 
             if (String.IsNullOrEmpty(Usuario) || String.IsNullOrEmpty(Password)) {
                 return BadRequest();
@@ -61,15 +62,21 @@ namespace PreOrclFrontEnd.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-      //  private readonly SignInManager<IdentityUser> _signInManager;
+        //  private readonly SignInManager<IdentityUser> _signInManager;
 
         [Route("LoginMicrosoft")]
-        public async Task<IActionResult> LoginMicrosoft(string returnUrl = null, string remoteError = null)
+        public IActionResult LoginMicrosoft(string returnUrl = null, string remoteError = null)
         {
 
-            // var claimsPrincipal = await  HttpContext.Authentication.AuthenticateAsync("ExternalCookie");
+
             var a = this.User.Claims;
 
+            var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, "")
+                    };
+            ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
+            ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
             return RedirectToAction("Index", "Home");
         }
