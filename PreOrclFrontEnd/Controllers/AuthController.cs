@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PreOrclFrontEnd.Helpers;
+using PreOrclFrontEnd.Models;
+using PreOrclFrontEnd.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         [Route("Microsoft")]
-        public IActionResult Google()
+        public IActionResult Microsoft()
         {
             var authenticationProperties = new AuthenticationProperties
             {
@@ -48,11 +50,14 @@ namespace PreOrclFrontEnd.Controllers
             if (String.IsNullOrEmpty(Usuario) || String.IsNullOrEmpty(Password)) {
                 return BadRequest();
             }
-
+            string hashPassword = Criptografia.Encrypt(Password);
+            var entity = generic.PostAuth<Usuarios>("Usuarios/Autenticar", Usuario, hashPassword);
 
             var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, Usuario)
+                        new Claim(ClaimTypes.Name, entity.Nombre),
+                        new Claim(ClaimTypes.Email,entity.Usuario),
+
                     };
             ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
@@ -86,6 +91,7 @@ namespace PreOrclFrontEnd.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
+            //this.SignOut();
             return RedirectToAction("Index", "Auth");
         }
     }

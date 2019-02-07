@@ -31,10 +31,11 @@ namespace PreOrclFrontEnd.Controllers
                 List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
                 return listaSisPersona;
             });
-
+            t.Wait();
             ViewBag.PersonasClassCssNav = "active";
-           
-            return View(await t);
+
+            var listado = await t;
+            return View(listado);
         }
 
         // GET: SisPerPersonas/Details/5

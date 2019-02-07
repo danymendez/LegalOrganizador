@@ -10,9 +10,9 @@ namespace PreOrclFrontEnd.Helpers
     public class GenericREST
     {
 
-        //  public const string BASEURL = "https://localhost:44341/api/";
+        public const string BASEURL = "https://localhost:44341/api/";
         //public const string BASEURL = "http://192.168.0.40:5000/preorclapi/api/";
-         public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
+        //public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
         public virtual T Get<T>(string urlMethod, int? id)
         {
             T entity = default(T);
@@ -63,6 +63,29 @@ namespace PreOrclFrontEnd.Helpers
                 string uri = BASEURL;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = client.PostAsJsonAsync(uri + urlMethod, clase).Result;
+
+                if (response.IsSuccessStatusCode)
+                    clase = response.Content.ReadAsAsync<T>().Result;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return clase;
+        }
+
+        public virtual T PostAuth<T>(string urlMethod, string Usuario, string Password)
+        {
+            T clase = default(T);
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                string uri = BASEURL;
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = client.PostAsJsonAsync(uri + urlMethod+"?Usuario="+Usuario+"&Password="+Password,new StringContent(Usuario)).Result;
 
                 if (response.IsSuccessStatusCode)
                     clase = response.Content.ReadAsAsync<T>().Result;
