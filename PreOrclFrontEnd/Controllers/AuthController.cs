@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace PreOrclFrontEnd.Controllers 
 {
@@ -51,7 +52,7 @@ namespace PreOrclFrontEnd.Controllers
                 return BadRequest();
             }
             string hashPassword = Criptografia.Encrypt(Password);
-            var entity = generic.PostAuth<Usuarios>("Usuarios/Autenticar", Usuario, hashPassword);
+            var entity = generic.PostAuth<Usuarios>("Usuarios/Autenticar", Usuario, HttpUtility.UrlEncode(hashPassword));
 
             var claims = new List<Claim>
                     {
