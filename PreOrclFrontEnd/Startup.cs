@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using PreOrclFrontEnd.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using PreOrclFrontEnd.Utilidades;
 
 namespace PreOrclFrontEnd
 {
@@ -70,10 +71,11 @@ namespace PreOrclFrontEnd
             //    options.SlidingExpiration = true;
             //});
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-           // services.AddIdentity<IdentityUser, IdentityRole>(options => {
-                
-           // })
-           //.AddEntityFrameworkStores<PreOrclFrontEndContext>();
+            // services.AddIdentity<IdentityUser, IdentityRole>(options => {
+
+            // })
+            //.AddEntityFrameworkStores<PreOrclFrontEndContext>();
+            services.Configure<ConfigurationJson>(Configuration.GetSection("UriHelpers"));
             services.AddDbContext<PreOrclFrontEndContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PreOrclFrontEndContext")));
         }

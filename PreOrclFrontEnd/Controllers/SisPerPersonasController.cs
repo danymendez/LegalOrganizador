@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using PreOrclFrontEnd.Utilidades;
+using Microsoft.Extensions.Options;
 
 namespace PreOrclFrontEnd.Controllers
 {
@@ -15,14 +17,15 @@ namespace PreOrclFrontEnd.Controllers
     
     public class SisPerPersonasController : Controller
     {
-        private readonly PreOrclFrontEndContext _context;
+ 
         GenericREST generic;
 
-        public SisPerPersonasController(PreOrclFrontEndContext context)
+        public SisPerPersonasController(IOptions<ConfigurationJson> configuration)
         {
-            _context = context;
-            generic = new GenericREST();
+        
+            generic = new GenericREST(configuration.Value);
         }
+
 
         // GET: SisPerPersonas
         public async Task<IActionResult> Index()

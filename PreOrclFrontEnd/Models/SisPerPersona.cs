@@ -22,7 +22,7 @@ namespace PreOrclFrontEnd.Models
         public string per_apellido_comercial { get; set; }
 
         [Display(Name = "NIT",Prompt ="0000-000000-000-0")]
-        [RegularExpression("[0-9]{4}-[0-9]{6}-[0-9]{3}-[0-9]{1}",ErrorMessage ="El formato no es válido Ejemplo 0123-123456-123-1")]
+        [RegularExpression("\\d{4}-\\d{6}-\\d{3}-\\d{1}", ErrorMessage ="El formato no es válido Ejemplo 0123-123456-123-1")]
         [Required(ErrorMessage = "Requerido")]
         [MaxLength(50)]
         public string per_nit { get; set; }
@@ -45,11 +45,11 @@ namespace PreOrclFrontEnd.Models
         public string per_direccion { get; set; }
     
         [Display(Name = "Teléfono",Prompt ="2666-6666")]
-        [RegularExpression("\\d{4}-\\d{4} ", ErrorMessage = "El formato no es válido Ejemplo 2777-7777")]
+        [RegularExpression("\\d{4}-\\d{4}", ErrorMessage = "El formato no es válido Ejemplo 2777-7777")]
         [MaxLength(20)]
         public string per_telefono { get; set; }
 
-        [Display(Name = "Móvil",Prompt ="2777-7777")]
+        [Display(Name = "Móvil",Prompt ="7777-7777")]
         [RegularExpression("\\d{4}-\\d{4}", ErrorMessage = "El formato no es válido Ejemplo 7777-7777")]
         [MaxLength(20)]
         public string per_movil { get; set; }

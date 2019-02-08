@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
@@ -20,9 +21,9 @@ namespace PreOrclFrontEnd.Controllers
         GenericREST generic;
 
 
-        public AuthController()
+        public AuthController(IOptions<ConfigurationJson> configuration)
         {
-            generic = new GenericREST();
+            generic = new GenericREST(configuration.Value);
         }
 
         public IActionResult Index() {
