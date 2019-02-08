@@ -11,9 +11,9 @@ namespace PreOrclFrontEnd.Helpers
     public class GenericREST
     {
 
-        public const string BASEURL = "https://localhost:44341/api/";
+      //  public const string BASEURL = "https://localhost:44341/api/";
         //public const string BASEURL = "http://192.168.0.40:5000/preorclapi/api/";
-        //public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
+        public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
         public virtual T Get<T>(string urlMethod, int? id)
         {
             T entity = default(T);

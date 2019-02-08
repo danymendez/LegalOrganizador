@@ -6,6 +6,9 @@ using Data.DAL;
 using PreOrclApi.Models;
 using Data.SQLBuilders;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
 
 namespace PreOrclApi.Controllers
 {
@@ -13,6 +16,11 @@ namespace PreOrclApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IHostingEnvironment _hostingEnvironment;
+
+        public ValuesController(IHostingEnvironment hostingEnvironment) {
+            _hostingEnvironment = hostingEnvironment;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -67,6 +75,15 @@ namespace PreOrclApi.Controllers
         public ActionResult<string> Get(int id)
         {
             return "value";
+        }
+
+        [Route("Descargar")]
+        public PhysicalFileProvider DescargarDocumento()
+        {
+            
+            string FullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logs","ErrorLog.txt");
+
+            return new PhysicalFileProvider(FullPath);
         }
 
         // POST api/values

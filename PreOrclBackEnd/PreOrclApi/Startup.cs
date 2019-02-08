@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using PreOrclApi.Models;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace PreOrclApi
 {
@@ -37,7 +39,7 @@ namespace PreOrclApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -47,6 +49,19 @@ namespace PreOrclApi
             }
 
             app.UseStaticFiles();
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logs")),
+                RequestPath = "/Logs",
+            });
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+           Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logs")),
+                RequestPath = "/Logs",
+                EnableDirectoryBrowsing = true
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }
