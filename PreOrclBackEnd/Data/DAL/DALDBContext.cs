@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using Common.Utilities;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,23 +18,32 @@ namespace Data.DAL
         public DALDBContext()
         {
             Console.WriteLine("Abriendo Conexión");
-            OpenConnection();
+            try
+            {
+                OpenConnection();
           //  command = new OracleCommand();
           //  command.Connection = _sqlConnection;
             sqlTran = _sqlConnection.BeginTransaction();
-           // command = _sqlConnection.CreateCommand();
-           // command.Transaction = sqlTran;
-           
+                // command = _sqlConnection.CreateCommand();
+                // command.Transaction = sqlTran;
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
 
         }
 
         private void OpenConnection()
         {
+           
+                _sqlConnection = new OracleConnection(GetConnectionString());
 
-            _sqlConnection = new OracleConnection(GetConnectionString());
 
+                _sqlConnection.Open();
+         
 
-            _sqlConnection.Open();
+            
 
         }
 

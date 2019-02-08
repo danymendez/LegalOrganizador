@@ -1,4 +1,5 @@
 ﻿using Common.Entity.Attributes;
+using Common.Utilities;
 using Data.SQLBuilders;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
@@ -280,6 +281,7 @@ namespace Data.DAL
                     }
                     catch (Exception ex)
                     {
+                        ExceptionUtility.LogException(ex);
                         // Handle the exception if the transaction fails to commit.
                         Console.WriteLine(ex.Message);
 

@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="LogFile\" />
     <Folder Include="wwwroot\js\NewFolder\" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreOrclFrontEnd.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -94,6 +95,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex);
                 throw;
             }
             return clase;

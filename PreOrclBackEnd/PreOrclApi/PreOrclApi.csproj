@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Content Remove="wwwroot\logs\ErrorLog.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\logs\ErrorLog.txt" />
+    <None Include="wwwroot\logs\index.html" />
   </ItemGroup>
 
   <ItemGroup>
