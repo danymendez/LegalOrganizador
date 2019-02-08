@@ -30,3 +30,14 @@ Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionStr
    at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
    at Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 43
    at Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 23
+
+=============================== 07/02/2019 - 19:27:50 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 43
+   at Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 23
