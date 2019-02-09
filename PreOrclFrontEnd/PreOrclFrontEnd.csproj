@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove=".vs\**" />
+    <Compile Remove="Areas\**" />
     <Content Remove=".vs\**" />
+    <Content Remove="Areas\**" />
     <EmbeddedResource Remove=".vs\**" />
+    <EmbeddedResource Remove="Areas\**" />
     <None Remove=".vs\**" />
+    <None Remove="Areas\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Services\" />
     <Folder Include="LogFile\" />
     <Folder Include="wwwroot\js\NewFolder\" />
   </ItemGroup>
