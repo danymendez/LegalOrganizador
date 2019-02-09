@@ -17,7 +17,7 @@ namespace PreOrclFrontEnd.Utilidades
             if (Exc == null)
                 return;
 
-            string FullPath = Path.GetFullPath("~/LogFile").Replace("~\\", "");
+            string FullPath = Path.GetFullPath("~/wwwroot/logs/index.html").Replace("~\\", "");
             string sEvent = string.Empty;
 
             string Hora = $"{DateTime.Now.ToString("dd")}/{DateTime.Now.ToString("MM")}/{DateTime.Now.Year} - {DateTime.Now.ToString("HH")}:{DateTime.Now.ToString("mm")}:{DateTime.Now.Second }";
