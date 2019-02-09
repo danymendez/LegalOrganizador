@@ -22,7 +22,7 @@ namespace Data.DAL
         private SqlParameterBuilder sqlParameterBuilder;
         public DALBaseOrcl(DALDBContext context)
         {
-            Console.WriteLine("Abriendo Conexión");
+        
             this._sqlConnection = context._sqlConnection;
             this.command = context.command;
             this.sqlTran = context.sqlTran;
@@ -31,8 +31,7 @@ namespace Data.DAL
         }
 
 
-
-
+        #region Create
         public virtual T Create<T>(T entity)
         {
             sqlQueryBuilder = new SqlQueryBuilder();
@@ -60,7 +59,7 @@ namespace Data.DAL
                 catch (Exception ex)
                 {
                     // Handle the exception if the transaction fails to commit.
-                    Console.WriteLine(ex.Message);
+                    ExceptionUtility.LogException(ex);
 
                     try
                     {
@@ -72,7 +71,7 @@ namespace Data.DAL
                         // Throws an InvalidOperationException if the connection 
                         // is closed or the transaction has already been rolled 
                         // back on the server.
-                        Console.WriteLine(exRollback.Message);
+                        ExceptionUtility.LogException(exRollback);
                     }
                 }
 
@@ -89,7 +88,9 @@ namespace Data.DAL
             }
             return entity;
         }
+        #endregion
 
+        #region Get
         public virtual List<T> GetAll<T>() where T : new()
         {
             List<T> listEntity = new List<T>();
@@ -128,7 +129,7 @@ namespace Data.DAL
                 catch (Exception ex)
                 {
                     // Handle the exception if the transaction fails to commit.
-                    Console.WriteLine(ex.Message);
+                    ExceptionUtility.LogException(ex);
 
                     try
                     {
@@ -140,7 +141,7 @@ namespace Data.DAL
                         // Throws an InvalidOperationException if the connection 
                         // is closed or the transaction has already been rolled 
                         // back on the server.
-                        Console.WriteLine(exRollback.Message);
+                        ExceptionUtility.LogException(exRollback);
                     }
                 }
             }
@@ -192,7 +193,7 @@ namespace Data.DAL
                 catch (Exception ex)
                 {
                     // Handle the exception if the transaction fails to commit.
-                    Console.WriteLine(ex.Message);
+                    ExceptionUtility.LogException(ex);
 
                     try
                     {
@@ -204,13 +205,15 @@ namespace Data.DAL
                         // Throws an InvalidOperationException if the connection 
                         // is closed or the transaction has already been rolled 
                         // back on the server.
-                        Console.WriteLine(exRollback.Message);
+                        ExceptionUtility.LogException(exRollback);
                     }
                 }
             }
             return entity;
         }
+        #endregion
 
+        #region Update
         public virtual T Update<T>(long id, T entity) {
             T t = default(T);
             sqlQueryBuilder = new SqlQueryBuilder();
@@ -237,7 +240,7 @@ namespace Data.DAL
                 catch (Exception ex)
                 {
                     // Handle the exception if the transaction fails to commit.
-                    Console.WriteLine(ex.Message);
+                    ExceptionUtility.LogException(ex);
 
                     try
                     {
@@ -249,12 +252,15 @@ namespace Data.DAL
                         // Throws an InvalidOperationException if the connection 
                         // is closed or the transaction has already been rolled 
                         // back on the server.
-                        Console.WriteLine(exRollback.Message);
+                        ExceptionUtility.LogException(exRollback);
                     }
                 }
             }
             return entity;
         }
+        #endregion
+
+        #region Delete
         public virtual T Delete<T>(long id) where T : new() {
             T t = default(T);
             t = Get<T>(id);
@@ -281,9 +287,9 @@ namespace Data.DAL
                     }
                     catch (Exception ex)
                     {
-                        ExceptionUtility.LogException(ex);
+
                         // Handle the exception if the transaction fails to commit.
-                        Console.WriteLine(ex.Message);
+                        ExceptionUtility.LogException(ex);
 
                         try
                         {
@@ -295,12 +301,13 @@ namespace Data.DAL
                             // Throws an InvalidOperationException if the connection 
                             // is closed or the transaction has already been rolled 
                             // back on the server.
-                            Console.WriteLine(exRollback.Message);
+                            ExceptionUtility.LogException(exRollback);
                         }
                     }
                 }
             }
             return t;
         }
+        #endregion
     }
 }

@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using PreOrclApi.Models;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Xml;
 
 namespace PreOrclApi
 {
@@ -34,12 +36,19 @@ namespace PreOrclApi
 
             services.AddDbContext<PreOrclApiContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PreOrclApiContext")));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsProduction())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -47,7 +56,12 @@ namespace PreOrclApi
             {
                 app.UseHsts();
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
+                c.DisplayOperationId();
+            });
             app.UseStaticFiles();
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {

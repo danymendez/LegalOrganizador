@@ -69,3 +69,231 @@ Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExec
    at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
    at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
    at Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 279
+
+=============================== 09/02/2019 - 13:13:13 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Timeout de solicitud de conexión
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 53
+   at Data.DAL.DALDBContext..ctor() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 22
+
+=============================== 09/02/2019 - 13:13:14 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	La conexión debe estar abierta para esta operación
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 09/02/2019 - 13:13:14 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 09/02/2019 - 13:13:15 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 94
+
+=============================== 09/02/2019 - 13:13:15 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 104
+
+=============================== 09/02/2019 - 13:18:36 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Timeout de solicitud de conexión
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 53
+   at Data.DAL.DALDBContext..ctor() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 22
+
+=============================== 09/02/2019 - 13:18:37 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	La conexión debe estar abierta para esta operación
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 09/02/2019 - 13:18:37 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 09/02/2019 - 13:18:37 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 94
+
+=============================== 09/02/2019 - 13:18:37 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 104
+
+=============================== 09/02/2019 - 13:42:57 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Timeout de solicitud de conexión
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 53
+   at Data.DAL.DALDBContext..ctor() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 22
+
+=============================== 09/02/2019 - 13:42:57 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	La conexión debe estar abierta para esta operación
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 09/02/2019 - 13:42:57 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 09/02/2019 - 13:42:57 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 94
+
+=============================== 09/02/2019 - 13:42:57 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 104
+
+=============================== 09/02/2019 - 13:44:32 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Timeout de solicitud de conexión
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 53
+   at Data.DAL.DALDBContext..ctor() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 22
+
+=============================== 09/02/2019 - 13:44:33 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	La conexión debe estar abierta para esta operación
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 09/02/2019 - 13:44:33 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 09/02/2019 - 13:44:33 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 94
+
+=============================== 09/02/2019 - 13:44:33 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 104
+
+=============================== 09/02/2019 - 13:54:9 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Timeout de solicitud de conexión
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 53
+   at Data.DAL.DALDBContext..ctor() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 22
+
+=============================== 09/02/2019 - 13:54:9 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	La conexión debe estar abierta para esta operación
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 09/02/2019 - 13:54:9 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 09/02/2019 - 13:54:10 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 94
+
+=============================== 09/02/2019 - 13:54:10 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 104
+
+=============================== 09/02/2019 - 13:57:43 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Timeout de solicitud de conexión
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Data.DAL.DALDBContext.OpenConnection() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 53
+   at Data.DAL.DALDBContext..ctor() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 22
+
+=============================== 09/02/2019 - 13:57:43 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	La conexión debe estar abierta para esta operación
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 09/02/2019 - 13:57:43 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 09/02/2019 - 13:57:43 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 94
+
+=============================== 09/02/2019 - 13:57:43 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Data
+Stack Trace:	   at Data.DAL.DALDBContext.Dispose() in C:\Users\Palacios\Source\Repos\PreOracle\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 104

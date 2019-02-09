@@ -12,20 +12,15 @@ namespace Data.DAL
         public OracleConnection _sqlConnection { get; private set; }
         public OracleTransaction sqlTran { get; private set; }
         public OracleCommand command { get; private set; }
-       // private OracleDataReader sqlDataReader;
+
         
 
         public DALDBContext()
         {
-            Console.WriteLine("Abriendo Conexión");
             try
             {
                 OpenConnection();
-          //  command = new OracleCommand();
-          //  command.Connection = _sqlConnection;
-            sqlTran = _sqlConnection.BeginTransaction();
-                // command = _sqlConnection.CreateCommand();
-                // command.Transaction = sqlTran;
+                sqlTran = _sqlConnection.BeginTransaction();
             }
             catch (Exception ex)
             {
@@ -33,6 +28,21 @@ namespace Data.DAL
             }
 
         }
+
+        public DALDBContext(string oradbString)
+        {
+            try
+            {
+                OpenConnection();
+                sqlTran = _sqlConnection.BeginTransaction();
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+
+        }
+
 
         private void OpenConnection()
         {
@@ -47,19 +57,27 @@ namespace Data.DAL
 
         }
 
+
+        private void OpenConnection(string oradbString)
+        {
+            _sqlConnection = new OracleConnection(GetConnectionString(oradbString));
+            _sqlConnection.Open();
+        }
+
         private void CloseConnection()
         {
             _sqlConnection.Close();
         }
 
-        private string GetConnectionString()
+        private string GetConnectionString(string oradbString = null)
         {
 
             //         string oradb = "Data Source=(DESCRIPTION="
             //+ "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.40)(PORT=1521)))"
             //+ "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=PREORCLPDB)));"
             //+ "User Id=dmendez;Password=1234;";
-            string oradb = "Data Source=(DESCRIPTION="
+            
+            string oradb = oradbString ?? "Data Source=(DESCRIPTION="
            + "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=wkapp.southcentralus.cloudapp.azure.com)(PORT=1521)))"
            + "(CONNECT_DATA=(SERVER=DEDICATED)(SID=farmacia)));"
            + "User Id=dmendez;Password=1234;";
@@ -80,23 +98,18 @@ namespace Data.DAL
             catch (Exception ex)
             {
                 // Handle the exception if the transaction fails to commit.
-                Console.WriteLine(ex.Message);
-
+                ExceptionUtility.LogException(ex);
                 try
                 {
-                    // Attempt to roll back the transaction.
                     sqlTran.Rollback();
                 }
                 catch (Exception exRollback)
                 {
-
-                    // back on the server.
-                    Console.WriteLine(exRollback.Message);
+                    ExceptionUtility.LogException(exRollback);
                 }
             }
             finally
             {
-              //  command.Dispose();
                 sqlTran.Dispose();
                 CloseConnection();
                 _sqlConnection.Dispose();

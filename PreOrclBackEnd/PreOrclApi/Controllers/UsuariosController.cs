@@ -22,19 +22,20 @@ namespace PreOrclApi.Controllers
 
         }
 
-        // GET: api/SisPerPersonas
-        [HttpPost("{Usuario,Password}")]
-        [Route("Autenticar")]
-        public async Task<UsuariosDTO> Autenticar(string Usuario, string Password)
+        //GET: api/SisPerPersonas
+       [HttpPost("Autenticar", Name ="Autenticar")]
+       //[Route("Autenticar")]
+        public async Task<IActionResult> Autenticar(string Usuario, string Password) // operationId = "Autenticar"
         {
             BOLUsuarios bolUsuarios = new BOLUsuarios();
             var usuario = await bolUsuarios.Autenticar(Usuario, Password);
-            return new UsuariosDTO {
-                IdUsuario=usuario.IdUsuario,
-                Nombre=usuario.Nombre,
-                Apellido=usuario.Apellido,
-                Usuario=usuario.Usuario
-            };
+            return Ok(new UsuariosDTO
+            {
+                IdUsuario = usuario.IdUsuario,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                Usuario = usuario.Usuario
+            });
         }
 
         [HttpGet]
@@ -54,7 +55,7 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUsuarios(int id)
+        public async Task<IActionResult> GetUsuariosById(int id)
         {
             if (!ModelState.IsValid)
             {
