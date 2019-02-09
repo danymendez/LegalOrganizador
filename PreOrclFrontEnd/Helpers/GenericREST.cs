@@ -35,6 +35,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex);
             }
             return entity;
         }
@@ -55,7 +56,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return lista;
         }
@@ -77,7 +78,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return clase;
         }
@@ -101,7 +102,7 @@ namespace PreOrclFrontEnd.Helpers
             catch (Exception ex)
             {
                 ExceptionUtility.LogException(ex);
-                throw;
+           
             }
             return clase;
         }
@@ -121,7 +122,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return isSuccess;
         }
@@ -141,7 +142,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return default(T);
         }

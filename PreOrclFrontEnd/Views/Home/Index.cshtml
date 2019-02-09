@@ -6,7 +6,7 @@
     <div class="animated fadeIn">
         <!-- Widgets  -->
         <div class="row">
-            <div class="col-lg-3 col-md-6">
+            @*<div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-five">
@@ -22,9 +22,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
-            <div class="col-lg-3 col-md-6">
+            @*<div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-five">
@@ -40,9 +40,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-five">
@@ -51,8 +51,8 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">349</span></div>
-                                    <div class="stat-heading">Templates</div>
+                                    <div class="stat-text"><span class="count">10</span></div>
+                                    <div class="stat-heading">Casos Pendientes</div>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-five">
@@ -492,9 +492,9 @@
 
                     // Pie chart flotPie1
                     var piedata = [
-                        { label: "Desktop visits", data: [[1, 32]], color: '#5c6bc0' },
-                        { label: "Tab visits", data: [[1, 33]], color: '#ef5350' },
-                        { label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
+                        { label: "Casos Pendientes", data: [[1, 40]], color: '#5c6bc0' },
+                        { label: "Casos Finalizados", data: [[1, 60]], color: '#ef5350' },
+                        //{ label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
                     ];
 
                     $.plot('#flotPie1', piedata, {
@@ -613,53 +613,53 @@
                     }
                     // Traffic Chart using chartist End
                     //Traffic chart chart-js
-                    if ($('#TrafficChart').length) {
-                        var ctx = document.getElementById("TrafficChart");
-                        ctx.height = 150;
-                        var myChart = new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-                                datasets: [
-                                    {
-                                        label: "Visit",
-                                        borderColor: "rgba(4, 73, 203,.09)",
-                                        borderWidth: "1",
-                                        backgroundColor: "rgba(4, 73, 203,.5)",
-                                        data: [0, 2900, 5000, 3300, 6000, 3250, 0]
-                                    },
-                                    {
-                                        label: "Bounce",
-                                        borderColor: "rgba(245, 23, 66, 0.9)",
-                                        borderWidth: "1",
-                                        backgroundColor: "rgba(245, 23, 66,.5)",
-                                        pointHighlightStroke: "rgba(245, 23, 66,.5)",
-                                        data: [0, 4200, 4500, 1600, 4200, 1500, 4000]
-                                    },
-                                    {
-                                        label: "Targeted",
-                                        borderColor: "rgba(40, 169, 46, 0.9)",
-                                        borderWidth: "1",
-                                        backgroundColor: "rgba(40, 169, 46, .5)",
-                                        pointHighlightStroke: "rgba(40, 169, 46,.5)",
-                                        data: [1000, 5200, 3600, 2600, 4200, 5300, 0]
-                                    }
-                                ]
-                            },
-                            options: {
-                                responsive: true,
-                                tooltips: {
-                                    mode: 'index',
-                                    intersect: false
-                                },
-                                hover: {
-                                    mode: 'nearest',
-                                    intersect: true
-                                }
+                    //if ($('#TrafficChart').length) {
+                    //    var ctx = document.getElementById("TrafficChart");
+                    //    ctx.height = 150;
+                    //    var myChart = new Chart(ctx, {
+                    //        type: 'line',
+                    //        data: {
+                    //            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                    //            datasets: [
+                    //                {
+                    //                    label: "Visit",
+                    //                    borderColor: "rgba(4, 73, 203,.09)",
+                    //                    borderWidth: "1",
+                    //                    backgroundColor: "rgba(4, 73, 203,.5)",
+                    //                    data: [0, 2900, 5000, 3300, 6000, 3250, 0]
+                    //                },
+                    //                {
+                    //                    label: "Bounce",
+                    //                    borderColor: "rgba(245, 23, 66, 0.9)",
+                    //                    borderWidth: "1",
+                    //                    backgroundColor: "rgba(245, 23, 66,.5)",
+                    //                    pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                    //                    data: [0, 4200, 4500, 1600, 4200, 1500, 4000]
+                    //                },
+                    //                {
+                    //                    label: "Targeted",
+                    //                    borderColor: "rgba(40, 169, 46, 0.9)",
+                    //                    borderWidth: "1",
+                    //                    backgroundColor: "rgba(40, 169, 46, .5)",
+                    //                    pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                    //                    data: [1000, 5200, 3600, 2600, 4200, 5300, 0]
+                    //                }
+                    //            ]
+                    //        },
+                    //        options: {
+                    //            responsive: true,
+                    //            tooltips: {
+                    //                mode: 'index',
+                    //                intersect: false
+                    //            },
+                    //            hover: {
+                    //                mode: 'nearest',
+                    //                intersect: true
+                    //            }
 
-                            }
-                        });
-                    }
+                    //        }
+                    //    });
+                    //}
                     //Traffic chart chart-js  End
                     // Bar Chart #flotBarChart
                     $.plot("#flotBarChart", [{
