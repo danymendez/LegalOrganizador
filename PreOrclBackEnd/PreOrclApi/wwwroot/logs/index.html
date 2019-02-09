@@ -51,3 +51,21 @@ Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionStr
    at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
    at Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 43
    at Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALDBContext.cs:line 23
+
+=============================== 08/02/2019 - 22:51:57 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01741: illegal zero-length identifier
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 279
+
+=============================== 08/02/2019 - 23:03:51 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01741: illegal zero-length identifier
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Data\DAL\DALBaseOrcl.cs:line 279

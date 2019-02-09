@@ -75,11 +75,11 @@ namespace Data.SQLBuilders
         public string DeleteQuery<TEntity>() {
 
             TableAttributeBindName<TEntity>("\"", ":");
-            string query = String.Format("Delete from \"{0}\" where {1}"
+            string query = String.Format("Delete from {0} where {1}"
                                         , tablesAttributesWithEncloseSign.TableName
                                         , string.Join(" and ", tablesAttributesWithEncloseSign.FieldsDict
                                                     .Where(c => c.Key.Equals(tablesAttributesWithEncloseSign.PrimaryKeyNameDict.Keys.FirstOrDefault()))
-                                                    .Select(c => "\"" + c.Value + "\"" + "=:" + c.Value)));
+                                                    .Select(c => c.Value + "=:" + c.Value)));
 
             return query;
         }
