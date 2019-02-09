@@ -40,7 +40,7 @@
                         <strong>Editar Persona</strong> <small></small>
                     </div>
 
-                    <form asp-action="Edit" id="editForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                    <form asp-action="Edit" asp-antiforgery="true" id="editForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
                           data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
 
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>

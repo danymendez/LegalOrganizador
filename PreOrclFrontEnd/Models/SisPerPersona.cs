@@ -77,5 +77,10 @@ namespace PreOrclFrontEnd.Models
         [Display(Name = "Dirección Cobro",Prompt ="Dirección Cobro")]
         [MaxLength(50)]
         public string per_cobros { get; set; }
+
+        public static implicit operator Task<object>(SisPerPersona v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

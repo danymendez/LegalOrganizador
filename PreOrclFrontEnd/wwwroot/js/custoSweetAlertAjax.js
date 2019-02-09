@@ -164,7 +164,31 @@ var onSuccessDelete = function (context) {
 
 
 var onFailed = function (context) {
-    alert("Failed");
+    var isAddNew = urlRefrescar !== "";
+
+    swal({
+        title: "Ha Ocurrido un Error",
+        text: "Click en salir",
+        icon: "/images/warning.png",
+        closeOnClickOutside: false,
+        buttons: {
+            confirm: {
+                text: "Salir",
+                value: true,
+                visible: true,
+                className: "btn-primary",
+                closeModal: true
+            },
+        },
+        dangerMode: false
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                window.location.href = UrlDestino();
+            } else {
+                window.location.href = UrlRefrescar();
+            }
+        });
 };
 
 function UrlRefrescar() {

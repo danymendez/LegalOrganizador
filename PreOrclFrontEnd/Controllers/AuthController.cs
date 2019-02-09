@@ -55,6 +55,17 @@ namespace PreOrclFrontEnd.Controllers
             string hashPassword = Criptografia.Encrypt(Password);
             var entity = generic.PostAuth<Usuarios>("Usuarios/Autenticar", Usuario, HttpUtility.UrlEncode(hashPassword));
 
+            if (!ExistUsuario(Usuario)) {
+                ViewData["msjLogin"] = "Usuario No existe en nuestros registros";
+                return View("Index");
+            }
+
+            if (entity == null)
+            {
+                ViewData["msjLogin"] = "Contraseña Erronea";
+                return View("Index");
+            }
+
             var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, entity.Nombre),
@@ -95,6 +106,13 @@ namespace PreOrclFrontEnd.Controllers
             await HttpContext.SignOutAsync();
             //this.SignOut();
             return RedirectToAction("Index", "Auth");
+        }
+
+        [NonAction]
+        public bool ExistUsuario(string usuario) {
+
+            return generic.GetAll<Usuarios>("Usuarios").Where(c=>c.Usuario.Trim().Equals(usuario.Trim())).Count()>0;
+
         }
     }
 }

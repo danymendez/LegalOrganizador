@@ -38,7 +38,7 @@
                     <div class="card-header">
                         <strong>Eliminar Persona</strong> <small></small>
                     </div>
-                    <form asp-action="Delete" id="deleteForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                    <form asp-action="Delete" asp-antiforgery="true" id="deleteForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
                           data-ajax-failure="onFailed" data-ajax-success="onSuccessDelete" data-ajax="true" data-ajax-method="POST">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="per_IDPER" />

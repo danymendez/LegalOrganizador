@@ -34,7 +34,7 @@ namespace PreOrclFrontEnd.Controllers
                 List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
                 return listaSisPersona;
             });
-            t.Wait();
+         
             ViewBag.PersonasClassCssNav = "active";
 
             var listado = await t;
@@ -173,8 +173,13 @@ namespace PreOrclFrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sisPerPersona =  generic.Delete<SisPerPersona>("SisPerPersonas/", id);
-          
+            SisPerPersona entity = await Task.Run(()=> {
+                var sisPerPersona = generic.Delete<SisPerPersona>("SisPerPersonas/", id);
+                return sisPerPersona;
+            });
+
+            if (entity == null)
+                return BadRequest();
             return RedirectToAction(nameof(Index));
         }
 
