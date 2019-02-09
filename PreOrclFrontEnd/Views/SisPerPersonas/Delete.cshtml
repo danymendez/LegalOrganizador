@@ -39,7 +39,7 @@
                         <strong>Eliminar Persona</strong> <small></small>
                     </div>
                     <form asp-action="Delete" id="deleteForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
-                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+                          data-ajax-failure="onFailed" data-ajax-success="onSuccessDelete" data-ajax="true" data-ajax-method="POST">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="per_IDPER" />
                         <div class="card-body card-block">
@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-sm-12 text-right">
-                                        <input type="button" value="Eliminar" onclick="GuardarNotificacion('#deleteForm','@Url.Action("Delete")','@Url.Action("Index")')" class="btn btn-default" />
+                                        <input type="button" value="Eliminar" onclick="GuardarNotificacionSetMsg('#deleteForm','@Url.Action("Delete")','@Url.Action("Index")','¿Desea eliminar el registro?')" class="btn btn-default" />
                                     </div>
                                 </div>
                             </div>
