@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove=".vs\**" />
+    <Compile Remove="Areas\**" />
+    <Content Remove=".vs\**" />
+    <Content Remove="Areas\**" />
+    <EmbeddedResource Remove=".vs\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <None Remove=".vs\**" />
+    <None Remove="Areas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\templateAdmin\.github\ISSUE_TEMPLATE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LogFile\" />
+    <Folder Include="wwwroot\js\NewFolder\" />
+  </ItemGroup>
+
+</Project>
