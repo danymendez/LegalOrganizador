@@ -63,7 +63,7 @@ using PreOrclFrontEnd.Models;
                     ");
             EndContext();
             BeginContext(416, 114, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "44030a3732cc46d997861c6152e8a917", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7c97b3ae5aa14ffcaadb1316c1638769", async() => {
                 BeginContext(482, 44, true);
                 WriteLiteral("<i class=\"menu-icon fa fa-laptop\"></i>Inicio");
                 EndContext();
@@ -95,7 +95,7 @@ using PreOrclFrontEnd.Models;
                         <li><i class=""fa fa-puzzle-piece""></i>");
             EndContext();
             BeginContext(997, 79, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2bf6d8d547a448e3b68bf34cec104d18", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c14a8640516c42afb6343ce319cae7fa", async() => {
                 BeginContext(1064, 8, true);
                 WriteLiteral("Personas");
                 EndContext();

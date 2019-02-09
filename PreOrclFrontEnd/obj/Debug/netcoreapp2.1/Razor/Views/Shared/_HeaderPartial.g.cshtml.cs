@@ -64,7 +64,7 @@ using PreOrclFrontEnd.Models;
             WriteLiteral("\r\n<header id=\"header\" class=\"header\">\r\n    <div class=\"top-left\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\" href=\"./\">");
             EndContext();
             BeginContext(270, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "03b56bdcaaf44398b9f1f8333d1971f2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "38a22abe5e4e456f8c2dfa9053c86703", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -84,7 +84,7 @@ using PreOrclFrontEnd.Models;
             WriteLiteral("</a>\r\n            <a class=\"navbar-brand hidden\" href=\"./\">");
             EndContext();
             BeginContext(386, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bc0ebdd8b831499da38bb90d3be39199", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7dab93dcc309427fb6dee51acf1d72f4", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -124,7 +124,7 @@ using PreOrclFrontEnd.Models;
             WriteLiteral("            </div>\r\n\r\n            <div class=\"user-area dropdown float-right\">\r\n                <a href=\"#\" class=\"dropdown-toggle active\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    ");
             EndContext();
             BeginContext(5134, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bb2a9dab7374407dbbff3922e4b4b0fa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bce9a692becd4749a655cb49709e4c12", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -154,7 +154,7 @@ using PreOrclFrontEnd.Models;
                     ");
             EndContext();
             BeginContext(5630, 117, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "73e112423c064eca8acd3a288854cd69", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07457aff032a4103bf4bc5e325dd38c4", async() => {
                 BeginContext(5705, 38, true);
                 WriteLiteral("<i class=\"fa fa-power -off\"></i>Logout");
                 EndContext();
