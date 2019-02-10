@@ -30,9 +30,12 @@ namespace PreOrclFrontEnd.Controllers
             generic = new GenericREST(configuration.Value);
         }
 
-
+    
         public IActionResult Index(string email)
         {
+
+
+
             if (User.Identity.IsAuthenticated)
             {
                 // Get users's email.

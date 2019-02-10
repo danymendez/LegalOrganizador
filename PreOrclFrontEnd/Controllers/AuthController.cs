@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -80,7 +82,6 @@ namespace PreOrclFrontEnd.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //  private readonly SignInManager<IdentityUser> _signInManager;
 
         [Route("LoginMicrosoft")]
         public IActionResult LoginMicrosoft(string returnUrl = null, string remoteError = null)
@@ -104,9 +105,12 @@ namespace PreOrclFrontEnd.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
+
             //this.SignOut();
             return RedirectToAction("Index", "Auth");
         }
+
+  
 
         [NonAction]
         public bool ExistUsuario(string usuario) {

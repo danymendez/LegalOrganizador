@@ -14,7 +14,6 @@ using Microsoft.Extensions.Options;
 namespace PreOrclFrontEnd.Controllers
 {
     [Authorize]
-    
     public class SisPerPersonasController : Controller
     {
  
