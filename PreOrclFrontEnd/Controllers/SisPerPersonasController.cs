@@ -23,6 +23,7 @@ namespace PreOrclFrontEnd.Controllers
         {
         
             generic = new GenericREST(configuration.Value);
+
         }
 
 

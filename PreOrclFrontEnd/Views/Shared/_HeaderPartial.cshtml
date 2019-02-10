@@ -88,13 +88,13 @@
 
             <div class="user-area dropdown float-right">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if (ViewData["Email"] == null)
+                    @if (ImageRef.email == null)
                     {
                         <img class="user-avatar rounded-circle" src="~/images/man64.png" alt="User Avatar">
                     }
                     else
                     {
-                        <img class="user-avatar rounded-circle" src="@ViewData["Picture"]" alt="User Avatar">
+                        <img class="user-avatar rounded-circle" src="@ImageRef.url" alt="User Avatar">
                     }
                 </a>
 

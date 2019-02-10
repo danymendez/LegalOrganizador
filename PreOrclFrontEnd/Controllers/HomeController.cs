@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using PreOrclFrontEnd.Extensions;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
@@ -39,9 +40,12 @@ namespace PreOrclFrontEnd.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 // Get users's email.
+
+                ImageRef.url = "";
+                // Get users's email.
                 email = email ?? User.FindFirst("preferred_username")?.Value;
                 ViewData["Email"] = email;
-
+                ImageRef.email = email;
                 // Get user's id for token cache.
                 var identifier = User.FindFirst(Startup.ObjectIdentifierType)?.Value;
 
@@ -51,6 +55,7 @@ namespace PreOrclFrontEnd.Controllers
                 ViewData["Response"] = await GraphService.GetUserJson(graphClient, email, HttpContext);
 
                 ViewData["Picture"] = await GraphService.GetPictureBase64(graphClient, email, HttpContext);
+                ImageRef.url = ViewData["Picture"].ToString();
             }
 
                 Task<List<SisPerPersona>> t = Task.Run(() => {
