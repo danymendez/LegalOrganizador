@@ -31,7 +31,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
     
-        public IActionResult Index(string email)
+        public async Task<IActionResult> Index(string email)
         {
 
 
@@ -48,7 +48,9 @@ namespace PreOrclFrontEnd.Controllers
                 // Initialize the GraphServiceClient.
                 var graphClient = _graphSdkHelper.GetAuthenticatedClient(identifier);
 
-                ViewData["Picture"] =  GraphService.GetPictureBase64(graphClient, email, HttpContext);
+                ViewData["Response"] = await GraphService.GetUserJson(graphClient, email, HttpContext);
+
+                ViewData["Picture"] = await GraphService.GetPictureBase64(graphClient, email, HttpContext);
             }
 
                 Task<List<SisPerPersona>> t = Task.Run(() => {
