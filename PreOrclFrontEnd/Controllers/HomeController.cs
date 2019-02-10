@@ -55,7 +55,7 @@ namespace PreOrclFrontEnd.Controllers
                 ViewData["Response"] = await GraphService.GetUserJson(graphClient, email, HttpContext);
 
                 ViewData["Picture"] = await GraphService.GetPictureBase64(graphClient, email, HttpContext);
-                ImageRef.url = ViewData["Picture"].ToString();
+                ImageRef.url = ViewData["Picture"] == null ?"":ViewData["Picture"].ToString();
             }
 
                 Task<List<SisPerPersona>> t = Task.Run(() => {
