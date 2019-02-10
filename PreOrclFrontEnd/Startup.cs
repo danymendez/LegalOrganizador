@@ -13,11 +13,18 @@ using PreOrclFrontEnd.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using PreOrclFrontEnd.Utilidades;
+using PreOrclFrontEnd.Extensions;
+using PreOrclFrontEnd.Helpers;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace PreOrclFrontEnd
 {
     public class Startup
     {
+
+        public const string ObjectIdentifierType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
+        public const string TenantIdType = "http://schemas.microsoft.com/identity/claims/tenantid";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,15 +40,14 @@ namespace PreOrclFrontEnd
                 options.Conventions.AddPageRoute("/SisPerPersonas/Index", "");
             });
 
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => false;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(
+            services.AddAuthentication(
+                sharedOptions =>
+                {
+                    sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                })
+            .AddCookie(
                 options =>
             {
                 options.Cookie.Name = "usuario";
@@ -58,23 +64,19 @@ namespace PreOrclFrontEnd
                     context.HandleResponse();
                     return System.Threading.Tasks.Task.FromResult(0);
                 };
-            }); 
-
-            //services.ConfigureApplicationCookie(options =>
-            //{
-            //    options.AccessDeniedPath = "/Auth/AccessDenied";
-            //    options.Cookie.Name = "usuario";
-            //    options.Cookie.HttpOnly = true;
-            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(720);
-            //    options.LoginPath = "/Auth";
-            //    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-            //    options.SlidingExpiration = true;
-            //});
+            }).AddAzureAd(options => Configuration.Bind("AzureAd", options));
+            services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            // services.AddIdentity<IdentityUser, IdentityRole>(options => {
+            // Add application services.
+            //services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IGraphAuthProvider, GraphAuthProvider>();
+            services.AddTransient<IGraphSdkHelper, GraphSdkHelper>();
 
-            // })
-            //.AddEntityFrameworkStores<PreOrclFrontEndContext>();
+            services.Configure<HstsOptions>(options =>
+            {
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(365);
+            }); 
             services.Configure<ConfigurationJson>(Configuration.GetSection("UriHelpers"));
             services.AddDbContext<PreOrclFrontEndContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PreOrclFrontEndContext")));
@@ -83,13 +85,6 @@ namespace PreOrclFrontEnd
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //app.UseCookieAuthentication(new CookieAuthenticationOptions
-            //{
-            //    AuthenticationScheme = "MyCookie",
-            //    AutomaticAuthenticate = true,
-            //    AutomaticChallenge = true,
-            //    LoginPath = new PathString("/account/login")
-            //});
 
             if (env.IsDevelopment())
             {

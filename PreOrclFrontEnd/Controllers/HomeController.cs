@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
@@ -16,17 +18,37 @@ namespace PreOrclFrontEnd.Controllers
     public class HomeController : Controller
     {
         GenericREST generic;
+        private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _env;
+        private readonly IGraphSdkHelper _graphSdkHelper;
 
-
-        public HomeController(IOptions<ConfigurationJson> configuration)
+        public HomeController(IOptions<ConfigurationJson> configuration, IConfiguration configurations, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper)
         {
+            _configuration = configurations;
+            _env = hostingEnvironment;
+            _graphSdkHelper = graphSdkHelper;
             generic = new GenericREST(configuration.Value);
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string email)
         {
-            Task<List<SisPerPersona>> t = Task.Run(() => {
+            if (User.Identity.IsAuthenticated)
+            {
+                // Get users's email.
+                email = email ?? User.FindFirst("preferred_username")?.Value;
+                ViewData["Email"] = email;
+
+                // Get user's id for token cache.
+                var identifier = User.FindFirst(Startup.ObjectIdentifierType)?.Value;
+
+                // Initialize the GraphServiceClient.
+                var graphClient = _graphSdkHelper.GetAuthenticatedClient(identifier);
+
+                ViewData["Picture"] =  GraphService.GetPictureBase64(graphClient, email, HttpContext);
+            }
+
+                Task<List<SisPerPersona>> t = Task.Run(() => {
                 List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
                 return listaSisPersona;
             });
