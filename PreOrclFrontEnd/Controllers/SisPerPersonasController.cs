@@ -96,6 +96,9 @@ namespace PreOrclFrontEnd.Controllers
                 });
 
                 sisPerPersona = await t;
+                if (sisPerPersona.per_IDPER == 0) {
+                    return BadRequest();
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(sisPerPersona);
@@ -133,7 +136,10 @@ namespace PreOrclFrontEnd.Controllers
             {
                 try
                 {
-                  bool a =  generic.Put<SisPerPersona>("SisPerPersonas/",id,sisPerPersona);
+                  bool isSaved =  generic.Put<SisPerPersona>("SisPerPersonas/",id,sisPerPersona);
+                    if (!isSaved) {
+                        return BadRequest();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
