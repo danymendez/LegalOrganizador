@@ -46,48 +46,24 @@ namespace PreOrclFrontEnd
                 
             });
 
-
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Auth/Index", "");
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme
-                //sharedOptions =>
-                //{
-                //    sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //    sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //    sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-
-
-                //}
-                )
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
                 options =>
             {
-                //options.Cookie.Name = "name";
                 options.LoginPath = "/Auth";
             }
             )
-            //.AddMicrosoftAccount(microsoftOptions =>
-            //{
-            //    microsoftOptions.ClientId = "c29c2d9c-8219-4b67-8012-7f8f1fb17947";
-            //    microsoftOptions.ClientSecret = "cqlrcFPUMS72807)*)hqIN}";
-            //    microsoftOptions.Events.OnRemoteFailure = (context) =>
-            //    {
-            //        context.Response.Redirect("/Auth");
-            //        context.HandleResponse();
-            //        return System.Threading.Tasks.Task.FromResult(0);
-            //    };
-            //})
             .AddAzureAd(options => Configuration.Bind("AzureAd", options));
 
             services.AddMemoryCache();
             services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
            
-            // Add application services.
-            //services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IGraphAuthProvider, GraphAuthProvider>();
             services.AddTransient<IGraphSdkHelper, GraphSdkHelper>();
 
