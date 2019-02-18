@@ -32,6 +32,17 @@ namespace PreOrclFrontEnd.Controllers
 
             return View();
         }
+        [Route("Micro")]
+        public IActionResult Micro() {
+
+            string replyuri = HttpUtility.UrlEncode("http://localhost:50222/Auth/LoginMicrosoft/");
+            string scope = HttpUtility.UrlEncode("offline_access user.read user.readbasic.all mail.read");
+            string clientId = "212a93ce-c93e-43b8-adaf-cc32d3606e75";
+            string tenant = "common";
+
+          return new RedirectResult($"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?client_id={clientId}&response_type=code&redirect_uri={replyuri}&response_mode=query&scope={scope}&state=12345");
+        }
+
 
         [Route("Microsoft")]
         public IActionResult Microsoft()
@@ -84,18 +95,25 @@ namespace PreOrclFrontEnd.Controllers
 
 
         [Route("LoginMicrosoft")]
-        public IActionResult LoginMicrosoft(string returnUrl = null, string remoteError = null)
+        public async Task<IActionResult> LoginMicrosoftAsync(string code = null, string state = null)
         {
+            GraphAuthCustom gp = new GraphAuthCustom();
 
-
-            var a = this.User.Claims;
-
+            string token = gp.GetToken(code);
+            var t = gp.GetAuthenticatedClient(token);
+       
+            var name = await t.Me.Photo.Content.Request().GetAsync();
+            Usuarios entity = new Usuarios { Nombre="pascacio", Usuario="carmencito"};
             var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, "")
+                        new Claim(ClaimTypes.Name, entity.Nombre),
+                        new Claim(ClaimTypes.Email,entity.Usuario),
+
                     };
             ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+
+            await HttpContext.SignInAsync(principal);
 
             return RedirectToAction("Index", "Home");
         }

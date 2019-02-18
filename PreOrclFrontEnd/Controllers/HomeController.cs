@@ -46,9 +46,12 @@ namespace PreOrclFrontEnd.Controllers
                 email = email ?? User.FindFirst("preferred_username")?.Value;
                 ViewData["Email"] = email;
                 ImageRef.email = email;
+
+               
+                
                 // Get user's id for token cache.
                 var identifier = User.FindFirst(Startup.ObjectIdentifierType)?.Value;
-
+           
                 // Initialize the GraphServiceClient.
                 var graphClient = _graphSdkHelper.GetAuthenticatedClient(identifier);
 

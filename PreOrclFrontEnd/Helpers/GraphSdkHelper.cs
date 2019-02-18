@@ -33,7 +33,7 @@ namespace PreOrclFrontEnd.Helpers
                     // This header identifies the sample in the Microsoft Graph service. If extracting this code for your project please remove.
                     requestMessage.Headers.Add("SampleID", "aspnetcore-connect-sample");
                 }));
-            c = _authProvider.GetUserAccessTokenAsync(userId).Result;
+           // c = _authProvider.GetUserAccessTokenAsync(userId).Result;
             return _graphClient;
         }
     }
