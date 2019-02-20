@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Extensions;
@@ -22,13 +24,15 @@ namespace PreOrclFrontEnd.Controllers
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _env;
         private readonly IGraphSdkHelper _graphSdkHelper;
+        private readonly IMemoryCache _memoryCache;
 
-        public HomeController(IOptions<ConfigurationJson> configuration, IConfiguration configurations, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper)
+        public HomeController(IOptions<ConfigurationJson> configuration, IConfiguration configurations, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper, IMemoryCache memoryCache)
         {
             _configuration = configurations;
             _env = hostingEnvironment;
             _graphSdkHelper = graphSdkHelper;
             generic = new GenericREST(configuration.Value);
+            _memoryCache = memoryCache;
         }
 
     
@@ -39,26 +43,8 @@ namespace PreOrclFrontEnd.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                // Get users's email.
 
-                ImageRef.url = "";
-                // Get users's email.
-                email = email ?? User.FindFirst("preferred_username")?.Value;
-                ViewData["Email"] = email;
-                ImageRef.email = email;
-
-               
-                
-                // Get user's id for token cache.
-                var identifier = User.FindFirst(Startup.ObjectIdentifierType)?.Value;
-           
-                // Initialize the GraphServiceClient.
-                var graphClient = _graphSdkHelper.GetAuthenticatedClient(identifier);
-
-                ViewData["Response"] = await GraphService.GetUserJson(graphClient, email, HttpContext);
-
-                ViewData["Picture"] = await GraphService.GetPictureBase64(graphClient, email, HttpContext);
-                ImageRef.url = ViewData["Picture"] == null ?"":ViewData["Picture"].ToString();
+                ViewData["img"] = Encoding.ASCII.GetString(_memoryCache.Get("foto") as byte[]);
             }
 
                 Task<List<SisPerPersona>> t = Task.Run(() => {

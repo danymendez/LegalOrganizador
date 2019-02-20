@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
+using PreOrclFrontEnd.Extensions;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
@@ -11,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -21,11 +24,12 @@ namespace PreOrclFrontEnd.Controllers
     public class AuthController : Controller
     {
         GenericREST generic;
+        private readonly IMemoryCache _memoryCache;
 
-
-        public AuthController(IOptions<ConfigurationJson> configuration)
+        public AuthController(IOptions<ConfigurationJson> configuration,IMemoryCache memoryCache)
         {
             generic = new GenericREST(configuration.Value);
+            _memoryCache = memoryCache;
         }
 
         public IActionResult Index() {
@@ -36,7 +40,8 @@ namespace PreOrclFrontEnd.Controllers
         public IActionResult Micro() {
 
             string replyuri = HttpUtility.UrlEncode("http://localhost:50222/Auth/LoginMicrosoft/");
-            string scope = HttpUtility.UrlEncode("offline_access user.read user.readbasic.all mail.read");
+            string scope = HttpUtility.UrlEncode("offline_access calendars.read user.read user.readbasic.all mail.read");
+            //string scope = HttpUtility.UrlEncode("https://graph.microsoft.com/.default");
             string clientId = "212a93ce-c93e-43b8-adaf-cc32d3606e75";
             string tenant = "common";
 
@@ -78,7 +83,7 @@ namespace PreOrclFrontEnd.Controllers
                 ViewData["msjLogin"] = "Contraseña Erronea";
                 return View("Index");
             }
-
+           
             var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, entity.Nombre),
@@ -98,16 +103,21 @@ namespace PreOrclFrontEnd.Controllers
         public async Task<IActionResult> LoginMicrosoftAsync(string code = null, string state = null)
         {
             GraphAuthCustom gp = new GraphAuthCustom();
+            GraphServiceCustom gsc = new GraphServiceCustom();
 
             string token = gp.GetToken(code);
             var t = gp.GetAuthenticatedClient(token);
        
-            var name = await t.Me.Photo.Content.Request().GetAsync();
-            Usuarios entity = new Usuarios { Nombre="pascacio", Usuario="carmencito"};
+            var name = t.Me.Request().GetAsync().Result;
+            var SS = gsc.GetMyCalendarView(t).Result;
+            ImageRef.url = gp.GetPictureBase64(t).Result;
+            ImageRef.email = name.UserPrincipalName;
+            _memoryCache.Set("foto", Encoding.ASCII.GetBytes(ImageRef.url));
             var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, entity.Nombre),
-                        new Claim(ClaimTypes.Email,entity.Usuario),
+                        new Claim(ClaimTypes.Name, name.GivenName),
+                        new Claim(ClaimTypes.Email,name.UserPrincipalName),
+                        // new Claim(ClaimTypes.Uri,ImageRef.url),
 
                     };
             ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
