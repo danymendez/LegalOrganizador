@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PreOrclApi.DTO;
 using PreOrclApi.Models;
+using PreOrclApi.Utilidades;
 
 namespace PreOrclApi.Controllers
 {
@@ -49,9 +50,8 @@ namespace PreOrclApi.Controllers
                                Nombre=usuarios.Nombre,
                                Apellido=usuarios.Apellido,
                                Usuario=usuarios.Usuario,
-                               FechaNac = usuarios.FechaNac,
                                Token = usuarios.Token,
-                               TokenExpired = usuarios.TokenExpired,
+                               TokenExpired = usuarios.TokenExpiredAt,
                                TokenRefresh = usuarios.TokenRefresh,
                                CreatedAt = usuarios.CreatedAt,
                                UpdatedAt = usuarios.UpdatedAt,
@@ -76,7 +76,16 @@ namespace PreOrclApi.Controllers
                 IdUsuario=usuario.IdUsuario,
                 Nombre=usuario.Nombre,
                 Apellido=usuario.Apellido,
-                Usuario=usuario.Usuario
+                Usuario=usuario.Usuario,
+                FechaNac=usuario.FechaNac,
+                Token = usuario.Token,
+                TokenExpiredAt = usuario.TokenExpiredAt,
+                TokenRefresh = usuario.TokenRefresh,
+                CreatedAt =usuario.CreatedAt,
+                IdRol = usuario.IdRol,
+                UpdatedAt = usuario.UpdatedAt,
+                InactivatedAt = usuario.InactivatedAt,
+                Inactivo = usuario.Inactivo
             };
             if (usuario == null)
             {

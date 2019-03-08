@@ -24,8 +24,10 @@ namespace Common.Entity.Models
         public DateTime? FechaNac { get; set; }
         [Field(Name ="TOKEN")]
         public string Token { get; set; }
-        [Field(Name = "TOKENEXPIRED")]
-        public DateTime? TokenExpired { get; set; }
+        [Field(Name = "TOKENEXPIREDAT")]
+        public DateTime? TokenExpiredAt { get; set; }
+        [Field(Name = "IDROL")]
+        public int IdRol { get; set; }
         [Field(Name = "TOKENREFRESH")]
         public string TokenRefresh { get; set; }
         [Field(Name = "CREATEDAT")]
