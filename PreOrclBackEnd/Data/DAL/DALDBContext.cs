@@ -1,7 +1,10 @@
 ﻿using Common.Utilities;
+using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
+using Microsoft.Extensions.Configuration.FileExtensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Data.DAL
@@ -71,16 +74,9 @@ namespace Data.DAL
 
         private string GetConnectionString(string oradbString = null)
         {
-
-            //         string oradb = "Data Source=(DESCRIPTION="
-            //+ "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.40)(PORT=1521)))"
-            //+ "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=PREORCLPDB)));"
-            //+ "User Id=dmendez;Password=1234;";
-            
-            string oradb = oradbString ?? "Data Source=(DESCRIPTION="
-           + "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=wkapp.southcentralus.cloudapp.azure.com)(PORT=1521)))"
-           + "(CONNECT_DATA=(SERVER=DEDICATED)(SID=farmacia)));"
-           + "User Id=dmendez;Password=1234;";
+            string oradb = oradbString ?? new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json").Build()
+                        .GetConnectionString("DBConnectionOrcl");
 
             return oradb;
         }
