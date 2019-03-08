@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -39,20 +40,19 @@ namespace PreOrclFrontEnd.Controllers
         public async Task<IActionResult> Index(string email)
         {
 
-
-
             if (User.Identity.IsAuthenticated)
             {
 
                 ViewData["img"] = Encoding.ASCII.GetString(_memoryCache.Get("foto") as byte[]);
             }
 
-                Task<List<SisPerPersona>> t = Task.Run(() => {
-                List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
-                return listaSisPersona;
+            Task<List<SisPerPersona>> t = Task.Run(() => {
+                    List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
+                    return listaSisPersona;
             });
-            t.Wait();
-            var lista = t.Result;
+         
+            var lista = await t;
+            var viewComponent = "";
             ViewBag.Cantidad = lista.Count(); 
             return View();
         }

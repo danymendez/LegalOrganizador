@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Microsoft.Graph.Event>
+<div class="calender-cont widget-calender">
+    <div id="calendar"></div>
+</div>
+<button id="botonnuevo">Botón Nuevo</button>
+
+@*@foreach (var item in Model)
+        {
+        <div class="row">
+            @Convert.ToDateTime(item.Start.DateTime).ToString("hh:mm:ss") |
+            @item.BodyPreview |
+            @item.Subject |
+        </div>
+        }
+    >*@
+@section Scripts{
+    <script>
+
+
+        jQuery("#botonnuevo").click(function () {
+            jQuery(this).hide();
+        });
+    </script>
+}

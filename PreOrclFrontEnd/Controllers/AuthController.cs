@@ -102,22 +102,23 @@ namespace PreOrclFrontEnd.Controllers
         [Route("LoginMicrosoft")]
         public async Task<IActionResult> LoginMicrosoftAsync(string code = null, string state = null)
         {
-            GraphAuthCustom gp = new GraphAuthCustom();
+            GraphAuthCustom gp = new GraphAuthCustom(_memoryCache);
             GraphServiceCustom gsc = new GraphServiceCustom();
 
-            string token = gp.GetToken(code);
+            string token;
+            gp.CreateToken(code);
+            var c = _memoryCache.Get<TokenT>("TokenT");
+            token = c.access_token;
             var t = gp.GetAuthenticatedClient(token);
-       
+
             var name = t.Me.Request().GetAsync().Result;
-            var SS = gsc.GetMyCalendarView(t).Result;
-            ImageRef.url = gp.GetPictureBase64(t).Result;
-            ImageRef.email = name.UserPrincipalName;
-            _memoryCache.Set("foto", Encoding.ASCII.GetBytes(ImageRef.url));
+            string urlImg = gsc.GetPictureBase64(t).Result;
+            _memoryCache.Set("foto", Encoding.ASCII.GetBytes(urlImg));
+            
             var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, name.GivenName),
                         new Claim(ClaimTypes.Email,name.UserPrincipalName),
-                        // new Claim(ClaimTypes.Uri,ImageRef.url),
 
                     };
             ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
