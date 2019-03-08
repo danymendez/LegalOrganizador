@@ -49,6 +49,14 @@ namespace PreOrclApi.Controllers
                                Nombre=usuarios.Nombre,
                                Apellido=usuarios.Apellido,
                                Usuario=usuarios.Usuario,
+                               FechaNac = usuarios.FechaNac,
+                               Token = usuarios.Token,
+                               TokenExpired = usuarios.TokenExpired,
+                               TokenRefresh = usuarios.TokenRefresh,
+                               CreatedAt = usuarios.CreatedAt,
+                               UpdatedAt = usuarios.UpdatedAt,
+                               InactivatedAt = usuarios.InactivatedAt,
+                               Inactivo = usuarios.Inactivo
                            };
             return listaDto;
         }
