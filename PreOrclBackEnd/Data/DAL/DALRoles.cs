@@ -35,7 +35,7 @@ namespace Data.DAL
             return Delete<Roles>(id);
         }
 
-        public SisPerPersona UpdateRoles(long id, SisPerPersona roles)
+        public Roles UpdateRoles(long id, Roles roles)
         {
 
             return Update(id, roles);

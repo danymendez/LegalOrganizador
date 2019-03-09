@@ -22,60 +22,60 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas
         [HttpGet]
-        public IEnumerable<Common.Entity.Models.SisPerPersona> GetSisPerPersona()
+        public IEnumerable<Common.Entity.Models.Roles> GetRoles()
         {
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
-            return bol.GetAllSisPerPersona();
+            BOLRoles bol = new BOLRoles();
+            return bol.GetAllRoles();
         }
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSisPerPersona([FromRoute] int id)
+        public async Task<IActionResult> GetRol([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
-            var sisPerPersona = await bol.GetSisPerPersona(id);
+            BOLRoles bol = new BOLRoles();
+            var roles = await bol.GetRol(id);
 
-            if (sisPerPersona == null)
+            if (roles == null)
             {
                 return NotFound();
             }
 
-            return Ok(sisPerPersona);
+            return Ok(roles);
         }
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSisPerPersona([FromRoute] int id, [FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
+        public async Task<IActionResult> PutSisRoles([FromRoute] int id, [FromBody] Common.Entity.Models.Roles roles)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != sisPerPersona.per_IDPER)
+            if (id != roles.IdRol)
             {
                 return BadRequest();
             }
 
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+            BOLRoles bol = new BOLRoles();
 
             try
             {
-                if (bol.GetSisPerPersona(id) == null)
+                if (bol.GetRol(id) == null)
                 {
                     return NotFound();
                 }
-                await bol.UpdateSisPerPersona(id, sisPerPersona);
+                await bol.UpdateRoles(id, roles);
 
 
             }
             catch (Exception e)
             {
-                if (bol.GetSisPerPersona(id) == null)
+                if (bol.GetRol(id) == null)
                 {
                     return NotFound(e.Message);
                 }
@@ -90,17 +90,17 @@ namespace PreOrclApi.Controllers
 
         // POST: api/SisPerPersonas
         [HttpPost]
-        public async Task<IActionResult> PostSisPerPersona([FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
+        public async Task<IActionResult> PostRoles([FromBody] Common.Entity.Models.Roles roles)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
-            sisPerPersona = await bol.CreatePersona(sisPerPersona);
+            BOLRoles bol = new BOLRoles();
+            roles = await bol.CreateRoles(roles);
 
-            return CreatedAtAction("GetSisPerPersona", new { id = sisPerPersona.per_IDPER }, sisPerPersona);
+            return CreatedAtAction("GetSisPerPersona", new { id = roles.IdRol }, roles);
         }
 
         // DELETE: api/SisPerPersonas/5

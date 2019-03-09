@@ -10,7 +10,7 @@ namespace Common.BOL.BOL
 {
     public class BOLSisPerPersonas
     {
-        public Task<SisPerPersona> CreatePersona(SisPerPersona sisPerPersona) {
+        public async Task<SisPerPersona> CreatePersona(SisPerPersona sisPerPersona) {
             SisPerPersona sis = new SisPerPersona();
             Task<SisPerPersona> t = Task.Run(() =>
             {
@@ -22,7 +22,7 @@ namespace Common.BOL.BOL
                 return sis;
             });
 
-            return t;
+            return await t;
         }
 
         public List<SisPerPersona> GetAllSisPerPersona() {
@@ -38,7 +38,7 @@ namespace Common.BOL.BOL
             return listaSisPerPersona;
         }
 
-        public Task<SisPerPersona> GetSisPerPersona(int id) {
+        public async Task<SisPerPersona> GetSisPerPersona(int id) {
             SisPerPersona sis = null;
             Task<SisPerPersona> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())
@@ -49,10 +49,10 @@ namespace Common.BOL.BOL
                 return sis;
             });
             
-            return t;
+            return await t;
         }
 
-        public Task<SisPerPersona> UpdateSisPerPersona(int id, SisPerPersona sisPerPersona) {
+        public async Task<SisPerPersona> UpdateSisPerPersona(int id, SisPerPersona sisPerPersona) {
             SisPerPersona sis = null;
             Task<SisPerPersona> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())
@@ -63,10 +63,10 @@ namespace Common.BOL.BOL
                 return sis;
             });
 
-            return t;
+            return await t;
         }
 
-        public Task<SisPerPersona> DeleteSisPerPersona(int id) {
+        public async Task<SisPerPersona> DeleteSisPerPersona(int id) {
             SisPerPersona sis = null;
             Task<SisPerPersona> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())
@@ -77,7 +77,7 @@ namespace Common.BOL.BOL
                 return sis;
             });
 
-            return t;
+            return await t;
         }
 
     }
