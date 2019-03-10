@@ -14,17 +14,19 @@ namespace PreOrclApi.Controllers
     public class RolesController : ControllerBase
     {
         private readonly PreOrclApiContext _context;
+        private BOLRoles bol;
 
         public RolesController(PreOrclApiContext context)
         {
             _context = context;
+            bol = new BOLRoles();
         }
 
         // GET: api/SisPerPersonas
         [HttpGet]
         public IEnumerable<Common.Entity.Models.Roles> GetRoles()
         {
-            BOLRoles bol = new BOLRoles();
+            
             return bol.GetAllRoles();
         }
 
@@ -36,7 +38,7 @@ namespace PreOrclApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            BOLRoles bol = new BOLRoles();
+     
             var roles = await bol.GetRol(id);
 
             if (roles == null)
@@ -49,7 +51,7 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSisRoles([FromRoute] int id, [FromBody] Common.Entity.Models.Roles roles)
+        public async Task<IActionResult> PutRoles([FromRoute] int id, [FromBody] Common.Entity.Models.Roles roles)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +63,7 @@ namespace PreOrclApi.Controllers
                 return BadRequest();
             }
 
-            BOLRoles bol = new BOLRoles();
+          
 
             try
             {
@@ -97,40 +99,31 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            BOLRoles bol = new BOLRoles();
             roles = await bol.CreateRoles(roles);
 
-            return CreatedAtAction("GetSisPerPersona", new { id = roles.IdRol }, roles);
+            return CreatedAtAction("GetRol", new { id = roles.IdRol }, roles);
         }
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSisPerPersona([FromRoute] int id)
+        public async Task<IActionResult> DeleteRol([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //var sisPerPersona = await _context.SisPerPersona.FindAsync(id);
-            //if (sisPerPersona == null)
-            //{
-            //    return NotFound();
-            //}
+            var roles = await bol.DeleteRoles(id);
 
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
-
-            var sisPerPersona = await bol.DeleteSisPerPersona(id);
-
-            if (sisPerPersona == null)
+            if (roles == null)
             {
                 return NotFound();
             }
 
-            return Ok(sisPerPersona);
+            return Ok(roles);
         }
 
-        private bool SisPerPersonaExists(int id)
+        private bool RolesExists(int id)
         {
             return _context.SisPerPersona.Any(e => e.per_IDPER == id);
         }

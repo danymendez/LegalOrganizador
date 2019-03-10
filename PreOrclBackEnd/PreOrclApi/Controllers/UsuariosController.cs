@@ -17,10 +17,11 @@ namespace PreOrclApi.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly PreOrclApiContext _context;
+        private BOLUsuarios bolUsuarios;
         public UsuariosController(PreOrclApiContext context)
         {
             _context = context;
-
+            bolUsuarios = new BOLUsuarios();
         }
 
         //GET: api/SisPerPersonas
@@ -28,7 +29,6 @@ namespace PreOrclApi.Controllers
        //[Route("Autenticar")]
         public async Task<IActionResult> Autenticar(string Usuario, string Password) // operationId = "Autenticar"
         {
-            BOLUsuarios bolUsuarios = new BOLUsuarios();
             var usuario = await bolUsuarios.Autenticar(Usuario, Password);
             return Ok(new UsuariosDTO
             {
@@ -41,7 +41,6 @@ namespace PreOrclApi.Controllers
 
         [HttpGet]
         public async Task <IEnumerable<UsuariosDTO>> GetUsuarios() {
-            BOLUsuarios bolUsuarios = new BOLUsuarios();
             var listaUsuarios = await bolUsuarios.GetUsuarios();
             var listaDto = from usuarios in listaUsuarios
                            select new UsuariosDTO
@@ -69,8 +68,7 @@ namespace PreOrclApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            BOLUsuarios bol = new BOLUsuarios();
-            var usuario = await bol.GetUsuario(id);
+            var usuario = await bolUsuarios.GetUsuario(id);
             UsuariosDetailsDTO usuariosDetailsDTO = new UsuariosDetailsDTO
             {
                 IdUsuario=usuario.IdUsuario,
@@ -103,7 +101,7 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            BOLUsuarios bol = new BOLUsuarios();
+            bolUsuarios = new BOLUsuarios();
             Common.Entity.Models.Usuarios usuarioEntity = new Common.Entity.Models.Usuarios {
                 IdUsuario=pUsuariosDetailsDTO.IdUsuario,
                 Nombre=pUsuariosDetailsDTO.Nombre,
@@ -111,7 +109,7 @@ namespace PreOrclApi.Controllers
                 Usuario=pUsuariosDetailsDTO.Usuario,
                 Password=pUsuariosDetailsDTO.Password,
             };
-           var usuarioCreado = await bol.CreateUsuario(usuarioEntity);
+           var usuarioCreado = await bolUsuarios.CreateUsuario(usuarioEntity);
 
             return CreatedAtAction("GetUsuarios", new { id = usuarioCreado.IdUsuario }, pUsuariosDetailsDTO.Password=null);
         }
