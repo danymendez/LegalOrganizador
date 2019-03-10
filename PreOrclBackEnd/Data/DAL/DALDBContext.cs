@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Data.DAL
+namespace Common.Data.DAL
 {
     public class DALDBContext : IDisposable
     {

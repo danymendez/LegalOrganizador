@@ -1,6 +1,6 @@
 ﻿using Common.Entity.Attributes;
 using Common.Utilities;
-using Data.SQLBuilders;
+using Common.Data.SQLBuilders;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Data.DAL
+namespace Common.Data.DAL
 {
     public class DALBaseOrcl
     {

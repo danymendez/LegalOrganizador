@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.DAL
+namespace Common.Data.DAL
 {
     class DALPermisos
     {

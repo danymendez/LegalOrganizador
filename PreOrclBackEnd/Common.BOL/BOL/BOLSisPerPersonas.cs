@@ -1,5 +1,5 @@
 ﻿using Common.Entity.Models;
-using Data.DAL;
+using Common.Data.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -72,7 +72,7 @@ namespace Common.BOL.BOL
                 using (DALDBContext context = new DALDBContext())
                 {
                     DALSisPerPersona dal = new DALSisPerPersona(context);
-                    sis = dal.Delete<SisPerPersona>(id);
+                    sis = dal.DeletePersona(id);
                 }
                 return sis;
             });

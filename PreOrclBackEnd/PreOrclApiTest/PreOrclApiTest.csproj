@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.Entity.csproj" />
-    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Data\Common.Data.csproj" />
     <ProjectReference Include="..\PreOrclApi\PreOrclApi.csproj" />
   </ItemGroup>
 

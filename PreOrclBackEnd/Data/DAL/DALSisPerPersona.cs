@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Data.DAL
+namespace Common.Data.DAL
 {
    public sealed class DALSisPerPersona : DALBaseOrcl
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Data.SQLBuilders
+namespace Common.Data.SQLBuilders
 {
     public class SqlQueryBuilder
     {

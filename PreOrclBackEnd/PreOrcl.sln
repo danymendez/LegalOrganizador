@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreOrclApi", "PreOrclApi\Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Entity", "Common\Common.Entity.csproj", "{D4BC22D8-2243-455A-A736-43B4A561F836}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{DAF6D079-6429-472F-90D2-CE57ADD41AAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Data", "Data\Common.Data.csproj", "{DAF6D079-6429-472F-90D2-CE57ADD41AAA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreOrclApiTest", "PreOrclApiTest\PreOrclApiTest.csproj", "{FCD929F1-4F87-4999-9379-615D256BDCD8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.BOL", "Common.BOL\Common.BOL.csproj", "{FD5D95F5-7AD1-4716-8CCF-943F3542EC45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utilities", "Common.Utilities\Common.Utilities.csproj", "{A1757AD9-787C-486A-9A76-59B93B0AE8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Utilities", "Common.Utilities\Common.Utilities.csproj", "{A1757AD9-787C-486A-9A76-59B93B0AE8E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

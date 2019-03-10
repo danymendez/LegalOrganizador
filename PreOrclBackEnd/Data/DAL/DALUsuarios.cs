@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.DAL
+namespace Common.Data.DAL
 {
    public class DALUsuarios:DALBaseOrcl
     {

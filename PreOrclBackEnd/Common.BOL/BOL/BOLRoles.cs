@@ -1,5 +1,5 @@
 ﻿using Common.Entity.Models;
-using Data.DAL;
+using Common.Data.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
