@@ -32,7 +32,7 @@ namespace Data.DAL
 
 
         #region Create
-        public virtual T Create<T>(T entity)
+        protected virtual T Create<T>(T entity)
         {
             sqlQueryBuilder = new SqlQueryBuilder();
             sqlParameterBuilder = new SqlParameterBuilder();
@@ -91,7 +91,7 @@ namespace Data.DAL
         #endregion
 
         #region Get
-        public virtual List<T> GetAll<T>() where T : new()
+        protected virtual List<T> GetAll<T>() where T : new()
         {
             List<T> listEntity = new List<T>();
             sqlQueryBuilder = new SqlQueryBuilder();
@@ -148,7 +148,7 @@ namespace Data.DAL
             return listEntity;
         }
 
-        public virtual T Get<T>(long id) where T: new() {
+        protected virtual T Get<T>(long id) where T: new() {
            
            T entity = default(T);
             sqlQueryBuilder = new SqlQueryBuilder();
@@ -214,7 +214,7 @@ namespace Data.DAL
         #endregion
 
         #region Update
-        public virtual T Update<T>(long id, T entity) {
+        protected virtual T Update<T>(long id, T entity) {
             T t = default(T);
             sqlQueryBuilder = new SqlQueryBuilder();
             sqlParameterBuilder = new SqlParameterBuilder();
@@ -261,7 +261,7 @@ namespace Data.DAL
         #endregion
 
         #region Delete
-        public virtual T Delete<T>(long id) where T : new() {
+        protected virtual T Delete<T>(long id) where T : new() {
             T t = default(T);
             t = Get<T>(id);
             if (t != null)
