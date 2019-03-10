@@ -28,10 +28,8 @@ namespace Data.DAL
             return GetAll<Roles>();
         }
 
-        public Roles DeleteRol(long id)
+        public Roles DeleteRol(int id)
         {
-
-
             return Delete<Roles>(id);
         }
 

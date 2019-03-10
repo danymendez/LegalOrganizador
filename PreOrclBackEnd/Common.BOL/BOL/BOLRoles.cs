@@ -77,7 +77,7 @@ namespace Common.BOL.BOL
                 using (DALDBContext context = new DALDBContext())
                 {
                     DALRoles dal = new DALRoles(context);
-                    _rol = dal.Delete<Roles>(id);
+                    _rol = dal.DeleteRol(id);
                 }
                 return _rol;
             });
