@@ -18,6 +18,7 @@ using PreOrclFrontEnd.Helpers;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.Net;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace PreOrclFrontEnd
 {
@@ -66,7 +67,10 @@ namespace PreOrclFrontEnd
            
             services.AddSingleton<IGraphAuthProvider, GraphAuthProvider>();
             services.AddTransient<IGraphSdkHelper, GraphSdkHelper>();
-
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+            });
             services.Configure<HstsOptions>(options =>
             {
                
@@ -91,7 +95,12 @@ namespace PreOrclFrontEnd
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseSession();
