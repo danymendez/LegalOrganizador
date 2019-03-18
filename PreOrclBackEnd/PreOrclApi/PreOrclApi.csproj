@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.BOL\Common.BOL.csproj" />
-    <ProjectReference Include="..\Common\Common.Entity.csproj" />
+    <ProjectReference Include="..\Common.Entity\Common.Entity.csproj" />
   </ItemGroup>
 
 </Project>

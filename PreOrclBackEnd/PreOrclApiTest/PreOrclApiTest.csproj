@@ -14,8 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.Entity.csproj" />
-    <ProjectReference Include="..\Data\Common.Data.csproj" />
+    <ProjectReference Include="..\Common.BOL\Common.BOL.csproj" />
+    <ProjectReference Include="..\Common.Data\Common.Data.csproj" />
+    <ProjectReference Include="..\Common.Entity\Common.Entity.csproj" />
+    <ProjectReference Include="..\Common.Utilities\Common.Utilities.csproj" />
     <ProjectReference Include="..\PreOrclApi\PreOrclApi.csproj" />
   </ItemGroup>
 
