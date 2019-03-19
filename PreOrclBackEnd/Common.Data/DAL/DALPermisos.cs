@@ -29,7 +29,7 @@ namespace Common.Data.DAL
             return GetAll<Permisos>();
         }
 
-        public Permisos DeleteRol(int id)
+        public Permisos DeletePermisos(int id)
         {
             return Delete<Permisos>(id);
         }
