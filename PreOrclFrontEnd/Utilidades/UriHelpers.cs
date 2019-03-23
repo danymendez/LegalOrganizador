@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace PreOrclFrontEnd.Utilidades
 {
-    public class ConfigurationJson
+    public class UriHelpers
     {
         public string BaseUrl { get; set; }
+        
     }
 }

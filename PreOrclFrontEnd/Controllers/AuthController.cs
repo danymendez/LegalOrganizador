@@ -25,9 +25,11 @@ namespace PreOrclFrontEnd.Controllers
     {
         GenericREST generic;
         private readonly IMemoryCache _memoryCache;
+        private MSGraphConfiguration _msGraphConfig;
 
-        public AuthController(IOptions<ConfigurationJson> configuration,IMemoryCache memoryCache)
+        public AuthController(IOptions<UriHelpers> configuration, IOptions<MSGraphConfiguration> msGraphConfig,IMemoryCache memoryCache)
         {
+            _msGraphConfig = msGraphConfig.Value as MSGraphConfiguration; 
             generic = new GenericREST(configuration.Value);
             _memoryCache = memoryCache;
         }
@@ -39,11 +41,11 @@ namespace PreOrclFrontEnd.Controllers
         [Route("Micro")]
         public IActionResult Micro() {
 
-            string replyuri = HttpUtility.UrlEncode("http://localhost:50222/Auth/LoginMicrosoft/");
-            string scope = HttpUtility.UrlEncode("offline_access calendars.read user.read user.readbasic.all mail.read");
+            string replyuri = HttpUtility.UrlEncode(_msGraphConfig.CallbackPath);
+            string scope = HttpUtility.UrlEncode(_msGraphConfig.Scope);
             //string scope = HttpUtility.UrlEncode("https://graph.microsoft.com/.default");
-            string clientId = "212a93ce-c93e-43b8-adaf-cc32d3606e75";
-            string tenant = "common";
+            string clientId = _msGraphConfig.ClientId;
+            string tenant = _msGraphConfig.Tenant;
 
           return new RedirectResult($"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?client_id={clientId}&response_type=code&redirect_uri={replyuri}&response_mode=query&scope={scope}&state=12345");
         }
@@ -102,7 +104,7 @@ namespace PreOrclFrontEnd.Controllers
         [Route("LoginMicrosoft")]
         public async Task<IActionResult> LoginMicrosoftAsync(string code = null, string state = null)
         {
-            GraphAuthCustom gp = new GraphAuthCustom(_memoryCache);
+            GraphAuthCustom gp = new GraphAuthCustom(_memoryCache,_msGraphConfig);
             GraphServiceCustom gsc = new GraphServiceCustom();
 
             string token;

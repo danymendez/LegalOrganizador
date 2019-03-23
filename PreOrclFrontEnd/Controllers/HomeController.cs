@@ -27,7 +27,7 @@ namespace PreOrclFrontEnd.Controllers
         private readonly IGraphSdkHelper _graphSdkHelper;
         private readonly IMemoryCache _memoryCache;
 
-        public HomeController(IOptions<ConfigurationJson> configuration, IConfiguration configurations, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper, IMemoryCache memoryCache)
+        public HomeController(IOptions<UriHelpers> configuration, IConfiguration configurations, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper, IMemoryCache memoryCache)
         {
             _configuration = configurations;
             _env = hostingEnvironment;

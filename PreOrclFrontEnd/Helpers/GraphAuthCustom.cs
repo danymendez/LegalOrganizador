@@ -14,8 +14,10 @@ namespace PreOrclFrontEnd.Helpers
 {
     public class GraphAuthCustom {
         IMemoryCache _memoryCache;
-        public GraphAuthCustom(IMemoryCache memoryCache) {
+        MSGraphConfiguration _msGraphConfiguration;
+        public GraphAuthCustom(IMemoryCache memoryCache, MSGraphConfiguration msGraphConfiguration) {
             _memoryCache = memoryCache;
+            _msGraphConfiguration = msGraphConfiguration;
         }
         public string GetMe(string token =null) {
             string entity ="";
@@ -91,13 +93,13 @@ namespace PreOrclFrontEnd.Helpers
             Peticion p =
                 new Peticion
                 {
-                    client_id = "212a93ce-c93e-43b8-adaf-cc32d3606e75",
-                    client_secret = "ysCRFE4_}fenfmVKW2574${",
-                    scope = "offline_access calendars.read user.read user.readbasic.all mail.read",
+                    client_id = _msGraphConfiguration.ClientId,
+                    client_secret = _msGraphConfiguration.ClientSecret,
+                    scope = _msGraphConfiguration.Scope,
                     //scope = "https://graph.microsoft.com/.default",
                     grant_type = "authorization_code",
                     code = _code,
-                    redirect_uri = "http://localhost:50222/Auth/LoginMicrosoft/"
+                    redirect_uri = _msGraphConfiguration.RedirectUrl
                 };
             try
             {

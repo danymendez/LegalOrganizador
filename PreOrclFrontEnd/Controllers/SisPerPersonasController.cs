@@ -19,7 +19,7 @@ namespace PreOrclFrontEnd.Controllers
  
         GenericREST generic;
 
-        public SisPerPersonasController(IOptions<ConfigurationJson> configuration)
+        public SisPerPersonasController(IOptions<UriHelpers> configuration)
         {
         
             generic = new GenericREST(configuration.Value);

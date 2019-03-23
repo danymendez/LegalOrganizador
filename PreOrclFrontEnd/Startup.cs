@@ -78,7 +78,8 @@ namespace PreOrclFrontEnd
                 options.MaxAge = TimeSpan.FromDays(365);
             });
            
-            services.Configure<ConfigurationJson>(Configuration.GetSection("UriHelpers"));
+            services.Configure<UriHelpers>(Configuration.GetSection("UriHelpers"));
+            services.Configure<MSGraphConfiguration>(Configuration.GetSection("MSGraphConfiguration"));
             services.AddDbContext<PreOrclFrontEndContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PreOrclFrontEndContext")));
         }

@@ -15,8 +15,8 @@ namespace PreOrclFrontEnd.Helpers
         //public const string BASEURL = "http://192.168.0.40:5000/preorclapi/api/";
         public  string BASEURL;
 
-        public GenericREST(ConfigurationJson configurationJson) {
-            BASEURL = configurationJson.BaseUrl;
+        public GenericREST(UriHelpers uriHelpers) {
+            BASEURL = uriHelpers.BaseUrl;
         }
 
         public virtual T Get<T>(string urlMethod, int? id)

@@ -19,8 +19,10 @@ namespace PreOrclFrontEnd.ViewComponents
         private GenericREST generic;
         private readonly IMemoryCache _memoryCache;
         private  TokenT tokenT;
+        private MSGraphConfiguration _msGraphConfig;
 
-        public CalendarioViewComponent(IOptions<ConfigurationJson> configuration, IMemoryCache memoryCache) {
+        public CalendarioViewComponent(IOptions<UriHelpers> configuration, IOptions<MSGraphConfiguration> msGraphConfig, IMemoryCache memoryCache) {
+            _msGraphConfig = msGraphConfig.Value as MSGraphConfiguration;
             generic = new GenericREST(configuration.Value);
             _memoryCache = memoryCache;
            
@@ -35,7 +37,7 @@ namespace PreOrclFrontEnd.ViewComponents
 
         private Task<List<Event>> GetItemsAsync(string tokenacces)
         {
-            GraphAuthCustom a = new GraphAuthCustom(_memoryCache);
+            GraphAuthCustom a = new GraphAuthCustom(_memoryCache,_msGraphConfig);
             var c = a.GetAuthenticatedClient(tokenacces);
             GraphServiceCustom sv = new GraphServiceCustom();
             Task<List<Event>> listas = Task.Run(() => {

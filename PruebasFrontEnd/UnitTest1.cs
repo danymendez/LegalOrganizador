@@ -9,9 +9,9 @@ namespace PruebasFrontEnd
         [TestMethod]
         public void TestMethod1()
         {
-            GraphAuthCustom a = new GraphAuthCustom();
+            ////GraphAuthCustom a = new GraphAuthCustom();
 
-            string pr = a.GetMe();
+            ////string pr = a.GetMe();
         }
     }
 }
