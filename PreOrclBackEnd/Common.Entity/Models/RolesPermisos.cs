@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Common.Entity.Models
-{
+{ 
+    [Table(Name ="ROLESPERMISOS")]
     public class RolesPermisos
     {
         [Field(Name = "IDROLPERMISO")]
+        [PrimaryKey]
         public int IdRolPermiso { get; set; }
         [Field(Name = "IDROL")]
         public int IdRol { get; set; }

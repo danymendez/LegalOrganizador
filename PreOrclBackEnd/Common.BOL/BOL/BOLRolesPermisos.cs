@@ -9,18 +9,18 @@ namespace Common.BOL.BOL
 {
   public class BOLRolesPermisos
     {
-        public async Task<Roles> CreateRolesPermisos(Roles roles)
+        public async Task<RolesPermisos> CreateRolesPermisos(RolesPermisos rolesPermisos)
         {
-            Roles _rol = new Roles();
-            Task<Roles> t = Task.Run(() =>
+            RolesPermisos _rolesPermisos = new RolesPermisos();
+            Task<RolesPermisos> t = Task.Run(() =>
             {
                 using (DALDBContext context = new DALDBContext())
                 {
-                    DALRoles dal = new DALRoles(context);
-                    _rol = dal.CreateRoles(roles);
+                    DALRolesPermisos dal = new DALRolesPermisos(context);
+                    _rolesPermisos = dal.CreateRolesPermisos(rolesPermisos);
                 }
 
-                return _rol;
+                return _rolesPermisos;
             });
 
             return await t;
@@ -55,7 +55,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<RolesPermisos> UpdateRoles(int id, RolesPermisos rolesPermisos)
+        public async Task<RolesPermisos> UpdateRolesPermisos(int id, RolesPermisos rolesPermisos)
         {
             RolesPermisos _rolesPermisos = null;
             Task<RolesPermisos> t = Task.Run(() => {
@@ -70,7 +70,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<RolesPermisos> DeleteRoles(int id)
+        public async Task<RolesPermisos> DeleteRolesPermisos(int id)
         {
             RolesPermisos _rolesPermisos = null;
             Task<RolesPermisos> t = Task.Run(() => {

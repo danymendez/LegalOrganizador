@@ -9,7 +9,7 @@ namespace Common.BOL.BOL
 {
     public class BOLPermisos
     {
-        public async Task<Permisos> CreateRolesPermisos(Permisos permisos)
+        public async Task<Permisos> CreatePermisos(Permisos permisos)
         {
             Permisos _permisos = new Permisos();
             Task<Permisos> t = Task.Run(() =>
