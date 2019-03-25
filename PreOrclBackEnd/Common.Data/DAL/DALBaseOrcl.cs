@@ -287,7 +287,7 @@ namespace Common.Data.DAL
                     }
                     catch (Exception ex)
                     {
-
+                        t = default(T);
                         // Handle the exception if the transaction fails to commit.
                         ExceptionUtility.LogException(ex);
 

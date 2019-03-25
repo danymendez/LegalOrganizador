@@ -8,8 +8,8 @@ namespace Common.Entity.Models
     [Table(Name ="PERMISOS")]
    public class Permisos
     {
-        [Field(Name = "IDPERMISO")]
         [PrimaryKey]
+        [Field(Name = "IDPERMISO")]
         public int IdPermiso { get; set; }
         [Field(Name ="NOMBREPERMISO")]
         public string NombrePermiso { get; set; }

@@ -468,3 +468,232 @@ Exception:	Invalid operation on a closed object
 Source:		Oracle.ManagedDataAccess
 Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
    at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 24/03/2019 - 21:59:56 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 24/03/2019 - 21:59:59 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 24/03/2019 - 22:00:1 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 24/03/2019 - 22:00:3 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 24/03/2019 - 22:00:5 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 24/03/2019 - 22:00:15 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 24/03/2019 - 22:00:20 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 24/03/2019 - 22:00:20 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 24/03/2019 - 22:00:20 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 24/03/2019 - 22:00:20 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 24/03/2019 - 22:01:33 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 24/03/2019 - 22:01:33 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 24/03/2019 - 22:01:34 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 24/03/2019 - 22:01:34 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 24/03/2019 - 22:01:34 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 24/03/2019 - 23:45:45 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01008: not all variables bound
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 285
+
+=============================== 24/03/2019 - 23:45:45 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 24/03/2019 - 23:45:45 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 25/03/2019 - 00:10:9 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01008: not all variables bound
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 285
+
+=============================== 25/03/2019 - 00:10:10 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 25/03/2019 - 00:10:10 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 25/03/2019 - 00:12:17 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01008: not all variables bound
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 285
+
+=============================== 25/03/2019 - 00:12:17 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 25/03/2019 - 00:12:17 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 25/03/2019 - 00:13:50 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01008: not all variables bound
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 285
+
+=============================== 25/03/2019 - 00:13:50 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 25/03/2019 - 00:13:50 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 25/03/2019 - 00:17:18 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-01008: not all variables bound
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Delete[T](Int64 id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 285
+
+=============================== 25/03/2019 - 00:17:18 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 25/03/2019 - 00:17:18 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
