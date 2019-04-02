@@ -62,7 +62,7 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUsuariosById(int id)
+        public async Task<IActionResult> GetUsuariosById(decimal id)
         {
             if (!ModelState.IsValid)
             {

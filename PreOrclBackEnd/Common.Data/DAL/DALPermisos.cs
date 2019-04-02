@@ -29,18 +29,18 @@ namespace Common.Data.DAL
             return GetAll<Permisos>();
         }
 
-        public Permisos DeletePermisos(long id)
+        public Permisos DeletePermisos(decimal id)
         {
             return Delete<Permisos>(id);
         }
 
-        public Permisos UpdatePermisos(long id, Permisos permisos)
+        public Permisos UpdatePermisos(decimal id, Permisos permisos)
         {
 
             return Update(id, permisos);
         }
 
-        public Permisos GetPermisos(long id)
+        public Permisos GetPermisos(decimal id)
         {
             return Get<Permisos>(id);
         }

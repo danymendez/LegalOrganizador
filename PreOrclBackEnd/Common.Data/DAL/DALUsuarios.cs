@@ -25,7 +25,7 @@ namespace Common.Data.DAL
 
         }
 
-        public Usuarios GetUsuario(int id)
+        public Usuarios GetUsuario(decimal id)
         {
 
             Usuarios listaUsuario = Get<Usuarios>(id);

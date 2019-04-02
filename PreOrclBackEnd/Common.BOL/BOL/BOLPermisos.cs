@@ -40,7 +40,7 @@ namespace Common.BOL.BOL
             return listaPermisos;
         }
 
-        public async Task<Permisos> GetPermisos(int id)
+        public async Task<Permisos> GetPermisos(decimal id)
         {
             Permisos rolespermiso = null;
             Task<Permisos> t = Task.Run(() => {
@@ -55,7 +55,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<Permisos> UpdatePermisos(int id, Permisos permisos)
+        public async Task<Permisos> UpdatePermisos(decimal id, Permisos permisos)
         {
             Permisos _permisos = null;
             Task<Permisos> t = Task.Run(() => {
@@ -70,7 +70,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<Permisos> DeletePermisos(int id)
+        public async Task<Permisos> DeletePermisos(decimal id)
         {
             Permisos _permisos = null;
             Task<Permisos> t = Task.Run(() => {

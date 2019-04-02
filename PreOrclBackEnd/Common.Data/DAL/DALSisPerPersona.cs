@@ -29,18 +29,18 @@ namespace Common.Data.DAL
             return GetAll<SisPerPersona>();
         }
 
-        public SisPerPersona DeletePersona(long id) {
+        public SisPerPersona DeletePersona(decimal id) {
 
 
             return Delete<SisPerPersona>(id);
         }
 
-        public SisPerPersona UpdateSisPerPersona(long id, SisPerPersona sisPerPersona) {
+        public SisPerPersona UpdateSisPerPersona(decimal id, SisPerPersona sisPerPersona) {
 
             return Update(id, sisPerPersona);
         }
 
-        public SisPerPersona GetPersona(long id) {
+        public SisPerPersona GetPersona(decimal id) {
             return Get<SisPerPersona>(id);
         }
 

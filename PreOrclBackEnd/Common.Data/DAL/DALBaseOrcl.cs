@@ -47,14 +47,14 @@ namespace Common.Data.DAL
                 {
                     command.Parameters.Add(param.ParameterName, param.Value);
                 }
-                OracleParameter outputParameter = new OracleParameter("my_id_param", OracleDbType.Int32);
+                OracleParameter outputParameter = new OracleParameter("my_id_param", OracleDbType.Decimal);
                 outputParameter.Direction = ParameterDirection.Output;
                 command.Parameters.Add(outputParameter);
-                int a = 0;
+                //int a = 0;
                 try
                 {
                     command.ExecuteNonQuery();
-                    a = Convert.ToInt32((decimal)(OracleDecimal)outputParameter.Value);
+                   // a = Convert.ToInt32((decimal)(OracleDecimal)outputParameter.Value);
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +82,7 @@ namespace Common.Data.DAL
                     PrimaryKey pk = attrPrimaryKey as PrimaryKey;
                     if (pk != null)
                     {
-                        p.SetValue(entity, a);
+                        p.SetValue(entity, (decimal)(OracleDecimal)outputParameter.Value);
                     }
                 }
             }
@@ -148,7 +148,7 @@ namespace Common.Data.DAL
             return listEntity;
         }
 
-        protected virtual T Get<T>(long id) where T: new() {
+        protected virtual T Get<T>(decimal id) where T: new() {
            
            T entity = default(T);
             sqlQueryBuilder = new SqlQueryBuilder();
@@ -214,7 +214,7 @@ namespace Common.Data.DAL
         #endregion
 
         #region Update
-        protected virtual T Update<T>(long id, T entity) {
+        protected virtual T Update<T>(decimal id, T entity) {
             T t = default(T);
             sqlQueryBuilder = new SqlQueryBuilder();
             sqlParameterBuilder = new SqlParameterBuilder();
@@ -261,7 +261,7 @@ namespace Common.Data.DAL
         #endregion
 
         #region Delete
-        protected virtual T Delete<T>(long id) where T : new() {
+        protected virtual T Delete<T>(decimal id) where T : new() {
             T t = default(T);
             t = Get<T>(id);
             if (t != null)

@@ -38,7 +38,7 @@ namespace Common.BOL.BOL
             return listaSisPerPersona;
         }
 
-        public async Task<SisPerPersona> GetSisPerPersona(int id) {
+        public async Task<SisPerPersona> GetSisPerPersona(decimal id) {
             SisPerPersona sis = null;
             Task<SisPerPersona> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())
@@ -52,7 +52,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<SisPerPersona> UpdateSisPerPersona(int id, SisPerPersona sisPerPersona) {
+        public async Task<SisPerPersona> UpdateSisPerPersona(decimal id, SisPerPersona sisPerPersona) {
             SisPerPersona sis = null;
             Task<SisPerPersona> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())
@@ -66,7 +66,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<SisPerPersona> DeleteSisPerPersona(int id) {
+        public async Task<SisPerPersona> DeleteSisPerPersona(decimal id) {
             SisPerPersona sis = null;
             Task<SisPerPersona> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())

@@ -32,7 +32,7 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetRolesPermisos([FromRoute] int id)
+        public async Task<IActionResult> GetRolesPermisos([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRolesPermisos([FromRoute] int id, [FromBody] Common.Entity.Models.RolesPermisos rolesPermisos)
+        public async Task<IActionResult> PutRolesPermisos([FromRoute] decimal id, [FromBody] Common.Entity.Models.RolesPermisos rolesPermisos)
         {
             if (!ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace PreOrclApi.Controllers
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRolesPermisos([FromRoute] int id)
+        public async Task<IActionResult> DeleteRolesPermisos([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {

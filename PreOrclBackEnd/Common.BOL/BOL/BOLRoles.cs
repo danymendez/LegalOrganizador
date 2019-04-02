@@ -40,7 +40,7 @@ namespace Common.BOL.BOL
             return listaRoles;
         }
 
-        public async Task<Roles> GetRol(int id)
+        public async Task<Roles> GetRol(decimal id)
         {
             Roles _rol = null;
             Task<Roles> t = Task.Run(() => {
@@ -55,7 +55,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<Roles> UpdateRoles(int id, Roles roles)
+        public async Task<Roles> UpdateRoles(decimal id, Roles roles)
         {
             Roles _rol = null;
             Task<Roles> t = Task.Run(() => {
@@ -70,7 +70,7 @@ namespace Common.BOL.BOL
             return await t;
         }
 
-        public async Task<Roles> DeleteRoles(int id)
+        public async Task<Roles> DeleteRoles(decimal id)
         {
             Roles _rol = null;
             Task<Roles> t = Task.Run(() => {

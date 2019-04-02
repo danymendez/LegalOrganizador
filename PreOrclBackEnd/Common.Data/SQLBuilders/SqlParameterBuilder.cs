@@ -34,7 +34,7 @@ namespace Common.Data.SQLBuilders
             return sqlParameter;
         }
 
-        public OracleParameterCollection UpdateParametersBuilder<T>(long id,T entity) {
+        public OracleParameterCollection UpdateParametersBuilder<T>(decimal id,T entity) {
            
                 OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
             sqlQueryBuilder.TableAttributeBindName<T>("\"", ":");
@@ -52,7 +52,7 @@ namespace Common.Data.SQLBuilders
                 return sqlParameter;            
         }
 
-        public OracleParameterCollection SelectOneParametersBuilder<T>(long id)
+        public OracleParameterCollection SelectOneParametersBuilder<T>(decimal id)
         {
             Type entity = typeof(T);
             OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
@@ -71,7 +71,7 @@ namespace Common.Data.SQLBuilders
             return sqlParameter;
         }
 
-        public OracleParameterCollection DeleteParameterBuilder<T>(long id) {
+        public OracleParameterCollection DeleteParameterBuilder<T>(decimal id) {
             Type entity = typeof(T);
             OracleParameterCollection sqlParameter = new OracleCommand().Parameters;
             sqlQueryBuilder.TableAttributeBindName<T>("\"", ":");

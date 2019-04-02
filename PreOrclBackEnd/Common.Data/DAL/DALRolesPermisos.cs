@@ -25,17 +25,17 @@ namespace Common.Data.DAL
             return GetAll<RolesPermisos>();
         }
 
-        public RolesPermisos DeleteRolesPermisos(long id)
+        public RolesPermisos DeleteRolesPermisos(decimal id)
         {
             return Delete<RolesPermisos>(id);
         }
 
-        public RolesPermisos UpdateRolesPermisos(long id, RolesPermisos roles)
+        public RolesPermisos UpdateRolesPermisos(decimal id, RolesPermisos roles)
         {
             return Update(id, roles);
         }
 
-        public RolesPermisos GetRolesPermisos(long id)
+        public RolesPermisos GetRolesPermisos(decimal id)
         {
             return Get<RolesPermisos>(id);
         }

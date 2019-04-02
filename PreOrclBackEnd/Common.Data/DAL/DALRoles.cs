@@ -28,18 +28,18 @@ namespace Common.Data.DAL
             return GetAll<Roles>();
         }
 
-        public Roles DeleteRol(int id)
+        public Roles DeleteRol(decimal id)
         {
             return Delete<Roles>(id);
         }
 
-        public Roles UpdateRoles(long id, Roles roles)
+        public Roles UpdateRoles(decimal id, Roles roles)
         {
 
             return Update(id, roles);
         }
 
-        public Roles GetRol(long id)
+        public Roles GetRol(decimal id)
         {
             return Get<Roles>(id);
         }

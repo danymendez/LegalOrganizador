@@ -33,7 +33,7 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSisPerPersona([FromRoute] int id)
+        public async Task<IActionResult> GetSisPerPersona([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +52,7 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSisPerPersona([FromRoute] int id, [FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
+        public async Task<IActionResult> PutSisPerPersona([FromRoute] decimal id, [FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace PreOrclApi.Controllers
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSisPerPersona([FromRoute] int id)
+        public async Task<IActionResult> DeleteSisPerPersona([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {

@@ -32,7 +32,7 @@ namespace PreOrclApi.Controllers
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPermisos([FromRoute] int id)
+        public async Task<IActionResult> GetPermisos([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPermisos([FromRoute] int id, [FromBody] Common.Entity.Models.Permisos permisos)
+        public async Task<IActionResult> PutPermisos([FromRoute] decimal id, [FromBody] Common.Entity.Models.Permisos permisos)
         {
             if (!ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace PreOrclApi.Controllers
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePermisos([FromRoute] int id)
+        public async Task<IActionResult> DeletePermisos([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
@@ -123,9 +123,11 @@ namespace PreOrclApi.Controllers
             return Ok(roles);
         }
 
-        private bool RolesPermisosExists(int id)
+        private bool RolesPermisosExists(decimal id)
         {
-            return _context.SisPerPersona.Any(e => e.per_IDPER == id);
+            // return _context.SisPerPersona.Any(e => e.per_IDPER == id);
+            return false;
+            return false;
         }
     }
 }
