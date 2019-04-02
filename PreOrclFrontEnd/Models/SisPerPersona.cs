@@ -10,7 +10,7 @@ namespace PreOrclFrontEnd.Models
     public class SisPerPersona
     {
         [Key]
-        public int per_IDPER { get; set; }
+        public decimal per_IDPER { get; set; }
 
         [Display(Name ="Nombre / Razón",Prompt ="Nombre / Razón")]
         [Required(ErrorMessage = "Requerido")]

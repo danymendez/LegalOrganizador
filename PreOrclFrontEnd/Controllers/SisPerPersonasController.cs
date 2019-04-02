@@ -42,7 +42,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Details/5
-        public IActionResult Details(int? id)
+        public IActionResult Details(decimal? id)
         {
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/DetailsPartial/5
-        public IActionResult DetailsPartial(int? id)
+        public IActionResult DetailsPartial(decimal? id)
         {
             if (id == null)
             {
@@ -105,7 +105,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Edit/5
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(decimal? id)
         {
             if (id == null)
             {
@@ -125,7 +125,7 @@ namespace PreOrclFrontEnd.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
+        public IActionResult Edit(decimal id, [Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
         {
             if (id != sisPerPersona.per_IDPER)
             {
@@ -157,6 +157,11 @@ namespace PreOrclFrontEnd.Controllers
             return View(sisPerPersona);
         }
 
+        private bool SisPerPersonaExists(decimal per_IDPER)
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: SisPerPersonas/Delete/5
         public IActionResult Delete(int? id)
         {
@@ -177,7 +182,7 @@ namespace PreOrclFrontEnd.Controllers
         // POST: SisPerPersonas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(decimal id)
         {
             SisPerPersona entity = await Task.Run(()=> {
                 var sisPerPersona = generic.Delete<SisPerPersona>("SisPerPersonas/", id);
@@ -189,9 +194,6 @@ namespace PreOrclFrontEnd.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SisPerPersonaExists(int id)
-        {
-            return generic.Get<SisPerPersona>("SisPerPersonas/", id)!=null;
-        }
+       
     }
 }

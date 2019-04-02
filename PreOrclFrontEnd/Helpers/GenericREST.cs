@@ -19,7 +19,7 @@ namespace PreOrclFrontEnd.Helpers
             BASEURL = uriHelpers.BaseUrl;
         }
 
-        public virtual T Get<T>(string urlMethod, int? id)
+        public virtual T Get<T>(string urlMethod,decimal? id)
         {
             T entity = default(T);
             try
@@ -107,7 +107,7 @@ namespace PreOrclFrontEnd.Helpers
             return clase;
         }
 
-        public virtual bool Put<T>(string Method, int? id, T clase)
+        public virtual bool Put<T>(string Method, decimal? id, T clase)
         {
             bool isSuccess = false;
             try
@@ -127,7 +127,7 @@ namespace PreOrclFrontEnd.Helpers
             return isSuccess;
         }
 
-        public virtual T Delete<T>(string urlMethod,int? id)
+        public virtual T Delete<T>(string urlMethod,decimal? id)
         {
             try
             {

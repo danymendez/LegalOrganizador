@@ -7,6 +7,6 @@ namespace PreOrclFrontEnd.Models
 {
     public class Roles
     {
-        public double IdRol { get; set; }
+        public decimal IdRol { get; set; }
     }
 }
