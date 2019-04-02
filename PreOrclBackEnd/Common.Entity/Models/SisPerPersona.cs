@@ -12,7 +12,7 @@ namespace Common.Entity.Models
     {
         [PrimaryKey]
         [Key]
-        public int per_IDPER { get; set; }
+        public decimal per_IDPER { get; set; }
 
         [Required]
         [MaxLength(250)]

@@ -11,11 +11,11 @@ namespace Common.Entity.Models
         [PrimaryKey]
         [Field(Name = "IDROLPERMISO")]
 
-        public int IdRolPermiso { get; set; }
+        public decimal IdRolPermiso { get; set; }
         [Field(Name = "IDROL")]
-        public int IdRol { get; set; }
+        public decimal IdRol { get; set; }
         [Field(Name = "IDPERMISO")]
-        public int IdPermiso { get; set; }
+        public decimal IdPermiso { get; set; }
 
         [Field(Name = "CREATEDAT")]
         public DateTime CreatedAt { get; set; }

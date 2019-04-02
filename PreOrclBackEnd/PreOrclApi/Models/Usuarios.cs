@@ -11,7 +11,7 @@ namespace PreOrclApi.Models
     {
         [PrimaryKey(AutoIncrement = false)]
         
-        public int IdUsuario { get; set; }
+        public double IdUsuario { get; set; }
         public string Usuario { get; set; }
         public string Password { get; set; }
     }

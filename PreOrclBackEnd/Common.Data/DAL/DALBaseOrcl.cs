@@ -114,12 +114,12 @@ namespace Common.Data.DAL
 
 
 
-                            int id;
-                            bool EsEntero = int.TryParse(reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]].ToString(), out id);
+                            //int id;
+                            //bool EsEntero = int.TryParse(reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]].ToString(), out id);
 
-                            if (EsEntero && p.PropertyType == typeof(int))
-                                p.SetValue(obj, id);
-                            else
+                            //if (EsEntero && p.PropertyType == typeof(int))
+                            //    p.SetValue(obj, id);
+                            //else
                                 p.SetValue(obj, reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]] == DBNull.Value ? null : reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]]);
 
                         }
@@ -178,12 +178,12 @@ namespace Common.Data.DAL
 
 
 
-                            int ids;
-                            bool EsEntero = int.TryParse(reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]].ToString(), out ids);
+                            //int ids;
+                            //bool EsEntero = int.TryParse(reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]].ToString(), out ids);
 
-                            if (EsEntero && p.PropertyType == typeof(int))
-                                p.SetValue(obj, ids);
-                            else
+                            //if (EsEntero && p.PropertyType == typeof(int))
+                            //    p.SetValue(obj, ids);
+                            //else
                                 p.SetValue(obj, reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]] == DBNull.Value ? null : reader[sqlQueryBuilder.tablesAttributesWithEncloseSign.FieldsDict[p.Name]]);
 
                         }

@@ -10,7 +10,7 @@ namespace Common.Entity.Models
     {
         [PrimaryKey]
         [Field(Name = "IDPERMISO")]
-        public int IdPermiso { get; set; }
+        public decimal IdPermiso { get; set; }
         [Field(Name ="NOMBREPERMISO")]
         public string NombrePermiso { get; set; }
         [Field(Name = "CREATEDAT")]

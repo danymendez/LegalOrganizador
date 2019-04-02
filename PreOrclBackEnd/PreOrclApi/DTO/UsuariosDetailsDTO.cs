@@ -7,7 +7,7 @@ namespace PreOrclApi.DTO
 {
     public class UsuariosDetailsDTO
     {
-        public int IdUsuario { get; set; }
+        public decimal IdUsuario { get; set; }
         public string Usuario { get; set; }
 
         public string Password { get; set; }
@@ -22,7 +22,7 @@ namespace PreOrclApi.DTO
 
         public string TokenRefresh { get; set; }
 
-        public int IdRol { get; set; }
+        public decimal IdRol { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }

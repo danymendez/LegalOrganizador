@@ -11,7 +11,7 @@ namespace Common.Entity.Models
     {
         [PrimaryKey(AutoIncrement = true)]
         [Field(Name = "IDUSUARIO")]
-        public int IdUsuario { get; set; }
+        public decimal IdUsuario { get; set; }
         [Field(Name = "USUARIO")]
         public string Usuario { get; set; }
         [Field(Name = "PASSWORD")]
@@ -27,7 +27,7 @@ namespace Common.Entity.Models
         [Field(Name = "TOKENEXPIREDAT")]
         public DateTime? TokenExpiredAt { get; set; }
         [Field(Name = "IDROL")]
-        public int IdRol { get; set; }
+        public decimal IdRol { get; set; }
         [Field(Name = "TOKENREFRESH")]
         public string TokenRefresh { get; set; }
         [Field(Name = "CREATEDAT")]
