@@ -163,7 +163,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Delete/5
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(decimal? id)
         {
             if (id == null)
             {

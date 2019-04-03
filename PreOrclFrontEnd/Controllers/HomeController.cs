@@ -42,7 +42,7 @@ namespace PreOrclFrontEnd.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-
+                if(_memoryCache.Get("foto") !=null)
                 ViewData["img"] = Encoding.ASCII.GetString(_memoryCache.Get("foto") as byte[]);
             }
 
