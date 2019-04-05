@@ -40,7 +40,7 @@ namespace PreOrclFrontEnd.Helpers
             return entity;
         }
 
-        public virtual List<T> GetAll<T>(string urlMethod)
+        public virtual async Task<List<T>> GetAll<T>(string urlMethod)
         {
             List<T> lista = new List<T>();
             try
@@ -51,7 +51,7 @@ namespace PreOrclFrontEnd.Helpers
                 HttpResponseMessage response = client.GetAsync(uri + urlMethod).Result;
 
                 if (response.IsSuccessStatusCode)
-                    lista = response.Content.ReadAsAsync<List<T>>().Result;
+                    lista = await response.Content.ReadAsAsync<List<T>>();
 
             }
             catch (Exception ex)

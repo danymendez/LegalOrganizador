@@ -30,15 +30,11 @@ namespace PreOrclFrontEnd.Controllers
         // GET: SisPerPersonas
         public async Task<IActionResult> Index()
         {
-            Task<List<SisPerPersona>> t = Task.Run(()=> {
-                List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
-                return listaSisPersona;
-            });
-         
+            List<SisPerPersona> listaSisPersona = await generic.GetAll<SisPerPersona>("SisPerPersonas");
+        
             ViewBag.PersonasClassCssNav = "active";
 
-            var listado = await t;
-            return View(listado);
+            return View(listaSisPersona);
         }
 
         // GET: SisPerPersonas/Details/5

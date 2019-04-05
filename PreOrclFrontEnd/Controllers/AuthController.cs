@@ -146,7 +146,7 @@ namespace PreOrclFrontEnd.Controllers
         [NonAction]
         public bool ExistUsuario(string usuario) {
 
-            return generic.GetAll<Usuarios>("Usuarios").Where(c=>c.Usuario.Trim().Equals(usuario.Trim())).Count()>0;
+            return generic.GetAll<Usuarios>("Usuarios").Result.Where(c=>c.Usuario.Trim().Equals(usuario.Trim())).Count()>0;
 
         }
     }

@@ -45,15 +45,8 @@ namespace PreOrclFrontEnd.Controllers
                 if(_memoryCache.Get("foto") !=null)
                 ViewData["img"] = Encoding.ASCII.GetString(_memoryCache.Get("foto") as byte[]);
             }
-
-            Task<List<SisPerPersona>> t = Task.Run(() => {
-                    List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
-                    return listaSisPersona;
-            });
-         
-            var lista = await t;
-            var viewComponent = "";
-            ViewBag.Cantidad = lista.Count(); 
+            List<SisPerPersona> listaSisPersona = await generic.GetAll<SisPerPersona>("SisPerPersonas");
+            ViewBag.Cantidad = listaSisPersona.Count(); 
             return View();
         }
 
