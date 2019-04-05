@@ -38,14 +38,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Details/5
-        public IActionResult Details(decimal? id)
+        public async Task<IActionResult> Details(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -55,14 +55,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/DetailsPartial/5
-        public IActionResult DetailsPartial(decimal? id)
+        public async Task<IActionResult> DetailsPartial(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -87,11 +87,9 @@ namespace PreOrclFrontEnd.Controllers
         {
             if (ModelState.IsValid)
             {
-                Task<SisPerPersona> t = Task.Run(()=> {
-                   return generic.Post("SisPerPersonas", sisPerPersona);
-                });
 
-                sisPerPersona = await t;
+                sisPerPersona = await generic.Post("SisPerPersonas", sisPerPersona);
+               
                 if (sisPerPersona.per_IDPER == 0) {
                     return BadRequest();
                 }
@@ -159,14 +157,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Delete/5
-        public IActionResult Delete(decimal? id)
+        public async Task<IActionResult> Delete(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -180,11 +178,8 @@ namespace PreOrclFrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(decimal id)
         {
-            SisPerPersona entity = await Task.Run(()=> {
-                var sisPerPersona = generic.Delete<SisPerPersona>("SisPerPersonas/", id);
-                return sisPerPersona;
-            });
-
+            SisPerPersona entity = await generic.Delete<SisPerPersona>("SisPerPersonas/", id);
+            
             if (entity == null)
                 return BadRequest();
             return RedirectToAction(nameof(Index));
