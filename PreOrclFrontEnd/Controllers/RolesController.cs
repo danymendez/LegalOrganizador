@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
+using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
 
 namespace PreOrclFrontEnd.Controllers
@@ -21,9 +22,11 @@ namespace PreOrclFrontEnd.Controllers
 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Roles> listaRoles = await generic.GetAll<Roles>("Roles");
+            ViewBag.PersonasClassCssNav = "active";
+            return View(listaRoles);
         }
     }
 }
