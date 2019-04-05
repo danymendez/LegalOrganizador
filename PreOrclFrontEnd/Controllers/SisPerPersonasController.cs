@@ -101,14 +101,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/Edit/5
-        public IActionResult Edit(decimal? id)
+        public async Task<IActionResult> Edit(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/",id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/",id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -121,7 +121,7 @@ namespace PreOrclFrontEnd.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(decimal id, [Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
+        public async Task<IActionResult> Edit(decimal id, [Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
         {
             if (id != sisPerPersona.per_IDPER)
             {
@@ -132,7 +132,7 @@ namespace PreOrclFrontEnd.Controllers
             {
                 try
                 {
-                  bool isSaved =  generic.Put<SisPerPersona>("SisPerPersonas/",id,sisPerPersona);
+                  bool isSaved =  await generic.Put("SisPerPersonas/",id,sisPerPersona);
                     if (!isSaved) {
                         return BadRequest();
                     }

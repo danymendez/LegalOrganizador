@@ -73,7 +73,7 @@ namespace PreOrclFrontEnd.Controllers
                 return BadRequest();
             }
             string hashPassword = Criptografia.Encrypt(Password);
-            var entity = generic.PostAuth<Usuarios>("Usuarios/Autenticar", Usuario, HttpUtility.UrlEncode(hashPassword));
+            var entity = await generic.PostAuth<Usuarios>("Usuarios/Autenticar", Usuario, HttpUtility.UrlEncode(hashPassword));
 
             if (!ExistUsuario(Usuario)) {
                 ViewData["msjLogin"] = "Usuario No existe en nuestros registros";
