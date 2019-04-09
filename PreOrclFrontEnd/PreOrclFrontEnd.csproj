@@ -35,4 +35,10 @@
     <Folder Include="wwwroot\js\NewFolder\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Roles\_CreatePartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>
