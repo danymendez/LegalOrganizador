@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
+using PreOrclFrontEnd.ViewModels;
 
 namespace PreOrclFrontEnd.Controllers
 {
@@ -27,6 +28,13 @@ namespace PreOrclFrontEnd.Controllers
             List<Roles> listaRoles = await generic.GetAll<Roles>("Roles");
             ViewBag.PersonasClassCssNav = "active";
             return View(listaRoles);
+        }
+
+        public IActionResult CreatePartial()
+        {
+            VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
+            vwModel.Permisos = generic.GetAll<Permisos>("Permisos").Result;
+            return PartialView("../Roles/_CreatePartial", vwModel);
         }
     }
 }
