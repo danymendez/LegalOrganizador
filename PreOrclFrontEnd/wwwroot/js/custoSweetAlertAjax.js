@@ -108,7 +108,7 @@ var onSuccess = function (context) {
         closeOnClickOutside: false,
         buttons: {
             cancel: {
-                text: "Agregar otra persona",
+                text: "Agregar otro Registro",
                 value: null,
                 visible: isAddNew,
                 className: "btn-default",
