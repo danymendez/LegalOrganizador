@@ -10,7 +10,7 @@ namespace PreOrclFrontEnd.Models
     {
         [Key]
         public decimal IdRol { get; set; }
- 
+        [Required]
         public string NombreRol { get; set; }
 
         public DateTime CreatedAt { get; set; }

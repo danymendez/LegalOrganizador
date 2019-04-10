@@ -33,8 +33,32 @@ namespace PreOrclFrontEnd.Controllers
         public IActionResult CreatePartial()
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
-            vwModel.Permisos = generic.GetAll<Permisos>("Permisos").Result;
+            vwModel.VwModelPermisos = generic.GetAll<VwModelPermisos>("Permisos").Result;
             return PartialView("../Roles/_CreatePartial", vwModel);
         }
+        public async Task<IActionResult> Create(VwModelRolesPermisos vwModelRolesPermisos)
+        {
+            if (ModelState.IsValid) {
+                Roles roles = new Roles { IdRol = 0, NombreRol = vwModelRolesPermisos.NombreRol, CreatedAt = DateTime.Now, Inactivo = 0 };
+                roles = await generic.Post("Roles", roles);
+                foreach (var item in vwModelRolesPermisos.VwModelPermisos) {
+
+                    if (item.Seleccionado) {
+                        RolesPermisos rolesPermisos = await generic.Post("RolesPermisos",
+                                                                            new RolesPermisos {
+                                                                                IdRolPermiso = 0,
+                                                                                IdRol = roles.IdRol,
+                                                                                IdPermiso = item.IdPermiso,
+                                                                                CreatedAt = DateTime.Now,
+                                                                                Inactivo = 0
+                                                                            });
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+            return PartialView("../Roles/_CreatePartial", vwModelRolesPermisos);
+        }
+
     }
 }

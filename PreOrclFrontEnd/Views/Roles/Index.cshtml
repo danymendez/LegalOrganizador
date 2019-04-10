@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <div class="row form-group">
                             <div class="col-sm-12">
-                                <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("CreatePartial","Roles")'})" class="btn btn-primary" title="Agregar Rol">Agregar Rol</a>
+                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("CreatePartial","Roles")'})" class="btn btn-primary" title="Agregar Rol">Agregar Rol</a>
                             </div>
                         </div>
                         <div class="row">
@@ -63,7 +63,7 @@
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.Inactivo)
                                                     </th>
-                                                   
+
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -75,9 +75,9 @@
                                                             @Html.DisplayFor(modelItem => item.NombreRol)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.Inactivo)
+                                                           @item.Inactivo.ToString().Replace("0","No").Replace("1","Sí")
                                                         </td>
-                                                        
+
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-sm-3">
@@ -105,7 +105,7 @@
             </div>
 
         </div>
-        <partial name="../Modals/_LargeModalPartial" />
+        <partial name="../Modals/_SmallModalPartial" />
     </div>
 
 </div>
@@ -123,5 +123,7 @@
     <script src="~/templateAdmin/assets/js/init/datatables-init.js"></script>
     <script src="~/js/dataTableLanguageESConfig.js"></script>
     <script src="~/js/modalConfig.js"></script>
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/custoSweetAlertAjax.js"></script>
 
 }

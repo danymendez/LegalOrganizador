@@ -1,17 +1,19 @@
 ﻿@model PreOrclFrontEnd.ViewModels.VwModelRolesPermisos
 
-    <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Crear Rol de Sistema</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<div class="modal-header">
+    <h5 class="modal-title" id="smallModalLabel">Crear Rol de Sistema</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 
-
+<form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+      data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
     <div class="modal-body">
 
         <div class="card-body card-block">
+
             <div class="row form-group">
                 <div class="col-sm-12">
                     <label asp-for="NombreRol" class="form-control-label"></label>
@@ -22,29 +24,33 @@
                     <span asp-validation-for="NombreRol" class="text-danger"></span>
                 </div>
 
-                @for (int i = 0; i < Model.VwModelPermisos.Count; i++)
-                {
-                <div class="col-sm-6">
-                    <label asp-for="VwModelPermisos[i].NombrePermiso" class="form-control-label"></label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                        <input asp-for="VwModelPermisos[i].NombrePermiso" class="form-control" disabled="disabled" />
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-pull-4 col-sm-6">
+                    <div class="form-check">
+                        @for (int i = 0; i < Model.VwModelPermisos.Count; i++)
+                        {
+                            <input asp-for="VwModelPermisos[i].IdPermiso" type="hidden" />
+                            <div class="checkbox">
+                                <label for="VwModelPermisos[i].NombrePermiso" class="form-check-label">
+                                    <input class="form-check-input " asp-for="VwModelPermisos[i].Seleccionado" type="checkbox" />
+                                    @Model.VwModelPermisos[i].NombrePermiso
+                                </label>
+                            </div>
+                        }
                     </div>
                 </div>
-                        }
-                        @*<label asp-for="per_apellido_comercial" class="form-control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                    <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
-                </div>
-                <span asp-validation-for="per_apellido_comercial" class="text-danger"></span>*@
-                   
-                </div>
+            </div>
+
+
         </div>
 
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
         @*<a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.per_IDPER">Editar</a>*@
     </div>
+</form>
 
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -36,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Modals\_SmallModalPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Roles\_CreatePartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
