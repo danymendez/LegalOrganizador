@@ -34,9 +34,54 @@ namespace PreOrclFrontEnd.Controllers
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
             vwModel.VwModelPermisos = generic.GetAll<VwModelPermisos>("Permisos").Result;
-            return PartialView("../Roles/_CreatePartial", vwModel);
+            return PartialView("../Roles/_CreateOrEditPartial", vwModel);
         }
-        public async Task<IActionResult> Create(VwModelRolesPermisos vwModelRolesPermisos)
+
+        public async Task<IActionResult> EditPartial(decimal? id)
+        {
+            VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
+            vwModel.VwModelPermisos = new List<VwModelPermisos>();
+            Roles roles = new Roles();
+            roles = await generic.Get<Roles>("Roles/", id);
+            vwModel.IdRol = roles.IdRol;
+            vwModel.NombreRol = roles.NombreRol;
+            List<Permisos> listaPermisos = await generic.GetAll<Permisos>("Permisos");
+            var rolesPermisos = from rolPermiso in await generic.GetAll<RolesPermisos>("RolesPermisos")
+                                join permiso in listaPermisos on rolPermiso.IdPermiso equals permiso.IdPermiso
+                                where rolPermiso.IdRol == id select new Permisos
+                                                                                {
+                                                                                 //  Seleccionado = permiso.Inactivo==0?false:true,
+                                                                                   IdPermiso = permiso.IdPermiso,
+                                                                                   NombrePermiso = permiso.NombrePermiso,
+                                                                                   CreatedAt = permiso.CreatedAt,
+                                                                                   UpdatedAt = permiso.UpdatedAt,
+                                                                                   InactivatedAt = permiso.InactivatedAt,
+                                                                                   Inactivo = permiso.Inactivo
+                                                                                   
+                                                                                };
+
+
+
+            foreach (var item in listaPermisos){
+
+                VwModelPermisos vwModelPermisos = new VwModelPermisos
+                {
+                    IdPermiso = item.IdPermiso,
+                    NombrePermiso = item.NombrePermiso,
+                    CreatedAt = item.CreatedAt,
+                    UpdatedAt = item.UpdatedAt,
+                    InactivatedAt = item.InactivatedAt,
+                    Inactivo = item.Inactivo,
+                    Seleccionado = rolesPermisos.Where(c => c.IdPermiso == item.IdPermiso).Count() == 0 ? false : true,
+                };
+
+                vwModel.VwModelPermisos.Add(vwModelPermisos);
+
+            }
+
+            return PartialView("../Roles/_CreateOrEditPartial", vwModel);
+        }
+        public async Task<IActionResult> CreateOrEdit(VwModelRolesPermisos vwModelRolesPermisos)
         {
             if (ModelState.IsValid) {
                 Roles roles = new Roles { IdRol = 0, NombreRol = vwModelRolesPermisos.NombreRol, CreatedAt = DateTime.Now, Inactivo = 0 };
@@ -57,7 +102,7 @@ namespace PreOrclFrontEnd.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return PartialView("../Roles/_CreatePartial", vwModelRolesPermisos);
+            return PartialView("../Roles/_CreateOrEditPartial", vwModelRolesPermisos);
         }
 
     }

@@ -39,7 +39,7 @@
     <Content Update="Views\Modals\_SmallModalPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Roles\_CreatePartial.cshtml">
+    <Content Update="Views\Roles\_CreateOrEditPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

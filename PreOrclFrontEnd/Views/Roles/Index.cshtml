@@ -81,7 +81,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-sm-3">
-                                                                    <a asp-action="Edit" asp-route-id="@item.IdRol" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("EditPartial","Roles")','Id':@item.IdRol})" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
                                                                 </div>
                                                                 <div class="col-sm-3">
                                                                     @*<a href="#" data-toggle="modal" data-target="#largeModal" onclick="LargeModalDetailOnclick(@item.IdRol)" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>*@

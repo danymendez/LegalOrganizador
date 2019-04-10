@@ -48,7 +48,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
+        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("CreateOrEdit")','@Url.Action("Index")')" class="btn btn-default" />
         @*<a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.per_IDPER">Editar</a>*@
     </div>
 </form>
