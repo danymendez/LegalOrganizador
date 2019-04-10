@@ -40,7 +40,7 @@
                         <strong>Crear Persona</strong> <small></small>
                     </div>
                     
-                    <form asp-action="Create" id="createForm"  data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                    <form asp-action="Create" asp-antiforgery="true" id="createForm"  data-ajax-begin="onBegin" data-ajax-complete="onComplete"
                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">

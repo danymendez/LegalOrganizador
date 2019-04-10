@@ -12,14 +12,14 @@
     <div class="modal-body">
 
         <div class="card-body card-block">
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-6">
                     <label asp-for="per_nombre_razon" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
                         <input asp-for="per_nombre_razon" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_nombre_razon" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
                     <label asp-for="per_apellido_comercial" class="form-control-label"></label>
@@ -27,17 +27,17 @@
                         <div class="input-group-addon"><i class="fa fa-users"></i></div>
                         <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_apellido_comercial" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-6">
                     <label asp-for="per_nit" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-check-square-o"></i></div>
                         <input asp-for="per_nit" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_nit" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
                     <label asp-for="per_dui_nrc" class="form-control-label"></label>
@@ -45,17 +45,17 @@
                         <div class="input-group-addon"><i class="fa fa-info"></i></div>
                         <input asp-for="per_dui_nrc" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_dui_nrc" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-6">
                     <label asp-for="per_direccion_departamento" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-sitemap"></i></div>
                         <input asp-for="per_direccion_departamento" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_direccion_departamento" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
                     <label asp-for="per_direccion_municipio" class="form-control-label"></label>
@@ -63,17 +63,17 @@
                         <div class="input-group-addon"><i class="fa fa-puzzle-piece"></i></div>
                         <input asp-for="per_direccion_municipio" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_direccion_municipio" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-6">
                     <label asp-for="per_direccion" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
                         <input asp-for="per_direccion" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_direccion" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
                     <label asp-for="per_telefono" class="form-control-label"></label>
@@ -81,17 +81,17 @@
                         <div class="input-group-addon"><i class="fa fa-phone-square"></i></div>
                         <input asp-for="per_telefono" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_telefono" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-6">
                     <label asp-for="per_movil" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-mobile"></i></div>
                         <input asp-for="per_movil" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_movil" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
                     <label asp-for="per_email" class="form-control-label"></label>
@@ -99,17 +99,17 @@
                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                         <input asp-for="per_email" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_email" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-6">
                     <label asp-for="per_codigo" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-tag"></i></div>
                         <input asp-for="per_codigo" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_codigo" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6">
                     <label asp-for="per_nacionalidad" class="form-control-label"></label>
@@ -117,17 +117,17 @@
                         <div class="input-group-addon"><i class="fa fa-flag"></i></div>
                         <input asp-for="per_nacionalidad" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_nacionalidad" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-sm-4">
                     <label asp-for="per_tipo_contribullente" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa  fa-folder-o"></i></div>
                         <input asp-for="per_tipo_contribullente" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_tipo_contribullente" class="text-danger"></span>
                 </div>
                 <div class="col-sm-4">
                     <label asp-for="per_dir_cli" class="form-control-label"></label>
@@ -135,7 +135,7 @@
                         <div class="input-group-addon"><i class="fa fa-location-arrow"></i></div>
                         <input asp-for="per_dir_cli" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_dir_cli" class="text-danger"></span>
                 </div>
                 <div class="col-sm-4">
                     <label asp-for="per_cobros" class="form-control-label"></label>
@@ -143,7 +143,7 @@
                         <div class="input-group-addon"><i class="fa fa-level-up"></i></div>
                         <input asp-for="per_cobros" class="form-control" disabled="disabled" />
                     </div>
-
+                    <span asp-validation-for="per_cobros" class="text-danger"></span>
                 </div>
             </div>
         </div>

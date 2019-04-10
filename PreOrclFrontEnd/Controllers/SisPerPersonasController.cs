@@ -8,44 +8,44 @@ using Microsoft.EntityFrameworkCore;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using PreOrclFrontEnd.Utilidades;
+using Microsoft.Extensions.Options;
 
 namespace PreOrclFrontEnd.Controllers
 {
     [Authorize]
-    
     public class SisPerPersonasController : Controller
     {
-        private readonly PreOrclFrontEndContext _context;
+ 
         GenericREST generic;
 
-        public SisPerPersonasController(PreOrclFrontEndContext context)
+        public SisPerPersonasController(IOptions<UriHelpers> configuration)
         {
-            _context = context;
-            generic = new GenericREST();
+        
+            generic = new GenericREST(configuration.Value);
+
         }
+
 
         // GET: SisPerPersonas
         public async Task<IActionResult> Index()
         {
-            Task<List<SisPerPersona>> t = Task.Run(()=> {
-                List<SisPerPersona> listaSisPersona = generic.GetAll<SisPerPersona>("SisPerPersonas");
-                return listaSisPersona;
-            });
-
+            List<SisPerPersona> listaSisPersona = await generic.GetAll<SisPerPersona>("SisPerPersonas");
+        
             ViewBag.PersonasClassCssNav = "active";
-           
-            return View(await t);
+
+            return View(listaSisPersona);
         }
 
         // GET: SisPerPersonas/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -55,14 +55,14 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         // GET: SisPerPersonas/DetailsPartial/5
-        public IActionResult DetailsPartial(int? id)
+        public async Task<IActionResult> DetailsPartial(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -87,25 +87,26 @@ namespace PreOrclFrontEnd.Controllers
         {
             if (ModelState.IsValid)
             {
-                Task<SisPerPersona> t = Task.Run(()=> {
-                   return generic.Post("SisPerPersonas", sisPerPersona);
-                });
 
-                sisPerPersona = await t;
+                sisPerPersona = await generic.Post("SisPerPersonas", sisPerPersona);
+               
+                if (sisPerPersona.per_IDPER == 0) {
+                    return BadRequest();
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(sisPerPersona);
         }
 
         // GET: SisPerPersonas/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/",id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/",id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -118,7 +119,7 @@ namespace PreOrclFrontEnd.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
+        public async Task<IActionResult> Edit(decimal id, [Bind("per_IDPER,per_nombre_razon,per_apellido_comercial,per_nit,per_dui_nrc,per_direccion_departamento,per_direccion_municipio,per_direccion,per_telefono,per_movil,per_email,per_codigo,per_nacionalidad,per_tipo_contribullente,per_dir_cli,per_cobros")] SisPerPersona sisPerPersona)
         {
             if (id != sisPerPersona.per_IDPER)
             {
@@ -129,7 +130,10 @@ namespace PreOrclFrontEnd.Controllers
             {
                 try
                 {
-                  bool a =  generic.Put<SisPerPersona>("SisPerPersonas/",id,sisPerPersona);
+                  bool isSaved =  await generic.Put("SisPerPersonas/",id,sisPerPersona);
+                    if (!isSaved) {
+                        return BadRequest();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -147,15 +151,20 @@ namespace PreOrclFrontEnd.Controllers
             return View(sisPerPersona);
         }
 
+        private bool SisPerPersonaExists(decimal per_IDPER)
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: SisPerPersonas/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(decimal? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sisPerPersona = generic.Get<SisPerPersona>("SisPerPersonas/", id);
+            var sisPerPersona = await generic.Get<SisPerPersona>("SisPerPersonas/", id);
             if (sisPerPersona == null)
             {
                 return NotFound();
@@ -167,16 +176,15 @@ namespace PreOrclFrontEnd.Controllers
         // POST: SisPerPersonas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(decimal id)
         {
-            var sisPerPersona =  generic.Delete<SisPerPersona>("SisPerPersonas/", id);
-          
+            SisPerPersona entity = await generic.Delete<SisPerPersona>("SisPerPersonas/", id);
+            
+            if (entity == null)
+                return BadRequest();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SisPerPersonaExists(int id)
-        {
-            return generic.Get<SisPerPersona>("SisPerPersonas/", id)!=null;
-        }
+       
     }
 }

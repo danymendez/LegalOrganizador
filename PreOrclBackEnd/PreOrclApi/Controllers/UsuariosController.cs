@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PreOrclApi.DTO;
 using PreOrclApi.Models;
+using PreOrclApi.Utilidades;
 
 namespace PreOrclApi.Controllers
 {
@@ -16,30 +17,30 @@ namespace PreOrclApi.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly PreOrclApiContext _context;
+        private BOLUsuarios bolUsuarios;
         public UsuariosController(PreOrclApiContext context)
         {
             _context = context;
-
+            bolUsuarios = new BOLUsuarios();
         }
 
-        // GET: api/SisPerPersonas
-        [HttpPost("{Usuario,Password}")]
-        [Route("Autenticar")]
-        public async Task<UsuariosDTO> Autenticar(string Usuario, string Password)
+        //GET: api/SisPerPersonas
+       [HttpPost("Autenticar", Name ="Autenticar")]
+       //[Route("Autenticar")]
+        public async Task<IActionResult> Autenticar(string Usuario, string Password) // operationId = "Autenticar"
         {
-            BOLUsuarios bolUsuarios = new BOLUsuarios();
             var usuario = await bolUsuarios.Autenticar(Usuario, Password);
-            return new UsuariosDTO {
-                IdUsuario=usuario.IdUsuario,
-                Nombre=usuario.Nombre,
-                Apellido=usuario.Apellido,
-                Usuario=usuario.Usuario
-            };
+            return Ok(new UsuariosDTO
+            {
+                IdUsuario = usuario.IdUsuario,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                Usuario = usuario.Usuario
+            });
         }
 
         [HttpGet]
         public async Task <IEnumerable<UsuariosDTO>> GetUsuarios() {
-            BOLUsuarios bolUsuarios = new BOLUsuarios();
             var listaUsuarios = await bolUsuarios.GetUsuarios();
             var listaDto = from usuarios in listaUsuarios
                            select new UsuariosDTO
@@ -48,26 +49,41 @@ namespace PreOrclApi.Controllers
                                Nombre=usuarios.Nombre,
                                Apellido=usuarios.Apellido,
                                Usuario=usuarios.Usuario,
+                               Token = usuarios.Token,
+                               TokenExpired = usuarios.TokenExpiredAt,
+                               TokenRefresh = usuarios.TokenRefresh,
+                               CreatedAt = usuarios.CreatedAt,
+                               UpdatedAt = usuarios.UpdatedAt,
+                               InactivatedAt = usuarios.InactivatedAt,
+                               Inactivo = usuarios.Inactivo
                            };
             return listaDto;
         }
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUsuarios(int id)
+        public async Task<IActionResult> GetUsuariosById(decimal id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            BOLUsuarios bol = new BOLUsuarios();
-            var usuario = await bol.GetUsuario(id);
+            var usuario = await bolUsuarios.GetUsuario(id);
             UsuariosDetailsDTO usuariosDetailsDTO = new UsuariosDetailsDTO
             {
                 IdUsuario=usuario.IdUsuario,
                 Nombre=usuario.Nombre,
                 Apellido=usuario.Apellido,
-                Usuario=usuario.Usuario
+                Usuario=usuario.Usuario,
+                FechaNac=usuario.FechaNac,
+                Token = usuario.Token,
+                TokenExpiredAt = usuario.TokenExpiredAt,
+                TokenRefresh = usuario.TokenRefresh,
+                CreatedAt =usuario.CreatedAt,
+                IdRol = usuario.IdRol,
+                UpdatedAt = usuario.UpdatedAt,
+                InactivatedAt = usuario.InactivatedAt,
+                Inactivo = usuario.Inactivo
             };
             if (usuario == null)
             {
@@ -85,7 +101,7 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            BOLUsuarios bol = new BOLUsuarios();
+            bolUsuarios = new BOLUsuarios();
             Common.Entity.Models.Usuarios usuarioEntity = new Common.Entity.Models.Usuarios {
                 IdUsuario=pUsuariosDetailsDTO.IdUsuario,
                 Nombre=pUsuariosDetailsDTO.Nombre,
@@ -93,7 +109,7 @@ namespace PreOrclApi.Controllers
                 Usuario=pUsuariosDetailsDTO.Usuario,
                 Password=pUsuariosDetailsDTO.Password,
             };
-           var usuarioCreado = await bol.CreateUsuario(usuarioEntity);
+           var usuarioCreado = await bolUsuarios.CreateUsuario(usuarioEntity);
 
             return CreatedAtAction("GetUsuarios", new { id = usuarioCreado.IdUsuario }, pUsuariosDetailsDTO.Password=null);
         }

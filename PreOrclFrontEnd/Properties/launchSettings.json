@@ -18,7 +18,7 @@
     "PreOrclFrontEnd": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5600",
+      "applicationUrl": "http://localhost:50222",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

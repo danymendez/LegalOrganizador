@@ -1,5 +1,5 @@
 ﻿using Common.Entity.Models;
-using Data.DAL;
+using Common.Data.DAL;
 using System.Linq;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace Common.BOL.BOL
             return t;
         }
 
-        public Task<Usuarios> GetUsuario(int id) {
+        public Task<Usuarios> GetUsuario(decimal id) {
             Task<Usuarios> t = Task.Run(() =>
             {
                 using (DALDBContext context = new DALDBContext())

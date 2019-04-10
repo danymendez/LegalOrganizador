@@ -16,29 +16,30 @@ namespace PreOrclApi.Controllers
     public class SisPerPersonasController : ControllerBase
     {
         private readonly PreOrclApiContext _context;
+        BOLSisPerPersonas bol;
 
         public SisPerPersonasController(PreOrclApiContext context)
         {
             _context = context;
+            bol = new BOLSisPerPersonas();
         }
 
         // GET: api/SisPerPersonas
         [HttpGet]
         public IEnumerable<Common.Entity.Models.SisPerPersona> GetSisPerPersona()
         {
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
                 return bol.GetAllSisPerPersona();
         }
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSisPerPersona([FromRoute] int id)
+        public async Task<IActionResult> GetSisPerPersona([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
+  
             var sisPerPersona = await bol.GetSisPerPersona(id);
 
             if (sisPerPersona == null)
@@ -51,7 +52,7 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSisPerPersona([FromRoute] int id, [FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
+        public async Task<IActionResult> PutSisPerPersona([FromRoute] decimal id, [FromBody] Common.Entity.Models.SisPerPersona sisPerPersona)
         {
             if (!ModelState.IsValid)
             {
@@ -62,8 +63,6 @@ namespace PreOrclApi.Controllers
             {
                 return BadRequest();
             }
-
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
 
             try
             {
@@ -99,7 +98,6 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
             sisPerPersona = await bol.CreatePersona(sisPerPersona);
 
             return CreatedAtAction("GetSisPerPersona", new { id = sisPerPersona.per_IDPER }, sisPerPersona);
@@ -107,20 +105,12 @@ namespace PreOrclApi.Controllers
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSisPerPersona([FromRoute] int id)
+        public async Task<IActionResult> DeleteSisPerPersona([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            //var sisPerPersona = await _context.SisPerPersona.FindAsync(id);
-            //if (sisPerPersona == null)
-            //{
-            //    return NotFound();
-            //}
-
-            BOLSisPerPersonas bol = new BOLSisPerPersonas();
 
            var sisPerPersona = await bol.DeleteSisPerPersona(id);
 

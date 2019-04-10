@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreOrclFrontEnd.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -10,10 +11,13 @@ namespace PreOrclFrontEnd.Helpers
     public class GenericREST
     {
 
-        //  public const string BASEURL = "https://localhost:44341/api/";
-        public const string BASEURL = "http://192.168.0.40:5000/preorclapi/api/";
-        // public const string BASEURL = "https://preorclapi2018.azurewebsites.net/api/";
-        public virtual T Get<T>(string urlMethod, int? id)
+        public  string BASEURL;
+
+        public GenericREST(UriHelpers uriHelpers) {
+            BASEURL = uriHelpers.BaseUrl;
+        }
+
+        public virtual async Task<T> Get<T>(string urlMethod,decimal? id)
         {
             T entity = default(T);
             try
@@ -21,19 +25,20 @@ namespace PreOrclFrontEnd.Helpers
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                HttpResponseMessage response = client.GetAsync(uri + urlMethod + id).Result;
+                HttpResponseMessage response =await client.GetAsync(uri + urlMethod + id);
 
                 if (response.IsSuccessStatusCode)
-                    entity = response.Content.ReadAsAsync<T>().Result;
+                    entity = await response.Content.ReadAsAsync<T>();
 
             }
             catch (Exception ex)
             {
+                ExceptionUtility.LogException(ex);
             }
             return entity;
         }
 
-        public virtual List<T> GetAll<T>(string urlMethod)
+        public virtual async Task<List<T>> GetAll<T>(string urlMethod)
         {
             List<T> lista = new List<T>();
             try
@@ -41,20 +46,20 @@ namespace PreOrclFrontEnd.Helpers
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
               
-                HttpResponseMessage response = client.GetAsync(uri + urlMethod).Result;
+                HttpResponseMessage response = await client.GetAsync(uri + urlMethod);
 
                 if (response.IsSuccessStatusCode)
-                    lista = response.Content.ReadAsAsync<List<T>>().Result;
+                    lista = await response.Content.ReadAsAsync<List<T>>();
 
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return lista;
         }
 
-        public virtual T Post<T>(string urlMethod, T clase)
+        public virtual async Task<T> Post<T>(string urlMethod, T clase)
         {
             
             try
@@ -62,21 +67,45 @@ namespace PreOrclFrontEnd.Helpers
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = client.PostAsJsonAsync(uri + urlMethod, clase).Result;
+                HttpResponseMessage response =await client.PostAsJsonAsync(uri + urlMethod, clase);
 
                 if (response.IsSuccessStatusCode)
-                    clase = response.Content.ReadAsAsync<T>().Result;
+                    clase = await response.Content.ReadAsAsync<T>();
 
 
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return clase;
         }
 
-        public virtual bool Put<T>(string Method, int? id, T clase)
+        public virtual async Task<T> PostAuth<T>(string urlMethod, string Usuario, string Password)
+        {
+            T clase = default(T);
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                string uri = BASEURL;
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await client.PostAsJsonAsync(uri + urlMethod+"?Usuario="+Usuario+"&Password="+Password,new StringContent(Usuario));
+
+                if (response.IsSuccessStatusCode)
+                    clase = await response.Content.ReadAsAsync<T>();
+
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+           
+            }
+            return clase;
+        }
+
+        public virtual async Task<bool> Put<T>(string Method, decimal? id, T clase)
         {
             bool isSuccess = false;
             try
@@ -84,34 +113,34 @@ namespace PreOrclFrontEnd.Helpers
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = client.PutAsJsonAsync(uri+Method+ id, clase).Result;
+                HttpResponseMessage response = await client.PutAsJsonAsync(uri+Method+ id, clase);
 
                 isSuccess = response.IsSuccessStatusCode;
 
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return isSuccess;
         }
 
-        public virtual T Delete<T>(string urlMethod,int? id)
+        public virtual async Task<T> Delete<T>(string urlMethod,decimal? id)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 string uri = BASEURL;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = client.DeleteAsync(uri + urlMethod+id).Result;
+                HttpResponseMessage response = await client.DeleteAsync(uri + urlMethod+id);
 
                 if (response.IsSuccessStatusCode)
-                    return response.Content.ReadAsAsync<T>().Result;
+                    return await response.Content.ReadAsAsync<T>();
 
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionUtility.LogException(ex);
             }
             return default(T);
         }

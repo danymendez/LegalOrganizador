@@ -160,7 +160,7 @@
                                                                     <a asp-action="Edit" asp-route-id="@item.per_IDPER" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                                    <a href="#" data-toggle="modal" data-target="#largeModal" onclick="LargeModalDetailOnclick(@item.per_IDPER)" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.per_IDPER})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
 
                                                                 </div>
                                                                 <div class="col-sm-3">
@@ -197,41 +197,7 @@
     <script src="~/templateAdmin/assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="~/templateAdmin/assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="~/templateAdmin/assets/js/init/datatables-init.js"></script>
-
-    <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#bootstrap-data-table2').DataTable({
-                        "language": {
-                            "lengthMenu": "Mostrando _MENU_ registros por página",
-                            "zeroRecords": "Lo sentimos ningún registro encontrado",
-                            "info": "Mostrando _PAGE_ de _PAGES_",
-                            "infoEmpty": "No se encontraron registros",
-                            "infoFiltered": "(filtrado de _MAX_ registros)",
-                            "paginate": {
-                                "previous": "Anterior",
-                                "next":"Siguiente"
-                            },
-                            "search":"Buscar"
-                        }
-                    });
-                    $('#bootstrap-data-table-export').DataTable();
-                });
-
-        function LargeModalDetailOnclick(id) {
-            $('#largeModalPartial').html("");
-                    $.get('@Url.Action("DetailsPartial","SisPerPersonas")', { id: id })
-                        .done(function (html) {
-                           // alert(html);
-
-                            $('#largeModalPartial').html(html);
-
-                        });
-                }
-
-                function HideLarModalDetailOnclick(largeModal) {
-                    $(largeModal).hide();
-                }
-
-    </script>
+    <script src="~/js/dataTableLanguageESConfig.js"></script>
+    <script src="~/js/modalConfig.js"></script>
 
 }

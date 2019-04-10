@@ -1,10 +1,10 @@
-using Data.DAL;
+using Common.Data.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Common.Entity.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Common.BOL.BOL;
-using Data.SQLBuilders;
+using Common.Data.SQLBuilders;
 using System.Text;
 
 namespace PreOrclApiTest.DAL

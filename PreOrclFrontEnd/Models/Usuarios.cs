@@ -11,14 +11,15 @@ namespace PreOrclFrontEnd.Models
     public class Usuarios
     {
         [Key]
-        public int IdUsuario { get; set; }
+        public decimal IdUsuario { get; set; }
 
+        [Required(ErrorMessage = "Campo Requerido")]
         public string Usuario { get; set; }
-
+        [Required(ErrorMessage = "Campo Requerido")]
         public string Password { get; set; }
-
+        [Required]
         public string Nombre { get; set; }
-
+        [Required]
         public string Apellido { get; set; }
     }
 }
