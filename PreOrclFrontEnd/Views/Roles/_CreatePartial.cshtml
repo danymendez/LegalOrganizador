@@ -21,23 +21,25 @@
                     </div>
                     <span asp-validation-for="NombreRol" class="text-danger"></span>
                 </div>
+
+                @for (int i = 0; i < Model.VwModelPermisos.Count; i++)
+                {
                 <div class="col-sm-6">
-                    @for (int i =0;i<Model.Permisos.Count;i++)
-                    {
-                        <label asp-for="Permisos[i].NombrePermiso" class="form-control-label"></label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                            <input asp-for="Permisos[i].NombrePermiso" class="form-control" disabled="disabled" />
-                        </div>
-                    }
-                    @*<label asp-for="per_apellido_comercial" class="form-control-label"></label>
-        <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-users"></i></div>
-            <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
-        </div>
-        <span asp-validation-for="per_apellido_comercial" class="text-danger"></span>*@
+                    <label asp-for="VwModelPermisos[i].NombrePermiso" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-users"></i></div>
+                        <input asp-for="VwModelPermisos[i].NombrePermiso" class="form-control" disabled="disabled" />
+                    </div>
                 </div>
-            </div>
+                        }
+                        @*<label asp-for="per_apellido_comercial" class="form-control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-users"></i></div>
+                    <input asp-for="per_apellido_comercial" class="form-control" disabled="disabled" />
+                </div>
+                <span asp-validation-for="per_apellido_comercial" class="text-danger"></span>*@
+                   
+                </div>
         </div>
 
     </div>

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PreOrclFrontEnd.ViewModels
 {
-    public class VwModelRolesPermisos : Roles
+    public class VwModelPermisos : Permisos
     {
-        public List<VwModelPermisos> VwModelPermisos { get; set; }
+       public bool Seleccionado { get; set; }
     }
 }
