@@ -108,9 +108,9 @@ namespace PreOrclFrontEnd.Controllers
                 }
                 else {
 
+                    var _rolesPermisos = await generic.GetAll<RolesPermisos>("RolesPermisos");
 
-
-                    var IdRolPermisoToDelete = (from rolesPermisos in await generic.GetAll<RolesPermisos>("RolesPermisos")
+                    var IdRolPermisoToDelete = (from rolesPermisos in  _rolesPermisos
                                                 join vwPermisos in vwModelRolesPermisos.VwModelPermisos on rolesPermisos.IdPermiso equals vwPermisos.IdPermiso
                                                 where rolesPermisos.IdRol == vwModelRolesPermisos.IdRol && vwPermisos.Seleccionado == false
                                                 select rolesPermisos).ToList();
@@ -125,22 +125,20 @@ namespace PreOrclFrontEnd.Controllers
 
                     }
 
-                    foreach (var item in generic.GetAll<RolesPermisos>("RolesPermisos").Result.Where(c => c.IdRol == vwModelRolesPermisos.IdRol)){
+                    foreach (var item in vwModelRolesPermisos.VwModelPermisos.Where(c=>c.Seleccionado==true)){
 
-                        var listIdRolPermisoToAdd = vwModelRolesPermisos.VwModelPermisos.Where(c => c.IdPermiso != item.IdPermiso).Select(c => c.IdPermiso);
-                        if (listIdRolPermisoToAdd == null)
+                        var idRolesPermisos = _rolesPermisos.Where(c => c.IdPermiso == item.IdPermiso && c.IdRol == vwModelRolesPermisos.IdRol).FirstOrDefault();
+
+                        if (idRolesPermisos is null)
                         {
-                            foreach (var id in listIdRolPermisoToAdd)
+                            await generic.Post("RolesPermisos", new RolesPermisos
                             {
-                                await generic.Post("RolesPermisos", new RolesPermisos
-                                {
-                                    IdRolPermiso = 0,
-                                    IdRol = vwModelRolesPermisos.IdRol,
-                                    IdPermiso = id,
-                                    CreatedAt = DateTime.Now,
-                                    Inactivo = 0
-                                });
-                            }
+                                IdRolPermiso = 0,
+                                IdRol = vwModelRolesPermisos.IdRol,
+                                IdPermiso = item.IdPermiso,
+                                CreatedAt = DateTime.Now,
+                                Inactivo = 0
+                            });
                         }
                     }
                   
