@@ -8,7 +8,7 @@
 </div>
 
 
-<form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+<form asp-action="CreateOrEdit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
       data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
     <div class="modal-body">
 
@@ -16,6 +16,11 @@
 
             <div class="row form-group">
                 <div class="col-sm-12">
+                    <input asp-for="IdRol" type="hidden" />
+                    <input asp-for="CreatedAt" type="hidden" />
+                    <input asp-for="UpdatedAt" type="hidden" />
+                    <input asp-for="Inactivo" type="hidden" />
+                    <input asp-for="InactivatedAt" type="hidden" />
                     <label asp-for="NombreRol" class="form-control-label"></label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
@@ -30,6 +35,10 @@
                     <div class="form-check">
                         @for (int i = 0; i < Model.VwModelPermisos.Count; i++)
                         {
+                            <input asp-for="VwModelPermisos[i].Inactivo" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].InactivatedAt" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].UpdatedAt" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].CreatedAt" type="hidden" />
                             <input asp-for="VwModelPermisos[i].IdPermiso" type="hidden" />
                             <div class="checkbox">
                                 <label for="VwModelPermisos[i].NombrePermiso" class="form-check-label">

@@ -83,7 +83,7 @@ namespace PreOrclFrontEnd.Controllers
         }
         public async Task<IActionResult> CreateOrEdit(VwModelRolesPermisos vwModelRolesPermisos)
         {
-            if (ModelState.IsValid) {
+                        if (ModelState.IsValid) {
                 if (vwModelRolesPermisos.IdRol == 0)
                 {
                     Roles roles = new Roles { IdRol = 0, NombreRol = vwModelRolesPermisos.NombreRol, CreatedAt = DateTime.Now, Inactivo = 0 };
@@ -107,16 +107,53 @@ namespace PreOrclFrontEnd.Controllers
                     return RedirectToAction(nameof(Index));
                 }
                 else {
-                   
-                    foreach (var item in vwModelRolesPermisos.VwModelPermisos.Where(c => !c.Seleccionado)) {
-
-                        var IdRolPermiso = from rolesPermisos in await generic.GetAll<RolesPermisos>("RolesPermisos")
-                                        where rolesPermisos.IdRol == vwModelRolesPermisos.IdRol && rolesPermisos.IdPermiso == item.IdPermiso
-                                        select rolesPermisos.IdRolPermiso;
 
 
-                                                  }
+
+                    var IdRolPermisoToDelete = (from rolesPermisos in await generic.GetAll<RolesPermisos>("RolesPermisos")
+                                                join vwPermisos in vwModelRolesPermisos.VwModelPermisos on rolesPermisos.IdPermiso equals vwPermisos.IdPermiso
+                                                where rolesPermisos.IdRol == vwModelRolesPermisos.IdRol && vwPermisos.Seleccionado == false
+                                                select rolesPermisos).ToList();
+
+
+                    if (IdRolPermisoToDelete != null)
+                    {
+                        foreach (var item in IdRolPermisoToDelete)
+                        {
+                            await generic.Delete<RolesPermisos>("RolesPermisos/", item.IdRolPermiso);
+                        }
+
+                    }
+
+                    foreach (var item in generic.GetAll<RolesPermisos>("RolesPermisos").Result.Where(c => c.IdRol == vwModelRolesPermisos.IdRol)){
+
+                        var listIdRolPermisoToAdd = vwModelRolesPermisos.VwModelPermisos.Where(c => c.IdPermiso != item.IdPermiso).Select(c => c.IdPermiso);
+                        if (listIdRolPermisoToAdd == null)
+                        {
+                            foreach (var id in listIdRolPermisoToAdd)
+                            {
+                                await generic.Post("RolesPermisos", new RolesPermisos
+                                {
+                                    IdRolPermiso = 0,
+                                    IdRol = vwModelRolesPermisos.IdRol,
+                                    IdPermiso = id,
+                                    CreatedAt = DateTime.Now,
+                                    Inactivo = 0
+                                });
                             }
+                        }
+                    }
+                  
+                                                  
+
+
+
+                            
+                            
+
+                    return RedirectToAction(nameof(Index));
+
+                }
             }
 
             return PartialView("../Roles/_CreateOrEditPartial", vwModelRolesPermisos);
