@@ -133,6 +133,35 @@ var onSuccess = function (context) {
         });
 };
 
+var onSuccessInModal = function (context) {
+
+    var isAddNew = urlRefrescar !== "";
+
+    swal({
+        title: "La información se ha almacenado correctamente",
+        text: "Click en Continuar para refrescar el listado",
+        icon: "/images/warning.png",
+        closeOnClickOutside: false,
+        buttons: {
+            confirm: {
+                text: "Continuar",
+                value: true,
+                visible: true,
+                className: "btn-primary",
+                closeModal: true
+            },
+        },
+        dangerMode: false
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                window.location.href = UrlDestino();
+            } else {
+                window.location.href = UrlRefrescar();
+            }
+        });
+};
+
 var onSuccessDelete = function (context) {
 
     var isAddNew = urlRefrescar !== "";

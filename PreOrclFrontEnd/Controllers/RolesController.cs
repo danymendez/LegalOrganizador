@@ -34,6 +34,7 @@ namespace PreOrclFrontEnd.Controllers
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
             vwModel.VwModelPermisos = generic.GetAll<VwModelPermisos>("Permisos").Result;
+            ViewBag.Title = "Crear Rol";
             return PartialView("../Roles/_CreateOrEditPartial", vwModel);
         }
 
@@ -78,12 +79,13 @@ namespace PreOrclFrontEnd.Controllers
                 vwModel.VwModelPermisos.Add(vwModelPermisos);
 
             }
-
+            ViewBag.Title = "Editar Rol";
             return PartialView("../Roles/_CreateOrEditPartial", vwModel);
         }
         public async Task<IActionResult> CreateOrEdit(VwModelRolesPermisos vwModelRolesPermisos)
         {
-                        if (ModelState.IsValid) {
+               if (ModelState.IsValid) {
+
                 if (vwModelRolesPermisos.IdRol == 0)
                 {
                     Roles roles = new Roles { IdRol = 0, NombreRol = vwModelRolesPermisos.NombreRol, CreatedAt = DateTime.Now, Inactivo = 0 };
@@ -153,6 +155,7 @@ namespace PreOrclFrontEnd.Controllers
 
                 }
             }
+            ViewBag.Title = "Editar Rol";
 
             return PartialView("../Roles/_CreateOrEditPartial", vwModelRolesPermisos);
         }

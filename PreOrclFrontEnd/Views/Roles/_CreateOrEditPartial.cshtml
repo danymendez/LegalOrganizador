@@ -1,7 +1,7 @@
 ﻿@model PreOrclFrontEnd.ViewModels.VwModelRolesPermisos
 
 <div class="modal-header">
-    <h5 class="modal-title" id="smallModalLabel">Crear Rol de Sistema</h5>
+    <h5 class="modal-title" id="smallModalLabel">@ViewBag.Title</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -9,7 +9,7 @@
 
 
 <form asp-action="CreateOrEdit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
-      data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+      data-ajax-failure="onFailed" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
     <div class="modal-body">
 
         <div class="card-body card-block">
