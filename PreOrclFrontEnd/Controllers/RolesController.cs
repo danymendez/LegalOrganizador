@@ -110,6 +110,19 @@ namespace PreOrclFrontEnd.Controllers
                 }
                 else {
 
+                    Roles roles = vwModelRolesPermisos as Roles;
+
+                    if (RolNombreExist(roles.NombreRol, roles.IdRol)) {
+
+                        
+                        return BadRequest("El registro ya existe");
+                    }
+
+                    bool Actualizado = await generic.Put("Roles/", roles.IdRol, roles);
+
+                    if (!Actualizado) {
+                        return BadRequest("Ha ocurrido un error no se pudo actualizar la información");
+                    }
                     var _rolesPermisos = await generic.GetAll<RolesPermisos>("RolesPermisos");
 
                     var IdRolPermisoToDelete = (from rolesPermisos in  _rolesPermisos
@@ -144,13 +157,6 @@ namespace PreOrclFrontEnd.Controllers
                         }
                     }
                   
-                                                  
-
-
-
-                            
-                            
-
                     return RedirectToAction(nameof(Index));
 
                 }
@@ -158,6 +164,22 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.Title = "Editar Rol";
 
             return PartialView("../Roles/_CreateOrEditPartial", vwModelRolesPermisos);
+        }
+
+        public bool RolNombreExist(string nombre, decimal? id) {
+            var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol == nombre && c.IdRol!=id);
+            if (rol == null)
+                return false;
+            else
+                return true;
+        }
+
+        public bool RolNombreExist(string nombre) {
+            var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol == nombre);
+            if (rol == null)
+                return false;
+            else
+                return true;
         }
 
     }

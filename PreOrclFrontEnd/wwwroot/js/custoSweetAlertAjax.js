@@ -193,31 +193,37 @@ var onSuccessDelete = function (context) {
 
 
 var onFailed = function (context) {
+    console.log(JSON.stringify(context));
     var isAddNew = urlRefrescar !== "";
-
+    var Title = "Ha Ocurrido un Error";
+    //alert(context.responseText);
+ 
+    if (context.responseText !== "") {
+        Title = context.responseText;
+    }
     swal({
-        title: "Ha Ocurrido un Error",
-        text: "Click en salir",
+        title: Title,
+        text: "Click en Ok para ocultar el mensaje",
         icon: "/images/warning.png",
         closeOnClickOutside: false,
         buttons: {
-            confirm: {
-                text: "Salir",
-                value: true,
+            cancel: {
+                text: "Ok",
+                value: null,
                 visible: true,
-                className: "btn-primary",
-                closeModal: true
+                className: "btn-default",
+                closeModal: true,
             },
         },
         dangerMode: false
-    })
-        .then((willDelete) => {
-            if (willDelete) {
-                window.location.href = UrlDestino();
-            } else {
-                window.location.href = UrlRefrescar();
-            }
-        });
+    });
+        //.then((willDelete) => {
+        //    if (willDelete) {
+        //        window.location.href = UrlDestino();
+        //    } else {
+        //        window.location.href = UrlRefrescar();
+        //    }
+        //});
 };
 
 function UrlRefrescar() {
