@@ -38,6 +38,105 @@ namespace PreOrclFrontEnd.Controllers
             return PartialView("../Roles/_CreateOrEditPartial", vwModel);
         }
 
+        public async Task<IActionResult> InactivateOrActivatePartial(decimal? id)
+        {
+            VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
+            vwModel.VwModelPermisos = new List<VwModelPermisos>();
+            Roles roles = new Roles();
+            roles = await generic.Get<Roles>("Roles/", id);
+            vwModel.IdRol = roles.IdRol;
+            vwModel.NombreRol = roles.NombreRol;
+            vwModel.InactivatedAt = roles.InactivatedAt;
+            vwModel.Inactivo = roles.Inactivo;
+            vwModel.UpdatedAt = roles.UpdatedAt;
+            vwModel.CreatedAt = roles.CreatedAt;
+            List<Permisos> listaPermisos = await generic.GetAll<Permisos>("Permisos");
+            var rolesPermisos = from rolPermiso in await generic.GetAll<RolesPermisos>("RolesPermisos")
+                                join permiso in listaPermisos on rolPermiso.IdPermiso equals permiso.IdPermiso
+                                where rolPermiso.IdRol == id
+                                select new Permisos
+                                {
+                                    //  Seleccionado = permiso.Inactivo==0?false:true,
+                                    IdPermiso = permiso.IdPermiso,
+                                    NombrePermiso = permiso.NombrePermiso,
+                                    CreatedAt = permiso.CreatedAt,
+                                    UpdatedAt = permiso.UpdatedAt,
+                                    InactivatedAt = permiso.InactivatedAt,
+                                    Inactivo = permiso.Inactivo
+
+                                };
+
+
+
+            foreach (var item in listaPermisos)
+            {
+
+                VwModelPermisos vwModelPermisos = new VwModelPermisos
+                {
+                    IdPermiso = item.IdPermiso,
+                    NombrePermiso = item.NombrePermiso,
+                    CreatedAt = item.CreatedAt,
+                    UpdatedAt = item.UpdatedAt,
+                    InactivatedAt = item.InactivatedAt,
+                    Inactivo = item.Inactivo,
+                    Seleccionado = rolesPermisos.Where(c => c.IdPermiso == item.IdPermiso).Count() == 0 ? false : true,
+                };
+
+                vwModel.VwModelPermisos.Add(vwModelPermisos);
+
+            }
+            ViewBag.Title = "Inactivar Rol";
+            ViewBag.ButtonTextSave = "Inactivar";
+            if (vwModel.Inactivo == 1)
+            {
+                ViewBag.ButtonTextSave = "Reactivar";
+                ViewBag.Title = "Reactivar Rol";
+            }
+          
+           
+            return PartialView("../Roles/_InactivateOrActivatePartial", vwModel);
+        }
+
+        public async Task<IActionResult> InactivateOrActivate(VwModelRolesPermisos vwModelRolesPermisos)
+        {
+            if (vwModelRolesPermisos.Inactivo == 1)
+            {
+                var rolToInactivated = await generic.Get<Roles>("Roles/", vwModelRolesPermisos.IdRol);
+                rolToInactivated.Inactivo = 1;
+                rolToInactivated.InactivatedAt = DateTime.Now;
+                rolToInactivated.UpdatedAt = DateTime.Now;
+
+                bool Actualizado = await generic.Put("Roles/", rolToInactivated.IdRol, rolToInactivated);
+
+                if (Actualizado)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Ha ocurrido un error al inactivar");
+                }
+
+            }
+            else {
+                var rolToInactivated = await generic.Get<Roles>("Roles/", vwModelRolesPermisos.IdRol);
+                rolToInactivated.Inactivo = 0;
+                rolToInactivated.InactivatedAt = null;
+                rolToInactivated.UpdatedAt = DateTime.Now;
+
+                bool Actualizado = await generic.Put("Roles/", rolToInactivated.IdRol, rolToInactivated);
+
+                if (Actualizado)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Ha ocurrido un error al inactivar");
+                }
+            }
+        }
+
         public async Task<IActionResult> EditPartial(decimal? id)
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
@@ -111,14 +210,13 @@ namespace PreOrclFrontEnd.Controllers
                         }
                     }
                     return RedirectToAction(nameof(Index));
-                }
-                else {
+                }else {
 
                     Roles roles = vwModelRolesPermisos as Roles;
 
                     if (RolNombreExist(roles.NombreRol, roles.IdRol)) {
 
-                        
+
                         return BadRequest("El registro ya existe");
                     }
 
@@ -129,7 +227,7 @@ namespace PreOrclFrontEnd.Controllers
                     }
                     var _rolesPermisos = await generic.GetAll<RolesPermisos>("RolesPermisos");
 
-                    var IdRolPermisoToDelete = (from rolesPermisos in  _rolesPermisos
+                    var IdRolPermisoToDelete = (from rolesPermisos in _rolesPermisos
                                                 join vwPermisos in vwModelRolesPermisos.VwModelPermisos on rolesPermisos.IdPermiso equals vwPermisos.IdPermiso
                                                 where rolesPermisos.IdRol == vwModelRolesPermisos.IdRol && vwPermisos.Seleccionado == false
                                                 select rolesPermisos).ToList();
@@ -144,7 +242,7 @@ namespace PreOrclFrontEnd.Controllers
 
                     }
 
-                    foreach (var item in vwModelRolesPermisos.VwModelPermisos.Where(c=>c.Seleccionado==true)){
+                    foreach (var item in vwModelRolesPermisos.VwModelPermisos.Where(c => c.Seleccionado == true)) {
 
                         var idRolesPermisos = _rolesPermisos.Where(c => c.IdPermiso == item.IdPermiso && c.IdRol == vwModelRolesPermisos.IdRol).FirstOrDefault();
 
@@ -160,7 +258,7 @@ namespace PreOrclFrontEnd.Controllers
                             });
                         }
                     }
-                  
+
                     return RedirectToAction(nameof(Index));
 
                 }

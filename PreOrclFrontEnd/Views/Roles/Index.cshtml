@@ -63,36 +63,40 @@
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.Inactivo)
                                                     </th>
-
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.InactivatedAt)
+                                                    </th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (var item in Model)
                                                 {
-                                                    <tr role="row">
-                                                        <td class="sorting_1">
-                                                            @Html.DisplayFor(modelItem => item.NombreRol)
-                                                        </td>
-                                                        <td>
-                                                           @item.Inactivo.ToString().Replace("0","No").Replace("1","Sí")
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="row">
-                                                                <div class="col-sm-3">
-                                                                    <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("EditPartial","Roles")','Id':@item.IdRol})" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
-                                                                </div>
-                                                                <div class="col-sm-3">
-                                                                    @*<a href="#" data-toggle="modal" data-target="#largeModal" onclick="LargeModalDetailOnclick(@item.IdRol)" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>*@
-
-                                                                </div>
-                                                                <div class="col-sm-3">
-                                                                    <a asp-action="Delete" asp-route-id="@item.IdRol" title="Inactivar"><i class="fa fa-eraser" style="color:red"></i></a>
-                                                                </div>
+                                                <tr role="row">
+                                                    <td class="sorting_1">
+                                                        @Html.DisplayFor(modelItem => item.NombreRol)
+                                                    </td>
+                                                    <td>
+                                                        @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
+                                                    </td>
+                                                    <td>
+                                                        @(item.InactivatedAt==null?"":Convert.ToDateTime(item.InactivatedAt).ToString("dd/MM/yyyy HH:mm:ss"))
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("EditPartial","Roles")','Id':@item.IdRol})" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
                                                             </div>
-                                                        </td>
-                                                    </tr>
+                                                            <div class="col-sm-3">
+                                                                @*<a href="#" data-toggle="modal" data-target="#largeModal" onclick="LargeModalDetailOnclick(@item.IdRol)" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>*@
+
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Roles")','Id':@item.IdRol})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                                 }
                                             </tbody>
                                         </table>
