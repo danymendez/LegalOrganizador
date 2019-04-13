@@ -9,7 +9,7 @@
 
 
 <form asp-action="CreateOrEdit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
-      data-ajax-failure="onFailed" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
+      data-ajax-failure="onFailedDupliMsgWithLbl" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
     <div class="modal-body">
 
         <div class="card-body card-block">
@@ -27,6 +27,7 @@
                         <input asp-for="NombreRol" class="form-control" />
                     </div>
                     <span asp-validation-for="NombreRol" class="text-danger"></span>
+                    <span class="text-danger" id="NombreRolDuplicado"></span>
                 </div>
 
             </div>

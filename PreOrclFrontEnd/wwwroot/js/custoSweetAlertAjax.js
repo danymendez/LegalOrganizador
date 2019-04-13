@@ -95,6 +95,7 @@ var onBegin = function () {
 
 var onComplete = function () {
     results.html("");
+    swal.close();
 };
 
 var onSuccess = function (context) {
@@ -191,6 +192,10 @@ var onSuccessDelete = function (context) {
         });
 };
 
+var onFailedDupliMsgWithLbl = function (context) {
+    var msg = $('#NombreRolDuplicado');
+    msg.text(context.responseText);
+};
 
 var onFailed = function (context) {
     console.log(JSON.stringify(context));
