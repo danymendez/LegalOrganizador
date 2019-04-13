@@ -9,13 +9,17 @@
 
 
 <form asp-action="CreateOrEdit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
-      data-ajax-failure="onFailedDupliMsgWithLbl" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
+      data-ajax-failure="onFailedDuplicatedAlert" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
     <div class="modal-body">
 
         <div class="card-body card-block">
 
             <div class="row form-group">
                 <div class="col-sm-12">
+                    <div id="contenedorAlert">
+                      
+                    </div>
+
                     <input asp-for="IdRol" type="hidden" />
                     <input asp-for="CreatedAt" type="hidden" />
                     <input asp-for="UpdatedAt" type="hidden" />

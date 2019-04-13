@@ -83,19 +83,29 @@ var results = jQuery("#Results");
 
 
 var onBegin = function () {
-    swal({
+    //swal({
 
-        icon: "/images/loader.gif",
-        title: "",
-        text: "",
-        closeOnClickOutside: false,
-        button: false
+    //    icon: "/images/loader.gif",
+    //    title: "",
+    //    text: "",
+    //    closeOnClickOutside: false,
+    //    button: false
+    //});
+
+    jQuery(function () {
+        // Animate loader off screen
+        jQuery(".se-pre-con").fadeIn();
     });
+
 };
 
 var onComplete = function () {
     results.html("");
-    swal.close();
+    jQuery(function () {
+        // Animate loader off screen
+        jQuery(".se-pre-con").fadeOut("slow");
+    });
+
 };
 
 var onSuccess = function (context) {
@@ -192,9 +202,13 @@ var onSuccessDelete = function (context) {
         });
 };
 
-var onFailedDupliMsgWithLbl = function (context) {
-    var msg = $('#NombreRolDuplicado');
-    msg.text(context.responseText);
+var onFailedDuplicatedAlert = function (context) {
+    swal.close();
+    jQuery("#contenedorAlert").html('<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertDuplicated" style="display:none">'+context.responseText+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    jQuery("#alertDuplicated").show();
+    setTimeout(function () {
+        jQuery(".alert").alert('close');
+    }, 4000);
 };
 
 var onFailed = function (context) {

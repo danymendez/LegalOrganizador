@@ -93,12 +93,36 @@
         #cellPaiChart {
             height: 160px;
         }
+
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+if it's not present, don't show loader */
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(@Url.Content("~/images/balanza.gif")) center no-repeat rgba(255, 255, 255, 0.42);
+        }
     </style>
 
 </head>
-<body class="open">
+<body class="open" onload="onLoadLoadingIcon()" onunload="onUnLoadLoadingIcon()">
 
-
+    <div class="se-pre-con"></div>
     <partial name="_CookieConsentPartial" />
 
     <!-- Left Panel -->
@@ -161,7 +185,7 @@
 
 
         @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>*@
+            <script src="~/js/site.js" asp-append-version="true"></script>*@
 
         <!--Local Stuff-->
 
@@ -182,7 +206,23 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
+    <script>
+        //paste this code under the head tag or in a separate js file.
+        // Wait for window load
+        //jQuery(function () {
+        //    // Animate loader off screen
+        //    jQuery(".se-pre-con").fadeOut("slow");
+        //});
 
+     function onLoadLoadingIcon(){
+         jQuery(".se-pre-con").fadeOut("slow");
+        }
+
+        function onUnLoadLoadingIcon() {
+     
+            jQuery(".se-pre-con").fadeIn();
+        }
+    </script>
 
     @RenderSection("Scripts", required: false)
     <!--Scripts Sections-->

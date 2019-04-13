@@ -88,6 +88,10 @@ namespace PreOrclFrontEnd.Controllers
 
                 if (vwModelRolesPermisos.IdRol == 0)
                 {
+                    if (RolNombreExist(vwModelRolesPermisos.NombreRol))
+                    {
+                        return BadRequest("El registro ya existe");
+                    }
                     Roles roles = new Roles { IdRol = 0, NombreRol = vwModelRolesPermisos.NombreRol, CreatedAt = DateTime.Now, Inactivo = 0 };
                     roles = await generic.Post("Roles", roles);
                     foreach (var item in vwModelRolesPermisos.VwModelPermisos)
@@ -167,7 +171,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         public bool RolNombreExist(string nombre, decimal? id) {
-            var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol == nombre && c.IdRol!=id);
+            var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol.Trim().ToLowerInvariant() == nombre.Trim().ToLowerInvariant() && c.IdRol!=id);
             if (rol == null)
                 return false;
             else
@@ -175,7 +179,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         public bool RolNombreExist(string nombre) {
-            var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol == nombre);
+            var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol.Trim().ToLowerInvariant() == nombre.Trim().ToLowerInvariant());
             if (rol == null)
                 return false;
             else
