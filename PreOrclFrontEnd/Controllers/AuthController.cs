@@ -104,17 +104,16 @@ namespace PreOrclFrontEnd.Controllers
         [Route("LoginMicrosoft")]
         public async Task<IActionResult> LoginMicrosoftAsync(string code = null, string state = null)
         {
-            GraphAuthCustom gp = new GraphAuthCustom(_memoryCache,_msGraphConfig);
+            GraphAuthCustom graphAuthCustom = new GraphAuthCustom(_memoryCache,_msGraphConfig);
             GraphServiceCustom gsc = new GraphServiceCustom();
-            Usuarios usuarios = new Usuarios { };
-            string token;
-            gp.CreateToken(code);
-            var c = _memoryCache.Get<TokenT>("TokenT");
-            token = c.access_token;
-            var t = gp.GetAuthenticatedClient(token);
+            Usuarios usuarios = new Usuarios();
+            graphAuthCustom.CreateToken(code);
+            var tokenT = _memoryCache.Get<TokenT>("TokenT");
+          
+            var authenticatedClient = graphAuthCustom.GetAuthenticatedClient(tokenT.access_token);
 
-            var me = t.Me.Request().GetAsync().Result;
-            string urlImg = gsc.GetPictureBase64(t).Result;
+            var me = authenticatedClient.Me.Request().GetAsync().Result;
+            string urlImg = gsc.GetPictureBase64(authenticatedClient).Result;
             _memoryCache.Set("foto", Encoding.ASCII.GetBytes(urlImg));
             
             var claims = new List<Claim>
