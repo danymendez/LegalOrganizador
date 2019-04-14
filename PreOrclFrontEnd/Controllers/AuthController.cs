@@ -116,16 +116,7 @@ namespace PreOrclFrontEnd.Controllers
             string urlImg = gsc.GetPictureBase64(authenticatedClient).Result;
             _memoryCache.Set("foto", Encoding.ASCII.GetBytes(urlImg));
 
-            var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, me.GivenName),
-                        new Claim(ClaimTypes.Email,me.UserPrincipalName),
-
-                    };
-            ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
-            ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-
-            await HttpContext.SignInAsync(principal);
+            decimal idRol = 0;
 
             if (!ExistUsuario(me.UserPrincipalName))
             {
@@ -138,7 +129,7 @@ namespace PreOrclFrontEnd.Controllers
                 usuarios.CreatedAt = DateTime.Now;
                 usuarios.Inactivo = 0;
                 usuarios.IdRol = 1;
-
+                idRol = 1;
                 await generic.Post("Usuarios", usuarios);
             }
             else {
@@ -151,11 +142,33 @@ namespace PreOrclFrontEnd.Controllers
                 _usuarios.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
                 _usuarios.CreatedAt = DateTime.Now;
                 _usuarios.Inactivo = 0;
-                _usuarios.IdRol = 1;
-
-
+               
+                idRol = _usuarios.IdRol;
                 await generic.Put("Usuarios/",_usuarios.IdUsuario,usuarios);
             }
+
+            var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, me.GivenName),
+                        new Claim(ClaimTypes.Email,me.UserPrincipalName),
+                     //   new Claim(ClaimTypes.Role, "Seguridad")
+
+                    };
+
+            var permisos = from rolPermiso in await generic.GetAll<RolesPermisos>("RolesPermisos")
+                           join permiso in await generic.GetAll<Permisos>("Permisos") on rolPermiso.IdPermiso equals permiso.IdPermiso
+                           where rolPermiso.IdRol == idRol
+                           select permiso;
+
+            foreach (var item in permisos) {
+                claims.Add(new Claim(ClaimTypes.Role, item.NombrePermiso));
+            }
+
+            ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
+            ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+
+            await HttpContext.SignInAsync(principal);
+
 
             return RedirectToAction("Index", "Home");
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
@@ -11,6 +12,7 @@ using PreOrclFrontEnd.ViewModels;
 
 namespace PreOrclFrontEnd.Controllers
 {
+    [Authorize(Roles ="Seguridad")]
     public class RolesController : Controller
     {
 

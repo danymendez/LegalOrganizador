@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 
 namespace PreOrclFrontEnd.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Personas")]
     public class SisPerPersonasController : Controller
     {
  
