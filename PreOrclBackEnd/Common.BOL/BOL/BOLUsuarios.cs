@@ -10,7 +10,7 @@ namespace Common.BOL.BOL
 {
    public class BOLUsuarios
     {
-        public Task<Usuarios> Autenticar(string usuario, string clave)
+        public async Task<Usuarios> Autenticar(string usuario, string clave)
         {
 
             Usuarios user = null;
@@ -27,10 +27,10 @@ namespace Common.BOL.BOL
                 }
             });
 
-            return t;
+            return await t;
         }
 
-        public Task<List<Usuarios>> GetUsuarios() {
+        public async Task<List<Usuarios>> GetUsuarios() {
             Task<List<Usuarios>> t = Task.Run(() =>
             {
                 using (DALDBContext context = new DALDBContext())
@@ -43,10 +43,10 @@ namespace Common.BOL.BOL
                 }
             });
 
-            return t;
+            return await t;
         }
 
-        public Task<Usuarios> GetUsuario(decimal id) {
+        public async Task<Usuarios> GetUsuario(decimal id) {
             Task<Usuarios> t = Task.Run(() =>
             {
                 using (DALDBContext context = new DALDBContext())
@@ -59,10 +59,10 @@ namespace Common.BOL.BOL
                 }
             });
 
-            return t;
+            return await t;
         }
 
-        public Task<Usuarios> CreateUsuario(Usuarios pUsuario)
+        public async Task<Usuarios> CreateUsuario(Usuarios pUsuario)
         {
             Task<Usuarios> t = Task.Run(() =>
             {
@@ -76,8 +76,28 @@ namespace Common.BOL.BOL
                 }
             });
 
-            return t;
+            return await t;
         }
 
+
+
+        public async Task<Usuarios> UpdateUsuarios(decimal id, Usuarios pUsuario) {
+            var entity = await GetUsuario(pUsuario.IdUsuario);
+
+            Task<Usuarios> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    pUsuario.Password = entity.Password;
+                    DALUsuarios dal = new DALUsuarios(context);
+                    var usuario = dal.UpdateUsuarios(id,pUsuario);
+
+
+                    return usuario;
+                }
+            });
+
+            return await t;
+        }
     }
 }

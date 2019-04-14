@@ -39,5 +39,12 @@ namespace Common.Data.DAL
             Usuarios usuario = Create(pUsuario);
             return usuario;
         }
+
+
+        public Usuarios UpdateUsuarios(decimal id, Usuarios usuarios)
+        {
+
+            return Update(id, usuarios);
+        }
     }
 }

@@ -1,43 +1,41 @@
-﻿using Microsoft.Graph;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Microsoft.Graph;
+using Newtonsoft.Json;
+using Formatting = Newtonsoft.Json.Formatting;
 
-namespace PreOrclFrontEnd.Helpers
+namespace Common.BOL.BOL
 {
-    public class GraphServiceCustom
+   public class BOLMSGraph
     {
 
-        public GraphServiceCustom() {
+        public GraphServiceClient GetAuthenticatedClient(string token)
+        {
 
+            GraphServiceClient _graphClient =  new GraphServiceClient(new DelegateAuthenticationProvider(
+                async requestMessage  => 
+                {
+                    // Passing tenant ID to the sample auth provider to use as a cache key
+                    var accessToken = token;
+
+                    // Append the access token to the request
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                    // This header identifies the sample in the Microsoft Graph service. If extracting this code for your project please remove.
+                    //  requestMessage.Headers.Add("SampleID", "aspnetcore-connect-sample");
+                }));
+            // c = _authProvider.GetUserAccessTokenAsync(userId).Result;
+            return  _graphClient;
         }
 
         public async Task<Microsoft.Graph.User> GetUser(GraphServiceClient graphClient)
-        {   
-            return await graphClient.Me.Request().GetAsync();
-        }
-        public async Task<List<Event>> GetMyCalendarView(GraphServiceClient graphClient)
         {
-            List<Event> items = new List<Event>();
-
-            // Define the time span for the calendar view.
-            List<QueryOption> options = new List<QueryOption>();
-            options.Add(new QueryOption("startDateTime", DateTime.Now.ToString("2015-01-01")));
-            options.Add(new QueryOption("endDateTime", DateTime.Now.AddDays(7).ToString("o")));
-
-            ICalendarCalendarViewCollectionPage calendar = await graphClient.Me.Calendar.CalendarView.Request(options).GetAsync();
-
-            if (calendar?.Count > 0)
-            {
-                foreach (Event current in calendar)
-                {
-                    items.Add(current);
-                }
-            }
-            return items;
+            return await graphClient.Me.Request().GetAsync();
         }
 
         public async Task<Stream> GetPictureStream(GraphServiceClient graphClient)
@@ -123,11 +121,5 @@ namespace PreOrclFrontEnd.Helpers
                 }
             }
         }
-    }
-
-    public class ResultsItem
-    {
-        public string Display { get; set; }
-        public string Id { get; set; }
     }
 }

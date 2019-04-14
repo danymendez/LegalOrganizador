@@ -21,5 +21,24 @@ namespace PreOrclFrontEnd.Models
         public string Nombre { get; set; }
         [Required]
         public string Apellido { get; set; }
+
+        public DateTime? FechaNac { get; set; }
+   
+        public string Token { get; set; }
+       
+        public DateTime? TokenExpiredAt { get; set; }
+       
+        public decimal IdRol { get; set; }
+      
+        public string TokenRefresh { get; set; }
+     
+        public DateTime CreatedAt { get; set; }
+      
+        public DateTime? InactivatedAt { get; set; }
+     
+        public DateTime? UpdatedAt { get; set; }
+        
+        public int Inactivo { get; set; }
+    
     }
 }

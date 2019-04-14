@@ -106,27 +106,50 @@ namespace PreOrclFrontEnd.Controllers
         {
             GraphAuthCustom gp = new GraphAuthCustom(_memoryCache,_msGraphConfig);
             GraphServiceCustom gsc = new GraphServiceCustom();
-
+            Usuarios usuarios = new Usuarios { };
             string token;
             gp.CreateToken(code);
             var c = _memoryCache.Get<TokenT>("TokenT");
             token = c.access_token;
             var t = gp.GetAuthenticatedClient(token);
 
-            var name = t.Me.Request().GetAsync().Result;
+            var me = t.Me.Request().GetAsync().Result;
             string urlImg = gsc.GetPictureBase64(t).Result;
             _memoryCache.Set("foto", Encoding.ASCII.GetBytes(urlImg));
             
             var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, name.GivenName),
-                        new Claim(ClaimTypes.Email,name.UserPrincipalName),
+                        new Claim(ClaimTypes.Name, me.GivenName),
+                        new Claim(ClaimTypes.Email,me.UserPrincipalName),
 
                     };
             ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
             await HttpContext.SignInAsync(principal);
+
+            if (!ExistUsuario(me.UserPrincipalName))
+            {
+                usuarios.Usuario = me.UserPrincipalName;
+                usuarios.Apellido = me.Surname;
+                usuarios.Nombre = me.GivenName;
+                usuarios.Token = Criptografia.Encrypt(c.access_token);
+                usuarios.TokenRefresh = Criptografia.Encrypt(c.refresh_token);
+
+
+                await generic.Post("Usuarios", principal);
+            }
+            else {
+                var _usuarios = (await generic.GetAll<Usuarios>("Usuarios")).Find(l => l.Usuario.Trim().ToUpper()==me.UserPrincipalName);
+                _usuarios.Usuario = me.UserPrincipalName;
+                _usuarios.Apellido = me.Surname;
+                _usuarios.Nombre = me.GivenName;
+                _usuarios.Token = Criptografia.Encrypt(c.access_token);
+                _usuarios.TokenRefresh = Criptografia.Encrypt(c.refresh_token);
+
+
+                await generic.Put("Usuarios/",_usuarios.IdUsuario,usuarios);
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -146,7 +169,7 @@ namespace PreOrclFrontEnd.Controllers
         [NonAction]
         public bool ExistUsuario(string usuario) {
 
-            return generic.GetAll<Usuarios>("Usuarios").Result.Where(c=>c.Usuario.Trim().Equals(usuario.Trim())).Count()>0;
+            return generic.GetAll<Usuarios>("Usuarios").Result.Where(c=>c.Usuario.Trim().ToUpper().Equals(usuario.Trim().ToUpper())).Count()>0;
 
         }
     }
