@@ -1,1 +1,66 @@
 ﻿
+=============================== 13/04/2019 - 23:24:7 ===================================
+Exception Type:	System.Reflection.TargetInvocationException
+Exception:	Exception has been thrown by the target of an invocation.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Newtonsoft.Json.Serialization.JsonContract.<>c__DisplayClass57_0.<CreateSerializationCallback>b__0(Object o, StreamingContext context)
+   at Newtonsoft.Json.Serialization.JsonContract.InvokeOnSerializing(Object o, StreamingContext context)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.OnSerializing(JsonWriter writer, JsonContract contract, Object value)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.WriteToStream(Type type, Object value, Stream writeStream, Encoding effectiveEncoding)
+   at System.Net.Http.Formatting.JsonMediaTypeFormatter.WriteToStream(Type type, Object value, Stream writeStream, Encoding effectiveEncoding)
+   at System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.WriteToStreamAsync(Type type, Object value, Stream writeStream, HttpContent content, TransportContext transportContext, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Http.HttpContent.CopyToAsyncCore(ValueTask copyTask)
+   at System.Net.Http.HttpConnection.SendRequestContentAsync(HttpRequestMessage request, HttpContentWriteStream stream, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.Post[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 70
+Inner Exception Type: System.PlatformNotSupportedException
+Inner Exception:	This instance contains state that cannot be serialized and deserialized on this platform.
+Inner Source:	System.Security.Claims
+Inner Stack Trace:	   at System.Security.Claims.ClaimsPrincipal.OnSerializingMethod(StreamingContext context)
+
+=============================== 13/04/2019 - 23:31:18 ===================================
+Exception Type:	System.Reflection.TargetInvocationException
+Exception:	Exception has been thrown by the target of an invocation.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Newtonsoft.Json.Serialization.JsonContract.<>c__DisplayClass57_0.<CreateSerializationCallback>b__0(Object o, StreamingContext context)
+   at Newtonsoft.Json.Serialization.JsonContract.InvokeOnSerializing(Object o, StreamingContext context)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.OnSerializing(JsonWriter writer, JsonContract contract, Object value)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.WriteToStream(Type type, Object value, Stream writeStream, Encoding effectiveEncoding)
+   at System.Net.Http.Formatting.JsonMediaTypeFormatter.WriteToStream(Type type, Object value, Stream writeStream, Encoding effectiveEncoding)
+   at System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.WriteToStreamAsync(Type type, Object value, Stream writeStream, HttpContent content, TransportContext transportContext, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Http.HttpContent.CopyToAsyncCore(ValueTask copyTask)
+   at System.Net.Http.HttpConnection.SendRequestContentAsync(HttpRequestMessage request, HttpContentWriteStream stream, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.Post[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 70
+Inner Exception Type: System.PlatformNotSupportedException
+Inner Exception:	This instance contains state that cannot be serialized and deserialized on this platform.
+Inner Source:	System.Security.Claims
+Inner Stack Trace:	   at System.Security.Claims.ClaimsPrincipal.OnSerializingMethod(StreamingContext context)

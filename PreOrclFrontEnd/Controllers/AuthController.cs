@@ -133,19 +133,26 @@ namespace PreOrclFrontEnd.Controllers
                 usuarios.Usuario = me.UserPrincipalName;
                 usuarios.Apellido = me.Surname;
                 usuarios.Nombre = me.GivenName;
+                usuarios.Password = "";
                 usuarios.Token = Criptografia.Encrypt(c.access_token);
                 usuarios.TokenRefresh = Criptografia.Encrypt(c.refresh_token);
-
-
-                await generic.Post("Usuarios", principal);
+                usuarios.CreatedAt = DateTime.Now;
+                usuarios.Inactivo = 0;
+                usuarios.IdRol = 1;
+                    
+                await generic.Post("Usuarios", usuarios);
             }
             else {
-                var _usuarios = (await generic.GetAll<Usuarios>("Usuarios")).Find(l => l.Usuario.Trim().ToUpper()==me.UserPrincipalName);
+                var _usuarios = (await generic.GetAll<Usuarios>("Usuarios")).Find(l => l.Usuario.Trim().ToUpper()==me.UserPrincipalName.Trim().ToUpper());
                 _usuarios.Usuario = me.UserPrincipalName;
                 _usuarios.Apellido = me.Surname;
                 _usuarios.Nombre = me.GivenName;
+                _usuarios.Password = "";
                 _usuarios.Token = Criptografia.Encrypt(c.access_token);
                 _usuarios.TokenRefresh = Criptografia.Encrypt(c.refresh_token);
+                _usuarios.CreatedAt = DateTime.Now;
+                _usuarios.Inactivo = 0;
+                _usuarios.IdRol = 1;
 
 
                 await generic.Put("Usuarios/",_usuarios.IdUsuario,usuarios);
