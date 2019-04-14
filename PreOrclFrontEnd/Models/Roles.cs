@@ -11,6 +11,8 @@ namespace PreOrclFrontEnd.Models
         [Key]
         public decimal IdRol { get; set; }
         [Required]
+        [Display(Name ="Rol")]
+        [MaxLength(20)]
         public string NombreRol { get; set; }
 
         public DateTime CreatedAt { get; set; }
