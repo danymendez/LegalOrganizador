@@ -24,7 +24,7 @@ namespace PreOrclApiTest.DAL
             {
                 DALSisPerPersona dal = new DALSisPerPersona(context);
                 listaPersona = dal.GetAllSisPerPersona();
-                int idMax = listaPersona.Select(c => c.per_IDPER).Max();
+                decimal idMax = listaPersona.Select(c => c.per_IDPER).Max();
                 sisPerPersonaOne = dal.GetPersona(idMax);
                 sisPerPersonaCreate = dal.CreateSisPerPersona(new SisPerPersona
               {

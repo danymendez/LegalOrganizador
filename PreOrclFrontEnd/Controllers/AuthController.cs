@@ -106,7 +106,7 @@ namespace PreOrclFrontEnd.Controllers
         {
             GraphAuthCustom graphAuthCustom = new GraphAuthCustom(_memoryCache, _msGraphConfig);
             GraphServiceCustom gsc = new GraphServiceCustom();
-            Usuarios usuarios = new Usuarios();
+            Usuarios usuarioToCreate = new Usuarios();
             graphAuthCustom.CreateToken(code);
             var tokenT = _memoryCache.Get<TokenT>("TokenT");
 
@@ -120,31 +120,31 @@ namespace PreOrclFrontEnd.Controllers
 
             if (!ExistUsuario(me.UserPrincipalName))
             {
-                usuarios.Usuario = me.UserPrincipalName;
-                usuarios.Apellido = me.Surname;
-                usuarios.Nombre = me.GivenName;
-                usuarios.Password = "";
-                usuarios.Token = Criptografia.Encrypt(tokenT.access_token);
-                usuarios.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
-                usuarios.CreatedAt = DateTime.Now;
-                usuarios.Inactivo = 0;
-                usuarios.IdRol = 1;
+                usuarioToCreate.Usuario = me.UserPrincipalName;
+                usuarioToCreate.Apellido = me.Surname;
+                usuarioToCreate.Nombre = me.GivenName;
+                usuarioToCreate.Password = "";
+                usuarioToCreate.Token = Criptografia.Encrypt(tokenT.access_token);
+                usuarioToCreate.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
+                usuarioToCreate.CreatedAt = DateTime.Now;
+                usuarioToCreate.Inactivo = 0;
+                usuarioToCreate.IdRol = 1;
                 idRol = 1;
-                await generic.Post("Usuarios", usuarios);
+                await generic.Post("Usuarios", usuarioToCreate);
             }
             else {
-                var _usuarios = (await generic.GetAll<Usuarios>("Usuarios")).Find(l => l.Usuario.Trim().ToUpper() == me.UserPrincipalName.Trim().ToUpper());
-                _usuarios.Usuario = me.UserPrincipalName;
-                _usuarios.Apellido = me.Surname;
-                _usuarios.Nombre = me.GivenName;
-                _usuarios.Password = "";
-                _usuarios.Token = Criptografia.Encrypt(tokenT.access_token);
-                _usuarios.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
-                _usuarios.CreatedAt = DateTime.Now;
-                _usuarios.Inactivo = 0;
+                var usuarioToUpdate = (await generic.GetAll<Usuarios>("Usuarios")).Find(l => l.Usuario.Trim().ToUpper() == me.UserPrincipalName.Trim().ToUpper());
+                usuarioToUpdate.Usuario = me.UserPrincipalName;
+                usuarioToUpdate.Apellido = me.Surname;
+                usuarioToUpdate.Nombre = me.GivenName;
+                usuarioToUpdate.Password = "";
+                usuarioToUpdate.Token = Criptografia.Encrypt(tokenT.access_token);
+                usuarioToUpdate.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
+                usuarioToUpdate.CreatedAt = DateTime.Now;
+                usuarioToUpdate.Inactivo = 0;
                
-                idRol = _usuarios.IdRol;
-                await generic.Put("Usuarios/",_usuarios.IdUsuario,usuarios);
+                idRol = usuarioToUpdate.IdRol;
+                await generic.Put("Usuarios/",usuarioToUpdate.IdUsuario,usuarioToUpdate);
             }
 
             var claims = new List<Claim>
