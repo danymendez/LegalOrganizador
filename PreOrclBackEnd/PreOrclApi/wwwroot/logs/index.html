@@ -1652,3 +1652,249 @@ Source:		System.Linq
 Stack Trace:	   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
    at Common.BOL.BOL.BOLMSGraph.GetEvents(GraphServiceClient graphClient) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLMSGraph.cs:line 141
    at Common.BOL.BOL.BOLCalendar.GetEventosByUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 98
+
+=============================== 15/04/2019 - 15:40:18 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00904: "IDACTIVIDAD": invalid identifier
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 15/04/2019 - 15:40:18 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 15:40:18 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 15:42:0 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00904: "IDACTIVIDAD": invalid identifier
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 15/04/2019 - 15:42:39 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 15:42:39 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 15:45:30 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00904: "IDACTIVIDAD": invalid identifier
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 15/04/2019 - 15:46:56 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 15:46:56 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 15:47:1 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12899: value too large for column "DMENDEZ"."ACTIVIDADES"."ESTADO" (actual: 6, maximum: 1)
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 15/04/2019 - 15:47:6 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 15:47:6 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 16:06:12 ===================================
+Exception Type:	System.ArgumentException
+Exception:	Object of type 'System.Decimal' cannot be converted to type 'System.Int32'.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 123
+
+=============================== 15/04/2019 - 16:06:12 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 16:06:12 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 16:06:35 ===================================
+Exception Type:	System.ArgumentException
+Exception:	Object of type 'System.Decimal' cannot be converted to type 'System.Int32'.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 123
+
+=============================== 15/04/2019 - 16:06:35 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 16:06:35 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 16:09:29 ===================================
+Exception Type:	System.ArgumentException
+Exception:	Object of type 'System.Decimal' cannot be converted to type 'System.Int32'.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 123
+
+=============================== 15/04/2019 - 16:09:29 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 16:09:29 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 16:15:50 ===================================
+Exception Type:	System.ArgumentException
+Exception:	Object of type 'System.Decimal' cannot be converted to type 'System.Double'.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 123
+
+=============================== 15/04/2019 - 16:15:50 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 16:15:50 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 16:16:58 ===================================
+Exception Type:	System.ArgumentException
+Exception:	Object of type 'System.Decimal' cannot be converted to type 'System.Double'.
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 123
+
+=============================== 15/04/2019 - 16:16:59 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 16:16:59 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 15/04/2019 - 16:20:39 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12899: value too large for column "DMENDEZ"."ACTIVIDADES"."ESTADO" (actual: 6, maximum: 1)
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 15/04/2019 - 16:21:2 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 15/04/2019 - 16:21:2 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
