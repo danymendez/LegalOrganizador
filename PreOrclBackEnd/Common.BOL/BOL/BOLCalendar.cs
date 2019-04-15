@@ -17,7 +17,7 @@ namespace Common.BOL.BOL
             graph = new BOLMSGraph();
             bolUsuarios = new BOLUsuarios();
         }
-        public async Task<List<GraphCalendar>> GetCalendarByUsuario() {
+        public async Task<List<GraphCalendar>> GetCalendarByIdUsuario() {
             graph = new BOLMSGraph();
             List<GraphCalendar> lista = new List<GraphCalendar>();
             bolUsuarios = new BOLUsuarios();
@@ -79,7 +79,7 @@ namespace Common.BOL.BOL
             return lista;
         }
 
-        public async Task<List<GraphEvents>> GetEventosByUsuario()
+        public async Task<List<GraphEvents>> GetEventosByIdUsuario()
         {
             graph = new BOLMSGraph();
             List<GraphEvents> lista = new List<GraphEvents>();
@@ -151,8 +151,8 @@ namespace Common.BOL.BOL
 
         public async Task<List<GraphCalendarEvents>> GetCalendarEventsByUsuario() {
             List<GraphCalendarEvents> listaGraphCalendarEvents = new List<GraphCalendarEvents>();
-            var listadoCalendario = await GetCalendarByUsuario();
-            var listadoEventos = await GetEventosByUsuario();
+            var listadoCalendario = await GetCalendarByIdUsuario();
+            var listadoEventos = await GetEventosByIdUsuario();
 
             foreach(var itemListadoCalendario in listadoCalendario) {
                 listaGraphCalendarEvents.Add(new GraphCalendarEvents {

@@ -22,13 +22,13 @@ namespace PreOrclApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Common.Entity.Models.GraphEvents>> GetEventos()
         {
-            return await bol.GetEventosByUsuario();
+            return await bol.GetEventosByIdUsuario();
         }
 
         [HttpGet("{id}")]
         public async Task<IEnumerable<Common.Entity.Models.GraphEvents>> GetEventos(decimal id)
         {
-            return (await bol.GetEventosByUsuario()).Where(c => c.IdUsuario==id);
+            return (await bol.GetEventosByIdUsuario()).Where(c => c.IdUsuario==id);
         }
     }
 }
