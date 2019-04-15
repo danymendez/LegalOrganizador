@@ -11,13 +11,19 @@ namespace Common.BOL.BOL
 {
     public class BOLCalendar
     {
+        private BOLMSGraph graph;
+        public BOLUsuarios bolUsuarios;
+        public BOLCalendar() {
+            graph = new BOLMSGraph();
+            bolUsuarios = new BOLUsuarios();
+        }
         public async Task<List<GraphCalendar>> GetCalendarByUsuario() {
-            BOLMSGraph graph = new BOLMSGraph();
+            graph = new BOLMSGraph();
             List<GraphCalendar> lista = new List<GraphCalendar>();
-            BOLUsuarios bolUsuarios = new BOLUsuarios();
+            bolUsuarios = new BOLUsuarios();
             var listaUsuarios = await bolUsuarios.GetUsuarios();
             listaUsuarios = listaUsuarios.Where(c => !(c.Token is null) && !(c.TokenRefresh is null)).ToList();
-             foreach (var itemUsuario in listaUsuarios) {
+            foreach (var itemUsuario in listaUsuarios) {
 
                 GraphServiceClient authenticatedUser = null;
                 List<Calendar> listaCalendario = null;
@@ -56,14 +62,9 @@ namespace Common.BOL.BOL
                             lista.Add(new GraphCalendar
                             {
                                 IdUsuario = itemUsuario.IdUsuario,
-                                Id = itemCalendario.Id,
-                                CanShare = itemCalendario.CanShare,
-                                Name = itemCalendario.Name,
-                                Color = itemCalendario.Color.ToString(),
-                                ChangeKey = itemCalendario.ChangeKey,
-                                CanViewPrivateItems = itemCalendario.CanViewPrivateItems,
-                                CanEdit = itemCalendario.CanEdit,
-                                Owner = new GraphOwner { Address = itemCalendario.Owner.Address, Name = itemCalendario.Owner.Name }
+                                Calendar = itemCalendario,
+
+
                             });
                         }
                     }
@@ -71,11 +72,98 @@ namespace Common.BOL.BOL
                 catch (Exception ex) {
                     ExceptionUtility.LogException(ex);
                 }
-            
+
 
             }
-            
+
             return lista;
+        }
+
+        public async Task<List<GraphEvents>> GetEventosByUsuario()
+        {
+            graph = new BOLMSGraph();
+            List<GraphEvents> lista = new List<GraphEvents>();
+            bolUsuarios = new BOLUsuarios();
+            var listaUsuarios = await bolUsuarios.GetUsuarios();
+            listaUsuarios = listaUsuarios.Where(c => !(c.Token is null) && !(c.TokenRefresh is null)).ToList();
+            foreach (var itemUsuario in listaUsuarios)
+            {
+
+                GraphServiceClient authenticatedUser = null;
+                List<GraphEvents> listaEventos = null;
+                try
+                {
+
+                    authenticatedUser = graph.GetAuthenticatedClient(Criptografia.Decrypt(itemUsuario.Token));
+                    listaEventos = await graph.GetAllEvents(authenticatedUser);
+                }
+                catch (ServiceException ex)
+                {
+                    if (ex.Error.Code == "InvalidAuthenticationToken")
+                    {
+                        try
+                        {
+                            var tokenRefreshed = graph.GetToken(Criptografia.Decrypt(itemUsuario.TokenRefresh));
+                            itemUsuario.Token = Criptografia.Encrypt(tokenRefreshed);
+                            await bolUsuarios.UpdateUsuarios(itemUsuario.IdUsuario, itemUsuario);
+                            authenticatedUser = graph.GetAuthenticatedClient(tokenRefreshed);
+                            listaEventos = await graph.GetAllEvents(authenticatedUser);
+                        }
+                        catch (Exception exc)
+                        {
+                            ExceptionUtility.LogException(exc);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+                try
+                {
+                    if (!(listaEventos is null))
+                    {
+                        foreach (var itemEvento in listaEventos)
+                        {
+                            GraphEvents eventos = new GraphEvents {
+                                IdUsuario = itemUsuario.IdUsuario,
+                                Event = itemEvento.Event,
+                               IdCalendar=itemEvento.IdCalendar
+
+                            };
+                            lista.Add(eventos);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+
+            }
+
+            return lista;
+        }
+
+    
+
+        public async Task<List<GraphCalendarEvents>> GetCalendarEventsByUsuario() {
+            List<GraphCalendarEvents> listaGraphCalendarEvents = new List<GraphCalendarEvents>();
+            var listadoCalendario = await GetCalendarByUsuario();
+            var listadoEventos = await GetEventosByUsuario();
+
+            foreach(var itemListadoCalendario in listadoCalendario) {
+                listaGraphCalendarEvents.Add(new GraphCalendarEvents {
+                    GraphCalendar = itemListadoCalendario,
+                    GraphEvents = listadoEventos.Where(c => c.IdCalendar==itemListadoCalendario.Calendar.Id).ToList()
+                });
+
+            }
+
+            return listaGraphCalendarEvents;
+          
         }
     }
 }

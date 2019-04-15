@@ -21,8 +21,8 @@ namespace PreOrclApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Common.Entity.Models.GraphCalendar>> GetCalendarios()
         {
-
             return await bol.GetCalendarByUsuario();
         }
+
     }
 }

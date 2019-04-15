@@ -132,6 +132,27 @@ namespace Common.BOL.BOL
             return calendars.ToList();
         }
 
+        public async Task<List<GraphEvents>> GetAllEvents(GraphServiceClient graphClient)
+        {
+            var calendarios = await graphClient.Me.Calendars.Request().GetAsync();
+            List<GraphEvents> eventos = new List<GraphEvents>();
+            foreach (var itemCalendario in calendarios) {
+
+                foreach (var itemEvento in await graphClient.Me.Calendars[itemCalendario.Id.ToString()].Events.Request().GetAsync()) {
+                    eventos.Add(new GraphEvents {
+                        Event = itemEvento,
+                        IdCalendar = itemCalendario.Id
+                    });
+                }
+                
+            }
+            return eventos;
+        }
+
+        public async Task<List<Event>> GetEventsByIdCalendar(GraphServiceClient graphClient,string IdCalendar)
+        {
+            return (await graphClient.Me.Calendars[IdCalendar].Events.Request().GetAsync()).ToList();
+        }
         public string GetToken(string refreshToken)
         {
 
