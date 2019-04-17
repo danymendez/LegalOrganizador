@@ -28,7 +28,7 @@ namespace PreOrclApi.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<Common.Entity.Models.GraphEvents>> GetEventos(decimal id)
         {
-            return (await bol.GetEventosByIdUsuario()).Where(c => c.IdUsuario==id);
+            return await bol.GetEventosByIdUsuario(id);
         }
     }
 }

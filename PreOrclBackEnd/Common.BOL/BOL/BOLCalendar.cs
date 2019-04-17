@@ -80,6 +80,71 @@ namespace Common.BOL.BOL
             return lista;
         }
 
+        public async Task<List<GraphCalendar>> GetCalendarByIdUsuario(decimal id)
+        {
+            graph = new BOLMSGraph();
+            List<GraphCalendar> lista = new List<GraphCalendar>();
+            bolUsuarios = new BOLUsuarios();
+            var usuarios = await bolUsuarios.GetUsuario(id);
+           
+          
+
+                GraphServiceClient authenticatedUser = null;
+                List<Calendar> listaCalendario = null;
+                try
+                {
+
+                    authenticatedUser = graph.GetAuthenticatedClient(Criptografia.Decrypt(usuarios.Token));
+                    listaCalendario = await graph.GetCalendar(authenticatedUser);
+                }
+                catch (ServiceException ex)
+                {
+                    if (ex.Error.Code == "InvalidAuthenticationToken")
+                    {
+                        try
+                        {
+                            var tokenRefreshed = graph.GetToken(Criptografia.Decrypt(usuarios.TokenRefresh));
+                            usuarios.Token = Criptografia.Encrypt(tokenRefreshed);
+                            await bolUsuarios.UpdateUsuarios(usuarios.IdUsuario, usuarios);
+                            authenticatedUser = graph.GetAuthenticatedClient(tokenRefreshed);
+                            listaCalendario = await graph.GetCalendar(authenticatedUser);
+                        }
+                        catch (Exception exc)
+                        {
+                            ExceptionUtility.LogException(exc);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+                try
+                {
+                    if (!(listaCalendario is null))
+                    {
+                        foreach (var itemCalendario in listaCalendario)
+                        {
+                            lista.Add(new GraphCalendar
+                            {
+                                IdUsuario = usuarios.IdUsuario,
+                                Calendar = itemCalendario,
+
+
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+
+
+            return lista;
+        }
         public async Task<List<GraphEvents>> GetEventosByIdUsuario()
         {
             graph = new BOLMSGraph();
@@ -149,7 +214,72 @@ namespace Common.BOL.BOL
             return lista;
         }
 
-        public async Task<Tuple<Event,string>> CreateEventByIdUsuario(Actividades actividades , List<VwModelAsistentes> listVwModelAsistente,string createEventMessageError = null) {
+        public async Task<List<GraphEvents>> GetEventosByIdUsuario(decimal id)
+        {
+            graph = new BOLMSGraph();
+            List<GraphEvents> lista = new List<GraphEvents>();
+            bolUsuarios = new BOLUsuarios();
+            var usuarios = await bolUsuarios.GetUsuario(id);
+           
+
+                GraphServiceClient authenticatedUser = null;
+                List<GraphEvents> listaEventos = null;
+                try
+                {
+
+                    authenticatedUser = graph.GetAuthenticatedClient(Criptografia.Decrypt(usuarios.Token));
+                    listaEventos = await graph.GetAllEvents(authenticatedUser);
+                }
+                catch (ServiceException ex)
+                {
+                    if (ex.Error.Code == "InvalidAuthenticationToken")
+                    {
+                        try
+                        {
+                            var tokenRefreshed = graph.GetToken(Criptografia.Decrypt(usuarios.TokenRefresh));
+                            usuarios.Token = Criptografia.Encrypt(tokenRefreshed);
+                            await bolUsuarios.UpdateUsuarios(usuarios.IdUsuario, usuarios);
+                            authenticatedUser = graph.GetAuthenticatedClient(tokenRefreshed);
+                            listaEventos = await graph.GetAllEvents(authenticatedUser);
+                        }
+                        catch (Exception exc)
+                        {
+                            ExceptionUtility.LogException(exc);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+                try
+                {
+                    if (!(listaEventos is null))
+                    {
+                        foreach (var itemEvento in listaEventos)
+                        {
+                            GraphEvents eventos = new GraphEvents
+                            {
+                                IdUsuario = usuarios.IdUsuario,
+                                Event = itemEvento.Event,
+                                IdCalendar = itemEvento.IdCalendar
+
+                            };
+
+                            lista.Add(eventos);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+
+            return lista;
+        }
+        public async Task<Tuple<Event,string>> CreateEventByIdUsuario(Actividades actividades , List<VwModelAsistentes> listVwModelAsistente) {
             graph = new BOLMSGraph();
             bolUsuarios = new BOLUsuarios();
             var usuarios = await bolUsuarios.GetUsuario(actividades.IdResponsable);

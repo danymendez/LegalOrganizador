@@ -24,5 +24,11 @@ namespace PreOrclApi.Controllers
             return await bol.GetCalendarByIdUsuario();
         }
 
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<Common.Entity.Models.GraphCalendar>> GetCalendarios(decimal id)
+        {
+            return await bol.GetCalendarByIdUsuario(id);
+        }
+
     }
 }
