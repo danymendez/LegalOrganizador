@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Common.Entity.Models;
+using Common.Entity.ViewModels;
 using Common.Utilities;
 using Microsoft.Graph;
 using Newtonsoft.Json;
@@ -16,14 +17,14 @@ using Newtonsoft.Json;
 
 namespace Common.BOL.BOL
 {
-   public class BOLMSGraph
+    public class BOLMSGraph
     {
 
         public GraphServiceClient GetAuthenticatedClient(string token)
         {
 
-            GraphServiceClient _graphClient =  new GraphServiceClient(new DelegateAuthenticationProvider(
-                async requestMessage  => 
+            GraphServiceClient _graphClient = new GraphServiceClient(new DelegateAuthenticationProvider(
+                async requestMessage =>
                 {
                     // Passing tenant ID to the sample auth provider to use as a cache key
                     var accessToken = token;
@@ -35,7 +36,7 @@ namespace Common.BOL.BOL
                     //  requestMessage.Headers.Add("SampleID", "aspnetcore-connect-sample");
                 }));
             // c = _authProvider.GetUserAccessTokenAsync(userId).Result;
-            return  _graphClient;
+            return _graphClient;
         }
 
         private async Task<Microsoft.Graph.User> GetUser(GraphServiceClient graphClient)
@@ -130,6 +131,91 @@ namespace Common.BOL.BOL
         public async Task<List<Calendar>> GetCalendar(GraphServiceClient graphClient) {
             var calendars = await graphClient.Me.Calendars.Request().GetAsync();
             return calendars.ToList();
+        }
+
+        public async Task<Tuple<Event,string>> CreateEvent(GraphServiceClient graphClient, Actividades actividades,List<VwModelAsistentes> vwModelAsistentes)
+        {
+            string messageError = "";
+
+            Event createdEvent= null;
+            try
+            {
+
+                List<Option> requestOptions = new List<Option>()
+            {
+                new HeaderOption("Prefer", "outlook.timezone=\"" + TimeZoneInfo.Local.Id + "\"")
+            };
+            string guid = Guid.NewGuid().ToString();
+
+            List<Attendee> _attendees = new List<Attendee>();
+
+                foreach (var itemAsistente in vwModelAsistentes) {
+                    _attendees.Add(new Attendee
+                    {
+                        EmailAddress = new EmailAddress
+                        {
+                            Address = itemAsistente.Correo
+                        },
+                        Type = AttendeeType.Required
+                    });
+                }
+
+
+                
+
+                // Event body
+                ItemBody body = new ItemBody
+            {
+                Content = $"{actividades.NombreActividad} - Caso: {actividades.IdCaso}",
+                ContentType = BodyType.Text
+            };
+
+            // Event start and end time
+            // Another example date format: `new DateTime(2017, 12, 1, 9, 30, 0).ToString("o")`
+            DateTimeTimeZone startTime = new DateTimeTimeZone
+            {
+                DateTime = actividades.StartTime.ToString(),
+                TimeZone = actividades.TimeZone
+            };
+            DateTimeTimeZone endTime = new DateTimeTimeZone
+            {
+                DateTime = actividades.EndTime.ToString(),
+                TimeZone = actividades.TimeZone
+            };
+
+            // Event location
+            Location location = new Location
+            {
+                DisplayName ="",
+            };
+
+           
+                 createdEvent = await graphClient.Me.Calendars[actividades.IdCalendario].Events.Request(requestOptions)
+
+                   .AddAsync(new Event
+                   {
+                       Subject =actividades.NombreActividad,
+                       Location = location,
+                       Attendees = _attendees,
+                       Body = body,
+                       Start = startTime,
+                       End = endTime
+                   });
+
+                actividades.IdEvento = createdEvent.ICalUId;
+
+            }
+            catch (ServiceException ex) {
+                messageError = ex.Error.Code;
+                ExceptionUtility.LogException(ex);
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+
+
+            return new Tuple<Event,string>(createdEvent,messageError);
         }
 
         public async Task<List<GraphEvents>> GetAllEvents(GraphServiceClient graphClient)

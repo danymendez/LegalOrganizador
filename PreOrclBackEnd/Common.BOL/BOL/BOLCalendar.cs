@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Entity.ViewModels;
 
 namespace Common.BOL.BOL
 {
@@ -132,6 +133,7 @@ namespace Common.BOL.BOL
                                IdCalendar=itemEvento.IdCalendar
 
                             };
+
                             lista.Add(eventos);
                         }
                     }
@@ -147,7 +149,49 @@ namespace Common.BOL.BOL
             return lista;
         }
 
-    
+        public async Task<Tuple<Event,string>> CreateEventByIdUsuario(Actividades actividades , List<VwModelAsistentes> listVwModelAsistente,string createEventMessageError = null) {
+            graph = new BOLMSGraph();
+            bolUsuarios = new BOLUsuarios();
+            var usuarios = await bolUsuarios.GetUsuario(actividades.IdResponsable);
+            Tuple<Event,string> tupleEventMsgError = null;
+
+                GraphServiceClient authenticatedUser = null;
+              
+                try
+                {
+
+                    authenticatedUser = graph.GetAuthenticatedClient(Criptografia.Decrypt(usuarios.Token));
+                tupleEventMsgError = await graph.CreateEvent(authenticatedUser, actividades, listVwModelAsistente);
+                }
+                catch (ServiceException ex)
+                {
+                    if (ex.Error.Code == "InvalidAuthenticationToken")
+                    {
+                        try
+                        {
+                            var tokenRefreshed = graph.GetToken(Criptografia.Decrypt(usuarios.TokenRefresh));
+                            usuarios.Token = Criptografia.Encrypt(tokenRefreshed);
+                            await bolUsuarios.UpdateUsuarios(usuarios.IdUsuario, usuarios);
+                            authenticatedUser = graph.GetAuthenticatedClient(tokenRefreshed);
+                            tupleEventMsgError = await graph.CreateEvent(authenticatedUser, actividades, listVwModelAsistente);
+                    }
+                        catch (Exception exc)
+                        {
+                            ExceptionUtility.LogException(exc);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionUtility.LogException(ex);
+                }
+
+                
+
+            
+
+            return tupleEventMsgError;
+        }
 
         public async Task<List<GraphCalendarEvents>> GetCalendarEventsByUsuario() {
             List<GraphCalendarEvents> listaGraphCalendarEvents = new List<GraphCalendarEvents>();

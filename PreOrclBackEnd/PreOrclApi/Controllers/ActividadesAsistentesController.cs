@@ -101,6 +101,25 @@ namespace PreOrclApi.Controllers
             return CreatedAtAction("GetActividadAsistente", new { id = ActividadesAsistentes.IdActividadAsistentes }, ActividadesAsistentes);
         }
 
+        [HttpPost("PostVwActividadesAsistentes", Name = "PostVwActividadesAsistentes")]
+        public async Task<IActionResult> PostVwActividadesAsistentes([FromBody] Common.Entity.ViewModels.VwModelActividadesAsistentes VwActividadesAsistentes)
+        {
+        
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            bool seGuardo = false;
+            var tupleEventMsgError = await bol.CreateVwModelActividadesAsistentes(VwActividadesAsistentes.Actividades, VwActividadesAsistentes.ListVwModelAsistentes);
+            seGuardo = !(tupleEventMsgError.Item1 is null);
+
+            if (seGuardo) 
+                return Ok(seGuardo);
+            
+
+            return BadRequest(tupleEventMsgError.Item2);
+        }
+
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteActividad([FromRoute] decimal id)

@@ -40,5 +40,15 @@ namespace Common.Entity.Models
         [Field(Name = "INACTIVO")]
         [Required]
         public decimal Inactivo { get; set; }
+
+        [Field(Name = "STARTTIME")]
+        [Required]
+        public DateTime StartTime { get; set; }
+        [Field(Name = "ENDTIME")]
+        [Required]
+        public DateTime EndTime { get; set; }
+        [Field(Name = "TIMEZONE")]
+        [Required]
+        public string TimeZone { get; set; }
     }
 }
