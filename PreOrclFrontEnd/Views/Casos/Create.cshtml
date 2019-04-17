@@ -1,0 +1,120 @@
+﻿@model PreOrclFrontEnd.Models.Casos
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@section Styles{
+
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/style.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/lib/chosen/chosen.min.css">
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Agregar</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Registros</a></li>
+                            <li><a asp-action="Index">Listado Personas</a></li>
+                            <li class="active">Agregar Persona</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Crear Caso</strong> <small></small>
+                    </div>
+
+                    <form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label asp-for="FechaApertura" class="form-control-label"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input asp-for="FechaApertura" class="form-control">
+                                </div>
+                                <span asp-validation-for="FechaApertura" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <select asp-for="IdCliente" data-placeholder="Seleccionar"  asp-items="ViewBag.listaPersonas" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="IdCliente" class="text-danger"></span>
+                            </div>
+                            <div class="form-group"><label for="street" class=" form-control-label">Street</label><input type="text" id="street" placeholder="Enter street name" class="form-control"></div>
+                            <div class="row form-group">
+                                <div class="col-8">
+                                    <div class="form-group"><label for="city" class=" form-control-label">City</label><input type="text" id="city" placeholder="Enter your city" class="form-control"></div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" id="postal-code" placeholder="Postal Code" class="form-control"></div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label for="country" class=" form-control-label">Country</label><input type="text" id="country" placeholder="Country name" class="form-control"></div>
+                            <div class="row form-group">
+                                <div class="col-sm-12 text-right">
+                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','/SisPerPersonas/Create','/SisPerPersonas')" class="btn btn-default">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div><!-- .animated -->
+</div>
+
+
+@section Scripts {
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/custoSweetAlertAjax.js"></script>
+ 
+    <script src="~/templateAdmin/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".standardSelect").chosen({
+            
+                no_results_text: "No se encontraron registros!",
+                width: "100%"
+            });
+
+            jQuery("#IdCliente").removeAttr("style");
+            jQuery("#IdCliente").css("visibility", "hidden");
+            jQuery("#IdCliente").css("position", "absolute");
+
+
+
+        });
+    </script>
+
+}
