@@ -42,6 +42,10 @@ namespace PreOrclFrontEnd.Models
         public decimal? IdUsuarioCierre { get; set; }
 
         [Required]
+        [MaxLength(1)]
+        public string EstadoCaso { get; set; }
+
+        [Required]
         public DateTime CreatedAt { get; set; }
     
         public DateTime? UpdatedAt { get; set; }

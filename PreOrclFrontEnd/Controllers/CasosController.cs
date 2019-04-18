@@ -35,6 +35,7 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.listaCategorias = ListaGenericaCollection.GetListCategorias();
             ViewBag.listaTipos = ListaGenericaCollection.GetListTipo();
             ViewBag.listaAbogados = new SelectList(generic.GetAll<Usuarios>("Usuarios").Result, "IdUsuario", "Nombre");
+            ViewBag.listaEstadoCasos = new SelectList(ListaGenericaCollection.GetListEstadoCaso(), "Value", "Text");
 
             return View();
         }
@@ -45,7 +46,9 @@ namespace PreOrclFrontEnd.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                casos.CreatedAt = DateTime.Now;
+                casos.Cancelado = 0;
+                casos.Inactivo = 0;
                 casos = await generic.Post("Casos", casos);
 
                 if (casos.IdCaso == 0)

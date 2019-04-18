@@ -21,7 +21,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Agregar</h1>
+                        <h1>Agregar Caso</h1>
                     </div>
                 </div>
             </div>
@@ -30,8 +30,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Registros</a></li>
-                            <li><a asp-action="Index">Listado Personas</a></li>
-                            <li class="active">Agregar Persona</li>
+                            <li><a asp-action="Index">Casos</a></li>
+                            <li class="active">Agregar Caso</li>
                         </ol>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label asp-for="Tipo" class="form-control-label"></label>
+                                    <label asp-for="Categoria" class="form-control-label"></label>
                                 </div>
                                 <div class="col col-md-9">
                                     <div class="form-check-inline form-check">
@@ -93,7 +93,7 @@
                                 <label asp-for="PrecioPactado"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-dollar"></i></div>
-                                    <input asp-for="PrecioPactado" value="0"  class="form-control text-right">
+                                    <input asp-for="PrecioPactado" value="0" class="form-control text-right">
                                 </div>
                                 <span asp-validation-for="PrecioPactado" class="text-danger"></span>
                             </div>
@@ -104,9 +104,34 @@
                                 </select>
                                 <span asp-validation-for="IdAbogado" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label asp-for="Resolucion"></label>
+                                <div class="input-group">
+
+                                    <textarea asp-for="Resolucion" class="form-control"></textarea>
+                                </div>
+                                <span asp-validation-for="Resolucion" class="text-danger"></span>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="EstadoCaso"></label>
+                                    <select asp-for="EstadoCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoCasos" class="standardSelect" tabindex="1">
+                                        <option disabled value="-1" selected>Seleccionar</option>
+                                    </select>
+                                    <span asp-validation-for="EstadoCaso" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="FechaCierre"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        <input asp-for="FechaCierre" class="form-control">
+                                    </div>
+                                    <span asp-validation-for="FechaCierre" class="text-danger"></span>
+                                </div>
+                            </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label asp-for="Categoria" class="form-control-label"></label>
+                                    <label asp-for="Tipo" class="form-control-label"></label>
                                 </div>
                                 <div class="col col-md-9">
                                     <div class="form-check-inline form-check">
@@ -123,6 +148,7 @@
                                     <span asp-validation-for="Tipo" class="text-danger"></span>
                                 </div>
                             </div>
+
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
                                     <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />

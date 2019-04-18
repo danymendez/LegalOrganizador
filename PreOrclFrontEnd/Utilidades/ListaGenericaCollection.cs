@@ -25,6 +25,17 @@ namespace PreOrclFrontEnd.Utilidades
 
             };
         }
+
+
+        public static List<ListItem> GetListEstadoCaso()
+        {
+            return new List<ListItem>()
+            {
+                new ListItem{ Text = "Abierto", Value="A" },
+                new ListItem{ Text = "CERRADO", Value="C" },
+
+            };
+        }
     }
 
         public class ListItem
