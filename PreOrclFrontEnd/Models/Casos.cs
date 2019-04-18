@@ -33,6 +33,14 @@ namespace PreOrclFrontEnd.Models
         [Required]
         public decimal IdCreador { get; set; }
 
+        [MaxLength(2000)]
+        public string Resolucion { get; set; }
+
+        public decimal Cancelado { get; set; }
+        public DateTime? FechaCierre { get; set; }
+
+        public decimal? IdUsuarioCierre { get; set; }
+
         [Required]
         public DateTime CreatedAt { get; set; }
     

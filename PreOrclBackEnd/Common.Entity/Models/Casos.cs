@@ -50,6 +50,10 @@ namespace Common.Entity.Models
         public decimal? IdUsuarioCierre { get; set; }
 
 
+        [Field(Name = "ESTADOCASO")]
+        [MaxLength(1)]
+        [Required]
+        public string EstadoCaso { get; set; }
 
         [Field(Name = "CREATEDAT")]
         [Required]
