@@ -32,7 +32,7 @@ namespace PreOrclFrontEnd.Utilidades
             return new List<ListItem>()
             {
                 new ListItem{ Text = "Abierto", Value="A" },
-                new ListItem{ Text = "CERRADO", Value="C" },
+                new ListItem{ Text = "Cerrado", Value="C" },
 
             };
         }

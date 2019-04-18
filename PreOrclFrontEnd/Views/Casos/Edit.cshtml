@@ -4,7 +4,8 @@
 
     List<PreOrclFrontEnd.Utilidades.ListItem> listaCategorias = (ViewBag.listaCategorias as List<PreOrclFrontEnd.Utilidades.ListItem>);
     List<PreOrclFrontEnd.Utilidades.ListItem> listaTipos = (ViewBag.listaTipos as List<PreOrclFrontEnd.Utilidades.ListItem>);
-   
+
+
 }
 
 
@@ -50,7 +51,7 @@
                         <strong>Crear Caso</strong> <small></small>
                     </div>
 
-                    <form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                    <form asp-action="Edit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
                           data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
@@ -92,7 +93,7 @@
                                 <label asp-for="PrecioPactado"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-dollar"></i></div>
-                                    <input asp-for="PrecioPactado" value="0" class="form-control text-right">
+                                    <input asp-for="PrecioPactado" class="form-control text-right">
                                 </div>
                                 <span asp-validation-for="PrecioPactado" class="text-danger"></span>
                             </div>
@@ -147,10 +148,14 @@
                                     <span asp-validation-for="Tipo" class="text-danger"></span>
                                 </div>
                             </div>
-
+                            <input asp-for="IdCaso" type="hidden" />
+                            <input asp-for="CreatedAt" type="hidden" />
+                            <input asp-for="UpdatedAt" type="hidden" />
+                            <input asp-for="InactivatedAt" type="hidden" />
+                            <input asp-for="Inactivo" type="hidden" />
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
-                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
+                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Edit")','@Url.Action("Index")')" class="btn btn-default" />
                                 </div>
                             </div>
                         </div>

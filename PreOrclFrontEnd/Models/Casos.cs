@@ -11,8 +11,10 @@ namespace PreOrclFrontEnd.Models
        
         public decimal IdCaso { get; set; }
         [Required]
+        [Display(Name = "Fecha de apertura")]
+
         public DateTime FechaApertura { get; set; }
-      
+        [Display(Name ="Cliente")]
         [Required]
         public decimal IdCliente { get; set; }
 
@@ -25,24 +27,31 @@ namespace PreOrclFrontEnd.Models
         public string Tipo { get; set; }
 
         [Required]
+        [Display(Name = "Precio pactado")]
         public decimal PrecioPactado { get; set; }
 
         [Required]
+        [Display(Name = "Abogado")]
         public decimal IdAbogado { get; set; }
 
         [Required]
         public decimal IdCreador { get; set; }
 
         [MaxLength(2000)]
+        [Display(Name = "Resolución")]
         public string Resolucion { get; set; }
 
         public decimal Cancelado { get; set; }
+
+        [Display(Name = "Fecha de cierre")]
         public DateTime? FechaCierre { get; set; }
 
+        [Display(Name = "Usuario que cierra")]
         public decimal? IdUsuarioCierre { get; set; }
 
         [Required]
         [MaxLength(1)]
+        [Display(Name = "Estado del caso")]
         public string EstadoCaso { get; set; }
 
         [Required]
