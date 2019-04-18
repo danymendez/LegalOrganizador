@@ -1,6 +1,11 @@
 ﻿@model PreOrclFrontEnd.Models.Casos
 @{
     ViewData["Title"] = "Create";
+
+    List<PreOrclFrontEnd.Utilidades.ListItem> listaCategorias = (ViewBag.listaCategorias as List<PreOrclFrontEnd.Utilidades.ListItem>);
+    List<PreOrclFrontEnd.Utilidades.ListItem> listaTipos = (ViewBag.listaTipos as List<PreOrclFrontEnd.Utilidades.ListItem>);
+
+
 }
 
 
@@ -51,7 +56,7 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="form-group">
-                                <label asp-for="FechaApertura" class="form-control-label"></label>
+                                <label asp-for="FechaApertura"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <input asp-for="FechaApertura" class="form-control">
@@ -59,24 +64,68 @@
                                 <span asp-validation-for="FechaApertura" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <select asp-for="IdCliente" data-placeholder="Seleccionar"  asp-items="ViewBag.listaPersonas" class="standardSelect" tabindex="1">
+                                <label asp-for="IdCliente"></label>
+                                <select asp-for="IdCliente" data-placeholder="Seleccionar" asp-items="ViewBag.listaPersonas" class="standardSelect" tabindex="1">
                                     <option disabled value="-1" selected>Seleccionar</option>
                                 </select>
                                 <span asp-validation-for="IdCliente" class="text-danger"></span>
                             </div>
-                            <div class="form-group"><label for="street" class=" form-control-label">Street</label><input type="text" id="street" placeholder="Enter street name" class="form-control"></div>
                             <div class="row form-group">
-                                <div class="col-8">
-                                    <div class="form-group"><label for="city" class=" form-control-label">City</label><input type="text" id="city" placeholder="Enter your city" class="form-control"></div>
+                                <div class="col col-md-3">
+                                    <label asp-for="Tipo" class="form-control-label"></label>
                                 </div>
-                                <div class="col-8">
-                                    <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" id="postal-code" placeholder="Postal Code" class="form-control"></div>
+                                <div class="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                        @foreach (var itemCategoria in listaCategorias)
+                                        {
+
+                                            <label for="inline-radio@listaCategorias.GetEnumerator()" class="form-check-label ">
+                                                <input asp-for="Categoria" type="radio" value="@itemCategoria.Value" class="form-check-input">@itemCategoria.Text&nbsp;&nbsp;&nbsp;
+                                            </label>
+
+                                        }
+
+                                    </div>
+                                    <span asp-validation-for="Categoria" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group"><label for="country" class=" form-control-label">Country</label><input type="text" id="country" placeholder="Country name" class="form-control"></div>
+                            <div class="form-group">
+                                <label asp-for="PrecioPactado"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-dollar"></i></div>
+                                    <input asp-for="PrecioPactado" value="0"  class="form-control text-right">
+                                </div>
+                                <span asp-validation-for="PrecioPactado" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="IdAbogado"></label>
+                                <select asp-for="IdAbogado" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="IdAbogado" class="text-danger"></span>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label asp-for="Categoria" class="form-control-label"></label>
+                                </div>
+                                <div class="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                        @foreach (var itemTipos in listaTipos)
+                                        {
+
+                                            <label for="inline-radio@listaTipos.GetEnumerator()" class="form-check-label ">
+                                                <input asp-for="Tipo" type="radio" value="@itemTipos.Value" class="form-check-input">@itemTipos.Text&nbsp;&nbsp;&nbsp;
+                                            </label>
+
+                                        }
+
+                                    </div>
+                                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                                </div>
+                            </div>
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
-                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','/SisPerPersonas/Create','/SisPerPersonas')" class="btn btn-default">
+                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
                                 </div>
                             </div>
                         </div>
@@ -108,9 +157,9 @@
                 width: "100%"
             });
 
-            jQuery("#IdCliente").removeAttr("style");
-            jQuery("#IdCliente").css("visibility", "hidden");
-            jQuery("#IdCliente").css("position", "absolute");
+            jQuery(".standardSelect").removeAttr("style");
+            jQuery(".standardSelect").css("visibility", "hidden");
+            jQuery(".standardSelect").css("position", "absolute");
 
 
 

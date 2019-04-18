@@ -36,6 +36,21 @@ namespace Common.Entity.Models
         [Field(Name = "IDCREADOR")]
         [Required]
         public decimal IdCreador { get; set; }
+        [Field(Name = "RESOLUCION")]
+        [MaxLength(2000)]
+        public string Resolucion { get; set; }
+
+        [Field(Name = "CANCELADO")]
+        public decimal Cancelado { get; set; }
+
+        [Field(Name = "FECHACIERRE")]
+        public DateTime? FechaCierre { get; set; }
+
+        [Field(Name = "IDUSUARIOCIERRE")]
+        public decimal? IdUsuarioCierre { get; set; }
+
+
+
         [Field(Name = "CREATEDAT")]
         [Required]
         public DateTime CreatedAt { get; set; }
