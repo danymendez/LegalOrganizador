@@ -12,6 +12,6 @@ namespace PreOrclFrontEnd.ViewModels
         public Actividades Actividades { get; set; }
         public List<VwModelAsistentes> ListVwModelAsistentes { get; set; }
         [Required]
-        public decimal[] IdAsitentes { get; set; }
+        public decimal[] IdAsistentes { get; set; }
     }
 }

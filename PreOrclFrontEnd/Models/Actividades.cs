@@ -30,14 +30,14 @@ namespace PreOrclFrontEnd.Models
 
         public decimal IdCaso { get; set; }
 
-        [Required]
+    
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
 
         public DateTime? InactivatedAt { get; set; }
 
-        [Required]
+        
         public decimal Inactivo { get; set; }
 
  
@@ -47,7 +47,7 @@ namespace PreOrclFrontEnd.Models
         [Required]
         public DateTime EndTime { get; set; }
 
-        [Required]
+     
         public string TimeZone { get; set; }
     }
 }

@@ -12,8 +12,11 @@ namespace PreOrclFrontEnd.Models
         public decimal IdCaso { get; set; }
         [Required]
         [Display(Name = "Fecha de apertura")]
-
         public DateTime FechaApertura { get; set; }
+
+        [Required]
+        public string NombreCaso { get; set; }
+
         [Display(Name ="Cliente")]
         [Required]
         public decimal IdCliente { get; set; }

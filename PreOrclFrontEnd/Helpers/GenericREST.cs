@@ -81,6 +81,28 @@ namespace PreOrclFrontEnd.Helpers
             return clase;
         }
 
+        public virtual async Task<bool> PostIsSaved<T>(string urlMethod, T clase)
+        {
+            bool isSaved = false;
+            try
+            {
+                HttpClient client = new HttpClient();
+                string uri = BASEURL;
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await client.PostAsJsonAsync(uri + urlMethod, clase);
+
+                if (response.IsSuccessStatusCode)
+                    isSaved = await response.Content.ReadAsAsync<bool>();
+
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+            return isSaved;
+        }
+
         public virtual async Task<T> PostAuth<T>(string urlMethod, string Usuario, string Password)
         {
             T clase = default(T);

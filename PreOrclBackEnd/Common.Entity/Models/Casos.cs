@@ -16,6 +16,9 @@ namespace Common.Entity.Models
         [Field(Name ="FECHAAPERTURA")]
         [Required]
         public DateTime FechaApertura { get; set; }
+        [Field(Name = "NOMBRECASO")]
+        [Required]
+        public string NombreCaso { get; set; }
         [Field(Name ="IDCLIENTE")]
         [Required]
         public decimal IdCliente { get; set; }

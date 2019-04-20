@@ -38,6 +38,28 @@ namespace PreOrclFrontEnd.Utilidades
             });
         }
 
+        public static SelectList GetSelectListEstadoActividad()
+        {
+            return new SelectList(new List<SelectListItem>()
+            {
+                new SelectListItem{ Text = "Realizada", Value="R" },
+                new SelectListItem{ Text = "Reprogramada", Value="E" },
+                new SelectListItem{ Text = "Programada", Value="P" },
+
+            });
+        }
+
+        public static List<SelectListItem> GetSelectListItemEstadoActividad()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text = "Realizada", Value="R" },
+                new SelectListItem{ Text = "Reprogramada", Value="E" },
+                new SelectListItem{ Text = "Programada", Value="P" },
+
+            };
+        }
+
         public static List<SelectListItem> GetSelectListItemCategorias()
         {
            return new List<SelectListItem>()

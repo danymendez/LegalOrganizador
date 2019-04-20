@@ -76,8 +76,12 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (ExistUsuario(pUsuarios.Usuario))
+            {
+                return BadRequest("Usuario ya existe");
+            }
             bolUsuarios = new BOLUsuarios();
-           
+
            var usuarioCreado = await bolUsuarios.CreateUsuario(pUsuarios);
 
             return CreatedAtAction("GetUsuarios", new { id = usuarioCreado.IdUsuario }, pUsuarios.Password=null);
@@ -121,6 +125,17 @@ namespace PreOrclApi.Controllers
             return NoContent();
         }
 
+        [NonAction]
+        public bool ExistUsuario(string usuario)
+        {
+
+            var usuarios = bolUsuarios.GetUsuarios().Result.Find(c => c.Usuario.Trim().ToLowerInvariant() == usuario.Trim().ToLowerInvariant()); 
+            if (usuarios == null)
+                return false;
+            else
+                return true;
+
+        }
 
     }
 }

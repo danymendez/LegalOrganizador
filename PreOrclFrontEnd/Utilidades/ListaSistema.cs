@@ -34,6 +34,10 @@ namespace PreOrclFrontEnd.Utilidades
                             select new Usuarios { IdUsuario=abogados.IdUsuario, Nombre = $"{abogados.Nombre} {abogados.Apellido}" }), "IdUsuario", "Nombre");
         }
 
-
+        public SelectList GetSelectListCasos()
+        {
+            return new SelectList((from casos in generic.GetAll<Casos>("Casos").Result
+                                   select new Casos { IdCaso = casos.IdCaso,NombreCaso = $"Caso: {casos.IdCaso} Nombre:{casos.NombreCaso}" }), "IdCaso", "NombreCaso");
+        }
     }
 }

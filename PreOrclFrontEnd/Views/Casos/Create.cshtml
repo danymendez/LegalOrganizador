@@ -56,6 +56,14 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="form-group">
+                                <label asp-for="NombreCaso"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input asp-for="NombreCaso" class="form-control">
+                                </div>
+                                <span asp-validation-for="NombreCaso" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="FechaApertura"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
@@ -115,7 +123,7 @@
                             <div class="row form-group">
                                 <div class="col-md-6">
                                     <label asp-for="EstadoCaso"></label>
-                                    <select asp-for="EstadoCaso" data-placeholder="Seleccionar" data-ajax="true" data-bind="A" class="standardSelect" tabindex="1">
+                                    <select asp-for="EstadoCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoCasos" class="standardSelect" tabindex="1">
                                         <option disabled value="-1" selected>Seleccionar</option>
                                     </select>
                                     <span asp-validation-for="EstadoCaso" class="text-danger"></span>
