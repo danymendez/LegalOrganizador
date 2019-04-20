@@ -2,9 +2,10 @@
 @{
     ViewData["Title"] = "Create";
 
-    List<PreOrclFrontEnd.Utilidades.ListItem> listaCategorias = (ViewBag.listaCategorias as List<PreOrclFrontEnd.Utilidades.ListItem>);
-    List<PreOrclFrontEnd.Utilidades.ListItem> listaTipos = (ViewBag.listaTipos as List<PreOrclFrontEnd.Utilidades.ListItem>);
-   
+
+    List<SelectListItem> listaCategorias = (ViewBag.listaCategorias as List<SelectListItem>);
+    List<SelectListItem> listaTipos = (ViewBag.listaTipos as List<SelectListItem>);
+
 }
 
 
@@ -114,7 +115,7 @@
                             <div class="row form-group">
                                 <div class="col-md-6">
                                     <label asp-for="EstadoCaso"></label>
-                                    <select asp-for="EstadoCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoCasos" class="standardSelect" tabindex="1">
+                                    <select asp-for="EstadoCaso" data-placeholder="Seleccionar" data-ajax="true" data-bind="A" class="standardSelect" tabindex="1">
                                         <option disabled value="-1" selected>Seleccionar</option>
                                     </select>
                                     <span asp-validation-for="EstadoCaso" class="text-danger"></span>

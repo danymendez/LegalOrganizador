@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,42 +8,69 @@ namespace PreOrclFrontEnd.Utilidades
 {
     public static class ListaGenericaCollection
     {
-        public static List<ListItem> GetListCategorias() {
-            return new List<ListItem>()
+        public static SelectList GetSelectListCategorias() {
+            return new SelectList( new List<SelectListItem>()
             {
-                new ListItem{ Text = "Categoria 1", Value="A" },
-                new ListItem{ Text = "Categoria 2", Value="B" },
+                new SelectListItem{ Text = "Categoria 1", Value="A" },
+                new SelectListItem{ Text = "Categoria 2", Value="B" },
 
-            };
+            });
         }
 
-        public static List<ListItem> GetListTipo()
+        public static SelectList GetSelectListTipo()
         {
-            return new List<ListItem>()
+            return new SelectList( new List<SelectListItem>()
             {
-                new ListItem{ Text = "Privado", Value="P" },
-                new ListItem{ Text = "Público", Value="U" },
+                new SelectListItem{ Text = "Privado", Value="P" },
+                new SelectListItem{ Text = "Público", Value="U" },
 
-            };
+            });
         }
 
 
-        public static List<ListItem> GetListEstadoCaso()
+        public static SelectList GetSelectListEstadoCaso()
         {
-            return new List<ListItem>()
+            return new SelectList(new List<SelectListItem>()
             {
-                new ListItem{ Text = "Abierto", Value="A" },
-                new ListItem{ Text = "Cerrado", Value="C" },
+                new SelectListItem{ Text = "Abierto", Value="A" },
+                new SelectListItem{ Text = "Cerrado", Value="C" },
+
+            });
+        }
+
+        public static List<SelectListItem> GetSelectListItemCategorias()
+        {
+           return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text = "Categoria 1", Value="A" },
+                new SelectListItem{ Text = "Categoria 2", Value="B" },
 
             };
         }
+
+        public static List<SelectListItem> GetSelectListItemTipo()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text = "Privado", Value="P" },
+                new SelectListItem{ Text = "Público", Value="U" },
+
+            };
+        }
+
+
+        public static List<SelectListItem> GetSelectListItemEstadoCaso()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem{ Text = "Abierto", Value="A" },
+                new SelectListItem{ Text = "Cerrado", Value="C" },
+
+            };
+        }
+
+
     }
-
-        public class ListItem
-        {
-            public string Text { get; set; }
-            public string Value { get; set; }
-        }
 }
 
     

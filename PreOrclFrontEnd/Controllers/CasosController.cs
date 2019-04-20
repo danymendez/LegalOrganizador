@@ -16,12 +16,13 @@ namespace PreOrclFrontEnd.Controllers
     {
 
         GenericREST generic;
+        ListaSistema listaSistema;
 
         public CasosController(IOptions<UriHelpers> configuration)
         {
 
             generic = new GenericREST(configuration.Value);
-
+            listaSistema = new ListaSistema(configuration);
         }
         public IActionResult Index()
         {
@@ -31,14 +32,19 @@ namespace PreOrclFrontEnd.Controllers
      
         public IActionResult Create()
         {
-            
-            ViewBag.listaPersonas = new SelectList(generic.GetAll<SisPerPersona>("SisPerPersonas").Result, "per_IDPER", "per_nombre_razon");
-            ViewBag.listaCategorias = ListaGenericaCollection.GetListCategorias();
-            ViewBag.listaTipos = ListaGenericaCollection.GetListTipo();
-            ViewBag.listaAbogados = new SelectList(generic.GetAll<Usuarios>("Usuarios").Result, "IdUsuario", "Nombre");
-            ViewBag.listaEstadoCasos = new SelectList(ListaGenericaCollection.GetListEstadoCaso(), "Value", "Text");
+
+            ViewBag.listaPersonas = listaSistema.GetSelectListClientes();
+            ViewBag.listaCategorias = ListaGenericaCollection.GetSelectListItemCategorias();
+            ViewBag.listaTipos = ListaGenericaCollection.GetSelectListItemTipo();
+            ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
+            ViewBag.listaEstadoCasos = ListaGenericaCollection.GetSelectListItemEstadoCaso();
 
             return View();
+        }
+
+        public SelectList GetListaPersonas() {
+            var lista = new SelectList(generic.GetAll<SisPerPersona>("SisPerPersonas").Result, "per_IDPER", "per_nombre_razon");
+            return lista;
         }
 
         public async Task<IActionResult> Edit(decimal? id)
@@ -48,11 +54,11 @@ namespace PreOrclFrontEnd.Controllers
                 return NotFound();
             }
 
-            ViewBag.listaPersonas = new SelectList(generic.GetAll<SisPerPersona>("SisPerPersonas").Result, "per_IDPER", "per_nombre_razon");
-            ViewBag.listaCategorias = ListaGenericaCollection.GetListCategorias();
-            ViewBag.listaTipos = ListaGenericaCollection.GetListTipo();
-            ViewBag.listaAbogados = new SelectList(generic.GetAll<Usuarios>("Usuarios").Result, "IdUsuario", "Nombre");
-            ViewBag.listaEstadoCasos = new SelectList(ListaGenericaCollection.GetListEstadoCaso(), "Value", "Text");
+            ViewBag.listaPersonas = listaSistema.GetSelectListClientes();
+            ViewBag.listaCategorias = ListaGenericaCollection.GetSelectListItemCategorias();
+            ViewBag.listaTipos = ListaGenericaCollection.GetSelectListItemTipo();
+            ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
+            ViewBag.listaEstadoCasos = ListaGenericaCollection.GetSelectListItemEstadoCaso();
             var casos = await generic.Get<Casos>("Casos/", id);
             if (casos == null)
             {
