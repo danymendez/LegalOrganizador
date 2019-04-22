@@ -36,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Actividades\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Casos\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

@@ -9,5 +9,7 @@ namespace Common.Entity.ViewModels
     {
         public Actividades Actividades { get; set; }
         public List<VwModelAsistentes> ListVwModelAsistentes { get; set; }
+
+        public decimal[] IdAsistentes { get; set; }
     }
 }

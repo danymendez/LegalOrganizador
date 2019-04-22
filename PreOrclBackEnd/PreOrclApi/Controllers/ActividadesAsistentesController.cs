@@ -27,6 +27,12 @@ namespace PreOrclApi.Controllers
             return bol.GetAllActividadesAsistentes();
         }
 
+        [HttpGet("GetAllVwModelActividadesAsistentes", Name = "GetAllVwModelActividadesAsistentes")]
+        public async Task<IEnumerable<Common.Entity.ViewModels.VwModelActividadesAsistentes>> GetAllVwModelActividadesAsistentes()
+        {
+            return await bol.GetAllVwModelActividadesAsistentes();
+        }
+
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetActividadAsistente([FromRoute] decimal id)
@@ -119,6 +125,26 @@ namespace PreOrclApi.Controllers
 
             return BadRequest(tupleEventMsgError.Item2);
         }
+
+        [HttpPut("PutVwActividadesAsistentes/{id}", Name = "PutVwActividadesAsistentes")]
+        public async Task<IActionResult> PutVwActividadesAsistentes([FromBody] Common.Entity.ViewModels.VwModelActividadesAsistentes VwActividadesAsistentes)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            bool seGuardo = false;
+            var tupleEventMsgError = await bol.CreateVwModelActividadesAsistentes(VwActividadesAsistentes.Actividades, VwActividadesAsistentes.ListVwModelAsistentes);
+            seGuardo = !(tupleEventMsgError.Item1 is null);
+
+            if (seGuardo)
+                return Ok(seGuardo);
+
+
+            return BadRequest(tupleEventMsgError.Item2);
+        }
+
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]

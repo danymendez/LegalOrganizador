@@ -27,6 +27,12 @@ namespace PreOrclApi.Controllers
             return bol.GetAllCasos();
         }
 
+        [HttpGet("GetVwModelCasos", Name = "GetVwModelCasos")]
+        public async Task<IEnumerable<Common.Entity.ViewModels.VwModelCasos>> GetVwModelCasos()
+        {
+            return await bol.GetAllVwModelCasos();
+        }
+
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCaso([FromRoute] decimal id)

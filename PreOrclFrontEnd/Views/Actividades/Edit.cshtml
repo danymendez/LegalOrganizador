@@ -1,0 +1,216 @@
+﻿@model PreOrclFrontEnd.ViewModels.VwModelActividadesAsistentes
+@{
+    ViewData["Title"] = "Create";
+
+
+    List<SelectListItem> listaCategorias = (ViewBag.listaCategorias as List<SelectListItem>);
+    List<SelectListItem> listaTipos = (ViewBag.listaTipos as List<SelectListItem>);
+
+}
+
+
+@section Styles{
+
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/style.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/lib/chosen/chosen.min.css">
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Agregar Actividad</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Registros</a></li>
+                            <li><a asp-action="Index">Actividades</a></li>
+                            <li class="active">Agregar Actividad</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Crear Actividad</strong> <small></small>
+                    </div>
+
+                    <form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body card-block">
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="Actividades.StartTime"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        <input asp-for="Actividades.StartTime" class="form-control">
+                                    </div>
+                                    <span asp-validation-for="Actividades.StartTime" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Actividades.EndTime"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        <input asp-for="Actividades.EndTime" class="form-control">
+                                    </div>
+                                    <span asp-validation-for="Actividades.EndTime" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                    <label asp-for="Actividades.NombreActividad"></label>
+                                    <div class="input-group">
+
+                                        <textarea asp-for="Actividades.NombreActividad" class="form-control"></textarea>
+                                    </div>
+                                    <span asp-validation-for="Actividades.NombreActividad" class="text-danger"></span>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="Actividades.IdCaso"></label>
+                                    <select asp-for="Actividades.IdCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaCasos" class="standardSelect" tabindex="1">
+                                        <option disabled value="-1" selected>Seleccionar</option>
+                                    </select>
+                                    <span asp-validation-for="Actividades.IdCaso" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Actividades.Costo"></label>
+                                    <div class="input-group">
+
+                                        <input asp-for="Actividades.Costo" class="form-control"/>
+                                    </div>
+                                    <span asp-validation-for="Actividades.Costo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Actividades.IdResponsable"></label>
+                                    <select asp-for="Actividades.IdResponsable" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
+                                        <option disabled value="-1" selected>Seleccionar</option>
+                                    </select>
+                                    <span asp-validation-for="Actividades.IdResponsable" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="IdAsistentes"></label>
+                                    <select asp-for="IdAsistentes" data-placeholder="Seleccionar" multiple="true" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1"></select>
+                                    <span asp-validation-for="IdAsistentes" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Actividades.IdCalendario"></label>
+                                    <select asp-for="Actividades.IdCalendario" data-placeholder="Seleccionar" class="standardSelect" tabindex="1">
+                                        <option disabled value="-1" selected>Seleccionar</option>
+                                    </select>
+                                    <span asp-validation-for="Actividades.IdCalendario" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Actividades.Estado"></label>
+                                    <select asp-for="Actividades.Estado" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoActividad" class="standardSelect" tabindex="1">
+                                        <option disabled value="-1" selected>Seleccionar</option>
+                                    </select>
+                                    <span asp-validation-for="Actividades.Estado" class="text-danger"></span>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-12 text-right">
+                                        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div><!-- .animated -->
+</div>
+
+
+@section Scripts {
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/custoSweetAlertAjax.js"></script>
+
+    <script src="~/templateAdmin/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".standardSelect").chosen({
+
+                no_results_text: "No se encontraron registros!",
+                width: "100%"
+            });
+
+            jQuery(".standardSelect").removeAttr("style");
+            jQuery(".standardSelect").css("visibility", "hidden");
+            jQuery(".standardSelect").css("position", "absolute");
+
+
+
+        });
+
+        jQuery("#Actividades_IdResponsable").change(function () {
+          //  console.log("Handler for .change() called.");
+
+            getDdlCalendarios('@Url.Action("GetCalendariosByIdUsuario", "Actividades")' + '?id=' + jQuery('#Actividades_IdResponsable').val());
+            getDdlAsistentes('@Url.Action("GetAsistenteWithOutAbogado", "Actividades")' + '?id=' + jQuery('#Actividades_IdResponsable').val());
+        });
+
+
+        function getDdlCalendarios(Url) {
+           // alert(Url);
+            var s = "";
+            jQuery.get(Url)
+                .done(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].calendar.id + '">' + data[i].calendar.name + '</option>';
+                    }
+                    jQuery("#Actividades_IdCalendario").html(s);  
+
+                    jQuery("#Actividades_IdCalendario").trigger("chosen:updated");
+
+                });
+        }
+
+        function getDdlAsistentes(Url) {
+            // alert(Url);
+            var sel = "";
+            jQuery.get(Url)
+                .done(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        sel += '<option value="' + data[i].value + '">' + data[i].text + '</option>';
+                    }
+                    jQuery("#IdAsistentes").html(sel);
+
+                    jQuery("#IdAsistentes").trigger("chosen:updated");
+
+                });
+        }
+       
+    </script>
+
+}

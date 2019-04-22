@@ -12,9 +12,11 @@ namespace PreOrclFrontEnd.Models
      
         public decimal IdActividad { get; set; }
    
+        [Display(Name ="Nombre de la actividad")]
         [MaxLength(150)]
         public string NombreActividad { get; set; }
 
+        [Display(Name ="Calendario del Abogado")]
         [MaxLength(1000)]
         public string IdCalendario { get; set; }
 
@@ -26,8 +28,10 @@ namespace PreOrclFrontEnd.Models
 
         public decimal Costo { get; set; }
 
+        [Display(Name ="Responsable")]
         public decimal IdResponsable { get; set; }
 
+        [Display(Name = "Caso")]
         public decimal IdCaso { get; set; }
 
     
@@ -40,10 +44,10 @@ namespace PreOrclFrontEnd.Models
         
         public decimal Inactivo { get; set; }
 
- 
+        [Display(Name = "Fecha / Hora Inicio")]
         [Required]
         public DateTime StartTime { get; set; }
-    
+        [Display(Name = "Fecha / Hora Fin")]
         [Required]
         public DateTime EndTime { get; set; }
 
