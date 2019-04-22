@@ -26,6 +26,7 @@ namespace PreOrclFrontEnd.Controllers
         }
         public IActionResult Index()
         {
+
             return View();
         }
 
