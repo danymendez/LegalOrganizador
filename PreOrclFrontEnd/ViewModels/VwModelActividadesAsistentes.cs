@@ -10,6 +10,9 @@ namespace PreOrclFrontEnd.ViewModels
     public class VwModelActividadesAsistentes
     {
         public Actividades Actividades { get; set; }
+
+        public Usuarios Responsable { get; set; }
+
         public List<VwModelAsistentes> ListVwModelAsistentes { get; set; }
         [Display(Name ="Asistentes")]
         [Required]

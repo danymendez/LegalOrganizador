@@ -8,6 +8,9 @@ namespace Common.Entity.ViewModels
    public class VwModelActividadesAsistentes
     {
         public Actividades Actividades { get; set; }
+
+        public Usuarios Responsable { get; set; }
+
         public List<VwModelAsistentes> ListVwModelAsistentes { get; set; }
 
         public decimal[] IdAsistentes { get; set; }

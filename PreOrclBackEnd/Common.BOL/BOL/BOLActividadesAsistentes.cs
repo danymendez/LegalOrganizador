@@ -159,11 +159,13 @@ namespace Common.BOL.BOL
                         listaVwModelActividadesAsistentes.Add(new VwModelActividadesAsistentes
                         {
                             Actividades = itemActividades,
+                            Responsable = listaUsuarios.Where(c=>c.IdUsuario==itemActividades.IdResponsable).FirstOrDefault(),
                             ListVwModelAsistentes = (from actividadesAsistentes in listaActividadesAsistentes
                                                      where actividadesAsistentes.IdActividad == itemActividades.IdActividad
                                                      select new VwModelAsistentes
                                                      {
                                                          IdActividadesAsistentes = actividadesAsistentes.IdActividadAsistentes,
+                                                         Asistente =listaUsuarios.Where(c=>c.IdUsuario==actividadesAsistentes.IdAsistente).FirstOrDefault(),
                                                          IdAsistente = actividadesAsistentes.IdAsistente,
                                                          Correo = listaUsuarios
                                                                         .Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente)

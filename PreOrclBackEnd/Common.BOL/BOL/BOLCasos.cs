@@ -49,19 +49,20 @@ namespace Common.BOL.BOL
             Task<List<VwModelCasos>> t = Task.Run(() => {
                 using (DALDBContext context = new DALDBContext())
             {
-                DALCasos dal = new DALCasos(context);
-                listaCasos = dal.GetAllCasos();
-                List<VwModelCasos> listaVwModelCasos = new List<VwModelCasos>();
-                foreach (var itemCasos in listaCasos) {
-
-                    
+                    DALCasos dal = new DALCasos(context);
+                    listaCasos = dal.GetAllCasos();
+                    List<VwModelCasos> listaVwModelCasos = new List<VwModelCasos>();
                     DALActividadesAsistentes dalActividadesAsistentes = new DALActividadesAsistentes(context);
                     DALActividades dalActividades = new DALActividades(context);
+                    DALSisPerPersona dalSisPerPersonas = new DALSisPerPersona(context);
                     DALUsuarios dalUsuarios = new DALUsuarios(context);
+                    foreach (var itemCasos in listaCasos) {
+
                     List<VwModelActividadesAsistentes> listaVwModelActividadesAsistentes = new List<VwModelActividadesAsistentes>();
-                    var listaActividades = dalActividades.GetAllActividades();
+                    var listaActividades = dalActividades.GetAllActividades().Where(c=>c.IdCaso==itemCasos.IdCaso).ToList();
                     var listaActividadesAsistentes = dalActividadesAsistentes.GetAllActividadesAsistentes();
                     var listaUsuarios = dalUsuarios.GetAllUsuarios();
+                    var cliente = dalSisPerPersonas.GetPersona(itemCasos.IdCliente);
 
                     foreach (var itemActividades in listaActividades)
                     {
@@ -69,12 +70,14 @@ namespace Common.BOL.BOL
                         listaVwModelActividadesAsistentes.Add(new VwModelActividadesAsistentes
                         {
                             Actividades = itemActividades,
+                            Responsable = listaUsuarios.Where(c => c.IdUsuario == itemActividades.IdResponsable).FirstOrDefault(),
                             ListVwModelAsistentes = (from actividadesAsistentes in listaActividadesAsistentes
                                                      where actividadesAsistentes.IdActividad == itemActividades.IdActividad
                                                      select new VwModelAsistentes
                                                      {
                                                          IdActividadesAsistentes = actividadesAsistentes.IdActividadAsistentes,
                                                          IdAsistente = actividadesAsistentes.IdAsistente,
+                                                         Asistente = listaUsuarios.Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente).FirstOrDefault(),
                                                          Correo = listaUsuarios
                                                                         .Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente)
                                                                         .Select(c => c.Usuario).FirstOrDefault() ?? "",
@@ -88,6 +91,8 @@ namespace Common.BOL.BOL
 
                     listaVwModelCasos.Add(new VwModelCasos {
                         Casos = itemCasos,
+                        Cliente = cliente,
+                        Abogado = listaUsuarios.Where(c=>c.IdUsuario==itemCasos.IdAbogado).FirstOrDefault(),
                         ListVwModelActividadesAsistentes = listaVwModelActividadesAsistentes
                     });
                         

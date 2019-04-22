@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
+using PreOrclFrontEnd.ViewModels;
 
 namespace PreOrclFrontEnd.Controllers
 {
@@ -26,8 +27,9 @@ namespace PreOrclFrontEnd.Controllers
         }
         public IActionResult Index()
         {
-
-            return View();
+            var listViewModelCasos = generic.GetAll<VwModelCasos>("Casos/GetVwModelCasos").Result;
+            ViewBag.listaEstadoCasos = ListaGenericaCollection.GetSelectListItemEstadoCaso();
+            return View(listViewModelCasos);
         }
 
      
