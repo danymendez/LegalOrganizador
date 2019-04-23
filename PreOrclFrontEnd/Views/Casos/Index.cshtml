@@ -47,7 +47,10 @@
         <div class="row" id="myRow">
             <div class="col-md-12">
                 <div class="card">
-                    <input id="myInput" type="text" class="form-control" placeholder="Filtrar..">
+                    <div class="input-group">
+                        <input id="myInput" type="text" class="form-control" placeholder="Filtrar..">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    </div>
                 </div>
             </div>
             @foreach (var itemCasos in Model)
@@ -57,7 +60,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="">
-                                <strong class="card-title">@itemCasos.Casos.NombreCaso<small><span class="badge badge-@(itemCasos.Casos.EstadoCaso=="A"?"success":"warning") float-right mt-1">@(listaEstadoCasos.Where(c => c.Value == itemCasos.Casos.EstadoCaso).FirstOrDefault().Text)</span></small></strong>
+                                <strong class="card-title"><a href="@Url.Action("Edit","Casos",new { id=itemCasos.Casos.IdCaso})"> @itemCasos.Casos.NombreCaso</a><small> - @itemCasos.Casos.Tipo<span class="badge badge-@(itemCasos.Casos.EstadoCaso=="A"?"success":"warning") float-right mt-1">@(listaEstadoCasos.Where(c => c.Value == itemCasos.Casos.EstadoCaso).FirstOrDefault().Text)</span></small></strong>
                             </div>
                             <div class="stat-widget-five text-right">
                                 <div class="stat-content">

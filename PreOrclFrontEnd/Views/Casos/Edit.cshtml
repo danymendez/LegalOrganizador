@@ -56,6 +56,14 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="form-group">
+                                <label asp-for="NombreCaso"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-gavel"></i></div>
+                                    <input asp-for="NombreCaso" class="form-control">
+                                </div>
+                                <span asp-validation-for="NombreCaso" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="FechaApertura"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
