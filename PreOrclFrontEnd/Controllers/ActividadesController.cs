@@ -98,7 +98,7 @@ namespace PreOrclFrontEnd.Controllers
             if (ModelState.IsValid)
             {
 
-                vwModelActividadesAsistentes.Actividades.CreatedAt = DateTime.Now;
+                vwModelActividadesAsistentes.Actividades.UpdatedAt = DateTime.Now;
                 vwModelActividadesAsistentes.Actividades.Inactivo = 0;
                 vwModelActividadesAsistentes.Actividades.TimeZone = "UTC";
                 vwModelActividadesAsistentes.ListVwModelAsistentes = new List<VwModelAsistentes>();

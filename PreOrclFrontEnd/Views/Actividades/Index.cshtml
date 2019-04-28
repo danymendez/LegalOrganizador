@@ -16,7 +16,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Registros</h1>
+                        <h1>Actividades</h1>
                     </div>
                 </div>
             </div>
@@ -24,8 +24,8 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Registros</a></li>
-                            <li><a href="#">Listado Personas</a></li>
+                            <li><a href="#">Actividades</a></li>
+                            <li><a href="#">Listado Actividades</a></li>
 
                         </ol>
                     </div>
@@ -42,7 +42,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Personas</strong>
+                        <strong class="card-title">Actividades</strong>
                     </div>
                     <div class="card-body">
                         <div class="row form-group">
@@ -111,13 +111,13 @@
                                                             <div class="col-sm-3">
                                                                 <a asp-action="Edit" asp-route-id="@item.Actividades.IdActividad" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
                                                             </div>
-                                                            <div class="col-sm-3">
+                                                            @*<div class="col-sm-3">
                                                                 <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.Actividades.IdActividad})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
 
                                                             </div>
                                                             <div class="col-sm-3">
                                                                 <a asp-action="Delete" asp-route-id="@item.Actividades.IdActividad" title="Eliminar Registro"><i class="fa fa-eraser" style="color:red"></i></a>
-                                                            </div>
+                                                            </div>*@
                                                         </div>
                                                     </td>
                                                 </tr>

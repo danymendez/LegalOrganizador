@@ -11,11 +11,12 @@
                 </li>
                 <li class="menu-title">Opciones de sistema</li><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Registros</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Registros</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-puzzle-piece"></i><a asp-area="" asp-controller="SisPerPersonas" asp-action="Index">Personas</a></li>
                         <li><i class="fa fa-id-badge"></i><a asp-area="" asp-controller="Casos" asp-action="Index">Casos</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="#">Imputados</a></li>
+                        <li><i class="fa fa-book"></i><a asp-area="" asp-controller="Actividades" asp-action="Index">Actividades</a></li>
+                        <li><i class="fa fa-file-word-o"></i><a href="#">Imputados</a></li>
                         <li><i class="fa fa-bars"></i><a href="#">Jurisprudencia</a></li>
 
                         @*<li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
@@ -28,7 +29,7 @@
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Seguridad</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Seguridad</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-table"></i><a href="@Url.Action("Index","Roles")">Roles</a></li>
                         <li><i class="fa fa-table"></i><a href="#">Usuarios</a></li>
