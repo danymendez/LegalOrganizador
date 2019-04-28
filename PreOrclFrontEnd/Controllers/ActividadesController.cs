@@ -90,5 +90,35 @@ namespace PreOrclFrontEnd.Controllers
             }
             return View(vwModelActividadesAsistentes);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(VwModelActividadesAsistentes vwModelActividadesAsistentes)
+        {
+            if (ModelState.IsValid)
+            {
+
+                vwModelActividadesAsistentes.Actividades.CreatedAt = DateTime.Now;
+                vwModelActividadesAsistentes.Actividades.Inactivo = 0;
+                vwModelActividadesAsistentes.Actividades.TimeZone = "UTC";
+                vwModelActividadesAsistentes.ListVwModelAsistentes = new List<VwModelAsistentes>();
+                var listaAbogados = await generic.GetAll<Usuarios>("Usuarios");
+                foreach (var itemIdAsistente in vwModelActividadesAsistentes.IdAsistentes)
+                {
+                    string emailToSave = listaAbogados.Find(c => c.IdUsuario == itemIdAsistente).Usuario;
+                    vwModelActividadesAsistentes.ListVwModelAsistentes.Add(new VwModelAsistentes { IdAsistente = itemIdAsistente, Correo = emailToSave });
+                }
+
+                bool isSaved = await generic.PutIsSaved("ActividadesAsistentes/PutVwActividadesAsistentes", vwModelActividadesAsistentes);
+
+                if (!isSaved)
+                {
+                    return BadRequest();
+                }
+                return RedirectToAction(nameof(Index));
+                // return View(vwModelActividadesAsistentes);
+            }
+            return View(vwModelActividadesAsistentes);
+        }
     }
 }

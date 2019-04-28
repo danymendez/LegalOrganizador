@@ -323,6 +323,97 @@ namespace Common.BOL.BOL
             return tupleEventMsgError;
         }
 
+        public async Task<Tuple<bool, string>> DeleteEventByIdUsuario(Actividades actividades)
+        {
+            graph = new BOLMSGraph();
+            bolUsuarios = new BOLUsuarios();
+            var usuarios = await bolUsuarios.GetUsuario(actividades.IdResponsable);
+            Tuple<bool, string> tupleEventMsgError = null;
+
+            GraphServiceClient authenticatedUser = null;
+
+            try
+            {
+
+                authenticatedUser = graph.GetAuthenticatedClient(Criptografia.Decrypt(usuarios.Token));
+                tupleEventMsgError = await graph.CancelEvent(authenticatedUser, actividades);
+            }
+            catch (ServiceException ex)
+            {
+                if (ex.Error.Code == "InvalidAuthenticationToken")
+                {
+                    try
+                    {
+                        var tokenRefreshed = graph.GetToken(Criptografia.Decrypt(usuarios.TokenRefresh));
+                        usuarios.Token = Criptografia.Encrypt(tokenRefreshed);
+                        await bolUsuarios.UpdateUsuarios(usuarios.IdUsuario, usuarios);
+                        authenticatedUser = graph.GetAuthenticatedClient(tokenRefreshed);
+                        tupleEventMsgError = await graph.CancelEvent(authenticatedUser, actividades);
+                    }
+                    catch (Exception exc)
+                    {
+                        ExceptionUtility.LogException(exc);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+
+
+
+
+
+            return tupleEventMsgError;
+        }
+
+        public async Task<Tuple<Event, string>> UpdateEventByIdUsuario(Actividades actividades, List<VwModelAsistentes> listVwModelAsistente)
+        {
+            graph = new BOLMSGraph();
+            bolUsuarios = new BOLUsuarios();
+            var usuarios = await bolUsuarios.GetUsuario(actividades.IdResponsable);
+            Tuple<Event, string> tupleEventMsgError = null;
+
+            GraphServiceClient authenticatedUser = null;
+
+            try
+            {
+
+                authenticatedUser = graph.GetAuthenticatedClient(Criptografia.Decrypt(usuarios.Token));
+                tupleEventMsgError = await graph.UpdateEvent(authenticatedUser, actividades, listVwModelAsistente);
+            }
+            catch (ServiceException ex)
+            {
+                if (ex.Error.Code == "InvalidAuthenticationToken")
+                {
+                    try
+                    {
+                        var tokenRefreshed = graph.GetToken(Criptografia.Decrypt(usuarios.TokenRefresh));
+                        usuarios.Token = Criptografia.Encrypt(tokenRefreshed);
+                        await bolUsuarios.UpdateUsuarios(usuarios.IdUsuario, usuarios);
+                        authenticatedUser = graph.GetAuthenticatedClient(tokenRefreshed);
+                        tupleEventMsgError = await graph.UpdateEvent(authenticatedUser, actividades, listVwModelAsistente);
+                    }
+                    catch (Exception exc)
+                    {
+                        ExceptionUtility.LogException(exc);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+
+
+
+
+
+            return tupleEventMsgError;
+        }
+
+
         public async Task<List<GraphCalendarEvents>> GetCalendarEventsByUsuario() {
             List<GraphCalendarEvents> listaGraphCalendarEvents = new List<GraphCalendarEvents>();
             var listadoCalendario = await GetCalendarByIdUsuario();

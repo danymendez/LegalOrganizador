@@ -131,7 +131,7 @@ namespace PreOrclApi.Controllers
             return BadRequest(tupleEventMsgError.Item2);
         }
 
-        [HttpPut("PutVwActividadesAsistentes/{id}", Name = "PutVwActividadesAsistentes")]
+        [HttpPut("PutVwActividadesAsistentes", Name = "PutVwActividadesAsistentes")]
         public async Task<IActionResult> PutVwActividadesAsistentes([FromBody] Common.Entity.ViewModels.VwModelActividadesAsistentes VwActividadesAsistentes)
         {
 
@@ -140,7 +140,7 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
             bool seGuardo = false;
-            var tupleEventMsgError = await bol.CreateVwModelActividadesAsistentes(VwActividadesAsistentes.Actividades, VwActividadesAsistentes.ListVwModelAsistentes);
+            var tupleEventMsgError = await bol.EditVwModelActividadesAsistentes(VwActividadesAsistentes.Actividades, VwActividadesAsistentes.ListVwModelAsistentes);
             seGuardo = !(tupleEventMsgError.Item1 is null);
 
             if (seGuardo)

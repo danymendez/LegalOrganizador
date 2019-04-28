@@ -51,9 +51,13 @@
                         <strong>Crear Actividad</strong> <small></small>
                     </div>
 
-                    <form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                    <form asp-action="Edit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
                           data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="Actividades.IdActividad" type="hidden"/>
+                        <input asp-for="Actividades.CreatedAt" type="hidden" />
+                        <input asp-for="Actividades.Inactivo" type="hidden" />
+                        <input asp-for="Actividades.IdEvento" type="hidden"/>
                         <div class="card-body card-block">
                             <div class="row form-group">
                                 <div class="col-md-6">
@@ -133,7 +137,7 @@
 
                                 <div class="row form-group">
                                     <div class="col-sm-12 text-right">
-                                        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
+                                        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Edit")','@Url.Action("Index")')" class="btn btn-default" />
                                     </div>
                                 </div>
                             </div>

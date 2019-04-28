@@ -64,3 +64,289 @@ Inner Exception Type: System.PlatformNotSupportedException
 Inner Exception:	This instance contains state that cannot be serialized and deserialized on this platform.
 Inner Source:	System.Security.Claims
 Inner Stack Trace:	   at System.Security.Claims.ClaimsPrincipal.OnSerializingMethod(StreamingContext context)
+
+=============================== 27/04/2019 - 23:31:46 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 27/04/2019 - 23:50:21 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:03:2 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:06:8 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:12:45 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:14:58 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:21:19 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:22:1 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:38:24 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 00:50:13 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 01:33:11 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 01:39:25 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 28/04/2019 - 01:42:22 ===================================
+Exception Type:	System.Threading.Tasks.TaskCanceledException
+Exception:	The operation was canceled.
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.PutIsSaved[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 114
+Inner Exception Type: System.IO.IOException
+Inner Exception:	Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request.
+Inner Source:	System.Net.Sockets
+Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStreamInternal.<FillBufferAsync>g__InternalFillBufferAsync|38_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStreamInternal.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)

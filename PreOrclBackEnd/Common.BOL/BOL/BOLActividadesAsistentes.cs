@@ -60,7 +60,7 @@ namespace Common.BOL.BOL
                        
                     }
                     else {
-                        actividadCreada.IdEvento = tupleEventoMsgError.Item1.ICalUId;
+                        actividadCreada.IdEvento = tupleEventoMsgError.Item1.Id;
                         dalActividades.UpdateActividades(actividadCreada.IdActividad, actividadCreada);
                     }
                 }
@@ -85,22 +85,40 @@ namespace Common.BOL.BOL
                     DALActividades dalActividades = new DALActividades(context);
                     DALActividadesAsistentes dalAsistentes = new DALActividadesAsistentes(context);
                     BOLCalendar bolCalendar = new BOLCalendar();
+                    var entidadSinEditar = dalActividades.GetActividad(pActividades.IdActividad);
+                    var evento = bolCalendar.GetCalendarEventsByUsuario().Result.Where(c=>c.GraphCalendar.IdUsuario==pActividades.IdResponsable && c.GraphCalendar.Calendar.Id==pActividades.IdCalendario && c.GraphEvents.Where(r=>r.Event.Id==pActividades.IdEvento).FirstOrDefault()!=null).FirstOrDefault();
+
 
                     var actividadEditada = dalActividades.UpdateActividades(pActividades.IdActividad,pActividades);
+
+                    var entyActividadesAsistentes = dalAsistentes.GetAllActividadesAsistentes()
+                                                            .Where(c => c.IdActividad == actividadEditada.IdActividad).ToList();
+
+                    foreach (var itemEntyActividades in entyActividadesAsistentes)
+                    {
+                        dalAsistentes.DeleteActividadesAsistentes(itemEntyActividades.IdActividadAsistentes);
+                    }
+
+
                     foreach (var itemAsistentes in asistentes)
                     {
-                        decimal idActividadesAsistentes = GetAllActividadesAsistentes()
-                                                            .Where(c => c.IdActividad == actividadEditada.IdActividad && c.IdAsistente == itemAsistentes.IdAsistente)
-                                                            .FirstOrDefault().IdActividadAsistentes;
-                        dalAsistentes.UpdateActividadesAsistentes(idActividadesAsistentes,new ActividadesAsistentes
-                        { IdActividadAsistentes = idActividadesAsistentes,
+                        
+                        dalAsistentes.CreateActividadesAsistentes(new ActividadesAsistentes
+                        { 
                             IdActividad = actividadEditada.IdActividad,
                             IdAsistente = itemAsistentes.IdAsistente
                         });
                     }
-                    if (actividadEditada != null)
+                    if (actividadEditada != null && evento !=null)
 
+                        tupleEventoMsgError = bolCalendar.UpdateEventByIdUsuario(pActividades, asistentes).Result;
+
+                    if (actividadEditada != null && evento == null) {
+                        var isCancelado = bolCalendar.DeleteEventByIdUsuario(pActividades).Result;
                         tupleEventoMsgError = bolCalendar.CreateEventByIdUsuario(pActividades, asistentes).Result;
+                    }
+
+                       
 
                     if (tupleEventoMsgError.Item1 == null)
                     {
@@ -109,7 +127,7 @@ namespace Common.BOL.BOL
                     }
                     else
                     {
-                        actividadEditada.IdEvento = tupleEventoMsgError.Item1.ICalUId;
+                        actividadEditada.IdEvento = tupleEventoMsgError.Item1.Id;
                         dalActividades.UpdateActividades(actividadEditada.IdActividad, actividadEditada);
                     }
                 }

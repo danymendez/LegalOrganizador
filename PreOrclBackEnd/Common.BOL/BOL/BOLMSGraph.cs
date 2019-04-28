@@ -202,7 +202,7 @@ namespace Common.BOL.BOL
                        End = endTime
                    });
 
-                actividades.IdEvento = createdEvent.ICalUId;
+                actividades.IdEvento = createdEvent.Id;
 
             }
             catch (ServiceException ex) {
@@ -217,6 +217,127 @@ namespace Common.BOL.BOL
 
             return new Tuple<Event,string>(createdEvent,messageError);
         }
+
+        public async Task<Tuple<Event, string>> UpdateEvent(GraphServiceClient graphClient, Actividades actividades, List<VwModelAsistentes> vwModelAsistentes)
+        {
+            string messageError = "";
+
+            Event createdEvent = null;
+            try
+            {
+
+                List<Option> requestOptions = new List<Option>()
+            {
+                new HeaderOption("Prefer", "outlook.timezone=\"" + TimeZoneInfo.FindSystemTimeZoneById("Central America Standard Time") + "\"")
+            };
+                string guid = Guid.NewGuid().ToString();
+
+                List<Attendee> _attendees = new List<Attendee>();
+
+                foreach (var itemAsistente in vwModelAsistentes)
+                {
+                    _attendees.Add(new Attendee
+                    {
+                        EmailAddress = new EmailAddress
+                        {
+                            Address = itemAsistente.Correo
+                        },
+                        Type = AttendeeType.Required
+                    });
+                }
+
+
+
+
+                // Event body
+                ItemBody body = new ItemBody
+                {
+                    Content = $"{actividades.NombreActividad} - Caso: {actividades.IdCaso}",
+                    ContentType = BodyType.Text
+                };
+
+                // Event start and end time
+                // Another example date format: `new DateTime(2017, 12, 1, 9, 30, 0).ToString("o")`
+                DateTimeTimeZone startTime = new DateTimeTimeZone
+                {
+                    DateTime = actividades.StartTime.ToString(),
+                    TimeZone = actividades.TimeZone
+                };
+                DateTimeTimeZone endTime = new DateTimeTimeZone
+                {
+                    DateTime = actividades.EndTime.ToString(),
+                    TimeZone = actividades.TimeZone
+                };
+
+                // Event location
+                Location location = new Location
+                {
+                    DisplayName = "",
+                };
+
+
+
+                createdEvent = await graphClient.Me.Calendars[actividades.IdCalendario].Events[actividades.IdEvento].Request(requestOptions).UpdateAsync(new Event
+                {
+                    Subject = actividades.NombreActividad,
+                    Location = location,
+                    Attendees = _attendees,
+                    Body = body,
+                    Start = startTime,
+                    End = endTime
+                });
+
+                actividades.IdEvento = createdEvent.Id;
+
+            }
+            catch (ServiceException ex)
+            {
+                messageError = ex.Error.Code;
+                ExceptionUtility.LogException(ex);
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+
+
+            return new Tuple<Event, string>(createdEvent, messageError);
+        }
+
+        public async Task<Tuple<bool, string>> CancelEvent(GraphServiceClient graphClient, Actividades actividades)
+        {
+            string messageError = "";
+
+            bool isDeleted = false;
+            try
+            {
+
+                List<Option> requestOptions = new List<Option>()
+            {
+                new HeaderOption("Prefer", "outlook.timezone=\"" + TimeZoneInfo.FindSystemTimeZoneById("Central America Standard Time") + "\"")
+            };
+       
+    
+
+               await graphClient.Me.Calendars[actividades.IdCalendario].Events[actividades.IdEvento].Request(requestOptions).DeleteAsync();
+
+                isDeleted = true;
+
+            }
+            catch (ServiceException ex)
+            {
+                messageError = ex.Error.Code;
+                ExceptionUtility.LogException(ex);
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogException(ex);
+            }
+
+
+            return new Tuple<bool, string>(isDeleted, messageError);
+        }
+
 
         public async Task<List<GraphEvents>> GetAllEvents(GraphServiceClient graphClient)
         {
