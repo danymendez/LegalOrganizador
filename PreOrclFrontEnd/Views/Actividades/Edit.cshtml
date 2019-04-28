@@ -117,7 +117,7 @@
 
                                 <div class="form-group">
                                     <label asp-for="Actividades.IdCalendario"></label>
-                                    <select asp-for="Actividades.IdCalendario" data-placeholder="Seleccionar" class="standardSelect" tabindex="1">
+                                    <select asp-for="Actividades.IdCalendario" data-placeholder="Seleccionar" asp-items="ViewBag.listaCalendario" class="standardSelect" tabindex="1">
                                         <option disabled value="-1" selected>Seleccionar</option>
                                     </select>
                                     <span asp-validation-for="Actividades.IdCalendario" class="text-danger"></span>

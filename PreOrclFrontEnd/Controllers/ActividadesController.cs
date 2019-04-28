@@ -38,12 +38,16 @@ namespace PreOrclFrontEnd.Controllers
             return View();
         }
 
-        public IActionResult Edit(decimal id)
+        public async Task<IActionResult> Edit(decimal id)
         {
+            VwModelActividadesAsistentes vwModelActividadesAsistentes = new VwModelActividadesAsistentes();
+            vwModelActividadesAsistentes = await generic.Get<VwModelActividadesAsistentes>("ActividadesAsistentes/GetVwModelActividadesAsistentes/", id);
             ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
+            var calendarios = from calendario in generic.GetAll<GraphCalendar>("Calendarios/" + vwModelActividadesAsistentes.Responsable.IdUsuario).Result select calendario.Calendar;
+            ViewBag.listaCalendario = new SelectList(calendarios.ToList(), "Id", "Name");
             ViewBag.listaEstadoActividad = ListaGenericaCollection.GetSelectListItemEstadoActividad();
             ViewBag.listaCasos = listaSistema.GetSelectListCasos();
-            return View();
+            return View(vwModelActividadesAsistentes);
         }
 
         public JsonResult GetCalendariosByIdUsuario(decimal id)
