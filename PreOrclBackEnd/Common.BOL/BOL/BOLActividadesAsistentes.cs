@@ -185,6 +185,51 @@ namespace Common.BOL.BOL
             return await t;
         }
 
+        public async Task<VwModelActividadesAsistentes> GetVwModelActividadesAsistentes(decimal id)
+        {
+
+            Task<VwModelActividadesAsistentes> t = Task.Run(() =>
+            {
+                VwModelActividadesAsistentes vwModelActividadesAsistentes = new VwModelActividadesAsistentes(); ;
+
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALActividadesAsistentes dalActividadesAsistentes = new DALActividadesAsistentes(context);
+                    DALActividades dalActividades = new DALActividades(context);
+                    DALUsuarios dalUsuarios = new DALUsuarios(context);
+                    var actividades = dalActividades.GetActividad(id);
+                    var listaActividadesAsistentes = dalActividadesAsistentes.GetAllActividadesAsistentes().Where(c=>c.IdActividad==id);
+                    var listaUsuarios = dalUsuarios.GetAllUsuarios();
+
+
+                        vwModelActividadesAsistentes = new VwModelActividadesAsistentes
+                        {
+                            Actividades = actividades,
+                            Responsable = listaUsuarios.Where(c => c.IdUsuario == actividades.IdResponsable).FirstOrDefault(),
+                            ListVwModelAsistentes = (from actividadesAsistentes in listaActividadesAsistentes
+                                                     where actividadesAsistentes.IdActividad == actividades.IdActividad
+                                                     select new VwModelAsistentes
+                                                     {
+                                                         IdActividadesAsistentes = actividadesAsistentes.IdActividadAsistentes,
+                                                         Asistente = listaUsuarios.Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente).FirstOrDefault(),
+                                                         IdAsistente = actividadesAsistentes.IdAsistente,
+                                                         Correo = listaUsuarios
+                                                                        .Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente)
+                                                                        .Select(c => c.Usuario).FirstOrDefault() ?? "",
+                                                         CreatedAt = actividadesAsistentes.CreatedAt
+
+                                                     }).ToList() ?? new List<VwModelAsistentes>(),
+                            IdAsistentes = listaActividadesAsistentes.Where(c => c.IdActividad == actividades.IdActividad).Select(c => c.IdAsistente).ToArray()
+
+                        };
+               
+                }
+
+                return vwModelActividadesAsistentes;
+            });
+
+            return await t;
+        }
         public async Task<ActividadesAsistentes> GetActividadAsistente(decimal id)
         {
             ActividadesAsistentes actividadesAsistentes = null;

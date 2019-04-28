@@ -33,6 +33,11 @@ namespace PreOrclApi.Controllers
             return await bol.GetAllVwModelActividadesAsistentes();
         }
 
+        [HttpGet("GetVwModelActividadesAsistentes/{id}", Name = "GetVwModelActividadesAsistentes")]
+        public async Task<Common.Entity.ViewModels.VwModelActividadesAsistentes> GetVwModelActividadesAsistentes(decimal id)
+        {
+            return await bol.GetVwModelActividadesAsistentes(id);
+        }
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetActividadAsistente([FromRoute] decimal id)
