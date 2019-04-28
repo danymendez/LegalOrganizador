@@ -1,7 +1,155 @@
-﻿
+﻿@model IEnumerable<PreOrclFrontEnd.ViewModels.VwModelActividadesAsistentes>
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+@section Styles{
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+}
 
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Registros</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Registros</a></li>
+                            <li><a href="#">Listado Personas</a></li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Personas</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <a asp-action="Create" title="Agregar Actividad" class="btn btn-primary">Agregar Actividad</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="bootstrap-data-table2" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table2_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table2" rowspan="1" colspan="1" aria-sort="ascending">
+                                                        @Html.DisplayNameFor(model => model.Actividades.NombreActividad)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Actividades.StartTime)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Actividades.EndTime)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Responsable)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.FirstOrDefault().ListVwModelAsistentes.FirstOrDefault().Asistente)
+                                                    </th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                <tr role="row">
+                                                    <td class="sorting_1" >
+                                                        @Html.DisplayFor(modelItem => item.Actividades.NombreActividad)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Actividades.StartTime)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Actividades.EndTime)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Responsable.Nombre)      @Html.DisplayFor(modelItem => item.Responsable.Apellido)
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            
+                                                            <div class="col-sm-12">
+                                                                <ul class="list-group list-group-flush">
+                                                                    @foreach (var itemAsistente in item.ListVwModelAsistentes)
+                                                                    {
+                                                                        <li class="list-group-item">@Html.DisplayFor(modelItem => itemAsistente.Asistente.Nombre) @Html.DisplayFor(modelItem => itemAsistente.Asistente.Apellido)</li>
+                                                               
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <a asp-action="Edit" asp-route-id="@item.Actividades.IdActividad" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.Actividades.IdActividad})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
+
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <a asp-action="Delete" asp-route-id="@item.Actividades.IdActividad" title="Eliminar Registro"><i class="fa fa-eraser" style="color:red"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <partial name="../Modals/_LargeModalPartial" />
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/templateAdmin/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="~/templateAdmin/assets/js/init/datatables-init.js"></script>
+    <script src="~/js/dataTableLanguageESConfig.js"></script>
+    <script src="~/js/modalConfig.js"></script>
+
+}

@@ -26,10 +26,19 @@ namespace PreOrclFrontEnd.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var listVwModelActividades = generic.GetAll<VwModelActividadesAsistentes>("ActividadesAsistentes/GetAllVwModelActividadesAsistentes").Result;
+            return View(listVwModelActividades);
         }
 
         public IActionResult Create()
+        {
+            ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
+            ViewBag.listaEstadoActividad = ListaGenericaCollection.GetSelectListItemEstadoActividad();
+            ViewBag.listaCasos = listaSistema.GetSelectListCasos();
+            return View();
+        }
+
+        public IActionResult Edit(decimal id)
         {
             ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
             ViewBag.listaEstadoActividad = ListaGenericaCollection.GetSelectListItemEstadoActividad();
