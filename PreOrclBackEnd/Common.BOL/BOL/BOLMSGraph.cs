@@ -143,7 +143,7 @@ namespace Common.BOL.BOL
 
                 List<Option> requestOptions = new List<Option>()
             {
-                new HeaderOption("Prefer", "outlook.timezone=\"" + TimeZoneInfo.Local.Id + "\"")
+                new HeaderOption("Prefer", "outlook.timezone=\"" + TimeZoneInfo.FindSystemTimeZoneById("Central America Standard Time") + "\"")
             };
             string guid = Guid.NewGuid().ToString();
 
