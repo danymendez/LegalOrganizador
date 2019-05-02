@@ -8,41 +8,37 @@ using System.Threading.Tasks;
 
 namespace PreOrclApi.Controllers
 {
+
     [Route("api/[controller]")]
-    public class CasosController : ControllerBase
+    public class DocumentosController : ControllerBase
     {
         private readonly PreOrclApiContext _context;
-        private BOLCasos bol;
+        private BOLDocumentos bol;
 
-        public CasosController(PreOrclApiContext context)
+        public DocumentosController(PreOrclApiContext context)
         {
             _context = context;
-            bol = new BOLCasos();
+            bol = new BOLDocumentos();
         }
 
         // GET: api/SisPerPersonas
         [HttpGet]
-        public IEnumerable<Common.Entity.Models.Casos> GetCasos()
+        public IEnumerable<Common.Entity.Models.Documentos> GetDocumentos()
         {
-            return bol.GetAllCasos();
+            return bol.GetAllDocumentos();
         }
 
-        [HttpGet("GetVwModelCasos", Name = "GetVwModelCasos")]
-        public async Task<IEnumerable<Common.Entity.ViewModels.VwModelCasos>> GetVwModelCasos()
-        {
-            return await bol.GetAllVwModelCasos();
-        }
 
         // GET: api/SisPerPersonas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCaso([FromRoute] decimal id)
+        public async Task<IActionResult> GetDocumento([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var caso = await bol.GetCaso(id);
+            var caso = await bol.GetDocumento(id);
 
             if (caso == null)
             {
@@ -54,14 +50,14 @@ namespace PreOrclApi.Controllers
 
         // PUT: api/SisPerPersonas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCasos([FromRoute] decimal id, [FromBody] Common.Entity.Models.Casos pCasos)
+        public async Task<IActionResult> PutDocumentos([FromRoute] decimal id, [FromBody] Common.Entity.Models.Documentos pDocumentos)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pCasos.IdCaso)
+            if (id != pDocumentos.IdDocumento)
             {
                 return BadRequest();
             }
@@ -70,17 +66,17 @@ namespace PreOrclApi.Controllers
 
             try
             {
-                if (bol.GetCaso(id) == null)
+                if (bol.GetDocumento(id) == null)
                 {
                     return NotFound();
                 }
-                await bol.UpdateCasos(id, pCasos);
+                await bol.UpdateDocumentos(id, pDocumentos);
 
 
             }
             catch (Exception e)
             {
-                if (bol.GetCaso(id) == null)
+                if (bol.GetDocumento(id) == null)
                 {
                     return NotFound(e.Message);
                 }
@@ -95,38 +91,38 @@ namespace PreOrclApi.Controllers
 
         // POST: api/SisPerPersonas
         [HttpPost]
-        public async Task<IActionResult> PostCasos([FromBody] Common.Entity.Models.Casos pCasos)
+        public async Task<IActionResult> PostDocumentos([FromBody] Common.Entity.Models.Documentos pDocumentos)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            pCasos = await bol.CreateCasos(pCasos);
+            pDocumentos = await bol.CreateDocumentos(pDocumentos);
 
-            return CreatedAtAction("GetCaso", new { id = pCasos.IdCaso }, pCasos);
+            return CreatedAtAction("GetCasoCliente", new { id = pDocumentos.IdDocumento }, pDocumentos);
         }
 
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCasos([FromRoute] decimal id)
+        public async Task<IActionResult> DeleteDocumentos([FromRoute] decimal id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var casos = await bol.DeleteCasos(id);
+            var Documentos = await bol.DeleteDocumentos(id);
 
-            if (casos == null)
+            if (Documentos == null)
             {
                 return NotFound();
             }
 
-            return Ok(casos);
+            return Ok(Documentos);
         }
 
-        private bool CasosExists(int id)
+        private bool DocumentosExists(int id)
         {
             return _context.SisPerPersona.Any(e => e.per_IDPER == id);
         }
