@@ -1,6 +1,7 @@
 ﻿using Common.Entity.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,5 +39,9 @@ namespace Common.Entity.Models
         public DateTime? UpdatedAt { get; set; }
         [Field(Name ="INACTIVO")]
         public int Inactivo { get; set; }
+
+        [Field(Name = "TIPOUSUARIO")]
+        [MaxLength(20)]
+        public string TipoUsuario { get; set; }
     }
 }
