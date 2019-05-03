@@ -27,7 +27,7 @@ namespace PreOrclFrontEnd.Controllers
         }
         public IActionResult Index()
         {
-            var listViewModelCasos = generic.GetAll<VwModelCasos>("Casos/GetVwModelCasos").Result;
+            var listViewModelCasos = generic.GetAll<VwModelCasos>("Casos/GetAllVwModelCasos").Result;
             ViewBag.listaEstadoCasos = ListaGenericaCollection.GetSelectListItemEstadoCaso();
             return View(listViewModelCasos);
         }
@@ -64,7 +64,7 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.listaTipos = ListaGenericaCollection.GetSelectListItemTipo();
             ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
             ViewBag.listaEstadoCasos = ListaGenericaCollection.GetSelectListItemEstadoCaso();
-            var casos = await generic.Get<Casos>("Casos/", id);
+            var casos = await generic.Get<VwModelCasos>("Casos/GetVwModelCasos/", id);
             if (casos == null)
             {
                 return NotFound();
@@ -110,7 +110,7 @@ namespace PreOrclFrontEnd.Controllers
                 vwModelCasos.Casos.CreatedAt = DateTime.Now;
                 vwModelCasos.Casos.Cancelado = 0;
                 vwModelCasos.Casos.Inactivo = 0;
-                vwModelCasos.Casos = await generic.Post("Casos", vwModelCasos.Casos);
+                vwModelCasos = await generic.Post("Casos/PostVwModelCasos", vwModelCasos);
 
                 if (vwModelCasos.Casos.IdCaso == 0)
                 {

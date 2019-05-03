@@ -9,6 +9,7 @@ namespace Common.Entity.Models
     [Table(Name ="CASOSCLIENTES")]
    public class CasosClientes
     {
+        [PrimaryKey]
         [Field(Name = "IDCASOCLIENTE")]
         public decimal IdCasoCliente { get; set; }
         [Field(Name = "IDCASO")]

@@ -3088,3 +3088,97 @@ Stack Trace:	   at Microsoft.Graph.HttpProvider.SendAsync(HttpRequestMessage req
    at Microsoft.Graph.BaseRequest.SendAsync[T](Object serializableObject, CancellationToken cancellationToken, HttpCompletionOption completionOption)
    at Microsoft.Graph.EventRequest.DeleteAsync(CancellationToken cancellationToken)
    at Common.BOL.BOL.BOLMSGraph.CancelEvent(GraphServiceClient graphClient, Actividades actividades) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLMSGraph.cs:line 322
+
+=============================== 03/05/2019 - 00:49:46 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00936: missing expression
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 03/05/2019 - 00:49:46 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00936: missing expression
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 03/05/2019 - 00:49:46 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 67
+
+=============================== 03/05/2019 - 00:55:35 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00936: missing expression
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 03/05/2019 - 00:55:35 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 03/05/2019 - 00:55:35 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 03/05/2019 - 00:57:26 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00936: missing expression
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 03/05/2019 - 00:57:43 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 03/05/2019 - 00:57:44 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 03/05/2019 - 01:01:38 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-00936: missing expression
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 03/05/2019 - 01:01:38 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 03/05/2019 - 01:01:38 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100

@@ -34,9 +34,16 @@ namespace PreOrclApi.Controllers
         }
 
         [HttpGet("GetVwModelCasos/{id}", Name = "GetVwModelCasos")]
-        public async Task<Common.Entity.ViewModels.VwModelCasos> GetVwModelCasos(decimal id)
+        public async Task<IActionResult> GetVwModelCasos([FromRoute] decimal id)
         {
-            return await bol.GetVwModelCasos(id);
+            var vwModelCasos = await bol.GetVwModelCasos(id);
+
+            if (vwModelCasos == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(vwModelCasos);
         }
 
         // GET: api/SisPerPersonas/5
@@ -121,9 +128,9 @@ namespace PreOrclApi.Controllers
                 return BadRequest(ModelState);
             }
 
-           var casos = await bol.CreateVwModelCasos(vwModelCasos);
-            vwModelCasos =await GetVwModelCasos(casos.IdCaso);
-            return CreatedAtAction("Casos/GetVwModelCasos", new { id = vwModelCasos.Casos.IdCaso }, vwModelCasos);
+            var casos = await bol.CreateVwModelCasos(vwModelCasos);
+        
+            return CreatedAtAction("GetVwModelCasos", new { id = casos.IdCaso }, vwModelCasos);
         }
 
         // DELETE: api/SisPerPersonas/5

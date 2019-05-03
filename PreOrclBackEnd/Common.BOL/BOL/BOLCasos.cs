@@ -44,8 +44,12 @@ namespace Common.BOL.BOL
                         var casosclientes = dalCasosClientes.CreateCasosClientes(new CasosClientes { IdCaso = _casos.IdCaso, IdCliente = itemsImputados, CreatedAt = DateTime.Now });
                     }
 
-                    foreach (var itemsDocumentos in vwModelCasos.ListadoDocumentos) {
-                        var documentos = dalDocumentos.CreateDocumentos(itemsDocumentos);
+                    if (!(vwModelCasos.ListadoDocumentos is null))
+                    {
+                        foreach (var itemsDocumentos in vwModelCasos.ListadoDocumentos)
+                        {
+                            var documentos = dalDocumentos.CreateDocumentos(itemsDocumentos);
+                        }
                     }
                 }
 
