@@ -37,6 +37,7 @@ namespace PreOrclFrontEnd.Controllers
         {
 
             ViewBag.listaPersonas = listaSistema.GetSelectListClientes();
+            ViewBag.listaImputados = listaSistema.GetSelectListClientes();
             ViewBag.listaCategorias = ListaGenericaCollection.GetSelectListItemCategorias();
             ViewBag.listaTipos = ListaGenericaCollection.GetSelectListItemTipo();
             ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
@@ -101,22 +102,22 @@ namespace PreOrclFrontEnd.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Casos casos)
+        public async Task<IActionResult> Create(VwModelCasos vwModelCasos)
         {
             if (ModelState.IsValid)
             {
-                casos.CreatedAt = DateTime.Now;
-                casos.Cancelado = 0;
-                casos.Inactivo = 0;
-                casos = await generic.Post("Casos", casos);
+                vwModelCasos.Casos.CreatedAt = DateTime.Now;
+                vwModelCasos.Casos.Cancelado = 0;
+                vwModelCasos.Casos.Inactivo = 0;
+                vwModelCasos.Casos = await generic.Post("Casos", vwModelCasos.Casos);
 
-                if (casos.IdCaso == 0)
+                if (vwModelCasos.Casos.IdCaso == 0)
                 {
                     return BadRequest();
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(casos);
+            return View(vwModelCasos);
         }
 
 

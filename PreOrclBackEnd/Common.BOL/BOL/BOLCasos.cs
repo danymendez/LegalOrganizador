@@ -50,10 +50,14 @@ namespace Common.BOL.BOL
                 using (DALDBContext context = new DALDBContext())
             {
                     DALCasos dal = new DALCasos(context);
+                    DALCasosClientes dalCasoClientes = new DALCasosClientes(context);
                     listaCasos = dal.GetAllCasos();
+                    var listadoCasosClientes = dalCasoClientes.GetAllCasosClientes();
                     List<VwModelCasos> listaVwModelCasos = new List<VwModelCasos>();
                     DALActividadesAsistentes dalActividadesAsistentes = new DALActividadesAsistentes(context);
                     DALActividades dalActividades = new DALActividades(context);
+                    DALDocumentos dalDocumentos = new DALDocumentos(context);
+                    var listadoDocumentos = dalDocumentos.GetAllDocumentos();
                     DALSisPerPersona dalSisPerPersonas = new DALSisPerPersona(context);
                     DALUsuarios dalUsuarios = new DALUsuarios(context);
                     foreach (var itemCasos in listaCasos) {
@@ -63,7 +67,8 @@ namespace Common.BOL.BOL
                     var listaActividadesAsistentes = dalActividadesAsistentes.GetAllActividadesAsistentes();
                     var listaUsuarios = dalUsuarios.GetAllUsuarios();
                     var cliente = dalSisPerPersonas.GetPersona(itemCasos.IdCliente);
-
+                    var imputados = (from imputado in dalSisPerPersonas.GetAllSisPerPersona() join casosClientes in listadoCasosClientes on imputado.per_IDPER equals casosClientes.IdCliente
+                                        where casosClientes.IdCaso == itemCasos.IdCaso select imputado).ToList();
                     foreach (var itemActividades in listaActividades)
                     {
                         
@@ -85,15 +90,19 @@ namespace Common.BOL.BOL
 
                                                      }).ToList() ?? new List<VwModelAsistentes>(),
                             IdAsistentes = listaActividadesAsistentes.Where(c => c.IdActividad == itemActividades.IdActividad).Select(c => c.IdAsistente).ToArray()
-
+                            
                         });
                     }
 
-                    listaVwModelCasos.Add(new VwModelCasos {
-                        Casos = itemCasos,
-                        Cliente = cliente,
-                        Abogado = listaUsuarios.Where(c=>c.IdUsuario==itemCasos.IdAbogado).FirstOrDefault(),
-                        ListVwModelActividadesAsistentes = listaVwModelActividadesAsistentes
+                        listaVwModelCasos.Add(new VwModelCasos {
+                            Casos = itemCasos,
+                            Cliente = cliente,
+                            Abogado = listaUsuarios.Where(c => c.IdUsuario == itemCasos.IdAbogado).FirstOrDefault(),
+                            ListVwModelActividadesAsistentes = listaVwModelActividadesAsistentes,
+                            ListadoImputados = imputados,
+                            ListadoDocumentos = listadoDocumentos.Where(c => c.IdCaso == itemCasos.IdCaso).ToList(),
+                            IdDocumentos = listadoDocumentos.Where(c=>c.IdCaso==itemCasos.IdCaso).Select(c=>c.IdDocumento).ToArray(),
+                            IdImputados = imputados.Select(c=>c.per_IDPER).ToArray()
                     });
                         
                 }
