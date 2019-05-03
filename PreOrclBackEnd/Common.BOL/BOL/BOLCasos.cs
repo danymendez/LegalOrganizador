@@ -28,6 +28,33 @@ namespace Common.BOL.BOL
             return await t;
         }
 
+        public async Task<Casos> CreateVwModelCasos(VwModelCasos vwModelCasos)
+        {
+            
+            Casos _casos = new Casos();
+            Task<Casos> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALCasos dal = new DALCasos(context);
+                    DALCasosClientes dalCasosClientes = new DALCasosClientes(context);
+                    DALDocumentos dalDocumentos = new DALDocumentos(context);
+                    _casos = dal.CreateCasos(vwModelCasos.Casos);
+                    foreach (var itemsImputados in vwModelCasos.IdImputados) {
+                        var casosclientes = dalCasosClientes.CreateCasosClientes(new CasosClientes { IdCaso = _casos.IdCaso, IdCliente = itemsImputados, CreatedAt = DateTime.Now });
+                    }
+
+                    foreach (var itemsDocumentos in vwModelCasos.ListadoDocumentos) {
+                        var documentos = dalDocumentos.CreateDocumentos(itemsDocumentos);
+                    }
+                }
+
+                return _casos;
+            });
+
+            return await t;
+        }
+
         public List<Casos> GetAllCasos()
         {
 
@@ -110,6 +137,82 @@ namespace Common.BOL.BOL
                 }
 
                  });
+
+            return await t;
+
+        }
+
+        public async Task<VwModelCasos> GetVwModelCasos(decimal id)
+        {
+
+            Casos caso = null;
+            Task<VwModelCasos> t = Task.Run(() => {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALCasos dal = new DALCasos(context);
+                    DALCasosClientes dalCasoClientes = new DALCasosClientes(context);
+                    caso = dal.GetCaso(id);
+                    var listadoCasosClientes = dalCasoClientes.GetAllCasosClientes();
+                    VwModelCasos vwModelCasos = new VwModelCasos();
+                    DALActividadesAsistentes dalActividadesAsistentes = new DALActividadesAsistentes(context);
+                    DALActividades dalActividades = new DALActividades(context);
+                    DALDocumentos dalDocumentos = new DALDocumentos(context);
+                    var listadoDocumentos = dalDocumentos.GetAllDocumentos();
+                    DALSisPerPersona dalSisPerPersonas = new DALSisPerPersona(context);
+                    DALUsuarios dalUsuarios = new DALUsuarios(context);
+                   
+
+                        List<VwModelActividadesAsistentes> listaVwModelActividadesAsistentes = new List<VwModelActividadesAsistentes>();
+                        var listaActividades = dalActividades.GetAllActividades().Where(c => c.IdCaso == caso.IdCaso).ToList();
+                        var listaActividadesAsistentes = dalActividadesAsistentes.GetAllActividadesAsistentes();
+                        var listaUsuarios = dalUsuarios.GetAllUsuarios();
+                        var cliente = dalSisPerPersonas.GetPersona(caso.IdCliente);
+                        var imputados = (from imputado in dalSisPerPersonas.GetAllSisPerPersona()
+                                         join casosClientes in listadoCasosClientes on imputado.per_IDPER equals casosClientes.IdCliente
+                                         where casosClientes.IdCaso == caso.IdCaso
+                                         select imputado).ToList();
+                        foreach (var itemActividades in listaActividades)
+                        {
+
+                            listaVwModelActividadesAsistentes.Add(new VwModelActividadesAsistentes
+                            {
+                                Actividades = itemActividades,
+                                Responsable = listaUsuarios.Where(c => c.IdUsuario == itemActividades.IdResponsable).FirstOrDefault(),
+                                ListVwModelAsistentes = (from actividadesAsistentes in listaActividadesAsistentes
+                                                         where actividadesAsistentes.IdActividad == itemActividades.IdActividad
+                                                         select new VwModelAsistentes
+                                                         {
+                                                             IdActividadesAsistentes = actividadesAsistentes.IdActividadAsistentes,
+                                                             IdAsistente = actividadesAsistentes.IdAsistente,
+                                                             Asistente = listaUsuarios.Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente).FirstOrDefault(),
+                                                             Correo = listaUsuarios
+                                                                            .Where(c => c.IdUsuario == actividadesAsistentes.IdAsistente)
+                                                                            .Select(c => c.Usuario).FirstOrDefault() ?? "",
+                                                             CreatedAt = actividadesAsistentes.CreatedAt
+
+                                                         }).ToList() ?? new List<VwModelAsistentes>(),
+                                IdAsistentes = listaActividadesAsistentes.Where(c => c.IdActividad == itemActividades.IdActividad).Select(c => c.IdAsistente).ToArray()
+
+                            });
+                        }
+
+                        vwModelCasos = new VwModelCasos
+                        {
+                            Casos = caso,
+                            Cliente = cliente,
+                            Abogado = listaUsuarios.Where(c => c.IdUsuario == caso.IdAbogado).FirstOrDefault(),
+                            ListVwModelActividadesAsistentes = listaVwModelActividadesAsistentes,
+                            ListadoImputados = imputados,
+                            ListadoDocumentos = listadoDocumentos.Where(c => c.IdCaso == caso.IdCaso).ToList(),
+                            IdDocumentos = listadoDocumentos.Where(c => c.IdCaso == caso.IdCaso).Select(c => c.IdDocumento).ToArray(),
+                            IdImputados = imputados.Select(c => c.per_IDPER).ToArray()
+                        };
+
+      
+                    return vwModelCasos;
+                }
+
+            });
 
             return await t;
 

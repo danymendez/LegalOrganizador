@@ -1,4 +1,4 @@
-﻿@model PreOrclFrontEnd.Models.Casos
+﻿@model PreOrclFrontEnd.ViewModels.VwModelCasos
 @{
     ViewData["Title"] = "Create";
 
@@ -56,31 +56,31 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="form-group">
-                                <label asp-for="NombreCaso"></label>
+                                <label asp-for="Casos.NombreCaso"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-gavel"></i></div>
-                                    <input asp-for="NombreCaso" class="form-control">
+                                    <input asp-for="Casos.NombreCaso" class="form-control">
                                 </div>
-                                <span asp-validation-for="NombreCaso" class="text-danger"></span>
+                                <span asp-validation-for="Casos.NombreCaso" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="FechaApertura"></label>
+                                <label asp-for="Casos.FechaApertura"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input asp-for="FechaApertura" class="form-control">
+                                    <input asp-for="Casos.FechaApertura" class="form-control">
                                 </div>
-                                <span asp-validation-for="FechaApertura" class="text-danger"></span>
+                                <span asp-validation-for="Casos.FechaApertura" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="IdCliente"></label>
-                                <select asp-for="IdCliente" data-placeholder="Seleccionar" asp-items="ViewBag.listaPersonas" class="standardSelect" tabindex="1">
+                                <label asp-for="Casos.IdCliente"></label>
+                                <select asp-for="Casos.IdCliente" data-placeholder="Seleccionar" asp-items="ViewBag.listaPersonas" class="standardSelect" tabindex="1">
                                     <option disabled value="-1" selected>Seleccionar</option>
                                 </select>
-                                <span asp-validation-for="IdCliente" class="text-danger"></span>
+                                <span asp-validation-for="Casos.IdCliente" class="text-danger"></span>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label asp-for="Categoria" class="form-control-label"></label>
+                                    <label asp-for="Casos.Categoria" class="form-control-label"></label>
                                 </div>
                                 <div class="col col-md-9">
                                     <div class="form-check-inline form-check">
@@ -88,58 +88,58 @@
                                         {
 
                                             <label for="inline-radio@listaCategorias.GetEnumerator()" class="form-check-label ">
-                                                <input asp-for="Categoria" type="radio" value="@itemCategoria.Value" class="form-check-input">@itemCategoria.Text&nbsp;&nbsp;&nbsp;
+                                                <input asp-for="Casos.Categoria" type="radio" value="@itemCategoria.Value" class="form-check-input">@itemCategoria.Text&nbsp;&nbsp;&nbsp;
                                             </label>
 
                                         }
 
                                     </div>
-                                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                                    <span asp-validation-for="Casos.Categoria" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecioPactado"></label>
+                                <label asp-for="Casos.PrecioPactado"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-dollar"></i></div>
-                                    <input asp-for="PrecioPactado" class="form-control text-right">
+                                    <input asp-for="Casos.PrecioPactado" class="form-control text-right">
                                 </div>
-                                <span asp-validation-for="PrecioPactado" class="text-danger"></span>
+                                <span asp-validation-for="Casos.PrecioPactado" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="IdAbogado"></label>
-                                <select asp-for="IdAbogado" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
+                                <label asp-for="Casos.IdAbogado"></label>
+                                <select asp-for="Casos.IdAbogado" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
                                     <option disabled value="-1" selected>Seleccionar</option>
                                 </select>
-                                <span asp-validation-for="IdAbogado" class="text-danger"></span>
+                                <span asp-validation-for="Casos.IdAbogado" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Resolucion"></label>
+                                <label asp-for="Casos.Resolucion"></label>
                                 <div class="input-group">
 
-                                    <textarea asp-for="Resolucion" class="form-control" rows="15"></textarea>
+                                    <textarea asp-for="Casos.Resolucion" class="form-control" rows="15"></textarea>
                                 </div>
-                                <span asp-validation-for="Resolucion" class="text-danger"></span>
+                                <span asp-validation-for="Casos.Resolucion" class="text-danger"></span>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <label asp-for="EstadoCaso"></label>
-                                    <select asp-for="EstadoCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoCasos" class="standardSelect" tabindex="1">
+                                    <label asp-for="Casos.EstadoCaso"></label>
+                                    <select asp-for="Casos.EstadoCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoCasos" class="standardSelect" tabindex="1">
                                         <option disabled value="-1" selected>Seleccionar</option>
                                     </select>
-                                    <span asp-validation-for="EstadoCaso" class="text-danger"></span>
+                                    <span asp-validation-for="Casos.EstadoCaso" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label asp-for="FechaCierre"></label>
+                                    <label asp-for="Casos.FechaCierre"></label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input asp-for="FechaCierre" class="form-control">
+                                        <input asp-for="Casos.FechaCierre" class="form-control">
                                     </div>
-                                    <span asp-validation-for="FechaCierre" class="text-danger"></span>
+                                    <span asp-validation-for="Casos.FechaCierre" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label asp-for="Tipo" class="form-control-label"></label>
+                                    <label asp-for="Casos.Tipo" class="form-control-label"></label>
                                 </div>
                                 <div class="col col-md-9">
                                     <div class="form-check-inline form-check">
@@ -147,20 +147,20 @@
                                         {
 
                                             <label for="inline-radio@listaTipos.GetEnumerator()" class="form-check-label ">
-                                                <input asp-for="Tipo" type="radio" value="@itemTipos.Value" class="form-check-input">@itemTipos.Text&nbsp;&nbsp;&nbsp;
+                                                <input asp-for="Casos.Tipo" type="radio" value="@itemTipos.Value" class="form-check-input">@itemTipos.Text&nbsp;&nbsp;&nbsp;
                                             </label>
 
                                         }
 
                                     </div>
-                                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                                    <span asp-validation-for="Casos.Tipo" class="text-danger"></span>
                                 </div>
                             </div>
-                            <input asp-for="IdCaso" type="hidden" />
-                            <input asp-for="CreatedAt" type="hidden" />
-                            <input asp-for="UpdatedAt" type="hidden" />
-                            <input asp-for="InactivatedAt" type="hidden" />
-                            <input asp-for="Inactivo" type="hidden" />
+                            <input asp-for="Casos.IdCaso" type="hidden" />
+                            <input asp-for="Casos.CreatedAt" type="hidden" />
+                            <input asp-for="Casos.UpdatedAt" type="hidden" />
+                            <input asp-for="Casos.InactivatedAt" type="hidden" />
+                            <input asp-for="Casos.Inactivo" type="hidden" />
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
                                     <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Edit")','@Url.Action("Index")')" class="btn btn-default" />
