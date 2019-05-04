@@ -77,7 +77,7 @@ namespace Common.BOL.BOL
                 using (DALDBContext context = new DALDBContext())
                 {
                     DALCasosClientes dal = new DALCasosClientes(context);
-                    _casosClientes = dal.DeleteDocumento(id);
+                    _casosClientes = dal.DeleteCasoCliente(id);
                 }
                 return _casosClientes;
             });

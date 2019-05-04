@@ -21,7 +21,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Agregar Caso</h1>
+                        <h1>Editar Caso</h1>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Registros</a></li>
                             <li><a asp-action="Index">Casos</a></li>
-                            <li class="active">Agregar Caso</li>
+                            <li class="active">Editar Caso</li>
                         </ol>
                     </div>
                 </div>
@@ -51,8 +51,7 @@
                         <strong>Crear Caso</strong> <small></small>
                     </div>
 
-                    <form asp-action="Edit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
-                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+                    <form asp-action="Edit" enctype="multipart/form-data" class="submit-formdata" @*asp-antiforgery="true"*@ id="createForm" method="post" >
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="form-group">
@@ -77,6 +76,11 @@
                                     <option disabled value="-1" selected>Seleccionar</option>
                                 </select>
                                 <span asp-validation-for="Casos.IdCliente" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="IdImputados"></label>
+                                <select asp-for="IdImputados" multiple="true" data-placeholder="Seleccionar" asp-items="ViewBag.listaImputados" class="standardSelect" tabindex="1"></select>
+                                <span asp-validation-for="IdImputados" class="text-danger"></span>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
@@ -138,6 +142,36 @@
                                 </div>
                             </div>
                             <div class="row form-group">
+                                <div class="col col-md-12">
+                                    <label class="label">Documentos</label>
+                                </div>
+
+                                @foreach (var itemListadoDocumentos in Model.ListadoDocumentos)
+                                {
+                                    <div class="col col-md-12">
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].IdDocumento" type="hidden" />
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].IdCaso" type="hidden" />
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].CreatedAt" type="hidden" />
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].UpdatedAt" type="hidden" />
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].Nombre" type="hidden" />
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].Url" type="hidden" />
+                                        <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].Archivo" type="hidden" />
+
+                                        <a asp-action="Download" class="form-control-label" asp-route-id="@itemListadoDocumentos.IdDocumento">@itemListadoDocumentos.Nombre</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="row form-group">
+                                <div class="row col col-md-12">
+                                    <input asp-for="Documentos" type="file" />
+                                    <span asp-validation-for="Documentos" class="text-danger"></span>
+                                </div>
+                                <div class="row col col-md-12">
+                                    <input asp-for="Documentos" type="file" />
+                                    <span asp-validation-for="Documentos" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label asp-for="Casos.Tipo" class="form-control-label"></label>
                                 </div>
@@ -163,7 +197,7 @@
                             <input asp-for="Casos.Inactivo" type="hidden" />
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
-                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Edit")','@Url.Action("Index")')" class="btn btn-default" />
+                                    <input type="button" onclick="GuardarNotificacion('.submit-formdata','@Url.Action("Create")','@Url.Action("Index")')" value="Guardar" class="btn btn-default" />
                                 </div>
                             </div>
                         </div>

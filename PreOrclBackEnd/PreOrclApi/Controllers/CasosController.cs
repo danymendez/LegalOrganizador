@@ -133,6 +133,44 @@ namespace PreOrclApi.Controllers
             return CreatedAtAction("GetVwModelCasos", new { id = casos.IdCaso }, vwModelCasos);
         }
 
+        [HttpPut("PutVwModelCasos/{id}", Name = "PutVwModelCasos")]
+        public async Task<IActionResult> PutVwModelCasos([FromRoute] decimal id, [FromBody] Common.Entity.ViewModels.VwModelCasos vwModelCasos)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (id != vwModelCasos.Casos.IdCaso)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                if (bol.GetCaso(id) == null)
+                {
+                    return NotFound();
+                }
+                await bol.UpdateVwModelCasos(vwModelCasos);
+
+
+            }
+            catch (Exception e)
+            {
+                if (bol.GetCaso(id) == null)
+                {
+                    return NotFound(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+
+        }
+
         // DELETE: api/SisPerPersonas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCasos([FromRoute] decimal id)

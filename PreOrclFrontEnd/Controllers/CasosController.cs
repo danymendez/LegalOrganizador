@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -86,7 +89,14 @@ namespace PreOrclFrontEnd.Controllers
             {
                 try
                 {
-                    bool isSaved = await generic.Put("Casos/", id, vwModelCasos.Casos);
+                    vwModelCasos.Casos.UpdatedAt = DateTime.Now;
+
+                    vwModelCasos.ListadoDocumentos = vwModelCasos.ListadoDocumentos ?? new List<Documentos>();
+                    foreach (var itemDocumento in vwModelCasos.Documentos)
+                    {
+                        vwModelCasos.ListadoDocumentos.Add(new Documentos { Nombre = itemDocumento.FileName, CreatedAt = DateTime.Now, Url = itemDocumento.FileName, Archivo = ConvertFileToByte(itemDocumento) });
+                    }
+                    bool isSaved = await generic.Put("Casos/PutVwModelCasos/", id, vwModelCasos);
                     if (!isSaved)
                     {
                         return BadRequest();
@@ -102,7 +112,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VwModelCasos vwModelCasos)
         {
             if (ModelState.IsValid)
@@ -110,6 +120,10 @@ namespace PreOrclFrontEnd.Controllers
                 vwModelCasos.Casos.CreatedAt = DateTime.Now;
                 vwModelCasos.Casos.Cancelado = 0;
                 vwModelCasos.Casos.Inactivo = 0;
+                vwModelCasos.ListadoDocumentos = new List<Documentos>();
+                foreach (var itemDocumento in vwModelCasos.Documentos) {
+                    vwModelCasos.ListadoDocumentos.Add(new Documentos {Nombre=itemDocumento.FileName,CreatedAt=DateTime.Now,Url=itemDocumento.FileName, Archivo= ConvertFileToByte(itemDocumento) });
+                }
                 vwModelCasos = await generic.Post("Casos/PostVwModelCasos", vwModelCasos);
 
                 if (vwModelCasos.Casos.IdCaso == 0)
@@ -121,6 +135,37 @@ namespace PreOrclFrontEnd.Controllers
             return View(vwModelCasos);
         }
 
+        public byte[] ConvertFileToByte(IFormFile file) {
 
+            byte[] bytes = null;
+            if (file.Length > 0)
+            {
+
+                using (Stream fs = file.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                      bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+                }
+
+                        //var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName;
+                        //using (var reader = new StreamReader(file.OpenReadStream()))
+                        //{
+                        //    string contentAsString = reader.ReadToEnd();
+                        //     bytes = new byte[contentAsString.Length * sizeof(char)];
+                        //    System.Buffer.BlockCopy(contentAsString.ToCharArray(), 0, bytes, 0, bytes.Length);
+                        //}
+                    }
+
+            return bytes;
+        }
+
+        public FileContentResult Download(decimal id)
+        {
+            var documento = generic.Get<Documentos>("Documentos/", id).Result;
+            byte[] fileBytes = documento.Archivo;
+            return File(fileBytes, "application/x-msdownload", documento.Nombre);
+        }
     }
 }

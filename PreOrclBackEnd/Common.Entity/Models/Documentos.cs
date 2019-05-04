@@ -24,5 +24,7 @@ namespace Common.Entity.Models
         public DateTime CreatedAt { get; set; }
         [Field(Name = "UPDATEDAT")]
         public DateTime? UpdatedAt { get; set; }
+        [Field(Name = "ARCHIVO")]
+        public byte[] Archivo { get; set; }
     }
 }

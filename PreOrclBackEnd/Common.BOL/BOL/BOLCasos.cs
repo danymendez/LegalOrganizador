@@ -48,6 +48,51 @@ namespace Common.BOL.BOL
                     {
                         foreach (var itemsDocumentos in vwModelCasos.ListadoDocumentos)
                         {
+                            itemsDocumentos.IdCaso = _casos.IdCaso;
+                            var documentos = dalDocumentos.CreateDocumentos(itemsDocumentos);
+                        }
+                    }
+                }
+
+                return _casos;
+            });
+
+            return await t;
+        }
+
+        public async Task<Casos> UpdateVwModelCasos(VwModelCasos vwModelCasos)
+        {
+
+            Casos _casos = new Casos();
+            Task<Casos> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALCasos dal = new DALCasos(context);
+                    DALCasosClientes dalCasosClientes = new DALCasosClientes(context);
+                    DALDocumentos dalDocumentos = new DALDocumentos(context);
+                    _casos = dal.UpdateCasos(vwModelCasos.Casos.IdCaso,vwModelCasos.Casos);
+                    var IdCasoClienteToDelete = dalCasosClientes.GetAllCasosClientes().Where(c=>c.IdCaso==_casos.IdCaso).Select(c=>c.IdCasoCliente).ToArray();
+                    var IdDocumentosToDelete = dalDocumentos.GetAllDocumentos().Where(c => c.IdCaso == vwModelCasos.Casos.IdCaso).Select(c=>c.IdDocumento).ToArray();
+                    foreach (var itemsImputadosToDelete in IdCasoClienteToDelete) {
+                        dalCasosClientes.DeleteCasoCliente(itemsImputadosToDelete);
+                    }
+
+                    foreach (var itemsImputados in vwModelCasos.IdImputados)
+                    {
+                        
+                        var casosclientes = dalCasosClientes.CreateCasosClientes(new CasosClientes { IdCaso = _casos.IdCaso, IdCliente = itemsImputados, CreatedAt = DateTime.Now });
+                    }
+
+                    foreach (var itemsDocumentosToDelete in IdDocumentosToDelete) {
+                        dalDocumentos.DeleteDocumento(itemsDocumentosToDelete);
+                    }
+
+                    if (!(vwModelCasos.ListadoDocumentos is null))
+                    {
+                        foreach (var itemsDocumentos in vwModelCasos.ListadoDocumentos)
+                        {
+                            itemsDocumentos.IdCaso = _casos.IdCaso;
                             var documentos = dalDocumentos.CreateDocumentos(itemsDocumentos);
                         }
                     }

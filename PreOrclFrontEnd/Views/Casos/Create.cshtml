@@ -51,8 +51,7 @@
                         <strong>Crear Caso</strong> <small></small>
                     </div>
 
-                    <form asp-action="Create" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
-                          data-ajax-failure="onFailed" data-ajax-success="onSuccess" data-ajax="true" data-ajax-method="POST">
+                    <form asp-action="Create" enctype="multipart/form-data" class="submit-formdata" @*asp-antiforgery="true"*@ id="createForm" method="post" >
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body card-block">
                             <div class="form-group">
@@ -80,9 +79,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="IdImputados"></label>
-                                <select asp-for="IdImputados" multiple="true" data-placeholder="Seleccionar" asp-items="ViewBag.listaImputados" class="standardSelect" tabindex="1">
-                                   
-                                </select>
+                                <select asp-for="IdImputados" multiple="true" data-placeholder="Seleccionar" asp-items="ViewBag.listaImputados" class="standardSelect" tabindex="1"></select>
                                 <span asp-validation-for="IdImputados" class="text-danger"></span>
                             </div>
                             <div class="row form-group">
@@ -145,32 +142,43 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label asp-for="Casos.Tipo" class="form-control-label"></label>
+                                <div class="row col col-md-12">
+                                    <input asp-for="Documentos" type="file" />
+                                    <span asp-validation-for="Documentos" class="text-danger"></span>
                                 </div>
-                                <div class="col col-md-9">
-                                    <div class="form-check-inline form-check">
-                                        @foreach (var itemTipos in listaTipos)
-                                        {
-
-                                            <label for="inline-radio@listaTipos.GetEnumerator()" class="form-check-label ">
-                                                <input asp-for="Casos.Tipo" type="radio" value="@itemTipos.Value" class="form-check-input">@itemTipos.Text&nbsp;&nbsp;&nbsp;
-                                            </label>
-
-                                        }
-
+                                <div class="row col col-md-12">
+                                    <input asp-for="Documentos" type="file" />
+                                    <span asp-validation-for="Documentos" class="text-danger"></span>
+                                </div>
+                            </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label asp-for="Casos.Tipo" class="form-control-label"></label>
                                     </div>
-                                    <span asp-validation-for="Casos.Tipo" class="text-danger"></span>
-                                </div>
-                            </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            @foreach (var itemTipos in listaTipos)
+                                            {
 
-                            <div class="row form-group">
-                                <div class="col-sm-12 text-right">
-                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
+                                                <label for="inline-radio@listaTipos.GetEnumerator()" class="form-check-label ">
+                                                    <input asp-for="Casos.Tipo" type="radio" value="@itemTipos.Value" class="form-check-input">@itemTipos.Text&nbsp;&nbsp;&nbsp;
+                                                </label>
+
+                                            }
+
+                                        </div>
+                                        <span asp-validation-for="Casos.Tipo" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col-sm-12 text-right">
+                                        <input type="button" onclick="GuardarNotificacion('.submit-formdata','@Url.Action("Create")','@Url.Action("Index")')" value="Guardar" class="btn btn-default" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+</form>
                 </div>
             </div>
 

@@ -28,7 +28,7 @@ namespace Common.Data.DAL
             return GetAll<CasosClientes>();
         }
 
-        public CasosClientes DeleteDocumento(decimal id)
+        public CasosClientes DeleteCasoCliente(decimal id)
         {
             return Delete<CasosClientes>(id);
         }

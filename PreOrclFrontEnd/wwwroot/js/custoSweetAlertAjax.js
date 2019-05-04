@@ -253,5 +253,69 @@ function UrlDestino() {
     return urlDestino;
 }
 
+function GuardarForm(ctx) {
+   
+}
 
+jQuery(".submit-formdata").on("submit", function () {
+    //Code: Action (like ajax...)
+    var form = jQuery(this);
 
+    var formData = new FormData(this);
+    
+ 
+    jQuery.ajax({
+        url: form.attr("action"),
+        beforeSend: function () {
+
+                // Animate loader off screen
+                jQuery(".se-pre-con").fadeIn();
+       
+        },
+        success: function (data, textStatus, xhr) {
+            swal({
+                title: "La información se ha guardado correctamente",
+                text: "¿Que desea hacer?",
+                icon: "/images/warning.png",
+                closeOnClickOutside: false,
+                buttons: {
+                    cancel: {
+                        text: "Agregar otro Registro",
+                        value: null,
+                        visible: true,
+                        className: "btn-default",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "Salir",
+                        value: true,
+                        visible: true,
+                        className: "btn-primary",
+                        closeModal: true
+                    }
+                },
+                dangerMode: false
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = form.attr("action").replace("Create", "Index").replace("Edit", "Index");
+                    } else {
+                        window.location.href = form.attr("action");
+                    }
+                });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //ua_func_error(jqXHR, textStatus, errorThrown, form);
+        },
+        complete: function (xhr, textStatus) {
+            jQuery(".se-pre-con").fadeOut("slow");
+        },
+        data: formData,
+        type: form.attr("method"),
+        contentType: false,
+        processData: false,
+        async: true,
+        cache: false
+    });
+    return false;
+});
