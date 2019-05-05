@@ -30,6 +30,41 @@ namespace Common.BOL.BOL
             return await t;
         }
 
+        public async Task<Usuarios> AutenticarInterno(Usuarios pUsuario)
+        {
+
+            Usuarios user = null;
+            Task<Usuarios> t = Task.Run(() =>
+            {
+                using (DALDBContext context = new DALDBContext())
+                {
+                    DALUsuarios dal = new DALUsuarios(context);
+                    DALRoles dalRoles = new DALRoles(context);
+                    var listuser = dal.GetAllUsuarios();
+                    var usu = from us in listuser where us.Usuario.Equals(pUsuario.Usuario.Trim()) select us;
+                    user = usu.FirstOrDefault();
+                    if (user == null)
+                    {
+                        pUsuario.IdRol = dalRoles.GetAllRoles().Where(c => c.NombreRol.Trim() == "Abogado").Select(c => c.IdRol).FirstOrDefault();
+                        pUsuario.TipoUsuario = "I";
+                        pUsuario.Inactivo = 1;
+                      user=dal.CreateUsuario(pUsuario);
+                    }
+                    else {
+                        user.Token = pUsuario.Token;
+                        user.TokenExpiredAt = pUsuario.TokenExpiredAt;
+                        user.TokenRefresh = pUsuario.TokenRefresh;
+                        user.UpdatedAt = DateTime.Now;
+                        user = dal.UpdateUsuarios(user.IdUsuario, user);
+                    }
+
+                    return user;
+                }
+            });
+
+            return await t;
+        }
+
         public async Task<List<Usuarios>> GetUsuarios() {
             Task<List<Usuarios>> t = Task.Run(() =>
             {

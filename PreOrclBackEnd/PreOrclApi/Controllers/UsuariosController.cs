@@ -39,6 +39,18 @@ namespace PreOrclApi.Controllers
             });
         }
 
+        [HttpPost("AutenticarInterno", Name = "AutenticarInterno")]
+        //[Route("Autenticar")]
+        public async Task<IActionResult> AutenticarInterno(Common.Entity.Models.Usuarios usuarios) // operationId = "Autenticar"
+        {
+            var usuario = await bolUsuarios.AutenticarInterno(usuarios);
+            
+            if(usuario!=null)
+            return Ok(usuario);
+
+            return BadRequest();
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Common.Entity.Models.Usuarios>> GetUsuarios() {
             var usuarios = await bolUsuarios.GetUsuarios();

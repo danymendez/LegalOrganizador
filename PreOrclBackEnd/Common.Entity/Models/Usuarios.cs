@@ -41,7 +41,7 @@ namespace Common.Entity.Models
         public int Inactivo { get; set; }
 
         [Field(Name = "TIPOUSUARIO")]
-        [MaxLength(20)]
+        [MaxLength(1)]
         public string TipoUsuario { get; set; }
     }
 }

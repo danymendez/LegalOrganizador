@@ -63,7 +63,12 @@
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.Apellido)
                                                     </th>
-                                                  
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Usuario)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Inactivo)
+                                                    </th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -80,7 +85,9 @@
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.Usuario)
                                                         </td>
-                                                       
+                                                        <td>
+                                                            @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
+                                                        </td>
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-sm-3">

@@ -106,58 +106,49 @@ namespace PreOrclFrontEnd.Controllers
         {
             GraphAuthCustom graphAuthCustom = new GraphAuthCustom(_memoryCache, _msGraphConfig);
             GraphServiceCustom gsc = new GraphServiceCustom();
-            Usuarios usuarioToCreate = new Usuarios();
+            Usuarios usuarioToCreateOrUpdate = new Usuarios();
             graphAuthCustom.CreateToken(code);
             var tokenT = _memoryCache.Get<TokenT>("TokenT");
 
             var authenticatedClient = graphAuthCustom.GetAuthenticatedClient(tokenT.access_token);
 
-            var me = authenticatedClient.Me.Request().GetAsync().Result;
+            var me = await authenticatedClient.Me.Request().GetAsync();
             string urlImg = gsc.GetPictureBase64(authenticatedClient).Result;
+            if(urlImg!=null)
             _memoryCache.Set("foto", Encoding.ASCII.GetBytes(urlImg));
 
-            decimal idRol = 0;
+            
 
-            if (!ExistUsuario(me.UserPrincipalName))
-            {
-                usuarioToCreate.Usuario = me.UserPrincipalName;
-                usuarioToCreate.Apellido = me.Surname;
-                usuarioToCreate.Nombre = me.GivenName;
-                usuarioToCreate.Password = "";
-                usuarioToCreate.Token = Criptografia.Encrypt(tokenT.access_token);
-                usuarioToCreate.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
-                usuarioToCreate.CreatedAt = DateTime.Now;
-                usuarioToCreate.Inactivo = 0;
-                usuarioToCreate.IdRol = 1;
-                idRol = 1;
-                await generic.Post("Usuarios", usuarioToCreate);
-            }
-            else {
-                var usuarioToUpdate = (await generic.GetAll<Usuarios>("Usuarios")).Find(l => l.Usuario.Trim().ToUpper() == me.UserPrincipalName.Trim().ToUpper());
-                usuarioToUpdate.Usuario = me.UserPrincipalName;
-                usuarioToUpdate.Apellido = me.Surname;
-                usuarioToUpdate.Nombre = me.GivenName;
-                usuarioToUpdate.Password = "";
-                usuarioToUpdate.Token = Criptografia.Encrypt(tokenT.access_token);
-                usuarioToUpdate.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
-                usuarioToUpdate.CreatedAt = DateTime.Now;
-                usuarioToUpdate.Inactivo = 0;
-               
-                idRol = usuarioToUpdate.IdRol;
-                await generic.Put("Usuarios/",usuarioToUpdate.IdUsuario,usuarioToUpdate);
-            }
+            
+                usuarioToCreateOrUpdate.Usuario = me.UserPrincipalName;
+                usuarioToCreateOrUpdate.Apellido = me.Surname;
+                usuarioToCreateOrUpdate.Nombre = me.GivenName;
+                usuarioToCreateOrUpdate.Password = "";
+                usuarioToCreateOrUpdate.Token = Criptografia.Encrypt(tokenT.access_token);
+                usuarioToCreateOrUpdate.TokenRefresh = Criptografia.Encrypt(tokenT.refresh_token);
+                usuarioToCreateOrUpdate.CreatedAt = DateTime.Now;
+                usuarioToCreateOrUpdate.Inactivo = 0;
+              
+    
+            usuarioToCreateOrUpdate=await generic.Post("Usuarios/AutenticarInterno", usuarioToCreateOrUpdate);
+            if (usuarioToCreateOrUpdate == null)
+                return BadRequest("Hubo un error en el login");
+
+            decimal idRol = usuarioToCreateOrUpdate.IdRol;
+          
 
             var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, me.GivenName),
                         new Claim(ClaimTypes.Email,me.UserPrincipalName),
-                     //   new Claim(ClaimTypes.Role, "Seguridad")
 
                     };
 
-            var permisos = from rolPermiso in await generic.GetAll<RolesPermisos>("RolesPermisos")
+            var roles = (await generic.GetAll<RolesPermisos>("RolesPermisos")).Where(c => c.IdRol == idRol);
+
+            var permisos = from rolPermiso in roles
                            join permiso in await generic.GetAll<Permisos>("Permisos") on rolPermiso.IdPermiso equals permiso.IdPermiso
-                           where rolPermiso.IdRol == idRol
+                         
                            select permiso;
 
             foreach (var item in permisos) {

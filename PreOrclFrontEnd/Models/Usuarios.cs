@@ -39,6 +39,8 @@ namespace PreOrclFrontEnd.Models
         public DateTime? UpdatedAt { get; set; }
         
         public int Inactivo { get; set; }
-    
+
+        public string TipoUsuario { get; set; }
+
     }
 }
