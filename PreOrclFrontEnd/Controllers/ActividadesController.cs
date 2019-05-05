@@ -52,7 +52,7 @@ namespace PreOrclFrontEnd.Controllers
 
         public JsonResult GetCalendariosByIdUsuario(decimal id)
         {
-            var lista = generic.GetAll<GraphCalendar>("Calendarios/" + id).Result;
+            var lista = generic.GetAll<GraphCalendar>("Calendarios/" + id).Result.Where(c => c.Calendar.Name!="Calendar").Where(c=>!c.Calendar.Name.Trim().ToUpper().Contains("CUMPLEAÑOS"));
             return Json(lista);
         }
 
