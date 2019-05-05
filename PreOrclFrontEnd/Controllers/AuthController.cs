@@ -38,6 +38,14 @@ namespace PreOrclFrontEnd.Controllers
 
             return View();
         }
+
+        [Route("UsuarioInactivo")]
+        public IActionResult UsuarioInactivo()
+        {
+
+            return View();
+        }
+
         [Route("Micro")]
         public IActionResult Micro() {
 
@@ -133,7 +141,8 @@ namespace PreOrclFrontEnd.Controllers
             usuarioToCreateOrUpdate=await generic.Post("Usuarios/AutenticarInterno", usuarioToCreateOrUpdate);
             if (usuarioToCreateOrUpdate == null)
                 return BadRequest("Hubo un error en el login");
-
+            if (usuarioToCreateOrUpdate.Inactivo == 1)
+                return RedirectToAction(nameof(UsuarioInactivo));
             decimal idRol = usuarioToCreateOrUpdate.IdRol;
           
 
@@ -164,17 +173,33 @@ namespace PreOrclFrontEnd.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+
         [HttpGet]
         [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-
-            //this.SignOut();
-            return RedirectToAction("Index", "Auth");
+            var callbackUrl = Url.Action(nameof(SignedOut), "Account", values: null, protocol: Request.Scheme);
+            return SignOut(
+                new AuthenticationProperties { RedirectUri = callbackUrl },
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                OpenIdConnectDefaults.AuthenticationScheme);
+      
         }
 
-  
+        [HttpGet]
+        [Route("SignedOut")]
+        public IActionResult SignedOut()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                // Redirect to home page if the user is authenticated.
+                return RedirectToAction("Index", "Auth");
+            }
+
+            return RedirectToAction("Index", "Auth");
+        }
 
         [NonAction]
         public bool ExistUsuario(string usuario) {

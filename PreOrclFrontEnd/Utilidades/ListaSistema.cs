@@ -30,7 +30,7 @@ namespace PreOrclFrontEnd.Utilidades
 
         public SelectList GetSelectListAbogados()
         {
-          return  new SelectList((from abogados in generic.GetAll<Usuarios>("Usuarios").Result
+          return  new SelectList((from abogados in generic.GetAll<Usuarios>("Usuarios").Result where abogados.TipoUsuario.Trim().ToUpperInvariant()=="I"
                             select new Usuarios { IdUsuario=abogados.IdUsuario, Nombre = $"{abogados.Nombre} {abogados.Apellido}" }), "IdUsuario", "Nombre");
         }
 
