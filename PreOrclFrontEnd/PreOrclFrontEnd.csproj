@@ -60,6 +60,9 @@
     <Content Update="Views\Roles\_CreateOrEditPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Usuarios\_InactivateOrActivatePartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

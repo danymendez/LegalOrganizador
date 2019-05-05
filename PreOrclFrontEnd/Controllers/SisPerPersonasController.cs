@@ -10,6 +10,10 @@ using PreOrclFrontEnd.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using PreOrclFrontEnd.Utilidades;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Caching.Memory;
+using System.Text;
 
 namespace PreOrclFrontEnd.Controllers
 {
@@ -18,18 +22,28 @@ namespace PreOrclFrontEnd.Controllers
     {
  
         GenericREST generic;
-
-        public SisPerPersonasController(IOptions<UriHelpers> configuration)
+        private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _env;
+        private readonly IGraphSdkHelper _graphSdkHelper;
+        private readonly IMemoryCache _memoryCache;
+        public SisPerPersonasController(IOptions<UriHelpers> configuration, IConfiguration configurations, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper, IMemoryCache memoryCache)
         {
-        
+            _configuration = configurations;
+            _env = hostingEnvironment;
+            _graphSdkHelper = graphSdkHelper;
             generic = new GenericREST(configuration.Value);
-
+            _memoryCache = memoryCache;
         }
-
 
         // GET: SisPerPersonas
         public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (_memoryCache.Get("foto") != null)
+                    ViewData["img"] = Encoding.ASCII.GetString(_memoryCache.Get("foto") as byte[]);
+            }
+
             List<SisPerPersona> listaSisPersona = await generic.GetAll<SisPerPersona>("SisPerPersonas");
         
             ViewBag.PersonasClassCssNav = "active";

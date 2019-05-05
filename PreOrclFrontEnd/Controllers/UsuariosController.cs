@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
+using PreOrclFrontEnd.ViewModels;
 
 namespace PreOrclFrontEnd.Controllers
 {
@@ -26,6 +27,65 @@ namespace PreOrclFrontEnd.Controllers
 
             ViewBag.PersonasClassCssNav = "active";
             return View(listaUsuarios);
+        }
+
+        public async Task<IActionResult> InactivateOrActivatePartial(decimal? id)
+        {
+            Usuarios usuarios = new Usuarios();
+            
+           
+            usuarios = await generic.Get<Usuarios>("Usuarios/", id);
+
+            ViewBag.Title = "Inactivar Usuario";
+            ViewBag.ButtonTextSave = "Inactivar";
+            if (usuarios.Inactivo == 1)
+            {
+                ViewBag.ButtonTextSave = "Reactivar";
+                ViewBag.Title = "Reactivar Rol";
+            }
+
+            return PartialView("../Usuarios/_InactivateOrActivatePartial", usuarios);
+        }
+
+        public async Task<IActionResult> InactivateOrActivate(Usuarios usuarios)
+        {
+            if (usuarios.Inactivo == 1)
+            {
+                var usuarioToInactivated = await generic.Get<Usuarios>("Usuarios/", usuarios.IdUsuario);
+                usuarioToInactivated.Inactivo = 1;
+                usuarioToInactivated.InactivatedAt = DateTime.Now;
+                usuarioToInactivated.UpdatedAt = DateTime.Now;
+
+                bool Actualizado = await generic.Put("Usuarios/", usuarioToInactivated.IdUsuario, usuarioToInactivated);
+
+                if (Actualizado)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Ha ocurrido un error al inactivar");
+                }
+
+            }
+            else
+            {
+                var usuarioToInactivated = await generic.Get<Usuarios>("Usuarios/", usuarios.IdUsuario);
+                usuarioToInactivated.Inactivo = 0;
+                usuarioToInactivated.InactivatedAt = null;
+                usuarioToInactivated.UpdatedAt = DateTime.Now;
+
+                bool Actualizado = await generic.Put("Usuarios/", usuarioToInactivated.IdUsuario, usuarioToInactivated);
+
+                if (Actualizado)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Ha ocurrido un error al inactivar");
+                }
+            }
         }
     }
 }
