@@ -369,7 +369,7 @@ namespace Common.BOL.BOL
                 {
                     client_id = "212a93ce-c93e-43b8-adaf-cc32d3606e75",
                     client_secret = "ysCRFE4_}fenfmVKW2574${",
-                    scope = "calendars.read user.read user.readbasic.all mail.read",
+                    scope = "calendars.read calendars.readwrite calendars.read.shared calendars.readwrite.shared user.read user.readbasic.all mail.read",
                     //scope = "https://graph.microsoft.com/.default",
                     grant_type = "refresh_token",
                     refresh_token = refreshToken,

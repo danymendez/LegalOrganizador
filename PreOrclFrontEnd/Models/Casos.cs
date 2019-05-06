@@ -12,6 +12,7 @@ namespace PreOrclFrontEnd.Models
         public decimal IdCaso { get; set; }
         [Required]
         [Display(Name = "Fecha de apertura")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy HH:mm}")]
         public DateTime FechaApertura { get; set; }
 
         [Required]
@@ -47,6 +48,7 @@ namespace PreOrclFrontEnd.Models
         public decimal Cancelado { get; set; }
 
         [Display(Name = "Fecha de cierre")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         public DateTime? FechaCierre { get; set; }
 
         [Display(Name = "Usuario que cierra")]

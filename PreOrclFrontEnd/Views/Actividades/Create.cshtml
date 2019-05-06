@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="~/templateAdmin/assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="~/templateAdmin/assets/css/style.css">
     <link rel="stylesheet" href="~/templateAdmin/assets/css/lib/chosen/chosen.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+
 }
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -60,7 +63,7 @@
                                     <label asp-for="Actividades.StartTime"></label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input asp-for="Actividades.StartTime" class="form-control">
+                                        <input asp-for="Actividades.StartTime" type="text" class="form-control date-time">
                                     </div>
                                     <span asp-validation-for="Actividades.StartTime" class="text-danger"></span>
                                 </div>
@@ -68,19 +71,19 @@
                                     <label asp-for="Actividades.EndTime"></label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input asp-for="Actividades.EndTime" class="form-control">
+                                        <input asp-for="Actividades.EndTime" type="text" class="form-control date-time">
                                     </div>
                                     <span asp-validation-for="Actividades.EndTime" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                    <label asp-for="Actividades.NombreActividad"></label>
-                                    <div class="input-group">
+                                <label asp-for="Actividades.NombreActividad"></label>
+                                <div class="input-group">
 
-                                        <textarea asp-for="Actividades.NombreActividad" class="form-control"></textarea>
-                                    </div>
-                                    <span asp-validation-for="Actividades.NombreActividad" class="text-danger"></span>
+                                    <textarea asp-for="Actividades.NombreActividad" class="form-control"></textarea>
+                                </div>
+                                <span asp-validation-for="Actividades.NombreActividad" class="text-danger"></span>
                             </div>
 
                             <div class="row form-group">
@@ -95,48 +98,48 @@
                                     <label asp-for="Actividades.Costo"></label>
                                     <div class="input-group">
 
-                                        <input asp-for="Actividades.Costo" class="form-control"/>
+                                        <input asp-for="Actividades.Costo" value="0.00" class="form-control text-right" />
                                     </div>
                                     <span asp-validation-for="Actividades.Costo" class="text-danger"></span>
                                 </div>
                             </div>
 
-                                <div class="form-group">
-                                    <label asp-for="Actividades.IdResponsable"></label>
-                                    <select asp-for="Actividades.IdResponsable" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
-                                        <option disabled value="-1" selected>Seleccionar</option>
-                                    </select>
-                                    <span asp-validation-for="Actividades.IdResponsable" class="text-danger"></span>
-                                </div>
+                            <div class="form-group">
+                                <label asp-for="Actividades.IdResponsable"></label>
+                                <select asp-for="Actividades.IdResponsable" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="Actividades.IdResponsable" class="text-danger"></span>
+                            </div>
 
-                                <div class="form-group">
-                                    <label asp-for="IdAsistentes"></label>
-                                    <select asp-for="IdAsistentes" data-placeholder="Seleccionar" multiple="true" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1"></select>
-                                    <span asp-validation-for="IdAsistentes" class="text-danger"></span>
-                                </div>
+                            <div class="form-group">
+                                <label asp-for="IdAsistentes"></label>
+                                <select asp-for="IdAsistentes" data-placeholder="Seleccionar" multiple="true" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1"></select>
+                                <span asp-validation-for="IdAsistentes" class="text-danger"></span>
+                            </div>
 
-                                <div class="form-group">
-                                    <label asp-for="Actividades.IdCalendario"></label>
-                                    <select asp-for="Actividades.IdCalendario" data-placeholder="Seleccionar" class="standardSelect" tabindex="1">
-                                        <option disabled value="-1" selected>Seleccionar</option>
-                                    </select>
-                                    <span asp-validation-for="Actividades.IdCalendario" class="text-danger"></span>
-                                </div>
+                            <div class="form-group">
+                                <label asp-for="Actividades.IdCalendario"></label>
+                                <select asp-for="Actividades.IdCalendario" data-placeholder="Seleccionar" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="Actividades.IdCalendario" class="text-danger"></span>
+                            </div>
 
-                                <div class="form-group">
-                                    <label asp-for="Actividades.Estado"></label>
-                                    <select asp-for="Actividades.Estado" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoActividad" class="standardSelect" tabindex="1">
-                                        <option disabled value="-1" selected>Seleccionar</option>
-                                    </select>
-                                    <span asp-validation-for="Actividades.Estado" class="text-danger"></span>
-                                </div>
+                            <div class="form-group">
+                                <label asp-for="Actividades.Estado"></label>
+                                <select asp-for="Actividades.Estado" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoActividad" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="Actividades.Estado" class="text-danger"></span>
+                            </div>
 
-                                <div class="row form-group">
-                                    <div class="col-sm-12 text-right">
-                                        <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
-                                    </div>
+                            <div class="row form-group">
+                                <div class="col-sm-12 text-right">
+                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -157,6 +160,8 @@
     <script src="~/js/custoSweetAlertAjax.js"></script>
 
     <script src="~/templateAdmin/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/js/custoDateTimePicker.js"></script>
     <script>
         jQuery(document).ready(function () {
             jQuery(".standardSelect").chosen({
@@ -168,7 +173,6 @@
             jQuery(".standardSelect").removeAttr("style");
             jQuery(".standardSelect").css("visibility", "hidden");
             jQuery(".standardSelect").css("position", "absolute");
-
 
 
         });
@@ -189,7 +193,7 @@
                     for (var i = 0; i < data.length; i++) {
                         s += '<option value="' + data[i].calendar.id + '">' + data[i].calendar.name + '</option>';
                     }
-                    jQuery("#Actividades_IdCalendario").html(s);  
+                    jQuery("#Actividades_IdCalendario").html(s);
 
                     jQuery("#Actividades_IdCalendario").trigger("chosen:updated");
 
@@ -210,7 +214,7 @@
 
                 });
         }
-       
+
     </script>
 
 }

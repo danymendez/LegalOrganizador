@@ -13,13 +13,13 @@ namespace PreOrclFrontEnd.Models
         [Key]
         public decimal IdUsuario { get; set; }
 
-        [Required(ErrorMessage = "Campo Requerido")]
+        [Required(ErrorMessage = "Requerido")]
         public string Usuario { get; set; }
-        [Required(ErrorMessage = "Campo Requerido")]
+        [Required(ErrorMessage = "Requerido")]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         public string Nombre { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         public string Apellido { get; set; }
 
         public DateTime? FechaNac { get; set; }
@@ -39,7 +39,7 @@ namespace PreOrclFrontEnd.Models
         public DateTime? UpdatedAt { get; set; }
         
         public int Inactivo { get; set; }
-
+        [Display(Name ="Tipo usuario")]
         public string TipoUsuario { get; set; }
 
     }

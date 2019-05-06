@@ -15,7 +15,7 @@ namespace PreOrclFrontEnd.ViewModels
 
         public List<VwModelAsistentes> ListVwModelAsistentes { get; set; }
         [Display(Name ="Asistentes")]
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         public decimal[] IdAsistentes { get; set; }
     }
 }

@@ -27,6 +27,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\datetimepicker\build\js\bootstrap-datetimepicker.min.js" />
+    <None Include="wwwroot\datetimepicker\docs\ChangeLog.md" />
+    <None Include="wwwroot\datetimepicker\docs\ContributorsGuide.md" />
+    <None Include="wwwroot\datetimepicker\docs\Events.md" />
+    <None Include="wwwroot\datetimepicker\docs\Extras.md" />
+    <None Include="wwwroot\datetimepicker\docs\FAQ.md" />
+    <None Include="wwwroot\datetimepicker\docs\Functions.md" />
+    <None Include="wwwroot\datetimepicker\docs\index.md" />
+    <None Include="wwwroot\datetimepicker\docs\Installing.md" />
+    <None Include="wwwroot\datetimepicker\docs\Options.md" />
+    <None Include="wwwroot\datetimepicker\docs\theme\js\base.js" />
+    <None Include="wwwroot\datetimepicker\docs\theme\js\prettify-1.0.min.js" />
+    <None Include="wwwroot\datetimepicker\docs\Version 4 Changelog.md" />
+    <None Include="wwwroot\datetimepicker\docs\Version 4 Contributors guide.md" />
+    <None Include="wwwroot\datetimepicker\src\js\bootstrap-datetimepicker.js" />
+    <None Include="wwwroot\datetimepicker\src\less\bootstrap-datetimepicker-build.less" />
+    <None Include="wwwroot\datetimepicker\src\less\_bootstrap-datetimepicker.less" />
+    <None Include="wwwroot\datetimepicker\src\nuget\Bootstrap.v3.Datetimepicker.CSS.nuspec" />
+    <None Include="wwwroot\datetimepicker\src\nuget\Bootstrap.v3.Datetimepicker.nuspec" />
+    <None Include="wwwroot\datetimepicker\src\nuget\install.ps1" />
+    <None Include="wwwroot\datetimepicker\src\nuget\NuGet.exe" />
+    <None Include="wwwroot\datetimepicker\src\sass\bootstrap-datetimepicker-build.scss" />
+    <None Include="wwwroot\datetimepicker\src\sass\_bootstrap-datetimepicker.scss" />
+    <None Include="wwwroot\datetimepicker\tasks\bump_version.js" />
     <None Include="wwwroot\templateAdmin\.github\ISSUE_TEMPLATE.md" />
     <None Include="wwwroot\tooltipster-master\dist\js\plugins\tooltipster\SVG\tooltipster-SVG.js" />
     <None Include="wwwroot\tooltipster-master\dist\js\plugins\tooltipster\SVG\tooltipster-SVG.min.js" />

@@ -69,40 +69,46 @@
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.Inactivo)
                                                     </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.TipoUsuario)
+                                                    </th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (var item in Model)
                                                 {
-                                                    <tr role="row">
-                                                        <td class="sorting_1">
-                                                            @Html.DisplayFor(modelItem => item.Nombre)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Apellido)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Usuario)
-                                                        </td>
-                                                        <td>
-                                                            @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
-                                                        </td>
-                                                        <td>
-                                                            <div class="row">
-                                                                @*<div class="col-sm-3">
-                                                                        <a asp-action="Edit" asp-route-id="@item.IdUsuario" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
-                                                                    </div>
-                                                                    <div class="col-sm-3">
-                                                                        <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.IdUsuario})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
+                                                <tr role="row">
+                                                    <td class="sorting_1">
+                                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Apellido)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Usuario)
+                                                    </td>
+                                                    <td>
+                                                        @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
+                                                    </td>
+                                                    <td>
+                                                        @item.TipoUsuario.ToString().Replace("I", "Interno").Replace("E", "Externo")
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            @*<div class="col-sm-3">
+                    <a asp-action="Edit" asp-route-id="@item.IdUsuario" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.IdUsuario})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
 
-                                                                    </div>*@
-                                                                <div class="col-sm-3">
-                                                                    <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Usuarios")','Id':@item.IdUsuario})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
-                                                                </div>
+                </div>*@
+                                                            <div class="col-sm-3">
+                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Usuarios")','Id':@item.IdUsuario})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
                                                             </div>
-                                                        </td>
-                                                    </tr>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                                 }
                                             </tbody>
                                         </table>

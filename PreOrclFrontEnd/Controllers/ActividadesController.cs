@@ -52,7 +52,7 @@ namespace PreOrclFrontEnd.Controllers
 
         public JsonResult GetCalendariosByIdUsuario(decimal id)
         {
-            var lista = generic.GetAll<GraphCalendar>("Calendarios/" + id).Result.Where(c => c.Calendar.Name!="Calendar").Where(c=>!c.Calendar.Name.Trim().ToUpper().Contains("CUMPLEAÑOS"));
+            var lista = generic.GetAll<GraphCalendar>("Calendarios/" + id).Result;
             return Json(lista);
         }
 
@@ -63,7 +63,7 @@ namespace PreOrclFrontEnd.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VwModelActividadesAsistentes vwModelActividadesAsistentes)
         {
             if (ModelState.IsValid)
@@ -88,6 +88,7 @@ namespace PreOrclFrontEnd.Controllers
                 return RedirectToAction(nameof(Index));
                 // return View(vwModelActividadesAsistentes);
             }
+            vwModelActividadesAsistentes.Actividades.Costo = 0;
             return View(vwModelActividadesAsistentes);
         }
 

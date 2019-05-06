@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,26 +10,33 @@ namespace PreOrclFrontEnd.Models
     public class Actividades
     {
 
-     
+
         public decimal IdActividad { get; set; }
-   
-        [Display(Name ="Nombre de la actividad")]
+
+        [Display(Name = "Nombre de la actividad")]
         [MaxLength(150)]
+        [Required(ErrorMessage = "Requerido")]
         public string NombreActividad { get; set; }
 
-        [Display(Name ="Calendario del Abogado")]
+        [Display(Name = "Calendario del Abogado")]
         [MaxLength(1000)]
+        [Required(ErrorMessage = "Requerido")]
         public string IdCalendario { get; set; }
 
         [MaxLength(1000)]
         public string IdEvento { get; set; }
 
         [MaxLength(1)]
+        [Required(ErrorMessage = "Requerido")]
         public string Estado { get; set; }
 
+      
+        [Required(ErrorMessage = "Requerido")]
+        [RegularExpression(@"^\d+.?\d{0,2}$", ErrorMessage = "Máximo dos decimales")]
         public decimal Costo { get; set; }
 
         [Display(Name ="Responsable")]
+        [Required(ErrorMessage = "Requerido")]
         public decimal IdResponsable { get; set; }
 
         [Display(Name = "Caso")]
@@ -45,10 +53,12 @@ namespace PreOrclFrontEnd.Models
         public decimal Inactivo { get; set; }
 
         [Display(Name = "Fecha / Hora Inicio")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         public DateTime StartTime { get; set; }
         [Display(Name = "Fecha / Hora Fin")]
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         public DateTime EndTime { get; set; }
 
      
