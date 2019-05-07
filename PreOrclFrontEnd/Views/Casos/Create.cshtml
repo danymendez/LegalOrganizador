@@ -106,7 +106,7 @@
                                 <label asp-for="Casos.PrecioPactado"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-dollar"></i></div>
-                                    <input asp-for="Casos.PrecioPactado" value="0" class="form-control text-right">
+                                    <input asp-for="Casos.PrecioPactado" value="0.00" class="form-control text-right moneda">
                                 </div>
                                 <span asp-validation-for="Casos.PrecioPactado" class="text-danger"></span>
                             </div>
@@ -137,7 +137,7 @@
                                     <label asp-for="Casos.FechaCierre"></label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input asp-for="Casos.FechaCierre" class="form-control">
+                                        <input asp-for="Casos.FechaCierre" type="text" class="form-control date-time">
                                     </div>
                                     <span asp-validation-for="Casos.FechaCierre" class="text-danger"></span>
                                 </div>
@@ -200,7 +200,8 @@
 
     <script src="~/templateAdmin/assets/js/lib/chosen/chosen.jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-   <script src="~/js/custoDateTimePicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="~/js/custoDateTimePicker.js"></script>
     <script>
         jQuery(document).ready(function () {
             jQuery(".standardSelect").chosen({
@@ -213,9 +214,9 @@
             jQuery(".standardSelect").css("visibility", "hidden");
             jQuery(".standardSelect").css("position", "absolute");
 
-        
-        
-            
+            jQuery('.moneda').maskMoney();  
+
+
         });
     </script>
 

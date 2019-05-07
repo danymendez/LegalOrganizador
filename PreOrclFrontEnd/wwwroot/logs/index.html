@@ -1224,3 +1224,183 @@ Inner Stack Trace:	   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs
    at System.Net.Http.HttpConnection.FillAsync()
    at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
    at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:36:44 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.Post[T](String urlMethod, T clase) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 70
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:36:47 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:36:49 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:36:51 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:38:54 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:39:31 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:39:35 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:41:45 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+
+=============================== 06/05/2019 - 21:41:48 ===================================
+Exception Type:	System.Net.Http.HttpRequestException
+Exception:	No connection could be made because the target machine actively refused it
+Source:		System.Net.Http
+Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at PreOrclFrontEnd.Helpers.GenericREST.GetAll[T](String urlMethod) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclFrontEnd\Helpers\GenericREST.cs:line 49
+Inner Exception Type: System.Net.Sockets.SocketException
+Inner Exception:	No connection could be made because the target machine actively refused it
+Inner Source:	System.Private.CoreLib
+Inner Stack Trace:	   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)

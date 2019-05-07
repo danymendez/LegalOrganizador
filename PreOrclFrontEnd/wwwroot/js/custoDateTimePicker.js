@@ -17,7 +17,7 @@ if (ahora.getDate() < 11) {
     diaconcero = ahora.getDate().toString();
 
 }
-var fechaHoy = ahora.getFullYear() + '/' + mesconcero + '/' + diaconcero + ' ' + ahora.getHours() + ':' + ahora.getMinutes();
+    var fechaHoy = diaconcero + '/' + mesconcero + '/' +  ahora.getFullYear() + ' ' + ahora.getHours() + ':' + ahora.getMinutes();
 jQuery.datetimepicker.setLocale('es');
 
 jQuery('.date-time-getnow').val(fechaHoy);

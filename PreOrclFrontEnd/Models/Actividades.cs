@@ -14,6 +14,7 @@ namespace PreOrclFrontEnd.Models
         public decimal IdActividad { get; set; }
 
         [Display(Name = "Nombre de la actividad")]
+        [StringLength(150)]
         [MaxLength(150)]
         [Required(ErrorMessage = "Requerido")]
         public string NombreActividad { get; set; }
@@ -32,7 +33,7 @@ namespace PreOrclFrontEnd.Models
 
       
         [Required(ErrorMessage = "Requerido")]
-        [RegularExpression(@"^\d+.?\d{0,2}$", ErrorMessage = "Máximo dos decimales")]
+       
         public decimal Costo { get; set; }
 
         [Display(Name ="Responsable")]
@@ -54,11 +55,12 @@ namespace PreOrclFrontEnd.Models
 
         [Display(Name = "Fecha / Hora Inicio")]
         [Required(ErrorMessage = "Requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd\\/MM\\/yyyy HH:mm}")]
         public DateTime StartTime { get; set; }
         [Display(Name = "Fecha / Hora Fin")]
         [Required(ErrorMessage = "Requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd\\/MM\\/yyyy HH:mm}")]
+        
         public DateTime EndTime { get; set; }
 
      

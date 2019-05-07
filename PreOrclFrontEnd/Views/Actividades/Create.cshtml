@@ -98,7 +98,7 @@
                                     <label asp-for="Actividades.Costo"></label>
                                     <div class="input-group">
 
-                                        <input asp-for="Actividades.Costo" value="0.00" class="form-control text-right" />
+                                        <input asp-for="Actividades.Costo" value="0.00" class="form-control text-right moneda" />
                                     </div>
                                     <span asp-validation-for="Actividades.Costo" class="text-danger"></span>
                                 </div>
@@ -161,6 +161,7 @@
 
     <script src="~/templateAdmin/assets/js/lib/chosen/chosen.jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="~/js/custoDateTimePicker.js"></script>
     <script>
         jQuery(document).ready(function () {
@@ -174,7 +175,7 @@
             jQuery(".standardSelect").css("visibility", "hidden");
             jQuery(".standardSelect").css("position", "absolute");
 
-
+            jQuery('.moneda').maskMoney();  
         });
 
         jQuery("#Actividades_IdResponsable").change(function () {

@@ -10,63 +10,66 @@ namespace PreOrclFrontEnd.Models
     {
        
         public decimal IdCaso { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
+        [Editable(false)]
         [Display(Name = "Fecha de apertura")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd\\/MM\\/yyyy HH:mm}")]
         public DateTime FechaApertura { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         public string NombreCaso { get; set; }
 
         [Display(Name ="Cliente")]
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         public decimal IdCliente { get; set; }
 
-        [MaxLength(1)]
-        [Required]
+        [StringLength(1,ErrorMessage ="Máximo un caracter permitido")]
+        [Required(ErrorMessage ="Requerido")]
         public string Categoria { get; set; }
 
         [MaxLength(1)]
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         public string Tipo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         [Display(Name = "Precio pactado")]
+        [MaxLength(13,ErrorMessage ="Máximo 13 digitos permitidos")]
+    
         public decimal PrecioPactado { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         [Display(Name = "Abogado")]
         public decimal IdAbogado { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         public decimal IdCreador { get; set; }
 
-        [MaxLength(2000)]
+        [StringLength(2000, ErrorMessage = "Máximo 2000 caracteres permitidos")]
         [Display(Name = "Resolución")]
         public string Resolucion { get; set; }
 
         public decimal Cancelado { get; set; }
 
         [Display(Name = "Fecha de cierre")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd\\/MM\\/yyyy HH:mm}")]
         public DateTime? FechaCierre { get; set; }
 
         [Display(Name = "Usuario que cierra")]
         public decimal? IdUsuarioCierre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         [MaxLength(1)]
         [Display(Name = "Estado del caso")]
         public string EstadoCaso { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Requerido")]
         public DateTime CreatedAt { get; set; }
     
         public DateTime? UpdatedAt { get; set; }
 
         public DateTime? InactivatedAt { get; set; }
 
-        [Required]
+          [Required(ErrorMessage ="Requerido")]
         public decimal Inactivo { get; set; }
     }
 }
