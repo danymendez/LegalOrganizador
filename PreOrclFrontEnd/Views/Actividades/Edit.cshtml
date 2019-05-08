@@ -22,7 +22,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Agregar Actividad</h1>
+                        <h1>Editar Actividad</h1>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Registros</a></li>
                             <li><a asp-action="Index">Actividades</a></li>
-                            <li class="active">Agregar Actividad</li>
+                            <li class="active">Editar Actividad</li>
                         </ol>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Crear Actividad</strong> <small></small>
+                        <strong>Editar Actividad</strong> <small></small>
                     </div>
 
                     <form asp-action="Edit" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
@@ -67,6 +67,7 @@
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                         <input asp-for="Actividades.StartTime" type="text" class="form-control date-time">
                                     </div>
+                                    <span class="text-danger" id="validadorFecha" style="display:none">Fecha / Hora Inicio debe ser menor a Fecha / Hora Fin</span>
                                     <span asp-validation-for="Actividades.StartTime" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
@@ -138,7 +139,7 @@
 
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
-                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Edit")','@Url.Action("Index")')" class="btn btn-default" />
+                                    <input type="button" value="Guardar" onclick="validarFechas('#createForm','@Url.Action("Edit")','@Url.Action("Index")')" class="btn btn-default" />
                                 </div>
                             </div>
                         </div>
@@ -217,6 +218,21 @@
                     jQuery("#IdAsistentes").trigger("chosen:updated");
 
                 });
+        }
+
+        function validarFechas(createForm, urlRefresh, urlRedirection) {
+
+            var dateStart = new Date(jQuery("#Actividades_StartTime").val());
+            var dateEnd = new Date(jQuery("#Actividades_EndTime").val());
+
+            if (dateStart.getTime() >= dateEnd.getTime()) {
+                jQuery("#validadorFecha").show();
+                var isValid = jQuery(createForm).valid();
+
+            } else {
+                jQuery("#validadorFecha").hide();
+                GuardarNotificacion(createForm, urlRefresh, urlRedirection)
+            }
         }
 
     </script>

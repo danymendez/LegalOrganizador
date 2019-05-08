@@ -65,6 +65,7 @@
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                         <input asp-for="Actividades.StartTime" type="text" class="form-control date-time">
                                     </div>
+                                    <span class="text-danger" id="validadorFecha" style="display:none">Fecha / Hora Inicio debe ser menor a Fecha / Hora Fin</span>
                                     <span asp-validation-for="Actividades.StartTime" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
@@ -128,7 +129,7 @@
 
                             <div class="form-group">
                                 <label asp-for="Actividades.Estado"></label>
-                                <select asp-for="Actividades.Estado" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoActividad" class="standardSelect" tabindex="1">
+                                <select asp-for="Actividades.Estado" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoActividad" disabled="disabled"  class="standardSelect" tabindex="1">
                                     <option disabled value="-1" selected>Seleccionar</option>
                                 </select>
                                 <span asp-validation-for="Actividades.Estado" class="text-danger"></span>
@@ -136,7 +137,7 @@
 
                             <div class="row form-group">
                                 <div class="col-sm-12 text-right">
-                                    <input type="button" value="Guardar" onclick="GuardarNotificacion('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
+                                    <input type="button" value="Guardar" onclick="validarFechas('#createForm','@Url.Action("Create")','@Url.Action("Index")')" class="btn btn-default" />
                                 </div>
                             </div>
                         </div>
@@ -214,6 +215,21 @@
                     jQuery("#IdAsistentes").trigger("chosen:updated");
 
                 });
+        }
+
+        function validarFechas(createForm,urlRefresh,urlRedirection) {
+
+            var dateStart = new Date(jQuery("#Actividades_StartTime").val());
+            var dateEnd = new Date(jQuery("#Actividades_EndTime").val());
+    
+            if (dateStart.getTime() >= dateEnd.getTime()) {
+                jQuery("#validadorFecha").show();
+                var isValid = jQuery(createForm).valid();
+
+            } else {
+                jQuery("#validadorFecha").hide();
+                GuardarNotificacion(createForm, urlRefresh,urlRedirection)
+            }
         }
 
     </script>

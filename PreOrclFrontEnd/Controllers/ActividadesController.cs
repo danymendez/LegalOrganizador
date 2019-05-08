@@ -34,7 +34,17 @@ namespace PreOrclFrontEnd.Controllers
         public IActionResult Create()
         {
             ViewBag.listaAbogados = listaSistema.GetSelectListAbogados();
-            ViewBag.listaEstadoActividad = ListaGenericaCollection.GetSelectListItemEstadoActividad();
+
+            List<SelectListItem> listItemEstado = new List<SelectListItem>();
+
+            foreach (var items in ListaGenericaCollection.GetSelectListItemEstadoActividad()) {
+
+                listItemEstado.Add(new SelectListItem { Text = items.Text, Value = items.Value, Selected = (items.Text == "Programada") });
+
+
+            }
+
+            ViewBag.listaEstadoActividad = listItemEstado;
             ViewBag.listaCasos = listaSistema.GetSelectListCasos();
             return View();
         }

@@ -34,7 +34,7 @@ namespace PreOrclFrontEnd.Models
         [Required(ErrorMessage ="Requerido")]
         [Display(Name = "Precio pactado")]
         [RegularExpression(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$",ErrorMessage ="Cantidad no soportada")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#,###.00}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#,##0.00}")]
         public decimal PrecioPactado { get; set; }
 
         [Required(ErrorMessage ="Requerido")]
