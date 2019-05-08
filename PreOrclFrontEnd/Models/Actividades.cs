@@ -33,7 +33,9 @@ namespace PreOrclFrontEnd.Models
 
       
         [Required(ErrorMessage = "Requerido")]
-       
+        
+       [RegularExpression(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$", ErrorMessage = "Cantidad no soportada")]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:#,###.00}")]
         public decimal Costo { get; set; }
 
         [Display(Name ="Responsable")]

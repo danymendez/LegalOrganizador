@@ -7285,3 +7285,563 @@ Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf 
    at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
    at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
    at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 11:39:39 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 07/05/2019 - 11:39:41 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 11:39:42 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 11:39:42 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 12:07:56 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 07/05/2019 - 12:07:56 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 12:07:57 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 12:07:57 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:06:1 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 07/05/2019 - 13:06:2 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:06:2 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:06:2 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:19:44 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 07/05/2019 - 13:19:44 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 07/05/2019 - 13:19:44 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 07/05/2019 - 13:19:45 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 07/05/2019 - 13:19:45 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 07/05/2019 - 13:31:7 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 07/05/2019 - 13:31:7 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:31:8 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:31:8 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:46:21 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 07/05/2019 - 13:46:21 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:46:21 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 13:46:22 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 14:09:5 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 07/05/2019 - 14:09:5 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 14:09:5 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 14:09:6 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 07/05/2019 - 14:13:41 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetCalendarByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 43
+
+=============================== 07/05/2019 - 14:13:49 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetEventosByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 173
+
+=============================== 07/05/2019 - 18:41:2 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetCalendarByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 43
+
+=============================== 07/05/2019 - 18:41:10 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetEventosByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 173
+
+=============================== 07/05/2019 - 18:49:3 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetCalendarByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 43
+
+=============================== 07/05/2019 - 18:49:9 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetEventosByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 173
+
+=============================== 07/05/2019 - 18:50:14 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetCalendarByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 43
+
+=============================== 07/05/2019 - 18:50:19 ===================================
+Exception Type:	System.ArgumentNullException
+Exception:	String reference not set to an instance of a String.
+Parameter name: s
+Source:		System.Private.CoreLib
+Stack Trace:	   at System.Text.Encoding.GetBytes(String s)
+   at Common.Utilities.Criptografia.Encrypt(String plainText) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Utilities\Criptografia.cs:line 18
+   at Common.BOL.BOL.BOLCalendar.GetEventosByIdUsuario() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.BOL\BOL\BOLCalendar.cs:line 173

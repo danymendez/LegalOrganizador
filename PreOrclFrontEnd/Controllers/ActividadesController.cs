@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -66,6 +67,9 @@ namespace PreOrclFrontEnd.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VwModelActividadesAsistentes vwModelActividadesAsistentes)
         {
+            Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
+            if(regex.IsMatch(ModelState["Actividades.Costo"].AttemptedValue))
+            ModelState["Actividades.Costo"].ValidationState= Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
             if (ModelState.IsValid)
             {
                
@@ -88,14 +92,18 @@ namespace PreOrclFrontEnd.Controllers
                 return RedirectToAction(nameof(Index));
                 // return View(vwModelActividadesAsistentes);
             }
-            vwModelActividadesAsistentes.Actividades.Costo = 0;
-            return View(vwModelActividadesAsistentes);
+            
+          
+            return BadRequest(vwModelActividadesAsistentes);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(VwModelActividadesAsistentes vwModelActividadesAsistentes)
         {
+            Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
+            if (regex.IsMatch(ModelState["Actividades.Costo"].AttemptedValue))
+                ModelState["Actividades.Costo"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
             if (ModelState.IsValid)
             {
 

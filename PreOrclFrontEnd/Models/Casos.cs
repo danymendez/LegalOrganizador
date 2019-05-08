@@ -33,8 +33,8 @@ namespace PreOrclFrontEnd.Models
 
         [Required(ErrorMessage ="Requerido")]
         [Display(Name = "Precio pactado")]
-        [MaxLength(13,ErrorMessage ="Máximo 13 digitos permitidos")]
-    
+        [RegularExpression(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$",ErrorMessage ="Cantidad no soportada")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#,###.00}")]
         public decimal PrecioPactado { get; set; }
 
         [Required(ErrorMessage ="Requerido")]

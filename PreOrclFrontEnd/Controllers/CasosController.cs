@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -84,7 +85,9 @@ namespace PreOrclFrontEnd.Controllers
             {
                 return NotFound();
             }
-
+            Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
+            if (regex.IsMatch(ModelState["Casos.PrecioPactado"].AttemptedValue))
+                ModelState["Casos.PrecioPactado"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
             if (ModelState.IsValid)
             {
                 try
@@ -115,6 +118,9 @@ namespace PreOrclFrontEnd.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VwModelCasos vwModelCasos)
         {
+            Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
+            if (regex.IsMatch(ModelState["Casos.PrecioPactado"].AttemptedValue))
+                ModelState["Casos.PrecioPactado"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
             if (ModelState.IsValid)
             {
                 vwModelCasos.Casos.CreatedAt = DateTime.Now;
