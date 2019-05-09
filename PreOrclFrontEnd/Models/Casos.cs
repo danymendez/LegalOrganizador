@@ -10,8 +10,8 @@ namespace PreOrclFrontEnd.Models
     {
        
         public decimal IdCaso { get; set; }
+
         [Required(ErrorMessage ="Requerido")]
-        [Editable(false)]
         [Display(Name = "Fecha de apertura")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd\\/MM\\/yyyy HH:mm}")]
         public DateTime FechaApertura { get; set; }

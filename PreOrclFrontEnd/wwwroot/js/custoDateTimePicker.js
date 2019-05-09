@@ -3,7 +3,10 @@ jQuery(document).ready(function () {
 var ahora = new Date(jQuery.now());
 var mesconcero = '0';
 var diaconcero = '0';
-var mesreal = ahora.getMonth() + 1;
+    var horaconcero = '0';
+    var minutosconcero = '0';
+
+    var mesreal = ahora.getMonth() + 1;
 if (mesreal < 11) {
     mesconcero = '0' + mesreal;
 } else {
@@ -17,7 +20,24 @@ if (ahora.getDate() < 11) {
     diaconcero = ahora.getDate().toString();
 
 }
-    var fechaHoy = diaconcero + '/' + mesconcero + '/' +  ahora.getFullYear() + ' ' + ahora.getHours() + ':' + ahora.getMinutes();
+
+    if (ahora.getHours() < 11) {
+        horaconcero = '0' + ahora.getHours();
+    } else {
+        horaconcero = ahora.getHours().toString();
+
+    }
+
+
+    if (ahora.getMinutes() < 11) {
+        minutosconcero = '0' + ahora.getMinutes();
+    } else {
+        minutosconcero = ahora.getMinutes().toString();
+
+    }
+
+
+    var fechaHoy = diaconcero + '/' + mesconcero + '/' + ahora.getFullYear() + ' ' + horaconcero + ':' + minutosconcero;
 jQuery.datetimepicker.setLocale('es');
 
 jQuery('.date-time-getnow').val(fechaHoy);

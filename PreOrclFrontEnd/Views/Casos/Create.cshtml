@@ -67,7 +67,7 @@
                                 <label asp-for="Casos.FechaApertura"></label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input asp-for="Casos.FechaApertura" type="text" disabled="disabled" class="form-control date-time-getnow">
+                                    <input asp-for="Casos.FechaApertura" type="text" disabled  class="form-control date-time-getnow date-time">
                                 </div>
                                 <span asp-validation-for="Casos.FechaApertura" class="text-danger"></span>
                             </div>
@@ -143,15 +143,21 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="row col col-md-12">
-                                    <input asp-for="Documentos" type="file" />
-                                    <span asp-validation-for="Documentos" class="text-danger"></span>
+                                <div class="col-md-12 toclonate">
+                                    <button type="button" class="btn btn-primary" style="margin-bottom:7px;" onclick="clonar()">Agregar Documento</button>
+                                    <div class="row col-md-12" style="margin-bottom:7px;">
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <input asp-for="Documentos" type="file" />
+                                              </div>
+                                                <span asp-validation-for="Documentos" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row col col-md-12">
-                                    <input asp-for="Documentos" type="file" />
-                                    <span asp-validation-for="Documentos" class="text-danger"></span>
-                                </div>
-                            </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label asp-for="Casos.Tipo" class="form-control-label"></label>
@@ -215,9 +221,38 @@
             jQuery(".standardSelect").css("position", "absolute");
 
             jQuery('.moneda').maskMoney();  
-            jQuery()    
+           
 
         });
+
+
+        function clonar() {
+
+            jQuery(".toclonate").append(' <div class="row col-md-12" style="margin-bottom:7px;">'+
+                                        '<div class="col-sm-3">'+
+                                            '<div class="input-group">'+
+                                                '<input id="Documentos" name="Documentos" type="file" />'+
+                                             ' </div>'+
+                                              '  <span class="text-danger"></span>'+
+                                            '</div>'+
+                                            '<div class="col-sm-3">'+
+                                                '<button type="button" onclick="remover(this)" class="btn btn-sm btn-danger remover">X</button>'+
+                                            '</div>'+
+                                        '</div>');
+
+
+        }
+
+        jQuery(".remover").on("click", function () {
+            var padre = jQuery(this).parent().parent();
+            padre.remove();
+        });
+
+        function remover(selector) {
+            var padre = jQuery(selector).parent().parent();
+            padre.remove();
+        }
+
     </script>
 
 }

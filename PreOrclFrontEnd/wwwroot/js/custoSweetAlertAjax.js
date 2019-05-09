@@ -262,7 +262,14 @@ jQuery(".submit-formdata").on("submit", function () {
     var form = jQuery(this);
 
     var formData = new FormData(this);
-    
+    //alert(jQuery("#Casos_FechaApertura").val());
+    //var fechaapertura = new Date(jQuery("#Casos_FechaApertura").val());
+    //alert(fechaapertura.toDateString());
+    //alert(fechaapertura.getTime());
+    //for (var pair of formData.entries()) {
+    //    console.log(pair[0] + ', ' + pair[1]);
+    //}
+    formData.set('Casos.FechaApertura', jQuery("#Casos_FechaApertura").val());
  
     jQuery.ajax({
         url: form.attr("action"),
