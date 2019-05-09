@@ -7,8 +7,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
@@ -23,11 +25,13 @@ namespace PreOrclFrontEnd.Controllers
         GenericREST generic;
         ListaSistema listaSistema;
 
-        public CasosController(IOptions<UriHelpers> configuration)
+        private readonly CacheItems cacheItems;
+        public CasosController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
 
             generic = new GenericREST(configuration.Value);
             listaSistema = new ListaSistema(configuration);
+            cacheItems = new CacheItems(memoryCache);
         }
         public IActionResult Index()
         {
@@ -172,6 +176,12 @@ namespace PreOrclFrontEnd.Controllers
             var documento = generic.Get<Documentos>("Documentos/", id).Result;
             byte[] fileBytes = documento.Archivo;
             return File(fileBytes, "application/x-msdownload", documento.Nombre);
+        }
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+            ViewData["img"] = cacheItems.GetImageBase64FromCache(User);
         }
     }
 }

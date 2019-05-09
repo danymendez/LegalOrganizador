@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
@@ -17,12 +19,12 @@ namespace PreOrclFrontEnd.Controllers
     {
 
         private GenericREST generic;
-
-        public RolesController(IOptions<UriHelpers> configuration)
+        private readonly CacheItems cacheItems;
+        public RolesController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
 
             generic = new GenericREST(configuration.Value);
-
+            cacheItems = new CacheItems(memoryCache);
         }
 
         public async Task<IActionResult> Index()
@@ -285,6 +287,10 @@ namespace PreOrclFrontEnd.Controllers
             else
                 return true;
         }
-
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+            ViewData["img"] = cacheItems.GetImageBase64FromCache(User);
+        }
     }
 }

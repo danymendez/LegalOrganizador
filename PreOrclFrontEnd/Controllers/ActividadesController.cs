@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
@@ -18,12 +20,13 @@ namespace PreOrclFrontEnd.Controllers
 
         GenericREST generic;
         ListaSistema listaSistema;
-
-        public ActividadesController(IOptions<UriHelpers> configuration)
+        private readonly CacheItems cacheItems;
+        public ActividadesController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
 
             generic = new GenericREST(configuration.Value);
             listaSistema = new ListaSistema(configuration);
+            cacheItems = new CacheItems(memoryCache);
         }
         public IActionResult Index()
         {
@@ -138,6 +141,13 @@ namespace PreOrclFrontEnd.Controllers
                 // return View(vwModelActividadesAsistentes);
             }
             return View(vwModelActividadesAsistentes);
+        }
+
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+            ViewData["img"] = cacheItems.GetImageBase64FromCache(User);
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Utilidades;
@@ -14,12 +16,13 @@ namespace PreOrclFrontEnd.Controllers
     {
         GenericREST generic;
         ListaSistema listaSistema;
-
-        public CuadroMandoController(IOptions<UriHelpers> configuration)
+        private readonly CacheItems cacheItems;
+        public CuadroMandoController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
 
             generic = new GenericREST(configuration.Value);
             listaSistema = new ListaSistema(configuration);
+            cacheItems = new CacheItems(memoryCache);
         }
 
         [Route("ProcesoPorEstado")]
@@ -60,6 +63,10 @@ namespace PreOrclFrontEnd.Controllers
         public IActionResult TopCincoActividades() {
             return View();
         }
-
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+            ViewData["img"] = cacheItems.GetImageBase64FromCache(User);
+        }
     }
 }

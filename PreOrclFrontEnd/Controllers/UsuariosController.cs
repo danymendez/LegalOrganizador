@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
 using PreOrclFrontEnd.Models;
@@ -11,16 +14,17 @@ using PreOrclFrontEnd.ViewModels;
 
 namespace PreOrclFrontEnd.Controllers
 {
+    [Authorize(Roles = "Seguridad")]
     public class UsuariosController : Controller
     {
         GenericREST generic;
-
-        public UsuariosController(IOptions<UriHelpers> configuration)
+        private readonly CacheItems cacheItems;
+        public UsuariosController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
 
             generic = new GenericREST(configuration.Value);
-
-        }
+        cacheItems = new CacheItems(memoryCache);
+    }
         public async Task<IActionResult> Index()
         {
             List<Usuarios> listaUsuarios = await generic.GetAll<Usuarios>("Usuarios");
@@ -86,6 +90,12 @@ namespace PreOrclFrontEnd.Controllers
                     return BadRequest("Ha ocurrido un error al inactivar");
                 }
             }
+        }
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+            ViewData["img"] = cacheItems.GetImageBase64FromCache(User);
         }
     }
 }
