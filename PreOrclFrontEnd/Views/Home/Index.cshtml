@@ -38,24 +38,11 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-4">
-                                <i class="pe-7s-users"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.Cantidad</span></div>
-                                    <div class="stat-heading">Personas</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @(await Component.InvokeAsync("ProcesoPorEstadoVwComponent"));
             </div>
         </div>
 
@@ -163,7 +150,7 @@
     </div>
 </div>
 @section Scripts{
-    <script>
+    @*<script>
         jQuery(document).ready(function ($) {
             "use strict";
 
@@ -353,6 +340,10 @@
                 });
             // Bar Chart #flotBarChart End
         });
+    </script>*@
+ <script>
+     jQuery(document).ready(function () {
+         cargarGraficaCaso();
+     });
     </script>
-
 }

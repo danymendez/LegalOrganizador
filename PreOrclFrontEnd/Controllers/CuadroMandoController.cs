@@ -43,6 +43,22 @@ namespace PreOrclFrontEnd.Controllers
             return View(lista);
         }
 
+        [Route("_PartialProcesoPorEstado")]
+        public async Task<IActionResult> _PartialProcesoPorEstado()
+        {
+            var lista = await generic.GetAll<VwModelProcesosPorEstado>("CuadroMando/ProcesoPorEstado");
+
+            decimal total = lista.Select(c => c.IdCaso).Count();
+            decimal totalAbiertoPor = ((lista.Where(c => c.EstadoCaso == "Abierto").Count()) / total) * 100;
+            decimal totalCerrado = ((lista.Where(c => c.EstadoCaso != "Abierto").Count()) / total) * 100;
+            ViewBag.porCerrado = totalCerrado;
+            ViewBag.porAbierto = totalAbiertoPor;
+            ViewBag.totalAbierto = lista.Where(c => c.EstadoCaso == "Abierto").Count();
+            ViewBag.totalCerrado = lista.Where(c => c.EstadoCaso != "Abierto").Count();
+            return PartialView(lista);
+        }
+
+
         [Route("ActividadesPorEstado")]
         public async Task<IActionResult> ActividadesPorEstado()
         {
