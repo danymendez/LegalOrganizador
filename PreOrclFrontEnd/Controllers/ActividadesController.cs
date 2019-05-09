@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,6 +16,8 @@ using PreOrclFrontEnd.ViewModels;
 
 namespace PreOrclFrontEnd.Controllers
 {
+    [Authorize(Roles = "Actividades")]
+
     public class ActividadesController : Controller
     {
 
