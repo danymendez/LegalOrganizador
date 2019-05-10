@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace PreOrclFrontEnd.ViewComponents
 {
     [ViewComponent(Name = "ProcesoPorEstadoVwComponent")]
-    public class ProcesoPorEstadoViewComponent : ViewComponent
+    public class ActividadesPorEstadoViewComponent : ViewComponent
     {
 
         private GenericREST generic;
@@ -22,7 +22,7 @@ namespace PreOrclFrontEnd.ViewComponents
         private TokenT tokenT;
         private MSGraphConfiguration _msGraphConfig;
 
-        public ProcesoPorEstadoViewComponent(IOptions<UriHelpers> configuration, IOptions<MSGraphConfiguration> msGraphConfig, IMemoryCache memoryCache)
+        public ActividadesPorEstadoViewComponent(IOptions<UriHelpers> configuration, IOptions<MSGraphConfiguration> msGraphConfig, IMemoryCache memoryCache)
         {
             _msGraphConfig = msGraphConfig.Value as MSGraphConfiguration;
             generic = new GenericREST(configuration.Value);

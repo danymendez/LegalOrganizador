@@ -75,6 +75,9 @@
     <Content Update="Views\Casos\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\CuadroMando\_PartialActividadesPorEstado.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Modals\_SmallModalPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

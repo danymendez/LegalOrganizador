@@ -32,6 +32,7 @@ namespace PreOrclFrontEnd.Controllers
             _msGraphConfig = msGraphConfig.Value as MSGraphConfiguration;
             generic = new GenericREST(configuration.Value);
             _memoryCache = memoryCache;
+            
         }
 
         public IActionResult Index() {
@@ -144,25 +145,33 @@ namespace PreOrclFrontEnd.Controllers
             if (usuarioToCreateOrUpdate.Inactivo == 1)
                 return RedirectToAction(nameof(UsuarioInactivo));
             decimal idRol = usuarioToCreateOrUpdate.IdRol;
-          
+
 
             var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, me.GivenName),
                         new Claim(ClaimTypes.Email,me.UserPrincipalName),
-
+                         new Claim(ClaimTypes.NameIdentifier,usuarioToCreateOrUpdate.IdUsuario.ToString())
                     };
 
             var roles = (await generic.GetAll<RolesPermisos>("RolesPermisos")).Where(c => c.IdRol == idRol);
+
+            var rolsistema = (await generic.GetAll<Roles>("Roles")).Where(c => c.IdRol == idRol);
 
             var permisos = from rolPermiso in roles
                            join permiso in await generic.GetAll<Permisos>("Permisos") on rolPermiso.IdPermiso equals permiso.IdPermiso
                          
                            select permiso;
 
-            foreach (var item in permisos) {
+            foreach (var item in rolsistema) {
+                claims.Add(new Claim(ClaimTypes.Role, item.NombreRol));
+            }
+
+            foreach (var item in permisos)
+            {
                 claims.Add(new Claim(ClaimTypes.Role, item.NombrePermiso));
             }
+
 
             ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "usuario");
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);

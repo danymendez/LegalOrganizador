@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -27,7 +28,7 @@ namespace PreOrclFrontEnd.Controllers
 
         GenericREST generic;
         ListaSistema listaSistema;
-
+        private decimal idUsuario = 0;
         private readonly CacheItems cacheItems;
         public CasosController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
@@ -38,7 +39,33 @@ namespace PreOrclFrontEnd.Controllers
         }
         public IActionResult Index()
         {
+            bool isAuthenticatedAdmin = false;
+          
+            if (User != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                    idUsuario = Convert.ToDecimal(User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value);
+
+
+                isAuthenticatedAdmin = User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Value == "Administrador").FirstOrDefault() != null;
+
+          
+
+
+            }
+
+
             var listViewModelCasos = generic.GetAll<VwModelCasos>("Casos/GetAllVwModelCasos").Result;
+            if (!isAuthenticatedAdmin) {
+               
+                    listViewModelCasos = listViewModelCasos.Where(c => ((c.Casos.IdAbogado == idUsuario && c.Casos.Tipo == "P")||c.Casos.Tipo=="U") || c.ListVwModelActividadesAsistentes.Where(d=>d.IdAsistentes.Contains(idUsuario)).FirstOrDefault()!=null).ToList();
+              
+             
+            }
             ViewBag.listaEstadoCasos = ListaGenericaCollection.GetSelectListItemEstadoCaso();
             return View(listViewModelCasos);
         }
@@ -92,6 +119,11 @@ namespace PreOrclFrontEnd.Controllers
             {
                 return NotFound();
             }
+
+            if (vwModelCasos.ListadoDocumentos != null || vwModelCasos.Documentos != null) {
+                ModelState["Documentos"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
+            }
+
             Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
             if (regex.IsMatch(ModelState["Casos.PrecioPactado"].AttemptedValue))
                 ModelState["Casos.PrecioPactado"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
@@ -102,9 +134,12 @@ namespace PreOrclFrontEnd.Controllers
                     vwModelCasos.Casos.UpdatedAt = DateTime.Now;
 
                     vwModelCasos.ListadoDocumentos = vwModelCasos.ListadoDocumentos ?? new List<Documentos>();
-                    foreach (var itemDocumento in vwModelCasos.Documentos)
+                    if (vwModelCasos.Documentos != null)
                     {
-                        vwModelCasos.ListadoDocumentos.Add(new Documentos { Nombre = itemDocumento.FileName, CreatedAt = DateTime.Now, Url = itemDocumento.FileName, Archivo = ConvertFileToByte(itemDocumento) });
+                        foreach (var itemDocumento in vwModelCasos.Documentos)
+                        {
+                            vwModelCasos.ListadoDocumentos.Add(new Documentos { Nombre = itemDocumento.FileName, CreatedAt = DateTime.Now, Url = itemDocumento.FileName, Archivo = ConvertFileToByte(itemDocumento) });
+                        }
                     }
                     bool isSaved = await generic.Put("Casos/PutVwModelCasos/", id, vwModelCasos);
                     if (!isSaved)

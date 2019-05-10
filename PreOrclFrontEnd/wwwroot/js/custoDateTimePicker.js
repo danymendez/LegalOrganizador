@@ -14,14 +14,14 @@ if (mesreal < 11) {
 
 }
 
-if (ahora.getDate() < 11) {
+if (ahora.getDate() < 10) {
     diaconcero = '0' + ahora.getDate();
 } else {
     diaconcero = ahora.getDate().toString();
 
 }
 
-    if (ahora.getHours() < 11) {
+    if (ahora.getHours() < 10) {
         horaconcero = '0' + ahora.getHours();
     } else {
         horaconcero = ahora.getHours().toString();
@@ -29,7 +29,7 @@ if (ahora.getDate() < 11) {
     }
 
 
-    if (ahora.getMinutes() < 11) {
+    if (ahora.getMinutes() < 10) {
         minutosconcero = '0' + ahora.getMinutes();
     } else {
         minutosconcero = ahora.getMinutes().toString();

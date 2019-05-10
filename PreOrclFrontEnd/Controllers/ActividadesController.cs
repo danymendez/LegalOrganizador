@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -24,16 +25,43 @@ namespace PreOrclFrontEnd.Controllers
         GenericREST generic;
         ListaSistema listaSistema;
         private readonly CacheItems cacheItems;
+        private decimal idUsuario = 0;
         public ActividadesController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
 
             generic = new GenericREST(configuration.Value);
             listaSistema = new ListaSistema(configuration);
             cacheItems = new CacheItems(memoryCache);
+           
+      
         }
         public IActionResult Index()
         {
+            bool isAthenticated = false;
+
+
+            if (User != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                    idUsuario = Convert.ToDecimal(User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value);
+
+
+                isAthenticated = User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Value == "Administrador").FirstOrDefault() != null;
+
+
+            }
+
+
             var listVwModelActividades = generic.GetAll<VwModelActividadesAsistentes>("ActividadesAsistentes/GetAllVwModelActividadesAsistentes").Result;
+
+            if (!isAthenticated) {
+                listVwModelActividades=listVwModelActividades.Where(c => c.Responsable.IdUsuario == idUsuario || c.IdAsistentes.Contains(idUsuario)).ToList();
+            }
+
             return View(listVwModelActividades);
         }
 
@@ -83,6 +111,8 @@ namespace PreOrclFrontEnd.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VwModelActividadesAsistentes vwModelActividadesAsistentes)
         {
+            vwModelActividadesAsistentes.Actividades.Estado="P";
+            ModelState["Actividades.Estado"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
             Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
             if(regex.IsMatch(ModelState["Actividades.Costo"].AttemptedValue))
             ModelState["Actividades.Costo"].ValidationState= Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;

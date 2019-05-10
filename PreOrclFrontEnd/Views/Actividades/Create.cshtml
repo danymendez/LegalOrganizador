@@ -63,7 +63,7 @@
                                     <label asp-for="Actividades.StartTime"></label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input asp-for="Actividades.StartTime" type="text" class="form-control date-time">
+                                        <input asp-for="Actividades.StartTime" autocomplete="off" type="text" class="form-control date-time">
                                     </div>
                                     <span class="text-danger" id="validadorFecha" style="display:none">Fecha / Hora Inicio debe ser menor a Fecha / Hora Fin</span>
                                     <span asp-validation-for="Actividades.StartTime" class="text-danger"></span>
@@ -72,7 +72,7 @@
                                     <label asp-for="Actividades.EndTime"></label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input asp-for="Actividades.EndTime" type="text" class="form-control date-time">
+                                        <input asp-for="Actividades.EndTime" type="text" autocomplete="off" class="form-control date-time">
                                     </div>
                                     <span asp-validation-for="Actividades.EndTime" class="text-danger"></span>
                                 </div>

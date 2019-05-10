@@ -93,8 +93,8 @@
                                             <div class="stat-text"><span class="">Listado de actividades</span></div>
                                             @foreach (var itemActividadesAsistentes in itemCasos.ListVwModelActividadesAsistentes)
                                             {
-                                                <div class="tooltip_templates" style="display:none">
-                                                    <span id="tooltip_content">
+                                                <div class="tooltip_templates_@itemCasos.ListVwModelActividadesAsistentes.IndexOf(itemActividadesAsistentes)" style="display:none">
+                                                    <span id="tooltip_content_@itemCasos.ListVwModelActividadesAsistentes.IndexOf(itemActividadesAsistentes)">
                                                         Fecha/Hora Inicio: @itemActividadesAsistentes.Actividades.StartTime.ToString("dd/MM/yyyy HH:mm:ss")<br />
                                                         Fecha/Hora Fin:    @itemActividadesAsistentes.Actividades.EndTime.ToString("dd/MM/yyyy HH:mm:ss")<br />
                                                         Responsable: @itemActividadesAsistentes.Responsable.Nombre @itemActividadesAsistentes.Responsable.Apellido<br />
@@ -106,11 +106,11 @@
                                                         }
                                                     </span>
                                                 </div>
-
-                                                <a href="@Url.Action("Edit","Actividades",new { id=itemActividadesAsistentes.Actividades.IdActividad})" class="stat-heading toolp" data-tooltip-content="#tooltip_content" title="">
-                                                    @itemActividadesAsistentes.Actividades.NombreActividad
-                                                </a>
-
+                                                <div class="col-sm-12">
+                                                    <a href="@Url.Action("Edit","Actividades",new { id=itemActividadesAsistentes.Actividades.IdActividad})" class="stat-heading toolp" data-tooltip-content="#tooltip_content_@itemCasos.ListVwModelActividadesAsistentes.IndexOf(itemActividadesAsistentes)" title="">
+                                                        @itemActividadesAsistentes.Actividades.NombreActividad
+                                                    </a>
+                                                </div>
                                             }
 
                                             @if (itemCasos.ListVwModelActividadesAsistentes.Count <= 0)

@@ -22,7 +22,7 @@
     <div class="animated fadeIn">
         <!-- Widgets  -->
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-five">
@@ -40,11 +40,8 @@
                 </div>
 
             </div>
-
-            <div class="col-lg-6 col-md-12">
-                @(await Component.InvokeAsync("ProcesoPorEstadoVwComponent"));
-            </div>
         </div>
+        
 
         <!--  /Traffic -->
         <div class="clearfix"></div>
@@ -52,100 +49,16 @@
         <!-- To Do and Live Chat -->
         <div class="row">
             <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title box-title">Listado pendientes</h4>
-                        <div class="card-content">
-                            <div class="todo-list">
-                                <div class="tdl-holder">
-                                    <div class="tdl-content">
-                                        <ul>
-                                            <li>
-                                                <label>
-                                                    <input type="checkbox"><i class="check-box"></i><span>Juzgado de Paz ....</span>
-                                                    <a href='#' class="fa fa-times"></a>
-                                                    <a href='#' class="fa fa-pencil"></a>
-                                                    <a href='#' class="fa fa-check"></a>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>
-                                                    <input type="checkbox"><i class="check-box"></i><span>Documentación Legal</span>
-                                                    <a href='#' class="fa fa-times"></a>
-                                                    <a href='#' class="fa fa-pencil"></a>
-                                                    <a href='#' class="fa fa-check"></a>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>
-                                                    <input type="checkbox" checked><i class="check-box"></i><span>Reunión de Abogados</span>
-                                                    <a href='#' class="fa fa-times"></a>
-                                                    <a href='#' class="fa fa-pencil"></a>
-                                                    <a href='#' class="fa fa-check"></a>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>
-                                                    <input type="checkbox" checked><i class="check-box"></i><span>Buffet Meeting</span>
-                                                    <a href='#' class="fa fa-times"></a>
-                                                    <a href='#' class="fa fa-pencil"></a>
-                                                    <a href='#' class="fa fa-check"></a>
-                                                </label>
-                                            </li>
-
-                                            <li>
-                                                <label>
-                                                    <input type="checkbox" checked><i class="check-box"></i><span>Jornada legal</span>
-                                                    <a href='#' class="fa fa-times"></a>
-                                                    <a href='#' class="fa fa-pencil"></a>
-                                                    <a href='#' class="fa fa-check"></a>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> <!-- /.todo-list -->
-                        </div>
-                    </div> <!-- /.card-body -->
-                </div><!-- /.card -->
+                @(await Component.InvokeAsync("ActividadesPorEstadoViewComponent"))
             </div>
 
-            <div class="col-md-12 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <!-- <h4 class="box-title">Chandler</h4> -->
-                        <div class="calender-cont widget-calender">
-                            <div id="calendar"></div>
-                        </div>
-                    </div>
-                </div><!-- /.card -->
+            <div class="col-lg-6 col-md-6">
+                @(await Component.InvokeAsync("ProcesoPorEstadoVwComponent"))
             </div>
-            <div class="col-md-12 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        @*@await Component.InvokeAsync("ListaComponent")*@
-                    </div>
-                </div>
-            </div>
-
+          
         </div>
 
-        <div class="row">
-
-            <div class="col-xl-10">
-                <div class="row">
-                    <div class="col-lg-12 col-xl-12">
-                        <div class="card br-0">
-                            <div class="card-body">
-                                <div class="chart-container ov-h">
-                                    <div id="flotPie1" class="float-chart"></div>
-                                </div>
-                            </div>
-                        </div><!-- /.card -->
-                    </div>
-                </div>
-            </div>
-        </div>
+     
 
     </div>
 </div>
@@ -342,8 +255,101 @@
         });
     </script>*@
  <script>
+             //******* 2012 Average Temperature - BAR CHART
+
+        var options = {
+            series: {
+                bars: {
+                    show: true
+                }
+            },
+            bars: {
+                align: "center",
+                barWidth: 0.5
+            },
+            xaxis: {
+                axisLabel: "Estados de Actividad",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial',
+                axisLabelPadding: 10,
+                ticks: ticks
+            },
+            yaxis: {
+                axisLabel: "Cantidad",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial',
+                axisLabelPadding: 3,
+                tickFormatter: function (v, axis) {
+                    return v;
+                }
+            },
+            legend: {
+                noColumns: 0,
+                labelBoxBorderColor: "#000000",
+                position: "nw"
+            },
+            grid: {
+                hoverable: true,
+                borderWidth: 2,
+                backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+            }
+        };
+
+
+
+        function gd(year, month, day) {
+            return new Date(year, month, day).getTime();
+        }
+
+        var previousPoint = null, previousLabel = null;
+
+        jQuery.fn.UseTooltip = function () {
+            jQuery(this).bind("plothover", function (event, pos, item) {
+                if (item) {
+                    if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                        previousPoint = item.dataIndex;
+                        previousLabel = item.series.label;
+                        jQuery("#tooltip").remove();
+
+                        var x = item.datapoint[0];
+                        var y = item.datapoint[1];
+
+                        var color = item.series.color;
+
+                        //console.log(item.series.xaxis.ticks[x].label);
+
+                        showTooltip(item.pageX,
+                            item.pageY,
+                            color,
+                            "<strong>" + item.series.label + "</strong><br>" + item.series.xaxis.ticks[x].label + " : <strong>" + y + "</strong> ");
+                    }
+                } else {
+                    jQuery("#tooltip").remove();
+                    previousPoint = null;
+                }
+            });
+        };
+
+        function showTooltip(x, y, color, contents) {
+            jQuery('<div id="tooltip">' + contents + '</div>').css({
+                position: 'absolute',
+                display: 'none',
+                top: y - 40,
+                left: x - 120,
+                border: '2px solid ' + color,
+                padding: '3px',
+                'font-size': '9px',
+                'border-radius': '5px',
+                'background-color': '#fff',
+                'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+                opacity: 0.9
+            }).appendTo("body").fadeIn(200);
+        }
      jQuery(document).ready(function () {
          cargarGraficaCaso();
+         cargarActividades();
      });
     </script>
 }
