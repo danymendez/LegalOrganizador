@@ -62,7 +62,7 @@ namespace PreOrclFrontEnd.Controllers
             var listViewModelCasos = generic.GetAll<VwModelCasos>("Casos/GetAllVwModelCasos").Result;
             if (!isAuthenticatedAdmin) {
                
-                    listViewModelCasos = listViewModelCasos.Where(c => ((c.Casos.IdAbogado == idUsuario && c.Casos.Tipo == "P")||c.Casos.Tipo=="U") || c.ListVwModelActividadesAsistentes.Where(d=>d.IdAsistentes.Contains(idUsuario)).FirstOrDefault()!=null).ToList();
+                    listViewModelCasos = listViewModelCasos.Where(c => ((c.Casos.IdAbogado == idUsuario && c.Casos.Tipo == "P")||c.Casos.Tipo=="U") || c.ListVwModelActividadesAsistentes.Where(d=>d.IdAsistentes.Contains(idUsuario) || d.Actividades.IdResponsable==idUsuario).FirstOrDefault()!=null).ToList();
               
              
             }
