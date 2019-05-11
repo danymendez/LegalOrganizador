@@ -261,12 +261,12 @@ namespace Common.BOL.BOL
                 DateTimeTimeZone startTime = new DateTimeTimeZone
                 {
                     DateTime = actividades.StartTime.ToString(),
-                    TimeZone = actividades.TimeZone
+                    TimeZone = "Central America Standard Time"
                 };
                 DateTimeTimeZone endTime = new DateTimeTimeZone
                 {
                     DateTime = actividades.EndTime.ToString(),
-                    TimeZone = actividades.TimeZone
+                    TimeZone = "Central America Standard Time"
                 };
 
                 // Event location

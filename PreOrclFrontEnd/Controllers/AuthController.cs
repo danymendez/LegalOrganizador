@@ -11,6 +11,7 @@ using PreOrclFrontEnd.Models;
 using PreOrclFrontEnd.Utilidades;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -177,8 +178,7 @@ namespace PreOrclFrontEnd.Controllers
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
             await HttpContext.SignInAsync(principal);
-
-
+ 
             return RedirectToAction("Index", "Home");
         }
 

@@ -111,6 +111,20 @@ namespace PreOrclFrontEnd.Controllers
         }
 
 
+        public DateTime GetUniversalTime(string fecha)
+        {
+
+            string dias = fecha.Substring(0, 2);
+            string mes = fecha.Substring(3, 2);
+            string anio = fecha.Substring(6, 4);
+            string hora = fecha.Substring(11, 2);
+            string min = fecha.Substring(14, 2);
+            return new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dias), Convert.ToInt32(hora), Convert.ToInt32(min), 0);
+
+        }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(decimal id, VwModelCasos vwModelCasos)
@@ -134,6 +148,19 @@ namespace PreOrclFrontEnd.Controllers
             if (vwModelCasos.ListadoDocumentos != null || vwModelCasos.Documentos != null) {
                 ModelState["Documentos"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
             }
+
+        
+
+            if (vwModelCasos.Casos.FechaCierre != null) {
+                string fechaCierre = ModelState["Casos.FechaCierre"].AttemptedValue;
+                vwModelCasos.Casos.FechaCierre = GetUniversalTime(fechaCierre);
+                ModelState["Casos.FechaCierre"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
+            }
+            string fechaApertura = ModelState["Casos.FechaApertura"].AttemptedValue;
+            vwModelCasos.Casos.FechaApertura = GetUniversalTime(fechaApertura);
+            ModelState["Casos.FechaApertura"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
+         
+
 
             Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
             if (regex.IsMatch(ModelState["Casos.PrecioPactado"].AttemptedValue))
@@ -182,6 +209,18 @@ namespace PreOrclFrontEnd.Controllers
                                          
 
             }
+
+            if (vwModelCasos.Casos.FechaCierre != null)
+            {
+                string fechaCierre = ModelState["Casos.FechaCierre"].AttemptedValue;
+                vwModelCasos.Casos.FechaCierre = GetUniversalTime(fechaCierre);
+                ModelState["Casos.FechaCierre"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
+            }
+            string fechaApertura = ModelState["Casos.FechaApertura"].AttemptedValue;
+            vwModelCasos.Casos.FechaApertura = GetUniversalTime(fechaApertura);
+            ModelState["Casos.FechaApertura"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
+
+
 
             Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
             if (regex.IsMatch(ModelState["Casos.PrecioPactado"].AttemptedValue))
