@@ -115,6 +115,17 @@ namespace PreOrclFrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(decimal id, VwModelCasos vwModelCasos)
         {
+            if (User != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                    idUsuario = Convert.ToDecimal(User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value);
+
+                  
+
+            }
+
             if (id != vwModelCasos.Casos.IdCaso)
             {
                 return NotFound();
@@ -132,7 +143,9 @@ namespace PreOrclFrontEnd.Controllers
                 try
                 {
                     vwModelCasos.Casos.UpdatedAt = DateTime.Now;
-
+                    if (vwModelCasos.Casos.EstadoCaso == "C") {
+                        vwModelCasos.Casos.IdUsuarioCierre = idUsuario;
+                    }
                     vwModelCasos.ListadoDocumentos = vwModelCasos.ListadoDocumentos ?? new List<Documentos>();
                     if (vwModelCasos.Documentos != null)
                     {
@@ -160,6 +173,16 @@ namespace PreOrclFrontEnd.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VwModelCasos vwModelCasos)
         {
+            if (User != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                    idUsuario = Convert.ToDecimal(User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value);
+                                         
+
+            }
+
             Regex regex = new Regex(@"^[0-9]{1,3}(,[0-9]{3}){0,2}(\.[0-9]{2})$");
             if (regex.IsMatch(ModelState["Casos.PrecioPactado"].AttemptedValue))
                 ModelState["Casos.PrecioPactado"].ValidationState = Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
@@ -168,6 +191,8 @@ namespace PreOrclFrontEnd.Controllers
                 vwModelCasos.Casos.CreatedAt = DateTime.Now;
                 vwModelCasos.Casos.Cancelado = 0;
                 vwModelCasos.Casos.Inactivo = 0;
+                vwModelCasos.Casos.IdCreador = idUsuario;
+                
                 vwModelCasos.ListadoDocumentos = new List<Documentos>();
                 foreach (var itemDocumento in vwModelCasos.Documentos) {
                     vwModelCasos.ListadoDocumentos.Add(new Documentos {Nombre=itemDocumento.FileName,CreatedAt=DateTime.Now,Url=itemDocumento.FileName, Archivo= ConvertFileToByte(itemDocumento) });

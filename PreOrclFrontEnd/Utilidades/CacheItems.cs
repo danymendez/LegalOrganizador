@@ -23,7 +23,7 @@ namespace PreOrclFrontEnd.Utilidades
                     return Encoding.ASCII.GetString(_memoryCache.Get("foto") as byte[]);
             }
 
-            return "~/images/man64.png";
+            return "/images/man64.png";
         }
 
         public string GetImageBase64FromCache(ClaimsPrincipal user)
@@ -37,7 +37,7 @@ namespace PreOrclFrontEnd.Utilidades
                 }
             }
 
-            return "~/images/man64.png";
+            return "/images/man64.png";
         }
     }
 }

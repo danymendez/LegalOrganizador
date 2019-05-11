@@ -47,13 +47,13 @@
                 </li>
                 <li class="menu-title">Opciones de sistema</li><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown" @ValidarPermiso("Personas")>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Registros</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Registros</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-puzzle-piece"></i><a asp-area="" asp-controller="SisPerPersonas" asp-action="Index">Clientes/Imputados</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown" @(ValidarPermiso("Casos") == ""?ValidarPermiso("Actividades"):ValidarPermiso("Casos"))>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Gestiones Judiciales</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-legal"></i>Gestiones Judiciales</a>
                     <ul class="sub-menu children dropdown-menu">
                        
                         <li @ValidarPermiso("Casos")><i class="fa fa-id-badge"></i><a asp-area="" asp-controller="Casos" asp-action="Index">Casos</a></li>
@@ -68,7 +68,7 @@
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown" @ValidarPermiso("Cuadro Mando")>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Reportes</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Cuadro Mando</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("ProcesoPorEstado","CuadroMando")">Proceso Por Estado</a></li>
                         <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("ActividadesPorEstado","CuadroMando")">Actividades Por Estado</a></li>

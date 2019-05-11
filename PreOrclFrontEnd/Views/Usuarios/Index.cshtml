@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PreOrclFrontEnd.Models.Usuarios>
+﻿@model IEnumerable<PreOrclFrontEnd.ViewModels.VwModelUsuarios>
 
 @{
     ViewData["Title"] = "Index";
@@ -58,19 +58,22 @@
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table2" rowspan="1" colspan="1" aria-sort="ascending">
-                                                        @Html.DisplayNameFor(model => model.Nombre)
+                                                        @Html.DisplayNameFor(model => model.Usuarios.Nombre)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Apellido)
+                                                        @Html.DisplayNameFor(model => model.Usuarios.Apellido)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Usuario)
+                                                        @Html.DisplayNameFor(model => model.Usuarios.Usuario)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Inactivo)
+                                                        @Html.DisplayNameFor(model => model.Usuarios.Inactivo)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.TipoUsuario)
+                                                        @Html.DisplayNameFor(model => model.Usuarios.TipoUsuario)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Roles.NombreRol)
                                                     </th>
                                                     <th>Acciones</th>
                                                 </tr>
@@ -80,32 +83,40 @@
                                                 {
                                                 <tr role="row">
                                                     <td class="sorting_1">
-                                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                                        @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Apellido)
+                                                        @Html.DisplayFor(modelItem => item.Usuarios.Apellido)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Usuario)
+                                                        @Html.DisplayFor(modelItem => item.Usuarios.Usuario)
                                                     </td>
                                                     <td>
-                                                        @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
+                                                        @item.Usuarios.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
                                                     </td>
                                                     <td>
-                                                        @item.TipoUsuario.ToString().Replace("I", "Interno").Replace("E", "Externo")
+                                                        @item.Usuarios.TipoUsuario.ToString().Replace("I", "Interno").Replace("E", "Externo")
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Roles.NombreRol)
                                                     </td>
                                                     <td>
                                                         <div class="row">
                                                             @*<div class="col-sm-3">
-                    <a asp-action="Edit" asp-route-id="@item.IdUsuario" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.IdUsuario})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
+            <a asp-action="Edit" asp-route-id="@item.IdUsuario" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
+        </div>
+        <div class="col-sm-3">
+            <a href="#" data-toggle="modal" data-target="#largeModal" onclick="modalShow({'NameModalPartial':'#largeModalPartial','Url':'@Url.Action("DetailsPartial","SisPerPersonas")','Id':@item.IdUsuario})" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>
 
-                </div>*@
+        </div>*@
                                                             <div class="col-sm-3">
-                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Usuarios")','Id':@item.IdUsuario})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
+                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Usuarios")','Id':@item.Usuarios.IdUsuario})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
                                                             </div>
+
+                                                            <div class="col-sm-3">
+                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("CambiarRol","Usuarios")','Id':@item.Usuarios.IdUsuario})" title="Editar Rol"><i class="fa fa-edit" style="color:forestgreen"></i></a>
+                                                            </div>
+
                                                         </div>
                                                     </td>
                                                 </tr>

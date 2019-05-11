@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PreOrclFrontEnd.Helpers;
@@ -15,9 +17,12 @@ using PreOrclFrontEnd.ViewModels;
 namespace PreOrclFrontEnd.Controllers
 {
     [Authorize(Roles = "Seguridad")]
+
+    
     public class UsuariosController : Controller
     {
         GenericREST generic;
+        private decimal idUsuario=0;
         private readonly CacheItems cacheItems;
         public UsuariosController(IOptions<UriHelpers> configuration, IMemoryCache memoryCache)
         {
@@ -27,10 +32,17 @@ namespace PreOrclFrontEnd.Controllers
     }
         public async Task<IActionResult> Index()
         {
+            List<VwModelUsuarios> listaVwModelUsuario = new List<VwModelUsuarios>();
+          
+
             List<Usuarios> listaUsuarios = await generic.GetAll<Usuarios>("Usuarios");
+            List<Roles> listaRoles = await generic.GetAll<Roles>("Roles");
+            listaVwModelUsuario = (from user in listaUsuarios
+                                  join rol in listaRoles on user.IdRol equals rol.IdRol
+                                  select new VwModelUsuarios { Usuarios = user, Roles = rol }).ToList();
 
             ViewBag.PersonasClassCssNav = "active";
-            return View(listaUsuarios);
+            return View(listaVwModelUsuario);
         }
 
         public async Task<IActionResult> InactivateOrActivatePartial(decimal? id)
@@ -90,6 +102,60 @@ namespace PreOrclFrontEnd.Controllers
                     return BadRequest("Ha ocurrido un error al inactivar");
                 }
             }
+        }
+        [HttpGet("[controller]/CambiarRol")]
+        public async Task<IActionResult> CambiarRol(decimal id)
+        {
+
+            Usuarios usuarios = new Usuarios();
+
+
+            usuarios = await generic.Get<Usuarios>("Usuarios/", id);
+
+            ViewBag.Roles = new SelectList(await generic.GetAll<Roles>("Roles"),"IdRol","NombreRol");
+            return PartialView("../Usuarios/_CambiarRol", usuarios);
+        }
+
+        [HttpPost("[controller]/CambiarRol")]
+   
+        public async Task<IActionResult> CambiarRol(Usuarios usuarios)
+        {
+            
+                var usuarioToEdit = await generic.Get<Usuarios>("Usuarios/", usuarios.IdUsuario);
+                
+                usuarioToEdit.InactivatedAt = DateTime.Now;
+                usuarioToEdit.UpdatedAt = DateTime.Now;
+                usuarioToEdit.IdRol = usuarios.IdRol;
+                bool Actualizado = await generic.Put("Usuarios/", usuarioToEdit.IdUsuario, usuarioToEdit);
+
+                if (Actualizado)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Ha ocurrido un error al cambiar rol");
+                }
+
+        }
+            
+          
+        
+
+        [Route("[controller]/MiPerfil")]
+        public async Task<IActionResult> MiPerfil() {
+            VwModelUsuarios vwModelUsuarios = new VwModelUsuarios();
+
+            if (User != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                    idUsuario = Convert.ToDecimal(User.Identities
+                                    .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                    .Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value);
+            }
+                vwModelUsuarios.Usuarios = await generic.Get<Usuarios>("Usuarios/", idUsuario);
+            vwModelUsuarios.Roles = (await generic.Get<Roles>("Roles/", vwModelUsuarios.Usuarios.IdRol));
+            return View(vwModelUsuarios);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
