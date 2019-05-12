@@ -11,8 +11,8 @@ namespace PreOrclFrontEnd.Utilidades
         public static SelectList GetSelectListCategorias() {
             return new SelectList( new List<SelectListItem>()
             {
-                new SelectListItem{ Text = "Categoria 1", Value="A" },
-                new SelectListItem{ Text = "Categoria 2", Value="B" },
+                new SelectListItem{ Text = "Procesal", Value="A" },
+                new SelectListItem{ Text = "Penal", Value="B" },
 
             });
         }
@@ -64,8 +64,8 @@ namespace PreOrclFrontEnd.Utilidades
         {
            return new List<SelectListItem>()
             {
-                new SelectListItem{ Text = "Categoria 1", Value="A" },
-                new SelectListItem{ Text = "Categoria 2", Value="B" },
+                new SelectListItem{ Text = "Procesal", Value="A" },
+                new SelectListItem{ Text = "Penal", Value="B" },
 
             };
         }

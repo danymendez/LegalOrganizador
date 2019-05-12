@@ -17,6 +17,7 @@ namespace PreOrclFrontEnd.Models
         public DateTime FechaApertura { get; set; }
 
         [Required(ErrorMessage ="Requerido")]
+        [Display(Name = "Nombre caso")]
         public string NombreCaso { get; set; }
 
         [Display(Name ="Cliente")]

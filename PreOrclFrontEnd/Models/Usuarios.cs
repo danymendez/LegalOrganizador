@@ -31,7 +31,7 @@ namespace PreOrclFrontEnd.Models
         public decimal IdRol { get; set; }
       
         public string TokenRefresh { get; set; }
-     
+        [Display(Name = "Fecha de creación")]
         public DateTime CreatedAt { get; set; }
       
         public DateTime? InactivatedAt { get; set; }

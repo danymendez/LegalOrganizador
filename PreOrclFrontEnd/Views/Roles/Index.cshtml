@@ -72,31 +72,31 @@
                                             <tbody>
                                                 @foreach (var item in Model)
                                                 {
-                                                <tr role="row">
-                                                    <td class="sorting_1">
-                                                        @Html.DisplayFor(modelItem => item.NombreRol)
-                                                    </td>
-                                                    <td>
-                                                        @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
-                                                    </td>
-                                                    <td>
-                                                        @(item.InactivatedAt==null?"":Convert.ToDateTime(item.InactivatedAt).ToString("dd/MM/yyyy HH:mm:ss"))
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("EditPartial","Roles")','Id':@item.IdRol})" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                @*<a href="#" data-toggle="modal" data-target="#largeModal" onclick="LargeModalDetailOnclick(@item.IdRol)" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>*@
+                                                    <tr role="row">
+                                                        <td class="sorting_1">
+                                                            @Html.DisplayFor(modelItem => item.NombreRol)
+                                                        </td>
+                                                        <td>
+                                                            @item.Inactivo.ToString().Replace("0", "No").Replace("1", "Sí")
+                                                        </td>
+                                                        <td>
+                                                            @(item.InactivatedAt == null ? "" : Convert.ToDateTime(item.InactivatedAt).ToString("dd/MM/yyyy HH:mm:ss"))
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("EditPartial","Roles")','Id':@item.IdRol})" title="Editar"><i class="fa fa-edit" style="color:forestgreen"></i></a>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    @*<a href="#" data-toggle="modal" data-target="#largeModal" onclick="LargeModalDetailOnclick(@item.IdRol)" title="ver detalle"><i class="fa fa-file-text" style="color:blue"></i></a>*@
 
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Roles")','Id':@item.IdRol})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-sm-3">
-                                                                <a href="#" data-toggle="modal" data-target="#smallmodal" onclick="modalShow({'NameModalPartial':'#smallModalPartial','Url':'@Url.Action("InactivateOrActivatePartial","Roles")','Id':@item.IdRol})" title="Inactivar"><i class="fa fa-eraser" style="color:forestgreen"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
                                                 }
                                             </tbody>
                                         </table>
@@ -128,6 +128,7 @@
     <script src="~/js/dataTableLanguageESConfig.js"></script>
     <script src="~/js/modalConfig.js"></script>
     <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/js/custoSweetAlertAjax.js"></script>
+   <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/js/custoSweetAlertAjax.js"></script>
 
-}
+    }

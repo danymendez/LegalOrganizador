@@ -16,6 +16,7 @@ namespace PreOrclFrontEnd.ViewModels
 
         public List<SisPerPersona> ListadoImputados { get; set; }
         [Required]
+        [Display(Name ="Imputados")]
         public decimal[] IdImputados { get; set; }
         public List<Documentos> ListadoDocumentos { get; set; }
         public decimal[] IdDocumentos { get; set; }

@@ -15,6 +15,7 @@ using PreOrclFrontEnd.ViewModels;
 namespace PreOrclFrontEnd.Controllers
 {
     [Authorize(Roles ="Seguridad")]
+    [Route("[controller]")]
     public class RolesController : Controller
     {
 
@@ -33,7 +34,7 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.PersonasClassCssNav = "active";
             return View(listaRoles);
         }
-
+        [Route("CreatePartial", Name = "CreatePartial")]
         public IActionResult CreatePartial()
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
@@ -41,7 +42,8 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.Title = "Crear Rol";
             return PartialView("../Roles/_CreateOrEditPartial", vwModel);
         }
-
+        [HttpGet("{id}")]
+        [Route("InactivateOrActivatePartial", Name = "InactivateOrActivatePartialR")]
         public async Task<IActionResult> InactivateOrActivatePartial(decimal? id)
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
@@ -100,7 +102,7 @@ namespace PreOrclFrontEnd.Controllers
            
             return PartialView("../Roles/_InactivateOrActivatePartial", vwModel);
         }
-
+        [HttpPost("InactivateOrActivate")]
         public async Task<IActionResult> InactivateOrActivate(VwModelRolesPermisos vwModelRolesPermisos)
         {
             if (vwModelRolesPermisos.Inactivo == 1)
@@ -141,6 +143,8 @@ namespace PreOrclFrontEnd.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        [Route("EditPartial", Name = "EditPartial")]
         public async Task<IActionResult> EditPartial(decimal? id)
         {
             VwModelRolesPermisos vwModel = new VwModelRolesPermisos();
@@ -185,6 +189,8 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.Title = "Editar Rol";
             return PartialView("../Roles/_CreateOrEditPartial", vwModel);
         }
+
+        [HttpPost("CreateOrEdit")]
         public async Task<IActionResult> CreateOrEdit(VwModelRolesPermisos vwModelRolesPermisos)
         {
                if (ModelState.IsValid) {
@@ -271,7 +277,7 @@ namespace PreOrclFrontEnd.Controllers
 
             return PartialView("../Roles/_CreateOrEditPartial", vwModelRolesPermisos);
         }
-
+        [NonAction]
         public bool RolNombreExist(string nombre, decimal? id) {
             var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol.Trim().ToLowerInvariant() == nombre.Trim().ToLowerInvariant() && c.IdRol!=id);
             if (rol == null)
@@ -279,7 +285,7 @@ namespace PreOrclFrontEnd.Controllers
             else
                 return true;
         }
-
+        [NonAction]
         public bool RolNombreExist(string nombre) {
             var rol = generic.GetAll<Roles>("Roles").Result.Find(c => c.NombreRol.Trim().ToLowerInvariant() == nombre.Trim().ToLowerInvariant());
             if (rol == null)

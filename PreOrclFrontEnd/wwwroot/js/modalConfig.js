@@ -1,6 +1,6 @@
 ﻿function modalShow(jsonItem) {
     onUnLoadLoadingIcon();
-    $(jsonItem.NameModalPartial).html("");
+    jQuery(jsonItem.NameModalPartial).html("");
     if (jQuery.type(jsonItem.Id)  === 'undefined') {
         $.get(jsonItem.Url)
             .done(function (html) {
@@ -8,7 +8,7 @@
                 onLoadLoadingIcon();
             });
     } else {
-        $.get(jsonItem.Url, { id: jsonItem.Id })
+        jQuery.get(jsonItem.Url, { id: jsonItem.Id })
             .done(function (html) {
                 $(jsonItem.NameModalPartial).html(html);
                 onLoadLoadingIcon();

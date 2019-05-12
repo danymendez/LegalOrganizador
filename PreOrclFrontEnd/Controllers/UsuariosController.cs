@@ -18,7 +18,7 @@ namespace PreOrclFrontEnd.Controllers
 {
     [Authorize(Roles = "Seguridad")]
 
-    
+    [Route("[controller]")]
     public class UsuariosController : Controller
     {
         GenericREST generic;
@@ -44,7 +44,8 @@ namespace PreOrclFrontEnd.Controllers
             ViewBag.PersonasClassCssNav = "active";
             return View(listaVwModelUsuario);
         }
-
+        [HttpGet("{id}")]
+        [Route("InactivateOrActivatePartial", Name ="InactivateOrActivatePartial")]
         public async Task<IActionResult> InactivateOrActivatePartial(decimal? id)
         {
             Usuarios usuarios = new Usuarios();
@@ -62,7 +63,7 @@ namespace PreOrclFrontEnd.Controllers
 
             return PartialView("../Usuarios/_InactivateOrActivatePartial", usuarios);
         }
-
+        [HttpPost("InactivateOrActivate")]
         public async Task<IActionResult> InactivateOrActivate(Usuarios usuarios)
         {
             if (usuarios.Inactivo == 1)
@@ -103,7 +104,8 @@ namespace PreOrclFrontEnd.Controllers
                 }
             }
         }
-        [HttpGet("[controller]/CambiarRol")]
+        [HttpGet("{id}")]
+        [Route("CambiarRol", Name ="CambiarRol")]
         public async Task<IActionResult> CambiarRol(decimal id)
         {
 
@@ -116,7 +118,7 @@ namespace PreOrclFrontEnd.Controllers
             return PartialView("../Usuarios/_CambiarRol", usuarios);
         }
 
-        [HttpPost("[controller]/CambiarRol")]
+        [HttpPost("CambiarRol")]
    
         public async Task<IActionResult> CambiarRol(Usuarios usuarios)
         {
@@ -142,7 +144,7 @@ namespace PreOrclFrontEnd.Controllers
           
         
 
-        [Route("[controller]/MiPerfil")]
+        [Route("MiPerfil")]
         public async Task<IActionResult> MiPerfil() {
             VwModelUsuarios vwModelUsuarios = new VwModelUsuarios();
 

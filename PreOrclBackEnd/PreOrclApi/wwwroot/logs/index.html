@@ -14574,3 +14574,607 @@ Exception:	Invalid operation on a closed object
 Source:		Oracle.ManagedDataAccess
 Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
    at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\source\repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:10:50 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:10:51 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:10:51 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:10:51 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:10:51 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:12:30 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 56
+
+=============================== 11/05/2019 - 09:12:30 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.Create[T](T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 67
+
+=============================== 11/05/2019 - 09:12:33 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:12:33 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:12:48 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:12:48 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:12:49 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:12:49 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:12:49 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:13:8 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:13:8 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:13:8 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:13:8 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:13:9 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:14:52 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:14:52 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:14:53 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:14:53 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:14:53 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:15:13 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:15:13 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:15:14 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:15:14 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:15:14 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:16:54 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:16:55 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:16:55 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:16:55 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:16:55 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:17:16 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 09:17:16 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+
+=============================== 11/05/2019 - 09:17:16 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+
+=============================== 11/05/2019 - 09:17:16 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 09:17:16 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 09:49:39 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 11/05/2019 - 09:49:39 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 09:49:40 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 09:49:40 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 10:27:48 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 11/05/2019 - 10:27:48 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 10:27:49 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 10:27:49 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 13:06:18 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-12570: Network Session: Unexpected packet read error
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 107
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	ORA-12570: Network Session: Unexpected packet read error
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.ReaderStream.Read(OraBuf OB)
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCExecuteSql.ReceiveExecuteResponse(Accessor[]& defineAccessors, Accessor[] bindAccessors, Boolean bHasReturningParams, SQLMetaData& sqlMetaData, SqlStatementType statementType, Int64 noOfRowsFetchedLastTime, Int32 noOfRowsToFetch, Int32& noOfRowsFetched, Int64& queryId, Int32 longFetchSize, Int64 initialLOBFetchSize, Int64[] scnFromExecution, Boolean bAllInputBinds, Int32 arrayBindCount, DataUnmarshaller& dataUnmarshaller, MarshalBindParameterValueHelper& marshalBindParamsHelper, Int64[]& rowsAffectedByArrayBind, Boolean bDefineDone, Boolean& bMoreThanOneRowAffectedByDmlWithRetClause, List`1& implicitRSList, Boolean bLOBArrayFetchRequired)
+
+=============================== 11/05/2019 - 13:06:19 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALBaseOrcl.GetAll[T]() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 137
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 13:06:19 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Commit(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 13:06:19 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Oracle error ORA-12571 encountered
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleException.HandleError(OracleTraceLevel level, OracleTraceTag tag, OracleTraceClassName className, OracleTraceFuncName funcName, Exception ex, OracleLogicalTransaction oracleLogicalTransaction)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+   at OracleInternal.ServiceObjects.OracleTransactionImpl.Rollback(OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction)
+   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+Inner Exception Type: OracleInternal.Network.NetworkException
+Inner Exception:	Oracle error ORA-12571 encountered
+Inner Source:	Oracle.ManagedDataAccess
+Inner Stack Trace:	   at OracleInternal.Network.TcpTransportAdapter.Send(OraBuf OB)
+   at OracleInternal.Network.WriterStream.Write(OraBuf OB)
+   at OracleInternal.TTC.OraBufWriter.FlushData()
+   at OracleInternal.TTC.OraBufReader.GetDataFromNetwork()
+   at OracleInternal.TTC.OraBufReader.Read(Boolean bIgnoreData)
+   at OracleInternal.TTC.TTCSimpleOperations.ReadResponse()
+
+=============================== 11/05/2019 - 13:09:39 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-02291: integrity constraint (ALUMNOORCL.CASOS_CREADORUSU_FK1) violated - parent key not found
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Update[T](Decimal id, T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 235
+
+=============================== 11/05/2019 - 13:09:40 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 13:09:40 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 13:14:16 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	ORA-02291: integrity constraint (ALUMNOORCL.CASOS_CREADORUSU_FK1) violated - parent key not found
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Common.Data.DAL.DALBaseOrcl.Update[T](Decimal id, T entity) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 235
+
+=============================== 11/05/2019 - 13:14:16 ===================================
+Exception Type:	Oracle.ManagedDataAccess.Client.OracleException
+Exception:	Connection request timed out
+Source:		Oracle Data Provider for .NET, Managed Driver
+Stack Trace:	   at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Common.Data.DAL.DALDBContext.OpenConnection() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 56
+   at Common.Data.DAL.DALDBContext..ctor() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 25
+
+=============================== 11/05/2019 - 13:14:17 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Connection must be open for this operation
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleCommand.ValidateStatePriorToExecution()
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at Common.Data.DAL.DALBaseOrcl.Get[T](Decimal id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 171
+
+=============================== 11/05/2019 - 13:14:17 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALBaseOrcl.Get[T](Decimal id) in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALBaseOrcl.cs:line 201
+
+=============================== 11/05/2019 - 13:14:17 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 13:14:17 ===================================
+Exception Type:	System.NullReferenceException
+Exception:	Object reference not set to an instance of an object.
+Source:		Common.Data
+Stack Trace:	   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
+
+=============================== 11/05/2019 - 13:14:17 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Commit()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 90
+
+=============================== 11/05/2019 - 13:14:19 ===================================
+Exception Type:	System.InvalidOperationException
+Exception:	Invalid operation on a closed object
+Source:		Oracle.ManagedDataAccess
+Stack Trace:	   at Oracle.ManagedDataAccess.Client.OracleTransaction.Rollback()
+   at Common.Data.DAL.DALDBContext.Dispose() in C:\Users\dmendez\Source\Repos\PreOracle2\PreOrclBackEnd\Common.Data\DAL\DALDBContext.cs:line 100
