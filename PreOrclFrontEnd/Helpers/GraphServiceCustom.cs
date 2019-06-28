@@ -10,6 +10,11 @@ namespace PreOrclFrontEnd.Helpers
 {
     public class GraphServiceCustom
     {
+
+        public GraphServiceCustom() {
+
+        }
+
         public async Task<Microsoft.Graph.User> GetUser(GraphServiceClient graphClient)
         {   
             return await graphClient.Me.Request().GetAsync();

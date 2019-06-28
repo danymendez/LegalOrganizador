@@ -1,0 +1,77 @@
+﻿@model PreOrclFrontEnd.ViewModels.VwModelRolesPermisos
+
+<div class="modal-header">
+    <h5 class="modal-title" id="smallModalLabel">@ViewBag.Title</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<form asp-action="InactivateOrActivate" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+      data-ajax-failure="onFailed" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
+    <div class="modal-body">
+
+        <div class="card-body card-block">
+
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <div id="contenedorAlert">
+
+                    </div>
+
+                    <input asp-for="IdRol" type="hidden" />
+                    <input asp-for="CreatedAt" type="hidden" />
+                    <input asp-for="UpdatedAt" type="hidden" />
+                    @if (ViewBag.ButtonTextSave == "Reactivar")
+                    {
+                        <input asp-for="Inactivo" type="hidden" value="0" />
+                    }
+                    else
+                    {
+                        <input asp-for="Inactivo" type="hidden" value="1" />
+                    }
+                    <input asp-for="InactivatedAt" type="hidden" />
+                    <label asp-for="NombreRol" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input asp-for="NombreRol" class="form-control" disabled="disabled" />
+                    </div>
+                    <span asp-validation-for="NombreRol" class="text-danger"></span>
+                    <span class="text-danger" id="NombreRolDuplicado"></span>
+                </div>
+
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-pull-4 col-sm-6">
+                    <div class="form-check">
+                        @for (int i = 0; i < Model.VwModelPermisos.Count; i++)
+                        {
+                            <input asp-for="VwModelPermisos[i].Inactivo" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].InactivatedAt" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].UpdatedAt" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].CreatedAt" type="hidden" />
+                            <input asp-for="VwModelPermisos[i].IdPermiso" type="hidden" />
+                            <div class="checkbox">
+                                <label for="VwModelPermisos[i].NombrePermiso" class="form-check-label">
+                                    <input class="form-check-input " asp-for="VwModelPermisos[i].Seleccionado" disabled="disabled" type="checkbox" />
+                                    @Model.VwModelPermisos[i].NombrePermiso
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <input type="button" value="@ViewBag.ButtonTextSave" onclick="GuardarNotificacion('#createForm','@Url.Action("InactivateOrActivate")','@Url.Action("Index")')" class="btn btn-default" />
+        @*<a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.per_IDPER">Editar</a>*@
+    </div>
+</form>
+
+@*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@

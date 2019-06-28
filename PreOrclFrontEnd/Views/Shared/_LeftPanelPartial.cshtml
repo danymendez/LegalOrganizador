@@ -1,6 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@{
+
+
+    bool isAthenticated = false;
+    if (User != null)
+    {
+
+        isAthenticated = User.Identities
+                            .Where(c => c.IsAuthenticated).FirstOrDefault()
+                            .Claims.Where(c => c.Value == "Seguridad").FirstOrDefault() != null;
+
+
+    }
+
+}
+@functions {
+    public string ValidarPermiso(string nombreAccion)
+    {
+        bool isAthenticated = false;
+        if (User != null)
+        {
+
+            isAthenticated = User.Identities
+                                .Where(c => c.IsAuthenticated).FirstOrDefault()
+                                .Claims.Where(c => c.Value == nombreAccion).FirstOrDefault() != null;
+
+
+        }
+
+        if (isAthenticated)
+            return "";
+        return $"style=display:none;";
+    }
+}
+
+
 <!-- Left Panel -->
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
@@ -10,36 +46,35 @@
                     <a asp-area="" asp-controller="Home" asp-action="Index"><i class="menu-icon fa fa-laptop"></i>Inicio</a>
                 </li>
                 <li class="menu-title">Opciones de sistema</li><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Registros</a>
+                <li class="menu-item-has-children dropdown" @ValidarPermiso("Personas")>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Registros</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-puzzle-piece"></i><a asp-area="" asp-controller="SisPerPersonas" asp-action="Index">Personas</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="#">Imputados</a></li>
-                        <li><i class="fa fa-bars"></i><a href="#">Jurisprudencia</a></li>
-
-                        @*<li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>*@
+                        <li><i class="fa fa-puzzle-piece"></i><a asp-area="" asp-controller="SisPerPersonas" asp-action="Index">Clientes/Imputados</a></li>
                     </ul>
                 </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Seguridad</a>
+                <li class="menu-item-has-children dropdown" @(ValidarPermiso("Casos") == ""?ValidarPermiso("Actividades"):ValidarPermiso("Casos"))>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-legal"></i>Gestiones Judiciales</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="tables-basic.html">Roles</a></li>
-                        <li><i class="fa fa-table"></i><a href="tables-data.html">Usuarios</a></li>
+                       
+                        <li @ValidarPermiso("Casos")><i class="fa fa-id-badge"></i><a asp-area="" asp-controller="Casos" asp-action="Index">Casos</a></li>
+                        <li  @ValidarPermiso("Actividades")><i class="fa fa-book"></i><a asp-area="" asp-controller="Actividades" asp-action="Index">Actividades</a></li>
                     </ul>
                 </li>
-                @* <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
-            <ul class="sub-menu children dropdown-menu">
-                <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
-            </ul>
-        </li>*@
+                <li class="menu-item-has-children dropdown" @ValidarPermiso("Seguridad")>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Seguridad</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="@Url.Action("Index","Roles")">Roles</a></li>
+                        <li><i class="fa fa-table"></i><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown" @ValidarPermiso("Cuadro Mando")>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Cuadro Mando</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("ProcesoPorEstado","CuadroMando")">Proceso Por Estado</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("ActividadesPorEstado","CuadroMando")">Actividades Por Estado</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("CargaPorUsuario","CuadroMando")">Carga Por Usuario</a></li>
+                    </ul>
+                </li>
 
                 @*<li class="menu-title">Icons</li>*@
                 <!-- /.menu-title -->

@@ -127,7 +127,7 @@ namespace PreOrclApi.Controllers
         {
             // return _context.SisPerPersona.Any(e => e.per_IDPER == id);
             return false;
-            return false;
+          
         }
     }
 }

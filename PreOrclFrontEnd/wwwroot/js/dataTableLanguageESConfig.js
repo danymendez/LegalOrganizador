@@ -1,5 +1,5 @@
-﻿$(document).ready(function () {
-    $('#bootstrap-data-table2').DataTable({
+﻿jQuery(function () {
+    jQuery('#bootstrap-data-table2').DataTable({
         "language": {
             "lengthMenu": "Mostrando _MENU_ registros por página",
             "zeroRecords": "Lo sentimos ningún registro encontrado",
@@ -13,5 +13,5 @@
             "search": "Buscar"
         }
     });
-    $('#bootstrap-data-table-export').DataTable();
+    jQuery('#bootstrap-data-table-export').DataTable();
 });

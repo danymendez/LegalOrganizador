@@ -1,0 +1,178 @@
+﻿@model List<PreOrclFrontEnd.ViewModels.VwModelCargaPorUsuario>
+
+    @{
+        ViewData["Title"] = "Home Page";
+
+
+
+    }
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Cuadro de Mando</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Cuadro Mando</a></li>
+                            <li><a href="#">Carga de trabajo por Usuario</a></li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <!-- Widgets  -->
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Carga de Trabajo por Usuario</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div style="width:700px;height:300px;text-align:center;margin:10px">
+                                <div id="flot-placeholder" style="width:100%;height:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @section Scripts{
+    <script type="text/javascript">
+        //******* 2012 Average Temperature - BAR CHART
+        var data =[@foreach (var itemsCarga in Model) {
+            @if (itemsCarga == Model.Last()) {
+                 @Html.Raw($"[{Model.IndexOf(itemsCarga)}, {itemsCarga.CantidadCasoAbierto}]");
+            }
+            else
+            {
+                @Html.Raw($"[{Model.IndexOf(itemsCarga)}, {itemsCarga.CantidadCasoAbierto}],");
+            }
+
+
+        } ];
+        var dataset = [{ label: "Carga de trabajo por usuario", data: data, color: "#5482FF" }];
+        var ticks = [@foreach (var itemsCargas in Model) {
+
+            @if (itemsCargas == Model.Last())
+            {
+            @Html.Raw($"[{Model.IndexOf(itemsCargas)}, '{itemsCargas.Nombre} {itemsCargas.Apellido}']");
+            }
+            else
+            {
+                   @Html.Raw($"[{Model.IndexOf(itemsCargas)}, '{itemsCargas.Nombre} {itemsCargas.Apellido}'],");
+            }
+        } ];
+
+        var options = {
+            series: {
+                bars: {
+                    show: true
+                }
+            },
+            bars: {
+                align: "center",
+                barWidth: 0.5
+            },
+            xaxis: {
+                axisLabel: "Estados de Actividad",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial',
+                axisLabelPadding: 10,
+                ticks: ticks
+            },
+            yaxis: {
+                axisLabel: "Cantidad",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial',
+                axisLabelPadding: 3,
+                tickFormatter: function (v, axis) {
+                    return v;
+        }
+            },
+            legend: {
+                noColumns: 0,
+                labelBoxBorderColor: "#000000",
+                position: "nw"
+            },
+            grid: {
+                hoverable: true,
+                borderWidth: 2,
+                backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+            }
+        };
+
+        jQuery(document).ready(function () {
+            jQuery.plot(jQuery("#flot-placeholder"), dataset, options);
+            jQuery("#flot-placeholder").UseTooltip();
+        });
+
+        function gd(year, month, day) {
+            return new Date(year, month, day).getTime();
+        }
+
+        var previousPoint = null, previousLabel = null;
+
+        jQuery.fn.UseTooltip = function () {
+            jQuery(this).bind("plothover", function (event, pos, item) {
+                if (item) {
+                    if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                        previousPoint = item.dataIndex;
+                        previousLabel = item.series.label;
+                        jQuery("#tooltip").remove();
+
+                        var x = item.datapoint[0];
+                        var y = item.datapoint[1];
+
+                        var color = item.series.color;
+
+                        //console.log(item.series.xaxis.ticks[x].label);
+
+                        showTooltip(item.pageX,
+                            item.pageY,
+                            color,
+                            "<strong>" + item.series.label + "</strong><br>" + item.series.xaxis.ticks[x].label + " : <strong>" + y + "</strong> ");
+                    }
+                } else {
+                    jQuery("#tooltip").remove();
+                    previousPoint = null;
+                }
+            });
+        };
+
+        function showTooltip(x, y, color, contents) {
+            jQuery('<div id="tooltip">' + contents + '</div>').css({
+            position: 'absolute',
+                display: 'none',
+                top: y - 40,
+                left: x - 120,
+                border: '2px solid ' + color,
+                padding: '3px',
+                'font-size': '9px',
+                'border-radius': '5px',
+                'background-color': '#fff',
+                'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+                opacity: 0.9
+            }).appendTo("body").fadeIn(200);
+        }
+    </script>
+
+    }

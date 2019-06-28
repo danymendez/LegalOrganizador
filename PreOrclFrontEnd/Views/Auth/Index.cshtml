@@ -53,7 +53,7 @@
             <div class="login-content">
                 <div class="login-logo">
                     <a href="index.html">
-                        <img class="align-content" src="images/logo.png" alt="">
+                        @*<img class="align-content" src="images/logo.png" alt="">*@
                     </a>
                 </div>
                 <div class="login-form">
@@ -79,19 +79,19 @@
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
-                        <div class="checkbox">
+                        @*<div class="checkbox">
                             <label>
                                 <input type="checkbox"> Recordar
                             </label>
                             <label class="pull-right">
                                 <a href="#">¿Recuperar Contraseña?</a>
                             </label>
-                        </div>
+                        </div>*@
                         <button type="submit" value="Ingresar" class="btn btn-success btn-flat m-b-30 m-t-30">Iniciar Sesión</button>
                         <div class="social-login-content">
                             <div class="social-button">
                                 <a class="btn btn-default" asp-controller="Auth" asp-action="Micro">Iniciar sesión con cuenta de Microsoft</a>
-                                <a class="btn btn-default" asp-action="#">Iniciar sesión con cuenta de Google</a>
+                                @*<a class="btn btn-default" asp-action="#">Iniciar sesión con cuenta de Google</a>*@
                             </div>
                         </div>
                         @*<div class="register-link m-t-15 text-center">

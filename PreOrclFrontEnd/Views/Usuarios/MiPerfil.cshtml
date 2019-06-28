@@ -1,0 +1,94 @@
+﻿@model PreOrclFrontEnd.ViewModels.VwModelUsuarios
+
+@{
+    ViewData["Title"] = "MiPerfil";
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Mi Perfil</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Usuarios</a></li>
+                            <li><a href="#">Mi Perfil</a></li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated">
+        <div class="row">
+
+            
+
+            <div class="col-md-6 offset-md-3">
+                <div class="feed-box text-center">
+                    <section class="card">
+                        <div class="card-body">
+                            <div class="corner-ribon blue-ribon">
+                                <i class="fa fa-twitter"></i>
+                            </div>
+                            <a href="#">
+                                @if (!ViewData.ContainsKey("img"))
+                                {
+                                    <img class="align-self-center rounded-circle mr-3" style="width:150px; height:150px;" alt="" src="~/images/man64.png" alt="User Avatar">
+                                }
+                                else
+                                {
+                                    <img class="align-self-center rounded-circle mr-3" style="width:150px; height:150px;" alt="" src="@(ViewData["img"].ToString()==""?"~/images/man64.png":ViewData["img"])" alt="User Avatar">
+                                }
+
+                                
+                            </a>
+                            <h2> @Html.DisplayFor(model => model.Usuarios.Nombre) @Html.DisplayFor(model => model.Usuarios.Apellido)</h2>
+                            <dl class="dl-horizontal">
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Usuarios.Usuario)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Usuarios.Usuario)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Roles.NombreRol)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Roles.NombreRol)
+                                </dd>
+                                                              
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Usuarios.TipoUsuario)
+                                </dt>
+                                <dd>
+                                    @Model.Usuarios.TipoUsuario.ToString().Replace("I", "Interno").Replace("E", "Externo")
+                                </dd>
+                            </dl>
+                        </div>
+                    </section>
+                </div>
+            </div>   
+        </div>
+   
+    </div>
+
+</div>
+
+
+
+
+

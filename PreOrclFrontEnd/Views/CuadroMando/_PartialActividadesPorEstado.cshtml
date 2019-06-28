@@ -1,0 +1,38 @@
+﻿@model Dictionary<string, int>
+@{
+    ViewBag.Reprogramada = Model["Reprogramada"];
+    ViewBag.Programada = Model["Programada"];
+    ViewBag.Realizada = Model["Realizada"];
+
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <strong class="card-title">Actividades por Estado</strong>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div style="width:450px;height:300px;text-align:center;margin:10px">
+                <div id="flot-placeholder" style="width:100%;height:100%;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+            var data = [[0, @ViewBag.Reprogramada], [1, @ViewBag.Programada], [2, @ViewBag.Realizada]];
+        var dataset = [{ label: "Actividades por estado", data: data, color: "#5482FF" }];
+        var ticks = [[0, "Reprogramada"], [1, "Programada"], [2, "Realizada"]];
+
+    function cargarActividades() {
+
+        jQuery.plot(jQuery("#flot-placeholder"), dataset, options);
+        jQuery("#flot-placeholder").UseTooltip();
+    }
+</script>
+
+
+

@@ -1,0 +1,64 @@
+﻿@model Dictionary<string, decimal>
+@{
+       ViewBag.porCerrado = Model["porCerrado"];
+       ViewBag.porAbierto = Model["porAbierto"];
+       ViewBag.totalAbierto = Model["totalAbierto"];
+       ViewBag.totalCerrado = Model["totalCerrado"];
+
+    }
+
+
+
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Procesos por estado</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="width:450px;height:300px;text-align:center;margin:10px">
+                    <div id="flotPie1" class="float-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function cargarGraficaCaso(){
+            "use strict";
+
+            // Pie chart flotPie1
+            var piedata = [
+                { label: "Casos Abiertos " + @ViewBag.totalAbierto , data: [[1, @ViewBag.porAbierto]], color: '#5c6bc0' },
+                { label: "Casos Cerrados "+ @ViewBag.totalCerrado, data: [[1, @ViewBag.porCerrado]], color: '#ef5350' },
+                //{ label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
+            ];
+
+            jQuery.plot('#flotPie1', piedata, {
+                series: {
+                    pie: {
+                        show: true,
+                        radius: 1,
+                        innerRadius: 0.65,
+                        label: {
+                            show: true,
+                            radius: 2 / 3,
+                            threshold: 1
+                        },
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+            });
+            // Pie chart flotPie1  End
+
+        }
+    </script>
+
+

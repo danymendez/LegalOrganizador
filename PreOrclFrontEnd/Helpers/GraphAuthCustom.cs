@@ -35,7 +35,7 @@ namespace PreOrclFrontEnd.Helpers
             }
             catch (Exception ex)
             {
-             //   ExceptionUtility.LogException(ex);
+                ExceptionUtility.LogException(ex);
             }
 
             return entity;
@@ -141,7 +141,7 @@ namespace PreOrclFrontEnd.Helpers
 
         public GraphServiceClient GetAuthenticatedClient(string token)
         {
-            string c = "";
+         
             GraphServiceClient _graphClient = new GraphServiceClient(new DelegateAuthenticationProvider(
                 async requestMessage =>
                 {

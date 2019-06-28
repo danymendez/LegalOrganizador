@@ -1,0 +1,66 @@
+﻿@model PreOrclFrontEnd.Models.Usuarios
+
+<div class="modal-header">
+    <h5 class="modal-title" id="smallModalLabel">@ViewBag.Title</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<form asp-action="InactivateOrActivate" asp-antiforgery="true" id="createForm" data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+      data-ajax-failure="onFailed" data-ajax-success="onSuccessInModal" data-ajax="true" data-ajax-method="POST">
+    <div class="modal-body">
+
+        <div class="card-body card-block">
+
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <div id="contenedorAlert">
+
+                    </div>
+                    <input asp-for="IdUsuario" type="hidden" />
+                    <input asp-for="TipoUsuario" type="hidden" />
+                    <input asp-for="Password" type="hidden" />
+                    <input asp-for="FechaNac" type="hidden" />
+                    <input asp-for="Nombre" type="hidden" />
+                    <input asp-for="Apellido" type="hidden" />
+                    <input asp-for="Token" type="hidden" />
+                    <input asp-for="TokenExpiredAt" type="hidden" />
+                    <input asp-for="TokenRefresh" type="hidden" />
+                    <input asp-for="IdRol" type="hidden" />
+                    <input asp-for="CreatedAt" type="hidden" />
+                    <input asp-for="UpdatedAt" type="hidden" />
+                    @if (ViewBag.ButtonTextSave == "Reactivar")
+                    {
+                        <input asp-for="Inactivo" type="hidden" value="0" />
+                    }
+                    else
+                    {
+                        <input asp-for="Inactivo" type="hidden" value="1" />
+                    }
+                    <input asp-for="InactivatedAt" type="hidden" />
+                    <label asp-for="Usuario" class="form-control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input asp-for="Usuario" class="form-control" disabled="disabled" />
+                    </div>
+                    <span asp-validation-for="Usuario" class="text-danger"></span>
+                    <span class="text-danger" id="NombreRolDuplicado"></span>
+                </div>
+
+            </div>
+            
+
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <input type="button" value="@ViewBag.ButtonTextSave" onclick="GuardarNotificacion('#createForm','@Url.Action("InactivateOrActivate")','@Url.Action("Index")')" class="btn btn-default" />
+        @*<a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.per_IDPER">Editar</a>*@
+    </div>
+</form>
+
+@*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@

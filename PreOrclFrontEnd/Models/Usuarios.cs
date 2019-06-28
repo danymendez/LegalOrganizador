@@ -13,13 +13,34 @@ namespace PreOrclFrontEnd.Models
         [Key]
         public decimal IdUsuario { get; set; }
 
-        [Required(ErrorMessage = "Campo Requerido")]
+        [Required(ErrorMessage = "Requerido")]
         public string Usuario { get; set; }
-        [Required(ErrorMessage = "Campo Requerido")]
+        [Required(ErrorMessage = "Requerido")]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         public string Nombre { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Requerido")]
         public string Apellido { get; set; }
+
+        public DateTime? FechaNac { get; set; }
+   
+        public string Token { get; set; }
+       
+        public DateTime? TokenExpiredAt { get; set; }
+       
+        public decimal IdRol { get; set; }
+      
+        public string TokenRefresh { get; set; }
+        [Display(Name = "Fecha de creación")]
+        public DateTime CreatedAt { get; set; }
+      
+        public DateTime? InactivatedAt { get; set; }
+     
+        public DateTime? UpdatedAt { get; set; }
+        
+        public int Inactivo { get; set; }
+        [Display(Name ="Tipo usuario")]
+        public string TipoUsuario { get; set; }
+
     }
 }

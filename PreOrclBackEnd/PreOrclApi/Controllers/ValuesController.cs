@@ -26,7 +26,7 @@ namespace PreOrclApi.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
            
-            return new string[] { "va", "ve" };
+            return new string[] { "va", System.TimeZoneInfo.Local.StandardName };
         }
 
         // GET api/values/5

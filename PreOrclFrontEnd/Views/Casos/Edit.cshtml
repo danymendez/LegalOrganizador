@@ -1,0 +1,341 @@
+﻿@model PreOrclFrontEnd.ViewModels.VwModelCasos
+@{
+    ViewData["Title"] = "Editar";
+
+    List<SelectListItem> listaCategorias = (ViewBag.listaCategorias as List<SelectListItem>);
+    List<SelectListItem> listaTipos = (ViewBag.listaTipos as List<SelectListItem>);
+
+
+}
+
+
+@section Styles{
+
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/style.css">
+    <link rel="stylesheet" href="~/templateAdmin/assets/css/lib/chosen/chosen.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Editar Caso</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Registros</a></li>
+                            <li><a asp-action="Index">Casos</a></li>
+                            <li class="active">Editar Caso</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Editar Caso</strong> <small></small>
+                    </div>
+
+                    <form asp-action="Edit" enctype="multipart/form-data" class="submit-formdata" @*asp-antiforgery="true" *@ id="createForm" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label asp-for="Casos.NombreCaso"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-gavel"></i></div>
+                                    <input asp-for="Casos.NombreCaso" class="form-control">
+                                </div>
+                                <span asp-validation-for="Casos.NombreCaso" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Casos.FechaApertura"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input asp-for="Casos.FechaApertura" disabled="disabled" type="text" class="form-control date-time">
+                                </div>
+                                <span asp-validation-for="Casos.FechaApertura" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Casos.IdCliente"></label>
+                                <select asp-for="Casos.IdCliente" data-placeholder="Seleccionar" asp-items="ViewBag.listaPersonas" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="Casos.IdCliente" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="IdImputados"></label>
+                                <select asp-for="IdImputados" multiple="true" data-placeholder="Seleccionar" asp-items="ViewBag.listaImputados" class="standardSelect" tabindex="1"></select>
+                                <span asp-validation-for="IdImputados" class="text-danger"></span>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label asp-for="Casos.Categoria" class="form-control-label"></label>
+                                </div>
+                                <div class="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                        @foreach (var itemCategoria in listaCategorias)
+                                        {
+
+                                            <label for="inline-radio@listaCategorias.GetEnumerator()" class="form-check-label ">
+                                                <input asp-for="Casos.Categoria" type="radio" value="@itemCategoria.Value" class="form-check-input">@itemCategoria.Text&nbsp;&nbsp;&nbsp;
+                                            </label>
+
+                                        }
+
+                                    </div>
+                                    <span asp-validation-for="Casos.Categoria" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Casos.PrecioPactado"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-dollar"></i></div>
+                                    <input asp-for="Casos.PrecioPactado" class="form-control text-right">
+                                </div>
+                                <span asp-validation-for="Casos.PrecioPactado" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Casos.IdAbogado"></label>
+                                <select asp-for="Casos.IdAbogado" data-placeholder="Seleccionar" asp-items="ViewBag.listaAbogados" class="standardSelect" tabindex="1">
+                                    <option disabled value="-1" selected>Seleccionar</option>
+                                </select>
+                                <span asp-validation-for="Casos.IdAbogado" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Casos.Resolucion"></label>
+                                <div class="input-group">
+
+                                    <textarea asp-for="Casos.Resolucion" class="form-control" rows="15"></textarea>
+                                </div>
+                                <span asp-validation-for="Casos.Resolucion" class="text-danger"></span>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="Casos.EstadoCaso"></label>
+                                    <select asp-for="Casos.EstadoCaso" data-placeholder="Seleccionar" asp-items="ViewBag.listaEstadoCasos" class="standardSelect" tabindex="1">
+                                        <option disabled value="-1" selected>Seleccionar</option>
+                                    </select>
+                                    <span asp-validation-for="Casos.EstadoCaso" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Casos.FechaCierre"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        <input asp-for="Casos.FechaCierre" type="text" class="form-control date-time">
+                                    </div>
+                                    <span asp-validation-for="Casos.FechaCierre" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12 toclonate">
+                                    <h3>Documentos</h3>
+                                    @foreach (var itemListadoDocumentos in Model.ListadoDocumentos)
+                                    {
+
+                                        <div class="row col-md-12 listado-documentos" style="margin-bottom:7px;">
+                                            <div class="col-sm-3">
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].IdDocumento" type="hidden" />
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].IdCaso" type="hidden" />
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].CreatedAt" type="hidden" />
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].UpdatedAt" type="hidden" />
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].Nombre" type="hidden" />
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].Url" type="hidden" />
+                                                <input asp-for="ListadoDocumentos[Model.ListadoDocumentos.IndexOf(itemListadoDocumentos)].Archivo" type="hidden" />
+
+                                                <a asp-action="Download" class="form-control-label" asp-route-id="@itemListadoDocumentos.IdDocumento">@itemListadoDocumentos.Nombre</a>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="button" onclick="remover(this)" class="btn btn-sm btn-danger remover">X</button>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    <button type="button" class="btn btn-primary" style="margin-bottom:7px;" onclick="clonar()">Agregar Documento</button>
+                                    <div class="row col-md-12 file-requerido" style="margin-bottom:7px;display:none">
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <input asp-for="Documentos" class="file0" type="file" />
+                                            </div>
+                                            <span asp-validation-for="Documentos" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12 file-norequerido" style="margin-bottom:7px;">
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <input onclick="agregarId(this)" class="file1" type="file" />
+                                            </div>
+                                            <span asp-validation-for="Documentos" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+
+                                    </div>
+                           
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label asp-for="Casos.Tipo" class="form-control-label"></label>
+                                </div>
+                                <div class="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                        @foreach (var itemTipos in listaTipos)
+                                        {
+
+                                            <label for="inline-radio@listaTipos.GetEnumerator()" class="form-check-label ">
+                                                <input asp-for="Casos.Tipo" type="radio" value="@itemTipos.Value" class="form-check-input">@itemTipos.Text&nbsp;&nbsp;&nbsp;
+                                            </label>
+
+                                        }
+
+                                    </div>
+                                    <span asp-validation-for="Casos.Tipo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <input asp-for="Casos.IdCaso" type="hidden" />
+                            <input asp-for="Casos.IdCreador" type="hidden" />
+                            <input asp-for="Casos.CreatedAt" type="hidden" />
+                            <input asp-for="Casos.UpdatedAt" type="hidden" />
+                            <input asp-for="Casos.InactivatedAt" type="hidden" />
+                            <input asp-for="Casos.Inactivo" type="hidden" />
+                            <div class="row form-group">
+                                <div class="col-sm-12 text-right">
+                                    <input type="button" onclick="validarDocumentosVacios('.submit-formdata','@Url.Action("Create")','@Url.Action("Index")')" value="Guardar" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div><!-- .animated -->
+</div>
+
+
+@section Scripts {
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/custoSweetAlertAjax.js"></script>
+    <script src="~/templateAdmin/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="~/js/custoDateTimePicker.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".standardSelect").chosen({
+
+                no_results_text: "No se encontraron registros!",
+                width: "100%"
+            });
+
+            jQuery(".standardSelect").removeAttr("style");
+            jQuery(".standardSelect").css("visibility", "hidden");
+            jQuery(".standardSelect").css("position", "absolute");
+
+
+
+        });
+
+        jQuery(".remover").on("click", function () {
+            var padre = jQuery(this).parent().parent();
+            padre.remove();
+        });
+
+        function remover(selector) {
+            var padre = jQuery(selector).parent().parent();
+            padre.remove();
+        }
+
+        function clonar() {
+
+            jQuery(".toclonate").append(' <div class="row col-md-12" style="margin-bottom:7px;">' +
+                '<div class="col-sm-3">' +
+                '<div class="input-group">' +
+                '<input id="Documentos" name="Documentos" type="file" />' +
+                ' </div>' +
+                '  <span class="text-danger"></span>' +
+                '</div>' +
+                '<div class="col-sm-3">' +
+                '<button type="button" onclick="remover(this)" class="btn btn-sm btn-danger remover">X</button>' +
+                '</div>' +
+                '</div>');
+
+
+        }
+
+        function validarDocumentosVacios(selector,urlRefrescar,urlIndex) {
+
+            var docs = jQuery(".listado-documentos").length;
+         //   alert(jQuery(".file1").val()==="");
+            if (docs === 0) {
+                if (jQuery(".file1").val() === "") {
+                    jQuery(".file-requerido").show();
+
+                    jQuery(".file-norequerido").remove();
+                }
+            } else {
+
+                if (jQuery(".file1").val() === "") {
+                    jQuery(".file1").removeAttr("name");
+                    jQuery(".file1").removeAttr("id");
+                }
+                
+                jQuery(".file-requerido").hide();
+                if (jQuery(".file-norequerido").length===0)
+                jQuery(".toclonate").append(' <div class="row col-md-12 file-norequerido" style="margin-bottom:7px;">' +
+                    '<div class="col-sm-3">' +
+                    '<div class="input-group">' +
+                    '<input onclick="agregarId(this)" class="file1" type="file" />' +
+                    ' </div>' +
+                    '  <span class="text-danger"></span>' +
+                    '</div>' +
+                    '<div class="col-sm-3">' +
+                  
+                    '</div>' +
+                    '</div>');
+            }
+
+            GuardarNotificacion(selector, urlRefrescar,urlIndex);
+
+        }
+
+
+        function agregarId(selector) {
+            jQuery(".file1").attr("name", "Documentos");
+            jQuery(".file1").attr("id", "Documentos");
+        }
+
+    </script>
+
+}

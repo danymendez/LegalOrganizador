@@ -1,0 +1,157 @@
+﻿@model IEnumerable<PreOrclFrontEnd.ViewModels.VwModelCasos>
+
+@{
+    ViewData["Title"] = "Index";
+
+
+    List<SelectListItem> listaEstadoCasos = (ViewBag.listaEstadoCasos as List<SelectListItem>);
+}
+
+@section Styles{
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="~/tooltipster-master/dist/css/tooltipster.bundle.min.css" />
+}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Casos</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Casos</a></li>
+                            <li><a href="#">Listado de casos</a></li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated">
+        
+        
+        <div class="row" id="myRow">
+            <div class="col-md-12">
+                <div class="card col-md-1">
+                    <div class="input-group">
+   
+                            <a asp-action="Create" title="Agregar caso" class="btn btn-primary">Agregar caso</a>
+
+                    </div>
+                </div>
+                    <div class="card">
+                      
+                        <div class="input-group">
+                            <input id="myInput" type="text" class="form-control" placeholder="Filtrar..">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var itemCasos in Model)
+                {
+
+                    <div class="col-md-4 filter">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="">
+                                    <strong class="card-title"><a href="@Url.Action("Edit","Casos",new { id=itemCasos.Casos.IdCaso})"> @itemCasos.Casos.NombreCaso</a><small> - @itemCasos.Casos.Tipo<span class="badge badge-@(itemCasos.Casos.EstadoCaso=="A"?"success":"warning") float-right mt-1">@(listaEstadoCasos.Where(c => c.Value == itemCasos.Casos.EstadoCaso).FirstOrDefault().Text)</span></small></strong>
+                                </div>
+                                <div class="stat-widget-five text-right">
+                                    <div class="stat-content">
+                                        <div class="text-right dib">
+                                            <div class="stat-content">
+                                                <div class="text-right dib">
+                                                    @*<div class="stat-text"><span class="">Listado de actividades</span></div>*@
+                                                    <div class="stat-heading"> @itemCasos.Casos.FechaApertura.ToString("dd/MM/yyyy HH:mm.ss") <br /> @(itemCasos.Casos.FechaCierre.ToString() != "" ? Convert.ToDateTime(itemCasos.Casos.FechaCierre).ToString("dd/MM/yyyy HH:mm:ss") : "Sin Fecha de Cierre")</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">@(itemCasos.Casos.Resolucion ?? "Sin resolución")</p>
+                                <div class="stat-widget-five text-right">
+
+                                    <div class="stat-content">
+                                        <div class="text-right dib">
+                                            <div class="stat-text"><span class="">Listado de actividades</span></div>
+                                            @foreach (var itemActividadesAsistentes in itemCasos.ListVwModelActividadesAsistentes)
+                                            {
+                                                <div class="tooltip_templates_@itemCasos.ListVwModelActividadesAsistentes.IndexOf(itemActividadesAsistentes)" style="display:none">
+                                                    <span id="tooltip_content_@itemCasos.ListVwModelActividadesAsistentes.IndexOf(itemActividadesAsistentes)">
+                                                        Fecha/Hora Inicio: @itemActividadesAsistentes.Actividades.StartTime.ToString("dd/MM/yyyy HH:mm:ss")<br />
+                                                        Fecha/Hora Fin:    @itemActividadesAsistentes.Actividades.EndTime.ToString("dd/MM/yyyy HH:mm:ss")<br />
+                                                        Responsable: @itemActividadesAsistentes.Responsable.Nombre @itemActividadesAsistentes.Responsable.Apellido<br />
+                                                        Asistentes:
+                                                        <br />
+                                                        @foreach (var itemAsistentes in itemActividadesAsistentes.ListVwModelAsistentes)
+                                                        {
+                                                            @($"{itemAsistentes.Asistente.Nombre} {itemAsistentes.Asistente.Apellido}")<br />
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <a href="@Url.Action("Edit","Actividades",new { id=itemActividadesAsistentes.Actividades.IdActividad})" class="stat-heading toolp" data-tooltip-content="#tooltip_content_@itemCasos.ListVwModelActividadesAsistentes.IndexOf(itemActividadesAsistentes)" title="">
+                                                        @itemActividadesAsistentes.Actividades.NombreActividad
+                                                    </a>
+                                                </div>
+                                            }
+
+                                            @if (itemCasos.ListVwModelActividadesAsistentes.Count <= 0)
+                                            {
+                                                <div class="stat-heading">Sin Actividades</div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        <partial name="../Modals/_LargeModalPartial" />
+    </div>
+
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/tooltipster-master/dist/js/tooltipster.bundle.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.toolp').tooltipster({
+                contentCloning: true
+            });
+        });
+
+        jQuery(document).ready(function () {
+            jQuery("#myInput").on("keyup", function () {
+                var value = jQuery(this).val().toLowerCase();
+                jQuery("#myRow .filter").filter(function () {
+                    jQuery(this).toggle(jQuery(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}
